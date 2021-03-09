@@ -1,0 +1,112 @@
+<div
+  [formGroup]="formGroup"
+  fxLayout="column"
+  class="padding-container"
+  fxLayoutGap="20px"
+>
+  <!-- digital code -->
+  <!-- use express-code component from pallet acceptance -->
+  <div fxLayout="row" fxLayout.xs="column">
+    <dpl-express-code
+      fxFlex="25"
+      fxFlex.sm
+      [preset]="expressCodePreset"
+      (validatedExpressCode)="expressCodeChange($event)"
+      [subForm]="formGroup.controls.code"
+    ></dpl-express-code>
+  </div>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+    <!-- quellkonto -->
+    <mat-card fxFlex="25" fxFlex.xs>
+      <mat-card-header>
+        <mat-card-title i18n="SourceAccount|Label Quell-Konto@@SourceAccount"
+          >Quell-Konto<strong> *</strong></mat-card-title
+        >
+      </mat-card-header>
+      <mat-card-content fxLayout="column">
+        <app-posting-account-picker
+          fxFlex="130px"
+          [subForm]="formGroup.controls.sourceAccountId"
+          #destinationAccountPicker
+        ></app-posting-account-picker>
+        <dpl-account-balance-info
+          [loadCarrierIds]="[103, 2, 151, 702]"
+        ></dpl-account-balance-info>
+      </mat-card-content>
+    </mat-card>
+    <!-- ladungsträger -->
+    <mat-card fxFlex>
+      <mat-card-header>
+        <mat-card-title i18n="LoadCarrier|Label Ladungsträger@@LoadCarrier"
+          >Ladungsträger<strong> *</strong></mat-card-title
+        >
+      </mat-card-header>
+      <mat-card-content fxLayout="column" fxLayoutGap="20px">
+        <app-load-carrier-form
+          fxLayoutGap="10px"
+          [subForm]="formGroup.controls.loadCarrier"
+          [context]="loadCarrierContext"
+        ></app-load-carrier-form>
+
+        <!-- konto 0 (unbekannt) - feld für beschreibung/nachricht an dpl, dann required -->
+        <span i18n="TransferFormNote|Kommentar an DPL@@TransferFormNote">
+          Kommentar an DPL
+        </span>
+        <mat-form-field fxFlex>
+          <textarea
+            matInput
+            [formControl]="formGroup.controls.message"
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="3"
+            cdkAutosizeMaxRows="3"
+          ></textarea>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+    <!-- zielkonto -->
+    <mat-card fxFlex="25" fxFlex.xs>
+      <mat-card-header>
+        <mat-card-title i18n="TargetAccount|Label Ziel-Konto@@TargetAccount"
+          >Ziel-Konto<strong> *</strong></mat-card-title
+        >
+      </mat-card-header>
+      <mat-card-content fxLayout="column">
+        <app-posting-account-picker
+          fxFlex="130px"
+          [subForm]="formGroup.controls.targetAccountId"
+          [context]="'Destination'"
+          #targetAccountPicker
+        ></app-posting-account-picker>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- fehler anzeigen falls balance nicht ausreicht -->
+  <div fxLayoutAlign="space-between">
+    <div fxLayout="row" fxFlexAlign="end" fxLayoutGap="20px">
+      <a mat-raised-button [routerLink]="['/accounts']" color="primary">
+        <ng-container
+          i18n="AccountSummary|Label Kontenübersicht@@AccountSummary"
+          >Kontenübersicht</ng-container
+        >
+      </a>
+    </div>
+    <div fxLayout="row" fxFlexAlign="end" fxLayoutGap="20px">
+      <button
+        mat-raised-button
+        (click)="reset()"
+        i18n="Refusal|Label Verwerfen@@Refusal"
+      >
+        Verwerfen
+      </button>
+      <button
+        mat-raised-button
+        (click)="onSubmit()"
+        color="primary"
+        [disabled]="formGroup.invalid"
+        i18n="Rebook|Label Umbuchen@@Rebook"
+      >
+        Umbuchen
+      </button>
+    </div>
+  </div>
+</div>

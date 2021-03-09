@@ -1,0 +1,159 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="data.dataSource"
+    [showBorders]="true"
+    [remoteOperations]="true"
+    (onEditorPreparing)="onEditorPreparing($event)"
+  >
+    >
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+    <!--Todo: change allowDeleting to true if it works-->
+    <dxo-editing
+      mode="form"
+      [allowUpdating]="true"
+      [allowAdding]="true"
+      [allowDeleting]="true"
+    >
+    </dxo-editing>
+    <dxi-column
+      dataField="id"
+      dataType="number"
+      [formItem]="{ visible: false }"
+      [width]="80"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Dokumententyp
+        @@CustomerAdministrationNumberSequencesDocumentTypeColumnCaption"
+      dataField="documentType"
+      dataType="string"
+      [allowSorting]="true"
+      caption="Dokumententyp"
+      [minWidth]="150"
+  
+      [allowFiltering]="true"
+
+      calculateSortValue="documentType"
+    >
+      <dxo-lookup
+        [dataSource]="data.documentTypeData"
+        [displayExpr]="lookUpDisplayExpression"
+        [valueExpr]="lookUpValueExpression"
+      >
+      </dxo-lookup>
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Anzeigename
+        @@CustomerAdministrationNumberSequencesDisplayNameColumnCaption"
+      dataField="displayName"
+      dataType="string"
+      caption="Anzeigename"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Zähler
+        @@CustomerAdministrationNumberSequencesCounterColumnCaption"
+      dataField="counter"
+      dataType="number"
+      caption="Zähler"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Vorsilbe
+        @@CustomerAdministrationNumberSequencesPrefixColumnCaption"
+      dataField="prefix"
+      dataType="string"
+      caption="Vorsilbe"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Trennzeichen nach Vorsilbe
+        @@CustomerAdministrationNumberSequencesSeparatorAfterPrefixColumnCaption"
+      dataField="separatorAfterPrefix"
+      dataType="string"
+      caption="Trennzeichen nach Vorsilbe"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Dokumentenkurznamen hinzufügbar
+        @@CustomerAdministrationNumberSequencesCanAddDocumentTypeShortNameColumnCaption"
+      dataField="canAddDocumentTypeShortName"
+      dataType="boolean"
+      caption="Dokumentenkurznamen hinzufügbar"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Polsterung der Kundennummer hinzufügbar
+        @@CustomerAdministrationNumberSequencesCanAddPaddingForCustomerNumberColumnCaption"
+      dataField="canAddPaddingForCustomerNumber"
+      dataType="boolean"
+      caption="Polsterung der Kundennummer hinzufügbar"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Polsterung der Kundennummerlänge
+        @@CustomerAdministrationNumberSequencesPaddingLengthForCustomerNumberColumnCaption"
+      dataField="paddingLengthForCustomerNumber"
+      dataType="number"
+      caption="Polsterung der Kundennummerlänge"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Postfix der Kundennummer
+        @@CustomerAdministrationNumberSequencesPostfixForCustomerNumberColumnCaption"
+      dataField="postfixForCustomerNumber"
+      dataType="string"
+      caption="Postfix der Kundennummer"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Abteilungskurznamen hinzufügbar
+        @@CustomerAdministrationNumberSequencesCanAddDivisionShortNameColumnCaption"
+      dataField="canAddDivisionShortName"
+      dataType="boolean"
+      caption="Abteilungskurznamen hinzufügbar"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Zählervorzeichen
+        @@CustomerAdministrationNumberSequencesPrefixForCounterColumnCaption"
+      dataField="prefixForCounter"
+      dataType="string"
+      caption="Zählervorzeichen"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Polsterung des Zählers hinzufügbar
+        @@CustomerAdministrationNumberSequencesCanAddPaddingForCounterColumnCaption"
+      dataField="canAddPaddingForCounter"
+      dataType="boolean"
+      caption="Polsterung des Zählers hinzufügbar"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Polsterung der Zählerlänge
+        @@CustomerAdministrationNumberSequencesPaddingLengthForCounterColumnCaption"
+      dataField="paddingLengthForCounter"
+      dataType="number"
+      caption="Polsterung der Zählerlänge"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Trennzeichen
+        @@CustomerAdministrationNumberSequencesSeparatorColumnCaption"
+      dataField="separator"
+      dataType="string"
+      caption="Trennzeichen"
+    ></dxi-column>
+
+    <dxo-paging [pageSize]="12"></dxo-paging>
+    <dxo-pager
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[5, 12, 20]"
+    ></dxo-pager>
+  </dx-data-grid>
+</ng-container>

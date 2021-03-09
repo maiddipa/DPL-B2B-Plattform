@@ -1,0 +1,18 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <div fxLayout="row" fxLayoutGap="20px">
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <!--Todo: Add i18n-->
+      <mat-label>Organisation</mat-label>
+      <mat-select
+        (selectionChange)="organizationChange($event)"
+        [value]="data.selectedOrg"
+      >
+        <mat-option *ngFor="let org of data.orgs" [value]="org">
+          {{ org.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <dpl-customer-administration-organization-add></dpl-customer-administration-organization-add>
+  </div>
+</ng-container>

@@ -1,0 +1,9 @@
+<mat-card-title
+  ><span>Annahme</span>: {{ receipt.issuedDate | dateEx }} |
+  {{ receipt.documentNumber }}</mat-card-title
+>
+<mat-card-subtitle>
+  <span>Belegempfänger</span>: {{ receipt.truckDriverCompanyName }} |
+  {{ receipt.licensePlateCountryId | country: 'licensePlate' }}
+  {{ receipt.licensePlate }} | {{ receipt.truckDriverName }}
+</mat-card-subtitle>

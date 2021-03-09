@@ -1,0 +1,10 @@
+<ng-container [ngSwitch]="context">
+  <ng-container *ngSwitchCase="'voucher'">
+    {{ loadCarrier.type.id | loadCarrier: 'type':'LongName' }}
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    {{ loadCarrier.id | loadCarrier }} ({{
+      loadCarrier.type.id | loadCarrier: 'type':'LongName'
+    }})
+  </ng-container>
+</ng-container>

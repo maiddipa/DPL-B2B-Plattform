@@ -1,0 +1,522 @@
+<dpl-filtered-table
+  #table
+  fxLayout="column"
+  fxLayoutGap="20px"
+  [filterContext]="context"
+  [getDataFn]="getDataFn"
+  [query]="query"
+  (updated)="status = $event"
+  [extendFilterFn]="extendFilterFn"
+  [showFilterArea]="false"
+  [forceRefresh]="voucherRegisterService.forceRefreshSubject"
+>
+  <table
+    #VoucherTable
+    class="app-table example-table vouchers-table"
+    mat-table
+    multiTemplateDataRows
+    matSort
+    [matSortActive]="sort.active"
+    [matSortDirection]="sort.direction"
+    matSortDisableClear
+  >
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedVoucher === row"
+      (click)="expandedVoucher = expandedVoucher === row ? null : row"
+      [dplRouteHighlight]="row.id"
+      [dplRouteHighlightParamName]="'highlightId'"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="example-detail-row"
+    ></tr>
+    <tr
+      mat-footer-row
+      *matFooterRowDef="['noData']"
+      [hidden]="table.status.initialized && table.status.hasData"
+    ></tr>
+    <ng-container matColumnDef="documentNumber">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="sortOptions.DocumentNumber"
+        class="documentNumber"
+      >
+        <span i18n="ReceiptNumber|Label Beleg Nr.@@ReceiptNumber"
+          >Beleg Nr.</span
+        >
+      </th>
+      <td mat-cell *matCellDef="let element" class="documentNumber">
+        {{ element.documentNumber }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="issuerCompanyName">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="sortOptions.IssuedBy"
+        class="issuer"
+      >
+        <span i18n="Issuer|Label Aussteller@@Issuer">Austeller</span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="issuer">
+        {{ element.issuerCompanyName }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="issuedDate">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="sortOptions.IssuanceDate"
+        class="alignRight sort issuedDate"
+      >
+        <span i18n="IssuedDate|Label Austelldatum@@IssuedDate"
+          >Ausstelldatum</span
+        >
+      </th>
+      <td mat-cell *matCellDef="let element" class="alignRight issuedDate">
+        {{ element.issuedDate | dateEx }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="validUntil">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="sortOptions.ValidUntil"
+        class="alignRight sort validUntil"
+      >
+        <span i18n="ValidUntil|Label Verfallsdatum@@ValidUntil"
+          >Verfallsdatum</span
+        >
+      </th>
+      <td mat-cell *matCellDef="let element" class="alignRight validUntil">
+        <ng-container *ngIf="element.type !== voucherType.Direct">{{
+          element.validUntil | date: 'shortDate'
+        }}</ng-container>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="recipientType">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="sortOptions.RecipientType"
+        class="recipientType"
+      >
+        <span i18n="RecipientType|Label Empf@@RecipientType">Adressat</span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="recipientType">
+        <mat-icon
+          *ngIf="element.recipientType === recipientType.Shipper"
+          style="color: darkslategrey;"
+          title="Spediteur"
+          i18n-title="Shipper|Label Spediteur@@Shipper"
+        >
+          local_shipping
+        </mat-icon>
+        <mat-icon
+          *ngIf="element.recipientType === recipientType.Supplier"
+          style="color: darkslategrey;"
+          title="Lieferant"
+          i18n-title="Supplier|Label Lieferant@@Supplier"
+        >
+          apartment
+        </mat-icon>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="recipient">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="sortOptions.Recipient"
+        class="recipient"
+      >
+        <span i18n="Recipient|Label Empfänger@@Recipient">Adressat</span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="recipient">
+        {{ element.recipient }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="supplier">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="sortOptions.Supplier"
+        class="recipient"
+      >
+        <span i18n="Supplier|Label Lieferant@@Supplier">Lieferant</span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="recipient">
+        {{ element.supplier }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="shipper">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="sortOptions.Shipper"
+        class="recipient"
+      >
+        <span i18n="Shipper|Label Spediteur@@Shipper">anlief. Spedition</span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="recipient">
+        {{ element.shipper }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="reasonType">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="sortOptions.Reason"
+        class="reasonType"
+      >
+        <span i18n="ReasonType|Label Grund@@ReasonType">NTG</span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="reasonType">
+        {{ element.reasonTypeId | voucherReasonType: 'short' }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="voucherType">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="sortOptions.Type"
+        class="type"
+      >
+        <span i18n="Type|Label Typ@@Type">Typ</span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="type">
+        <mat-icon
+          *ngIf="element.type == voucherType.Direct"
+          title="Direkt-Buchung"
+          i18n-title="Paperless|Label Papierlos@@Paperless"
+          >cloud_queue</mat-icon
+        >
+        <mat-icon
+          *ngIf="element.type == voucherType.Digital"
+          style="color: darkslategrey;"
+          title="Digitale Einreichung"
+          i18n-title="Digital|Label Digital@@Digital"
+          >insert_drive_file</mat-icon
+        >
+        <mat-icon
+          *ngIf="element.type == voucherType.Original"
+          title="Original Einreichung"
+          i18n-title="Original|Label Original@@Original"
+          >email</mat-icon
+        >
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="sortOptions.Status"
+        class="status"
+      >
+        <span i18n="Status|Label Status@@Status">Status</span>
+      </th>
+      <td mat-cell *matCellDef="let element" class="status">
+        {{ element.status | voucherStatus }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="loadCarrierQualites">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        class="alignRight quality{ width: 5%; }"
+      >
+        <span i18n="LoadCarrier|Label Ladungsträger@@LoadCarrier"
+          >Ladungsträger</span
+        >
+      </th>
+      <td mat-cell *matCellDef="let element" class="alignRight quality">
+        {{
+          element.loadCarrierQualites.length > 2
+            ? '...'
+            : element.loadCarrierQualites.join(', ')
+        }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="loadCarrierQuantity">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="sortOptions.Quantity"
+        class="alignRight sort loadCarrierQuantity"
+      >
+        <span i18n="Amount|Label Menge@@Amount">Menge</span>
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        class="alignRight loadCarrierQuantity"
+      >
+        {{ element.loadCarrierQuantity | number }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="customerReference">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="sortOptions.CustomerReference"
+        class="alignRight sort customerReference"
+      >
+        <dpl-customer-custom-label
+          labelKey="CustomerReference"
+        ></dpl-customer-custom-label>
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        class="alignRight customerReference"
+      >
+        {{ element.customerReference }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="cancel">
+      <th mat-header-cell *matHeaderCellDef class="cancel"></th>
+      <td mat-cell *matCellDef="let element" class="cancel">
+        <dpl-cancel-voucher-button
+          [voucher]="element"
+        ></dpl-cancel-voucher-button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="chat">
+      <th mat-header-cell *matHeaderCellDef class="chat"></th>
+      <td mat-cell *matCellDef="let element" class="chat">
+        <dpl-chat-button type="voucher" [data]="element"></dpl-chat-button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="hasDplNote">
+      <th mat-header-cell *matHeaderCellDef>DPL</th>
+      <td mat-cell *matCellDef="let element">
+        <dpl-note-info-icon
+          *ngIf="element.dplNotes && element.dplNotes.length > 0"
+          [notes]="element.dplNotes"
+        ></dpl-note-info-icon>
+      </td>
+    </ng-container>
+
+    <!-- detail row -->
+    <ng-container matColumnDef="expandedDetail">
+      <td
+        mat-cell
+        *matCellDef="let voucher"
+        [attr.colspan]="displayedColumns.length"
+      >
+        <div
+          class="example-element-detail"
+          [@detailExpand]="
+            voucher == expandedVoucher ? 'expanded' : 'collapsed'
+          "
+          fxLayout="column"
+        >
+          <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="left center">
+            <div class="element-icon" fxFlex="nogrow">
+              <a (click)="openDocument(voucher)">
+                <img src="assets/images/pdf-icon.png"
+              /></a>
+            </div>
+            <div fxFlex="5"></div>
+            <div fxLayout="row" fxLayoutGap="30px">
+              <div fxLayout="column">
+                <div fxLayout="row" fxLayoutGap="20px">
+                  <div>
+                    <b
+                      ><span i18n="Postitions|Label Positionen@@Postitions"
+                        >Positionen</span
+                      >:
+                    </b>
+                  </div>
+                  <div>
+                    <div fxLayout="column">
+                      <div
+                        fxLayout="row"
+                        fxLayoutAlign="space-between center"
+                        fxFlexFill
+                        fxLayoutGap="10px"
+                        style="border-bottom: 1px solid black;"
+                      >
+                        <div
+                          i18n="LoadCarrier|Label Ladungsträger@@LoadCarrier"
+                        >
+                          Ladungsträger
+                        </div>
+                        <div i18n="Amount|Label Menge@@Amount">
+                          Menge
+                        </div>
+                      </div>
+                      <div
+                        fxLayout="row"
+                        fxLayoutAlign="space-between center"
+                        fxFlexFill
+                        fxLayoutGap="10px"
+                        *ngFor="let position of voucher.positions"
+                      >
+                        <div>
+                          <ng-container
+                            *ngIf="
+                              getLoadCarrierById(position.loadCarrierId)
+                                | async as loadCarrier
+                            "
+                          >
+                            {{ loadCarrier.type | loadCarrier: 'type' }}
+                            {{ loadCarrier.quality | loadCarrier: 'quality' }}
+                          </ng-container>
+                        </div>
+                        <div style="min-width: 60px; text-align: right;">
+                          {{ position.quantity }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="column">
+                <div
+                  fxLaout="row"
+                  fxLayoutAlign="space-between center"
+                  fxLayoutGap="10px"
+                  *ngIf="voucher.issuerCompanyName"
+                >
+                  <div>
+                    <b
+                      ><span i18n="Issuer|Label Aussteller@@Issuer"
+                        >Aussteller</span
+                      >:
+                    </b>
+                  </div>
+                  <div>{{ voucher.issuerCompanyName }}</div>
+                </div>
+                <div
+                  fxLaout="row"
+                  fxLayoutAlign="space-between center"
+                  fxLayoutGap="10px"
+                  *ngIf="voucher.supplier"
+                >
+                  <div>
+                    <b
+                      ><span i18n="Supplier|Label Lieferant@@Supplier"
+                        >Lieferant</span
+                      >:
+                    </b>
+                  </div>
+                  <div>{{ voucher.supplier }}</div>
+                </div>
+                <div
+                  fxLaout="row"
+                  fxLayoutAlign="space-between center"
+                  fxLayoutGap="10px"
+                  *ngIf="voucher.shipper"
+                >
+                  <div>
+                    <b
+                      ><span i18n="Shipper|Labl Sub-Spediteur@@Shipper"
+                        >Spediteur</span
+                      >:
+                    </b>
+                  </div>
+                  <div>{{ voucher.shipper }}</div>
+                </div>
+              </div>
+
+              <div fxLayout="column">
+                <div
+                  fxLaout="row"
+                  fxLayoutAlign="space-between center"
+                  fxLayoutGap="10px"
+                  *ngIf="voucher.truckDriverCompanyName"
+                >
+                  <div>
+                    <b
+                      ><span
+                        i18n="CompanyNameOnTruck|Label Name@@CompanyNameOnTruck"
+                        >Firmenname (auf LKW)</span
+                      >:
+                    </b>
+                  </div>
+                  <div>{{ voucher.truckDriverCompanyName }}</div>
+                </div>
+                <div
+                  fxLaout="row"
+                  fxLayoutAlign="space-between center"
+                  fxLayoutGap="10px"
+                  *ngIf="voucher.licensePlate"
+                >
+                  <div>
+                    <b
+                      ><span i18n="LicensePlate|Label Kennzeichen@@LicensePlate"
+                        >Kennzeichen</span
+                      >:
+                    </b>
+                  </div>
+                  <div>{{ voucher.licensePlate }}</div>
+                </div>
+                <div
+                  fxLaout="row"
+                  fxLayoutAlign="space-between center"
+                  fxLayoutGap="10px"
+                  *ngIf="voucher.truckDriverName"
+                >
+                  <div>
+                    <b
+                      ><span i18n="Driver|Label Fahrer@@Driver">Fahrer</span>:
+                    </b>
+                  </div>
+                  <div>{{ voucher.truckDriverName }}</div>
+                </div>
+              </div>
+
+              <div fxLayout="column">
+                <div
+                  fxLaout="row"
+                  fxLayoutAlign="space-between center"
+                  fxLayoutGap="10px"
+                  *ngIf="voucher.cancellationReason"
+                >
+                  <div>
+                    <b
+                      ><span
+                        
+                        >Stornogrund</span
+                      >:
+                    </b>
+                  </div>
+                  <div>{{ voucher.cancellationReason }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <dpl-note-info [notes]="voucher.dplNotes"></dpl-note-info>
+        </div>
+      </td>
+    </ng-container>
+    <!-- No Data Row -->
+    <ng-container matColumnDef="noData">
+      <td mat-cell *matFooterCellDef [attr.colspan]="displayedColumns.length">
+        <div
+          style="text-align: center;"
+          *ngIf="!table.status.hasFilter"
+          i18n="ListNoItems|mat-table no items message@@ListNoItems"
+        >
+          Keine Einträge vorhanden
+        </div>
+        <div
+          style="text-align: center;"
+          *ngIf="table.status.hasFilter"
+          i18n="
+            ListNoItemsFilteres|mat-table no items message
+            filtered@@ListNoItemsFilteres"
+        >
+          Keine Einträge gefunden (Filter aktiv)
+        </div>
+      </td>
+    </ng-container>
+  </table>
+</dpl-filtered-table>

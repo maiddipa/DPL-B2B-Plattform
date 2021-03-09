@@ -1,0 +1,93 @@
+<form (submit)="onFormSubmit($event)">
+  <dx-form id="form" [colCount]="1" [(formData)]="formData">
+    <dxi-item itemType="group">
+      <dxi-item
+        i18n-caption="
+        Item Gruppen Überschrift: Kunde:
+          @@CustomerAdministrationCustomerFormGroupItemTitel"
+        itemType="group"
+        caption="Kunde:"
+      >
+        <dxi-item dataField="name">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="refErpCustomerNumber" editorType="dxNumberBox">
+          <dxo-label
+            i18n-text="
+              Ref Erp
+              Kundennummer@@CustomerAdministrationCustomerFormRefErpCustomerNumberItemLabelText"
+            text="Ref Erp Kundennummer"
+          ></dxo-label>
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="defaultLanguage">
+          <dxo-label
+            i18n-text="
+              Standard
+              Sprache@@CustomerAdministrationCustomerFormDefaultLanguageItemLabelText"
+            text="Standard Sprache"
+          ></dxo-label>
+        </dxi-item>
+        <dxi-item dataField="isPoolingPartner" editorType="dxCheckBox">
+          <dxo-label
+            i18n-text="
+              Pooling
+              Partner@@CustomerAdministrationCustomerFormIsPoolingPartnerItemLabelText"
+            text="Pooling Partner"
+          ></dxo-label>
+        </dxi-item>
+        <dxi-item
+          dataField="addressId"
+          editorType="dxLookup"
+          [editorOptions]="{
+            dataSource: addressesDataSource,
+            displayExpr: addressDisplayExpr,
+            valueExpr: 'id',
+            searchExpr: ['city', 'street1'],
+            searchEnabled: true,
+            searchMode: 'startswith'
+          }"
+        >
+          <dxo-label
+            i18n-text="
+              Adresse@@CustomerAdministrationCustomerFormAddressItemLabelText"
+            text="Adresse"
+          ></dxo-label>
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item
+          dataField="partnerId"
+          editorType="dxLookup"
+          [editorOptions]="{
+            dataSource: partnersDataSource,
+            displayExpr: 'companyName',
+            valueExpr: 'id',
+            searchExpr: 'companyName',
+            searchEnabled: true,
+            searchMode: 'startswith'
+          }"
+        >
+          <dxo-label
+            i18n-text="
+              Partner@@CustomerAdministrationCustomerFormPartnerItemLabelText"
+            text="Partner"
+          ></dxo-label>
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="isActive" editorType="dxCheckBox">
+          <dxo-label
+            i18n-text="
+              Aktiv@@CustomerAdministrationCustomerFormIsActiveItemLabelText"
+            text="Aktiv"
+          ></dxo-label>
+        </dxi-item>
+      </dxi-item>
+    </dxi-item>
+    <dxi-item
+      itemType="button"
+      horizontalAlignment="left"
+      [buttonOptions]="buttonOptions"
+    >
+    </dxi-item>
+  </dx-form>
+</form>

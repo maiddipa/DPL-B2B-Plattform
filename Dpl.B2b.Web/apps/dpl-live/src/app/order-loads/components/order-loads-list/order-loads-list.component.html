@@ -1,0 +1,420 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dpl-filtered-table
+    #table
+    fxLayout="column"
+    fxLayoutGap="20px"
+    [filterContext]="context"
+    [getDataFn]="getDataFn"
+    [query]="query"
+    (updated)="status = $event"
+    [forceRefresh]="ordersService.forceRefreshSubject"
+  >
+    <table
+      class="app-table order-loads-table"
+      mat-table
+      multiTemplateDataRows
+      matSort
+      [matSortActive]="sort.active"
+      [matSortDirection]="sort.direction"
+      matSortDisableClear
+    >
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        [dplRouteHighlight]="row.id"
+        dplRouteHighlightParamName="highlightIds"
+      ></tr>
+      <tr
+        mat-footer-row
+        *matFooterRowDef="['noData']"
+        [hidden]="table.status.initialized && table.status.hasData"
+      ></tr>
+
+      <!-- Column definitions -->
+      <ng-container matColumnDef="number">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [mat-sort-header]="sortOption.Id"
+          class="number"
+        >
+          <span i18n="NumberAbr|Label Nr.@@NumberAbr">Nr.</span>
+        </th>
+        <td mat-cell *matCellDef="let element" class="number">
+          {{ element.order.orderNumber | numberEx: false }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="dplCode">
+        <th mat-header-cell *matHeaderCellDef class="alignRight dplcode">
+          <span i18n="DplDigitalCode|Label DPL-Digital-Code@@DplDigitalCode"
+            >DPL-Digital-Code</span
+          >
+        </th>
+        <td mat-cell *matCellDef="let element" class="alignRight dplcode">
+          <span>
+            {{ element.digitalCode | digitalCode }}
+          </span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="timestamp">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [mat-sort-header]="sortOption.CreatedAt"
+          class="meldezeitpunkt alignRight"
+        >
+          <span
+            i18n="TimeOfNotification|Label Meldezeitpunkt@@TimeOfNotification"
+            >Meldezeitpunkt</span
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="meldezeitpunkt alignRight sort"
+        >
+          {{ element.createdAt | dateEx }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="plannedFulfillmentDateTime">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [mat-sort-header]="sortOption.PlannedFulfillmentDateTime"
+          class="plannedFulfillmentDateTime alignRight"
+        >
+          <span i18n="Label für geplanten Termin@@PlannedFulfillmentDate"
+            >Termin</span
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="plannedFulfillmentDateTime alignRight sort"
+        >
+          {{ element.plannedFulfillmentDateTime | date: 'shortDate' }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="actualFulfillmentDateTime">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [mat-sort-header]="sortOption.ActualFulfillmentDateTime"
+          class="actualFulfillmentDateTime alignRight"
+        >
+          <span
+            i18n="
+              Label für tatsächliches Abwicklungsdatum@@ActualFulfillmentDate"
+            >Abgewickelt am</span
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="actualFulfillmentDateTime alignRight sort"
+        >
+          {{
+            element.actualFulfillmentDateTime &&
+            element.status === orderLoadStatus.Fulfilled
+              ? (element.actualFulfillmentDateTime | date: 'shortDate')
+              : ''
+          }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="address">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="ladestelle"
+          [mat-sort-header]="sortOption.PostalCode"
+        >
+          <span i18n="LoadingStation|Label Ladestelle@@LoadingStation"
+            >Ladestelle</span
+          >
+        </th>
+        <td class="ladestelle" mat-cell *matCellDef="let element">
+          {{ element?.address?.postalCode }} {{ element?.address?.city }},
+          {{ element?.address?.street1 }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="loadCarrier">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [mat-sort-header]="sortOption.LoadCarrierName"
+          class="alignRight loadCarrier"
+        >
+          <span i18n="LoadCarrier|Label Ladungsträger@@LoadCarrier"
+            >Ladungsträger</span
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="alignRight loadCarrier sort"
+        >
+          {{ element.loadCarrierId | loadCarrier: 'both' }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="loadCarrierQuantity">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="alignRight loadCarrierQuantity"
+        >
+          <span i18n="Amount|Label Menge@@Amount">Menge</span>
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="alignRight loadCarrierQuantity"
+        >
+          {{ element.loadCarrierQuantity | number }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="numberOfStacks">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="alignRight numberOfStacks"
+          [mat-sort-header]="sortOption.NumberOfStacks"
+        >
+          <span i18n="Stack|Label Stapel@@Stack">Stapel</span>
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="alignRight numberOfStacks sort"
+        >
+          {{
+            element.numberOfStacks ? (element.numberOfStacks | number) : ' - '
+          }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="loadCarrierStackHeight">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="alignRight loadCarrierStackHeight"
+          [mat-sort-header]="sortOption.StackHeight"
+        >
+          <span i18n="StackHeight|Label Stapelhöhe@@StackHeight"
+            >Stapelhöhe</span
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="alignRight loadCarrierStackHeight sort"
+        >
+          {{ element.loadCarrierStackHeight | number }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="baseLoadCarrier">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="alignRight baseLoadCarrier"
+          [mat-sort-header]="sortOption.BaseLoadCarrierName"
+        >
+          <span i18n="VehiclePallet|Label Träger-Palette@@VehiclePallet"
+            >Träger-Palette</span
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="alignRight baseLoadCarrier sort"
+        >
+          {{
+            element.baseLoadCarrierId
+              ? (element.baseLoadCarrierId | loadCarrier: 'both')
+              : ' - '
+          }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="baseLoadCarrierQuantity">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="alignRight baseLoadCarrierQuantity"
+        >
+          <span
+            i18n="VehiclePalletQuantity|Label Menge (TP)@@VehiclePalletQuantity"
+            >Menge (TP)</span
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="alignRight baseLoadCarrierQuantity"
+        >
+          {{
+            element.baseLoadCarrierId
+              ? (element.baseLoadCarrierQuantity | number)
+              : ' - '
+          }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          [id]="sortOption.Status"
+          class="status"
+        >
+          <ng-container i18n="Status|Label Status@@Status">Status</ng-container>
+        </th>
+        <td mat-cell *matCellDef="let element" class="status">
+          <div style="display: flex; align-items: center;">
+            <i
+              class="material-icons"
+              [style.color]="getStatusColor(element.status)"
+            >
+              brightness_1
+            </i>
+            <span style="margin-left: 5px;">
+              {{ element.status | orderLoadStatus }}
+            </span>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cancel">
+        <th mat-header-cell *matHeaderCellDef class="cancel"></th>
+        <td mat-cell *matCellDef="let element" class="cancel">
+          <dpl-cancel-button
+            [type]="'OrderLoad'"
+            [item]="element"
+          ></dpl-cancel-button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="receipt">
+        <th mat-header-cell *matHeaderCellDef class="receipt"></th>
+        <td mat-cell *matCellDef="let element" class="receipt">
+          <dpl-load-carrier-receipt-button
+            [load]="element"
+            [order]="element.order"
+          ></dpl-load-carrier-receipt-button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="chat">
+        <th mat-header-cell *matHeaderCellDef class="chat"></th>
+        <td mat-cell *matCellDef="let element" class="chat">
+          <dpl-chat-button type="orderLoad" [data]="element"></dpl-chat-button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="orderTypeJournal">
+        <th mat-header-cell *matHeaderCellDef class="type">Typ</th>
+        <td mat-cell *matCellDef="let element" class="type">
+          <span *ngIf="element.type === 'Supply'"
+            ><mat-icon
+              style="color: darkslategrey;"
+              title="Ausgabe"
+              i18n-title="
+                JournalOrderTypeSupply|Label Journal Tooltip
+                Supply@@JournalOrderTypeSupply"
+              svgIcon="dpl_outgoing"
+            >
+            </mat-icon
+          ></span>
+          <span *ngIf="element.type == 'Demand'"
+            ><mat-icon
+              style="color: darkslategrey;"
+              title="Annahme"
+              i18n-title="
+                JournalOrderTypeDemand|Label Journal Tooltip
+                Demand@@JournalOrderTypeDemand"
+              svgIcon="dpl_incoming"
+            >
+            </mat-icon
+          ></span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="orderTypePooling">
+        <th mat-header-cell *matHeaderCellDef class="type">Typ</th>
+        <td mat-cell *matCellDef="let element" class="type">
+          <span *ngIf="element.type === 'Supply'"
+            ><mat-icon
+              style="color: darkslategrey;"
+              title="Selbstanlieferung"
+              i18n-title="
+                PoolingOrderTypeSupply|Label Pooling Tooltip
+                Supply@@PoolingOrderTypeSupply"
+              svgIcon="dpl_outgoing"
+            >
+            </mat-icon
+          ></span>
+          <span *ngIf="element.type == 'Demand'"
+            ><mat-icon
+              style="color: darkslategrey;"
+              title="Selbstabholung"
+              i18n-title="
+                PoolingOrderTypeDemand|Label Pooling Tooltip
+                Demand@@PoolingOrderTypeDemand"
+              svgIcon="dpl_incoming"
+            >
+            </mat-icon
+          ></span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="transportType">
+        <th mat-header-cell *matHeaderCellDef class="alignRight">
+          Transporttyp
+        </th>
+        <td mat-cell *matCellDef="let element" class="alignRight">
+          {{ element.transportType | transportType }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="hasDplNote">
+        <th mat-header-cell *matHeaderCellDef>DPL</th>
+        <td mat-cell *matCellDef="let element">
+          <dpl-note-info-icon
+            *ngIf="element.hasDplNote"
+            [notes]="element.dplNotes"
+          ></dpl-note-info-icon>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="orderProcess">
+        <th mat-header-cell *matHeaderCellDef class="orderProcess"></th>
+        <td mat-cell *matCellDef="let element" class="orderProcess">
+          <button
+            mat-icon-button
+            (click)="orderProcesses.openDialog('orderLoad', element.id)"
+            title="Auftragsdetails öffnen"
+            i18n-title="
+              Tooltip für Button der Order Process details
+              öffnet@@OpenOrderProcessesDialog"
+          >
+            <mat-icon>info</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- No Data Row -->
+      <ng-container matColumnDef="noData">
+        <td mat-cell *matFooterCellDef [attr.colspan]="displayedColumns.length">
+          <div
+            style="text-align: center;"
+            *ngIf="!table.status.hasFilter"
+            i18n="ListNoItems|mat-table no items message@@ListNoItems"
+          >
+            Keine Einträge vorhanden
+          </div>
+          <div
+            style="text-align: center;"
+            *ngIf="table.status.hasFilter"
+            i18n="
+              ListNoItemsFilteres|mat-table no items message
+              filtered@@ListNoItemsFilteres"
+          >
+            Keine Einträge gefunden (Filter aktiv)
+          </div>
+        </td>
+      </ng-container>
+    </table>
+  </dpl-filtered-table>
+</ng-container>

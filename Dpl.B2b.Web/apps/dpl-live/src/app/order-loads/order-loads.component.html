@@ -1,0 +1,35 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <mat-toolbar fxLayoutAlign="end center">
+    <span [ngSwitch]="data.viewType">
+      <ng-container *ngSwitchCase="viewType.Journal">
+        <ng-container
+          *ngIf="data.role === userRole.Retailer"
+          i18n="
+            topNavigationJournalBtnRetailer|Top Navigation Schaltfläche
+            Journal@@topNavigationJournalBtnRetailer"
+        >
+          Ausgaben
+        </ng-container>        
+        <ng-container
+          *ngIf="data.role !== userRole.Retailer"
+          i18n="
+            topNavigationJournalBtn|Top Navigation Schaltfläche
+            Journal@@topNavigationJournalBtn"
+        >
+          Annahmen / Ausgaben
+        </ng-container></ng-container
+      >
+      <ng-container
+        *ngSwitchDefault
+        i18n="Label Aufträge Navigations Button@@Orders"
+        >Aufträge</ng-container
+      >
+    </span>
+  </mat-toolbar>
+  <div class="app-page-content">
+    <dpl-order-loads-list
+      [context]="data.context"
+      [sort]="data.matSort"
+    ></dpl-order-loads-list>
+  </div>
+</ng-container>

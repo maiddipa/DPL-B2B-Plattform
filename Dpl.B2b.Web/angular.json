@@ -1,0 +1,267 @@
+{
+  "version": 1,
+  "projects": {
+    "dpl-live": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss",
+          "skipTests": true
+        },
+        "@schematics/angular:component": {
+          "style": "scss",
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:module": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
+      "root": "apps/dpl-live",
+      "sourceRoot": "apps/dpl-live/src",
+      "prefix": "dpl",
+      "i18n": {
+        "sourceLocale": "de",
+        "locales": {
+          "en": "apps/dpl-live/src/locale/messages.en.xlf",
+          "fr": "apps/dpl-live/src/locale/messages.fr.xlf",
+          "pl": "apps/dpl-live/src/locale/messages.pl.xlf"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/dpl-live",
+            "index": "apps/dpl-live/src/index.html",
+            "main": "apps/dpl-live/src/main.ts",
+            "polyfills": "apps/dpl-live/src/polyfills.ts",
+            "tsConfig": "apps/dpl-live/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/dpl-live/src/favicon.ico",
+              "apps/dpl-live/src/assets"
+            ],
+            "styles": [
+              
+              "apps/dpl-live/src/variables.scss",
+              "apps/dpl-live/src/styles.scss"
+            ],
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "@markpieszak/ng-application-insights",
+              "@devexpress/analytics-core",
+              "devexpress-reporting/dx-webdocumentviewer",
+              "devexpress-reporting/dx-reportdesigner",
+              "knockout"
+            ]
+          },
+          "configurations": {
+            "de": {
+              "localize": ["de"]
+            },
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/dpl-live/src/environments/environment.ts",
+                  "with": "apps/dpl-live/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "15mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ]
+            },
+            "fait": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/dpl-live/src/environments/environment.ts",
+                  "with": "apps/dpl-live/src/environments/environment.fait.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "15mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ]
+            },
+            "demo": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/dpl-live/src/environments/environment.ts",
+                  "with": "apps/dpl-live/src/environments/environment.demo.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "15mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "dpl-live:build:dev-localized-de"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "dpl-live:build:production"
+            },
+            "de": {
+              "browserTarget": "dpl-live:build:de"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "dpl-live:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/dpl-live/tsconfig.app.json",
+              "apps/dpl-live/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/dpl-live/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/dpl-live/jest.config.js"
+          }
+        }
+      }
+    },
+    "dpl-live-e2e": {
+      "root": "apps/dpl-live-e2e",
+      "sourceRoot": "apps/dpl-live-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/dpl-live-e2e/cypress.json",
+            "tsConfig": "apps/dpl-live-e2e/tsconfig.e2e.json",
+            "devServerTarget": "dpl-live:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "dpl-live:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/dpl-live-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/dpl-live-e2e/**"]
+          }
+        }
+      }
+    },
+    "dpl-lib": {
+      "projectType": "library",
+      "root": "libs/dpl-lib",
+      "sourceRoot": "libs/dpl-lib/src",
+      "prefix": "dpl",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/dpl-lib/tsconfig.lib.json",
+              "libs/dpl-lib/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/dpl-lib/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/dpl-lib/jest.config.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "dpl-live"
+}

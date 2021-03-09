@@ -1,0 +1,137 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <div fxLayout="column" fxLayoutGap="10px">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title i18n="Summary|Label Zusammenfassung@@Summary"
+          >Zusammenfassung</mat-panel-title
+        >
+      </mat-expansion-panel-header>
+      <table mat-table [dataSource]="data.aggregates" class="mat-elevation-z1">
+        <ng-container matColumnDef="carrierTypeId">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            i18n="Article|Label Artikel@@Article"
+          >
+            Artikel
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              class="article-btn"
+              mat-button
+              fxFlex="100"
+              fxLayoutAlign="center"
+              [matTooltip]="element.tooltip"
+              (click)="selectLoadCarrierType(element.carrierTypeId)"
+              [class.mat-primary]="data.activeType == element.carrierTypeId"
+              [class.mat-raised-button]="
+                data.activeType == element.carrierTypeId
+              "
+              style="text-decoration: underline;"
+              [style.font-weight]="
+                data.activeType == element.carrierTypeId ? 500 : 400
+              "
+            >
+              {{ element.carrierTypeId | loadCarrier: 'type' }}
+            </button>
+          </td>
+          <td mat-footer-cell *matFooterCellDef>
+            <span i18n="Total|Label Gesamt@@Total">Gesamt</span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="issued">
+          <th mat-header-cell *matHeaderCellDef>
+            <span i18n="Issued|Label Ausgestellt@@Issued">Ausgestellt</span
+            ><span
+              i18n="VouchersSummary|Vouchers Summary@@VouchersSummary"
+              style="white-space: pre;"
+            >
+              (Belege)</span
+            >
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.issuedSum | number }} ({{
+              element.issuedCount | number
+            }})
+          </td>
+          <td mat-footer-cell *matFooterCellDef>
+            {{ data.total.issued | number }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="submitted">
+          <th mat-header-cell *matHeaderCellDef>
+            <span i18n="Submitted|Label Eingereicht@@Submitted"
+              >Eingereicht</span
+            >
+            <span i18n="VouchersSummary|Vouchers Summary@@VouchersSummary">
+              (Belege)</span
+            >
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.submittedSum | number }} ({{
+              element.submittedCount | number
+            }})
+          </td>
+          <td mat-footer-cell *matFooterCellDef>
+            {{ data.total.submitted | number }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="accounted">
+          <th mat-header-cell *matHeaderCellDef>
+            <span i18n="Balanced|Label Ausgeglichen@@Balanced">Gebucht</span
+            ><span i18n="VouchersSummary|Vouchers Summary@@VouchersSummary">
+              (Belege)</span
+            >
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.accountedSum | number }} ({{
+              element.accountedCount | number
+            }})
+          </td>
+          <td mat-footer-cell *matFooterCellDef>
+            {{ data.total.accounted | number }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="canceled">
+          <th mat-header-cell *matHeaderCellDef>
+            <span i18n="Canceled|Label Storniert@@Canceled">Storniert</span
+            ><span i18n="VouchersSummary|Vouchers Summary@@VouchersSummary">
+              (Belege)</span
+            >
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.canceledSum | number }} ({{
+              element.canceledCount | number
+            }})
+          </td>
+          <td mat-footer-cell *matFooterCellDef>
+            {{ data.total.canceled | number }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="expired">
+          <th mat-header-cell *matHeaderCellDef>
+            <span i18n="Expire|Label Verfallen@@Expire">Verfallen</span
+            ><span i18n="VouchersSummary|Vouchers Summary@@VouchersSummary">
+              (Belege)</span
+            >
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.expiredSum | number }} ({{
+              element.expiredCount | number
+            }})
+          </td>
+          <td mat-footer-cell *matFooterCellDef>
+            {{ data.total.expired | number }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns2"></tr>
+      </table>
+    </mat-expansion-panel>
+
+    <!-- <app-load-carrier-type-selector
+        [typeOptions]="data.loadCarrierTypeIds"
+      ></app-load-carrier-type-selector> -->
+  </div>
+</ng-container>

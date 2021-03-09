@@ -1,0 +1,9 @@
+{
+  "name": "Mickler",
+  "email": "mischa.thorben.mickler@gmail.com",
+  "apiKey": "bv2c9pjtyfak",
+  "apiSecret": "shfmqvea54k7k4huc5z29bxrya3k3qd9byqxtrntcntstvqg364jytay7re98sed",
+  "apiBaseUrl": "https://chat-us-east-1.stream-io-api.com",
+  "environment": "development",
+  "telemetry": "true"
+}

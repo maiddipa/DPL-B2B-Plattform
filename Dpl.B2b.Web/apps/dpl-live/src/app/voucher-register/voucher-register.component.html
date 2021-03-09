@@ -1,0 +1,49 @@
+<mat-toolbar fxLayoutAlign="end center">
+  <span
+    i18n="
+      DigitalPoolingCredits|Label Digitale Pooling
+      Gutschriften@@DigitalPoolingCredits"
+    >Digitale Pooling Gutschriften</span
+  >
+</mat-toolbar>
+<div fxLayout="column" fxLayoutGap="20px" style="margin: 20px;">
+  <ng-container *ngIf="viewData$ | async as data">
+    <voucher-filter [context]="filterContext"></voucher-filter>
+    <voucher-summary [isDplEmployee]="data.isDplEmployee"></voucher-summary>
+    <voucher-list
+      *ngIf="data.activeType; else nothingSelected"
+      [isDplEmployee]="data.isDplEmployee"
+      [userRole]="data.userRole"
+      [loadCarriers]="data.loadCarriers"
+    ></voucher-list>
+    <ng-template #nothingSelected>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <span
+          i18n="
+            DigitalPoolingCreditsNoActiveCarrier|Label Ladungsträger wählen um
+            Belegdetail anzuzeigen@@DigitalPoolingCreditsNoActiveCarrier"
+          >Ladungsträger (oben) wählen um hier Belegdetails anzuzeigen</span
+        >
+      </div>
+    </ng-template>
+    <ng-container *ngIf="data.userRole">
+      <div
+        fxLayout="row"
+        fxLayoutGap="5px"
+        fxLayoutAlign="end"
+        *ngIf="
+          data.userRole === role.Retailer || data.userRole === role.Warehouse
+        "
+      >
+        <a mat-raised-button [routerLink]="['/voucher']" color="primary">
+          <ng-container
+            i18n="
+              VoucherRegisterCreateAction|Schaltfläche Gutschrift
+              erstellen@@VoucherRegisterCreateAction"
+            >Digitale Pooling Gutschrift erstellen</ng-container
+          >
+        </a>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

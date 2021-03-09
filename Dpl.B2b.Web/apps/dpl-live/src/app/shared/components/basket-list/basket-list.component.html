@@ -1,0 +1,78 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <div
+    *ngIf="data.basket?.items?.length > 0; else basketEmpty"
+    fxLayout="column"
+  >
+    <!-- <mat-toolbar color="primary">
+    <span class="fill-remaining-space">Basket</span>
+    <button mat-icon-button (click)="onClearAll()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar> -->
+    <mat-list>
+      <mat-list-item
+        *ngFor="let item of data.basket.items; let i = index"
+        [ngClass]="selected === item.id ? 'selected' : ''"
+        (click)="onSelected(item)"
+      >
+        <h3 matLine>
+          {{ item.title }}
+        </h3>
+        <p matLine *ngFor="let subTitle of item.subTitles">{{ subTitle }}</p>
+        <!--
+        Please note its not possible to wrap elemnts in ng-container or ng-template
+        as otherwise material list styles will not work
+        thats why we have to put an ngIf in every block below
+       -->
+        <ng-container *ngIf="!item.response">
+          <button
+            mat-icon-button
+            (click)="onRemoveFromBasket(item); $event.stopPropagation()"
+          >
+            <mat-icon matListIcon>clear</mat-icon>
+          </button>
+        </ng-container>
+
+        <p matLine *ngIf="item.response">
+          <mat-error
+            matLine
+            class="break-word"
+            *ngFor="let message of item.response.errorMessages"
+            >{{ message }}</mat-error
+          >
+        </p>
+        <p matLine *ngIf="item.response">
+          <mat-error
+            matLine
+            class="warning break-word"
+            *ngFor="let message of item.response.warningMessages"
+            >{{ message }}</mat-error
+          >
+        </p>
+      </mat-list-item>
+    </mat-list>
+    <button
+      fxFlexAlign="end"
+      mat-raised-button
+      color="primary"
+      (click)="onCheckout(data.basket)"
+      style="margin-right: 25px;"
+    >
+      <span i18n="CreateOrder|Label Auftrag erstellen@@CreateOrder"
+        >Auftrag erstellen</span
+      >
+    </button>
+  </div>
+  <ng-template #basketEmpty>
+    <mat-list>
+      <mat-list-item>
+        <h3
+          matLine
+          i18n="basketListEmptyHint|Warenkorb Hinweis Leer@@basketListEmptyHint"
+        >
+          Der Einkaufskorb ist leer.
+        </h3>
+      </mat-list-item>
+    </mat-list>
+  </ng-template>
+</ng-container>

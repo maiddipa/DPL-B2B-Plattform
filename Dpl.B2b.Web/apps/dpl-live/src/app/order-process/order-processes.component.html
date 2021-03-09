@@ -1,0 +1,78 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <div fxLayout="column" fxLayoutGap="10px">
+    <mat-toolbar
+      fxLayout="row-reverse"
+      fxLayoutAlign="space-between center"
+      [color]="data.mode === 'dialog' ? 'primary' : undefined"
+    >
+      <!-- TODO i18n -->
+      <span>
+        Prozessübersicht
+      </span>
+      <div class="app-page-sub-header">
+        <mat-slide-toggle
+          #tableToggle
+          (change)="showAsTable$.next($event.checked)"
+          >Tabellenansicht</mat-slide-toggle
+        >
+      </div>
+    </mat-toolbar>
+    <div
+      fxLayout="column"
+      fxLayoutGap="10px"
+      [class.app-page-content]="data.mode === 'page'"
+    >
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div
+          *ngIf="!data.showAsTable"
+          fxFlex="0 0 350px"
+          fxLayout="column"
+          fxLayoutGap="10px"
+        >
+          <mat-card fxFlex>
+            <mat-card-header>
+              <mat-card-title>Aufträge</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-nav-list fxFlex>
+                <a
+                  *ngFor="let process of data.orders"
+                  mat-list-item
+                  [class.app-selected]="
+                    data.selectedOrder.id === process.data.id
+                  "
+                  (click)="onOrderChanged(process.data.id)"
+                >
+                  {{ getRowTitle(process) }}
+                </a>
+              </mat-nav-list>
+            </mat-card-content>
+          </mat-card>
+          <dpl-detail-order
+            title="Details"
+            [order]="data.selectedOrder"
+            [dplRouteHighlight]="data.selectedOrder.id"
+            dplRouteHighlightParamName="orderId"
+          ></dpl-detail-order>
+        </div>
+        <dpl-order-processes-list
+          fxFlex
+          fxLayout="column"
+          [showAsTable]="data.showAsTable"
+          [orderProcesses]="data.orderProcesses"
+        ></dpl-order-processes-list>
+      </div>
+      <div
+        *ngIf="data.mode === 'dialog'"
+        fxLayout="row"
+        fxLayoutAlign="end"
+        fxLayoutGap="10px"
+      >
+        <button mat-raised-button color="primary" (click)="closeDialog()">
+          Schließen
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *dplLoading="query"></ng-container>

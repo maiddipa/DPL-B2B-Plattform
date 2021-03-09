@@ -1,0 +1,14 @@
+diff --git a/node_modules/print-js/src/js/print.js b/node_modules/print-js/src/js/print.js
+index 636eb17..0848ce6 100644
+--- a/node_modules/print-js/src/js/print.js
++++ b/node_modules/print-js/src/js/print.js
+@@ -59,6 +59,9 @@ function performPrint (iframeElement, params) {
+     } else {
+       // Other browsers
+       iframeElement.contentWindow.print()
++      if(Browser.isChrome()){
++        window.dispatchEvent(new Event("focus"));
++      }
+     }
+   } catch (error) {
+     params.onError(error)

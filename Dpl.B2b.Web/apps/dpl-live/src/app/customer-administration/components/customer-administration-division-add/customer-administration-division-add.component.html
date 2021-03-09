@@ -1,0 +1,6 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dpl-customer-administration-division-form fxFlex="60"
+    [customerId]="data.customerId"
+    (formSubmit)="onFormSubmit($event, data)"
+  ></dpl-customer-administration-division-form>
+</ng-container>

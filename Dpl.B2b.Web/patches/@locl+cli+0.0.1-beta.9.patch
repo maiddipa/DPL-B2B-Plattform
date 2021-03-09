@@ -1,0 +1,54 @@
+diff --git a/node_modules/@locl/cli/lib/cli.module.d.ts b/node_modules/@locl/cli/lib/cli.module.d.ts
+index 63109cf..7897f17 100644
+--- a/node_modules/@locl/cli/lib/cli.module.d.ts
++++ b/node_modules/@locl/cli/lib/cli.module.d.ts
+@@ -1,2 +1,7 @@
++import * as ɵngcc0 from '@angular/core';
+ export declare class CliModule {
++    static ɵmod: ɵngcc0.ɵɵNgModuleDefWithMeta<CliModule, never, never, never>;
++    static ɵinj: ɵngcc0.ɵɵInjectorDef<CliModule>;
+ }
++
++//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2xpLm1vZHVsZS5kLnRzIiwic291cmNlcyI6WyJjbGkubW9kdWxlLmQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBOzs7QUFDQSIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWNsYXJlIGNsYXNzIENsaU1vZHVsZSB7XG59XG4iXX0=
+\ No newline at end of file
+diff --git a/node_modules/@locl/cli/lib/cli.module.d.ts.__ivy_ngcc_bak b/node_modules/@locl/cli/lib/cli.module.d.ts.__ivy_ngcc_bak
+new file mode 100644
+index 0000000..63109cf
+--- /dev/null
++++ b/node_modules/@locl/cli/lib/cli.module.d.ts.__ivy_ngcc_bak
+@@ -0,0 +1,2 @@
++export declare class CliModule {
++}
+diff --git a/node_modules/@locl/cli/locl-cli.d.ts b/node_modules/@locl/cli/locl-cli.d.ts
+index 67ff29a..f1b9dbf 100644
+--- a/node_modules/@locl/cli/locl-cli.d.ts
++++ b/node_modules/@locl/cli/locl-cli.d.ts
+@@ -2,3 +2,5 @@
+  * Generated bundle index. Do not edit.
+  */
+ export * from './index';
++
++//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9jbC1jbGkuZC50cyIsInNvdXJjZXMiOlsibG9jbC1jbGkuZC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogR2VuZXJhdGVkIGJ1bmRsZSBpbmRleC4gRG8gbm90IGVkaXQuXG4gKi9cbmV4cG9ydCAqIGZyb20gJy4vaW5kZXgnO1xuIl19
+\ No newline at end of file
+diff --git a/node_modules/@locl/cli/locl-cli.d.ts.__ivy_ngcc_bak b/node_modules/@locl/cli/locl-cli.d.ts.__ivy_ngcc_bak
+new file mode 100644
+index 0000000..67ff29a
+--- /dev/null
++++ b/node_modules/@locl/cli/locl-cli.d.ts.__ivy_ngcc_bak
+@@ -0,0 +1,4 @@
++/**
++ * Generated bundle index. Do not edit.
++ */
++export * from './index';
+diff --git a/node_modules/@locl/cli/src/cmds/extract/translation_files/xliff1_translation_serializer.js b/node_modules/@locl/cli/src/cmds/extract/translation_files/xliff1_translation_serializer.js
+index f2ce0bf..781b6d9 100644
+--- a/node_modules/@locl/cli/src/cmds/extract/translation_files/xliff1_translation_serializer.js
++++ b/node_modules/@locl/cli/src/cmds/extract/translation_files/xliff1_translation_serializer.js
+@@ -11,6 +11,7 @@ class Xliff1TranslationSerializer {
+         const fileAttrs = {
+             ['source-language']: isTarget ? undefined : locale,
+             ['target-language']: locale,
++            original: 'ng2.template',
+             datatype: 'plaintext'
+         };
+         xml.startTag('file', fileAttrs);

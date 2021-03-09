@@ -1,0 +1,98 @@
+<ng-container *ngIf="viewData$ | async as data"
+  ><!-- todo store loading -->
+  <mat-expansion-panel #myPanel [disabled]="true">
+    <mat-expansion-panel-header
+      class="filter"
+      [collapsedHeight]="'75px'"
+      [expandedHeight]="'75px'"
+    >
+      <mat-panel-title style="align-items: center;">
+        <ng-container i18n="Filter|Label Filter@@Filter">Filter</ng-container>
+      </mat-panel-title>
+      <mat-panel-description
+        style="justify-content: flex-end; align-items: center;"
+      >
+        <voucher-filter-template
+          [context]="data.context"
+        ></voucher-filter-template>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="expandPanel()"
+          [disableRipple]="true"
+        >
+          <mat-icon>{{ matIcon }}</mat-icon>
+        </button>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!-- primary filter die immer vorhanden sind -->
+    <div fxLayout="column" fxLayoutGap="20px">
+      <div fxLayout="row wrap" fxLayoutGap="5px grid">
+        <voucher-filter-input
+          *ngFor="let filter of data.appliedFilters"
+          [filterItem]="filter"
+          [filterPosition]="position.primary"
+          [context]="context"
+        ></voucher-filter-input>
+      </div>
+
+      <div *ngIf="data.moreExpanded" class="extendedSearchArea">
+        <div fxLayout="row wrap" fxLayoutGap="5px grid">
+          <ng-container *ngFor="let filter of data.extendedFilters">
+            <voucher-filter-input
+              [filterItem]="filter"
+              [filterPosition]="position.extended"
+              [context]="context"
+            ></voucher-filter-input>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <mat-action-row>
+      <!-- more filter -->
+
+      <ng-container *ngIf="hasAvailableExtendedFilters$ | async">
+        <ng-container [ngSwitch]="data.moreExpanded">
+          <button
+            *ngSwitchCase="false"
+            mat-button
+            (click)="data.moreExpanded = true"
+            title="Weitere Filter anzeigen"
+            i18n-title="
+              ShowMoreFilter|Label Weitere Filter anzeigen@@ShowMoreFilter"
+            i18n="ShowMoreFilter|Label Weitere Filter anzeigen@@ShowMoreFilter"
+          >
+            Weitere Filter anzeigen
+          </button>
+          <button
+            *ngSwitchDefault
+            mat-button
+            (click)="data.moreExpanded = false"
+            title="Weitere Filter anzeigen"
+            i18n-title="
+              HideMoreFilter|Label Weitere Filter verbergen@@HideMoreFilter"
+            i18n="HideMoreFilter|Label Weitere Filter verbergen@@HideMoreFilter"
+          >
+            Weitere Filter verbergen
+          </button>
+        </ng-container>
+      </ng-container>
+      <button
+        mat-button
+        (click)="reset()"
+        i18n="ResetFilter|Label Filter zürücksetzen@@ResetFilter"
+      >
+        Filter zurücksetzen
+      </button>
+      <button
+        mat-button
+        (click)="applyExtended()"
+        color="primary"
+        [disabled]="!(hasChangedFilters$ | async)"
+      >
+        <ng-container i18n="Apply|Label Anwenden@@Apply">Anwenden</ng-container>
+      </button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</ng-container>

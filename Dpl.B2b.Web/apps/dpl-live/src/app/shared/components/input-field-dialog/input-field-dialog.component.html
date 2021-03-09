@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Wert"
+      [(ngModel)]="data.value"
+      i18n-placeholder="Value|Label Wert@@Value"
+    />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    (click)="onNoClick()"
+    i18n="Cancel|Label Abbrechen@@Cancel"
+  >
+    Abbrechen
+  </button>
+  <button
+    mat-button
+    [mat-dialog-close]="data"
+    cdkFocusInitial
+    i18n="Accept|Label Übernehmen@@Accept"
+  >
+    Übernehmen
+  </button>
+</div>

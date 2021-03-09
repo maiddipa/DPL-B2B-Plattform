@@ -1,0 +1,92 @@
+<agm-map
+  [latitude]="mapData.lat"
+  [longitude]="mapData.lng"
+  [zoom]="mapData.zoom"
+  [disableDefaultUI]="false"
+  (mapClick)="onMapClicked($event)"
+  (mapReady)="mapReady($event)"
+  [mapTypeControl]="true"
+  [zoomControl]="true"
+  [zoomControlOptions]="zoomControlOptions"
+  [streetViewControl]="true"
+  [streetViewControlOptions]="streetViewControlOptions"
+>
+  <agm-circle
+    *ngFor="let radius of radiuses"
+    [fillOpacity]="0"
+    [strokeWeight]="1"
+    [radius]="radius.radius"
+    [clickable]="false"
+    [editable]="true"
+    [latitude]="radius.lat"
+    [longitude]="radius.lng"
+    (radiusChange)="onRadiusChange($event)"
+    (centerChange)="onRadiusCenterChanged($event)"
+  ></agm-circle>
+
+  <agm-data-layer
+    *ngIf="response"
+    [style]="dataStyleFunc"
+    [geoJson]="response.geoJson"
+  ></agm-data-layer>
+
+  <ng-container *ngIf="response && basketDict">
+    <agm-marker
+      *ngIf="response.origin as origin"
+      [latitude]="origin.lat"
+      [longitude]="origin.lng"
+      [label]="''"
+      class="result-marker"
+      iconUrl="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_blue.png"
+    >
+      <agm-info-window>
+        <strong>{{ origin.label }}</strong>
+      </agm-info-window>
+    </agm-marker>
+    <agm-marker
+      *ngFor="let destination of response.destinations; let i = index"
+      (markerClick)="onSelectionChanged(destination.id)"
+      [latitude]="destination.info.lat"
+      [longitude]="destination.info.lng"
+      [label]="''"
+      [iconUrl]="
+        basketDict[destination.id]
+          ? 'http://maps.google.com/mapfiles/ms/micons/grn-pushpin.png'
+          : null
+      "
+    >
+      <agm-info-window
+        *ngIf="selected === destination.id"
+        [isOpen]="selected === destination.id"
+      >
+        <app-pickup-location-info
+          [location]="destination"
+          [basketId]="basketId"
+          (addToBasket)="onAddToBasket($event)"
+          (zoomToggled)="onPickupLocationZoomToggled($event)"
+        ></app-pickup-location-info>
+      </agm-info-window>
+    </agm-marker>
+  </ng-container>
+  <!-- Placed here to make sure result pins overlay origin pin -->
+  <agm-marker
+    *ngIf="clickedPosition"
+    [latitude]="clickedPosition.lat"
+    [longitude]="clickedPosition.lng"
+    [label]="''"
+    class="origin-marker"
+    iconUrl="https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_blue.png"
+  >
+    <agm-info-window [isOpen]="true" (infoWindowClose)="onMapClickClose()">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onSearch(clickedPosition)"
+      >
+        <span i18n="RadiusSearch|Label Umkreissuche@@RadiusSearch"
+          >UMKREISSUCHE</span
+        >
+      </button>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>

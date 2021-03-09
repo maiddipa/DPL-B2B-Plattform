@@ -1,0 +1,37 @@
+<ng-container *ngIf="viewData$ | async as data; else loading">
+  <div
+    class="customer-administration-loading-location-general-div customer-administration-general"
+    fxLayout="row"
+    fxLayoutGap="20px"
+  >
+    <div
+      class="customer-administration-loading-location-form-parent-div"
+      fxFlex="60"
+    >
+      <dpl-customer-administration-loading-location-form
+        [formData]="data.loadingLocation"
+        (formSubmit)="onFormSubmit($event, data)"
+      ></dpl-customer-administration-loading-location-form>
+    </div>
+    <div class="customer-administration-form-delete-button" fxFlex>
+      <dx-button
+        i18n-hint="
+          Löschen Mouseover Button Text: Löschen der
+          Ladestelle@@CustomerAdministrationLoadingLocationGeneralDeleteButtonHint"
+        i18n-text="
+          Löschen Button Text:
+          Löschen@@CustomerAdministrationLoadingLocationGeneralDeleteButtonText"
+        hint="Löschen der Ladestelle"
+        stylingMode="outlined"
+        text="Löschen"
+        type="danger"
+        [width]="120"
+        (onClick)="delete()"
+      >
+      </dx-button>
+    </div>
+  </div>
+</ng-container>
+<ng-template #loading>
+  <dpl-loading-spinner-on-page></dpl-loading-spinner-on-page>
+</ng-template>

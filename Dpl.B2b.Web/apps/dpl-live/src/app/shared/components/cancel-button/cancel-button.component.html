@@ -1,0 +1,10 @@
+<ng-container *hasPermission="resourceAction.CancelOrder">
+  <button
+    mat-icon-button
+    [dplOnClickDisableUntil]="onCancel()"
+    [disabled]="isDisabled()"
+    [title]="isDisabled() ? '' : 'Stornierung anfragen'"
+  >
+    <mat-icon>cancel</mat-icon>
+  </button>
+</ng-container>

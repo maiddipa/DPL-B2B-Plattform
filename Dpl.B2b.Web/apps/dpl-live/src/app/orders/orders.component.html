@@ -1,0 +1,65 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <mat-toolbar fxLayoutAlign="end center">
+    <span [ngSwitch]="data.viewType">
+      <ng-container
+        *ngSwitchCase="viewType.Supply"
+        i18n="
+          ReportedAvailability|Label Gemeldete
+          Verfügbarkeiten@@ReportedAvailability"
+        >Gemeldete Verfügbarkeiten</ng-container
+      >
+      <ng-container
+        *ngSwitchCase="viewType.Demand"
+        i18n="
+          ReportedRequirements|Label Gemeldete Bedarfe@@ReportedRequirements"
+        >Gemeldete Bedarfe</ng-container
+      >
+      <ng-container
+        *ngSwitchDefault
+        i18n="Label Aufträge Navigations Button@@Orders"
+        >Aufträge</ng-container
+      >
+    </span>
+  </mat-toolbar>
+  <div class="app-page-content">
+    <dpl-orders-list
+      [context]="data.context"
+      [sort]="data.matSort"
+      [viewType]="data.viewType"
+    ></dpl-orders-list>
+  </div>
+  <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="end">
+    <ng-container [ngSwitch]="data.viewType">
+      <ng-container *ngSwitchCase="viewType.Supply">
+        <ng-template [ngTemplateOutlet]="newSupply"></ng-template
+      ></ng-container>
+      <ng-container *ngSwitchCase="viewType.Demand">
+        <ng-template [ngTemplateOutlet]="newDemand"></ng-template
+      ></ng-container>
+      <ng-container *ngSwitchDefault>
+        <ng-template [ngTemplateOutlet]="newSupply"></ng-template>
+        <ng-template [ngTemplateOutlet]="newDemand"></ng-template
+      ></ng-container>
+    </ng-container>
+    <ng-template #newSupply>
+      <a
+        mat-raised-button
+        [routerLink]="['/availabilities/start']"
+        color="primary"
+        i18n="ReportAvailability|Label Verfügbarkeit melden@@ReportAvailability"
+      >
+        Verfügbarkeit melden
+      </a>
+    </ng-template>
+    <ng-template #newDemand>
+      <a
+        mat-raised-button
+        [routerLink]="['/needs/start']"
+        color="primary"
+        i18n="ReportNewNeeds|Label Neuen Bedarf melden@@ReportNewNeeds"
+      >
+        Bedarf melden
+      </a>
+    </ng-template>
+  </div>
+</ng-container>

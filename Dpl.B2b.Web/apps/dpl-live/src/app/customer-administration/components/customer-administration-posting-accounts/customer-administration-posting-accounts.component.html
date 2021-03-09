@@ -1,0 +1,103 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="data.dataSource"
+    [showBorders]="true"
+    [remoteOperations]="true"
+    [columnAutoWidth]="true"
+  >
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+    <dxo-editing
+      mode="form"
+      [allowUpdating]="true"
+      [allowAdding]="true"
+      [allowDeleting]="true"
+    >
+    </dxo-editing>
+    <dxi-column
+      dataField="id"
+      dataType="number"
+      [formItem]="{ visible: false }"
+      [width]="80"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Anzeigename
+        @@CustomerAdministrationPostingAccountsDisplayNameColumnCaption"
+      dataField="displayName"
+      dataType="string"
+      caption="Anzeigename"
+    >
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Ref Ltms Konto
+        @@CustomerAdministrationPostingAccountsRefLtmsAccountIdColumnCaption"
+      dataField="refLtmsAccountId"
+      cellTemplate="accountDisplayTemplate"
+      editCellTemplate="accountEditTemplate"
+      caption="Ref Ltms Konto"
+    >
+      <!-- display string -->
+      <!-- edit selectBox -->
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Adresse
+        @@CustomerAdministrationPostingAccountsAddressColumnCaption"
+      dataField="addressId"
+      cellTemplate="addressDisplayTemplate"
+      editCellTemplate="addressEditTemplate"
+      caption="Adresse"
+    >
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+
+    <dxo-paging [pageSize]="12"></dxo-paging>
+    <dxo-pager
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[5, 12, 20]"
+    ></dxo-pager>
+    <div *dxTemplate="let data of 'accountDisplayTemplate'">
+      {{ data.data?.customerNumber }} | {{ data.data?.refLtmsAccountNumber }}
+    </div>
+    <div *dxTemplate="let templateData of 'accountEditTemplate'">
+      <dx-select-box
+        [dataSource]="data.ltmsAccountsDataSource"
+        [value]="templateData.value"
+        [displayExpr]="ltmsAccountDisplayExpression"
+        valueExpr="id"
+        [showSelectionControls]="false"
+        [searchEnabled]="true"
+        (onValueChanged)="templateData.setValue($event.value)"
+        *ngIf="data"
+      >
+      </dx-select-box>
+    </div>
+    <div *dxTemplate="let data of 'addressDisplayTemplate'">
+      {{ data.data.addressCity }}, {{ data.data.addressPostalCode }},
+      {{ data.data.addressStreet1 }}
+    </div>
+    <div *dxTemplate="let templateData of 'addressEditTemplate'">
+      <dx-lookup
+        [dataSource]="data.addressesDataSource"
+        [value]="templateData.value"
+        [displayExpr]="addressDisplayExpr"
+        valueExpr="id"
+        [searchEnabled]="true"
+        [searchExpr]="['city', 'street1']"
+        searchMode="startswith"
+        pageSize="20"
+        (onValueChanged)="templateData.setValue($event.value)"
+        *ngIf="data"
+      >
+      </dx-lookup>
+    </div>
+  </dx-data-grid>
+</ng-container>

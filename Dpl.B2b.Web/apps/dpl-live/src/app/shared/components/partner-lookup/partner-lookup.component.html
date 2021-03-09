@@ -1,0 +1,70 @@
+<ng-container [formGroup]="formGroup">
+  <div fxLayout="row" fxLayoutGap="10px">
+    <mat-form-field fxFlex="1 1 auto">
+      <input
+        #autocompleteInput
+        type="text"
+        [placeholder]="placeholder"
+        matInput
+        [formControl]="formGroup.controls.option"
+        [matAutocomplete]="auto"
+        #partnerLookup="ngForm"
+        [dplHighlight]="partnerLookup"
+      />
+      <mat-error
+        *ngIf="
+          formGroup.controls.option.touched &&
+          formGroup.controls.option.errors?.required
+        "
+        i18n="RequiredField|Label Pflichtfeld@@RequiredField"
+        >Pflichtfeld</mat-error
+      >
+      <mat-error
+        *ngIf="
+          formGroup.controls.option.touched &&
+          formGroup.controls.option.errors?.isObject
+        "
+        i18n="PartnerLookupNoneSelectValidationMessage"
+        >Bitte wählen Sie eine Wert aus der Liste oder legen Sie einen neuen
+        Eintrag an</mat-error
+      >
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="getLabel"
+        panelWidth="auto"
+      >
+        <mat-option *ngFor="let option of options$ | async" [value]="option">
+          {{ option.partner | partnerToString: 'format2':option.directoryName }}
+          ({{ option.directoryName }})
+        </mat-option>
+        <mat-option
+          (click)="onCreateNewPartner()"
+          [value]=""
+          i18n="CreateNewPartner|Label Neuen Partner erzeugen@@CreateNewPartner"
+        >
+          Neuen Partner erzeugen
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutGap="0px" fxLayoutAlign="end center">
+      <button
+        type="button"
+        mat-icon-button
+        [disabled]="formGroup.disabled"
+        (click)="onSelectFromPartnerDirectory()"
+      >
+        <mat-icon>folder_shared</mat-icon>
+      </button>
+    </div>
+
+    <mat-form-field fxFlex="0 0 75px">
+      <input
+        matInput
+        [formControl]="formGroup.controls.type"
+        placeholder="Typ"
+        i18n-placeholder="Type|Label Typ|@@Type"
+      />
+    </mat-form-field>
+  </div>
+  <app-address-form [subForm]="formGroup.controls.address"></app-address-form>
+</ng-container>

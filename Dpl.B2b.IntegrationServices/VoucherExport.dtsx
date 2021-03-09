@@ -1,0 +1,1391 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/5/2021 2:12:08 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEVSVR19"
+  DTS:CreatorName="DEVSVR19\User"
+  DTS:DTSID="{8B212A8B-CBA7-4076-9A79-5DA59AF3CAF5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1031"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{B32F40BB-CBFD-42CE-8076-218C7D103408}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[VoucherExport]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{DDB96734-6944-49E7-A75C-9C53BA73865E}"
+      DTS:ObjectName="VoucherExport">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Package::ExportPath] + "VoucherExport_" + REPLACE( @[User::CustomerDivisionName] , " ", "_" ) +".csv"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1031"
+          DTS:Unicode="True"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\\Temp\\Export\VoucherExport_.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Ausstelldatum"
+              DTS:DTSID="{7B45270D-1E15-4B61-87C9-23EDEA8673F2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Beleg Nr "
+              DTS:DTSID="{B6DC1E37-ED89-4C31-8F75-59FA37CA60B5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="anlief  Spedition"
+              DTS:DTSID="{5F72A57A-C1A3-415A-80A5-7A83DDA1D8DD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Lieferant"
+              DTS:DTSID="{21174717-92C4-4559-BA23-1E917EEFAF76}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Adressat"
+              DTS:DTSID="{324CBFCB-23E8-498E-914A-6C1F9D3795A9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NTG"
+              DTS:DTSID="{277F0310-CD08-4AA1-97E9-4E4FED1CDE52}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Typ"
+              DTS:DTSID="{4D155625-6FC1-4526-8558-4A847A210E57}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Status"
+              DTS:DTSID="{9A7BCBDB-0C87-4158-8E83-8EA550D94AB0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Ladungsträger"
+              DTS:DTSID="{FC1385C3-2A64-4354-BC16-8553CA090863}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Menge"
+              DTS:DTSID="{4EC43221-4F1C-4226-81D9-80026572521D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Referenznummer (Aussteller)"
+              DTS:DTSID="{75EEA577-4AD0-44C9-B5FB-24FF138CFA93}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Verfallsdatum"
+              DTS:DTSID="{664F5CE4-468F-4BB9-91A5-91E54A9716C3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Beschaffungslogistik"
+              DTS:DTSID="{14BBED29-C196-4ABA-ADE7-B1996845A21C}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{CE9F95CB-3AFD-456C-9AC8-0D0CC15F6FA8}"
+      DTS:ObjectName="CustomerId">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">4</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{762E2051-117C-4F70-BFF9-A8275A51A1AA}"
+      DTS:ObjectName="ExportPath">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">D:\\Temp\\Export\</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:DTSID="{AF01E5A7-A732-4248-A05F-7ED49B043C19}"
+      DTS:ObjectName="FromDate">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">2/1/2021</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:DTSID="{38F85D69-FCFB-491F-87EB-95C464730F8B}"
+      DTS:ObjectName="ToDate">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">2/5/2021</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{86311ABE-A27B-4C7E-9E89-7FB2D7E2B705}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CustomerDivisionId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CD1DE741-E440-4098-B96E-5C69C0BE0DAD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CustomerDivisionName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E068AE6D-6133-4D73-BD96-4F759A16CA01}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CustomerDivisionQueryResult">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E10C08E7-7F6A-4CD9-9A9B-9F2C168DCE43}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT [Id]&#xA;      ,[Name]&#xA;  FROM [dbo].[CustomerDivisions]&#xA;  WHERE CustomerId =  &quot; +  (DT_WSTR, 10) @[$Package::CustomerId]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CustomerDivisionsQueryString">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT [Id]
+      ,[Name]
+  FROM [dbo].[CustomerDivisions]
+  WHERE CustomerId =  4</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach-Schleifencontainer"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach-Schleifencontainer"
+      DTS:DTSID="{EC78321D-B099-4211-8AD3-EBD5E0F69CE0}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach-Schleifencontainer">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{D0E1D982-BD56-4530-9E71-D82ECA9F1155}"
+        DTS:ObjectName="{D0E1D982-BD56-4530-9E71-D82ECA9F1155}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::CustomerDivisionQueryResult" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach-Schleifencontainer\Datenflusstask"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Datenflusstask"
+          DTS:DTSID="{53976521-D566-4EA3-85B2-D3DB0E2C003C}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Datenflusstask">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Abgeleitete Spalte;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Alle Rechte vorbehalten; http://www.microsoft.com/sql/support;0"
+                  description="Erstellt neue Spaltenwerte, indem Ausdrücke auf Transformationseingabespalten angewendet werden. Erstellen Sie neue Spalten, oder überschreiben Sie vorhandene. Verketten Sie beispielsweise die Werte der Spalten &quot;first name&quot; und &quot;last name&quot;, um die Spalte &quot;full name&quot; zu erhalten."
+                  name="Translate Types"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Inputs[Eingabe der abgeleiteten Spalte]"
+                      description="Eingabe der Transformation für abgeleiteten Spalten"
+                      name="Eingabe der abgeleiteten Spalte">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Inputs[Eingabe der abgeleiteten Spalte].Columns[Type]"
+                          cachedDataType="i4"
+                          cachedName="Type"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[Type]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Inputs[Eingabe der abgeleiteten Spalte].Columns[RecipientType]"
+                          cachedDataType="i4"
+                          cachedName="RecipientType"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[RecipientType]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Inputs[Eingabe der abgeleiteten Spalte].Columns[Status]"
+                          cachedDataType="i4"
+                          cachedName="Status"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[Status]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Ausgabe der abgeleiteten Spalte]"
+                      description="Standardausgabe der Transformation für abgeleitete Spalten"
+                      exclusionGroup="1"
+                      name="Ausgabe der abgeleiteten Spalte"
+                      synchronousInputId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Inputs[Eingabe der abgeleiteten Spalte]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Ausgabe der abgeleiteten Spalte].Columns[VoucherTypeName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Berechnung"
+                          errorRowDisposition="FailComponent"
+                          length="8"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Ausgabe der abgeleiteten Spalte].Columns[VoucherTypeName]"
+                          name="VoucherTypeName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Ausdruck für abgeleitete Spalte"
+                              name="Expression">#{Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[Type]} == 0 ? "Original" : (#{Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[Type]} == 2 ? "Digital" : "Direkt")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Angezeigter Ausdruck für abgeleitete Spalte"
+                              expressionType="Notify"
+                              name="FriendlyExpression">Type == 0 ? "Original" : (Type == 2 ? "Digital" : "Direkt")</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Ausgabe der abgeleiteten Spalte].Columns[RecipientTypeName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Berechnung"
+                          errorRowDisposition="FailComponent"
+                          length="9"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Ausgabe der abgeleiteten Spalte].Columns[RecipientTypeName]"
+                          name="RecipientTypeName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Ausdruck für abgeleitete Spalte"
+                              name="Expression">#{Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[RecipientType]} == 3 ? "Spediteur" : (#{Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[RecipientType]} == 2 ? "Lieferant" : "")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Angezeigter Ausdruck für abgeleitete Spalte"
+                              expressionType="Notify"
+                              name="FriendlyExpression">RecipientType == 3 ? "Spediteur" : (RecipientType == 2 ? "Lieferant" : "")</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Ausgabe der abgeleiteten Spalte].Columns[StatusName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Berechnung"
+                          errorRowDisposition="FailComponent"
+                          length="11"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Ausgabe der abgeleiteten Spalte].Columns[StatusName]"
+                          name="StatusName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Ausdruck für abgeleitete Spalte"
+                              name="Expression">(#{Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[Status]} == 255 ? "Storniert" : "Ausgestellt")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Angezeigter Ausdruck für abgeleitete Spalte"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(Status == 255 ? "Storniert" : "Ausgestellt")</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Fehlerausgabe der abgeleiteten Spalte]"
+                      description="Fehlerausgabe der Transformation für abgeleitete Spalten"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Fehlerausgabe der abgeleiteten Spalte"
+                      synchronousInputId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Inputs[Eingabe der abgeleiteten Spalte]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Fehlerausgabe der abgeleiteten Spalte].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Fehlerausgabe der abgeleiteten Spalte].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Fehlerausgabe der abgeleiteten Spalte].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Fehlerausgabe der abgeleiteten Spalte].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flatfileziel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Alle Rechte vorbehalten; http://www.microsoft.com/sql/support;1"
+                  description="Flatfileziel"
+                  localeId="1031"
+                  name="VoucherExport">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Gibt an, ob die Daten die Zieldatei überschreiben oder an sie angehängt werden."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Gibt den Text an, der vor dem Schreiben von Daten in die Zieldatei geschrieben werden soll."
+                      expressionType="Notify"
+                      name="Header" />
+                    <property
+                      dataType="System.Boolean"
+                      description="Bei Aktivierung des Textqualifizierers wird hiermit angegeben, ob der Textqualifizierer in den Daten, die in die Zieldatei geschrieben werden, mit Escapezeichen versehen wird."
+                      name="EscapeQualifier">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[VoucherExport]"
+                      connectionManagerRefId="Package.ConnectionManagers[VoucherExport]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels]"
+                      hasSideEffects="true"
+                      name="Eingabe des Flatfileziels">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].Columns[CreatedAt]"
+                          cachedDataType="wstr"
+                          cachedLength="27"
+                          cachedName="CreatedAt"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Ausstelldatum]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[CreatedAt]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].Columns[ValidUntil]"
+                          cachedDataType="wstr"
+                          cachedLength="27"
+                          cachedName="ValidUntil"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Verfallsdatum]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ValidUntil]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].Columns[SupplierCompanyName]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SupplierCompanyName"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Lieferant]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[SupplierCompanyName]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].Columns[CustomerReference]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="CustomerReference"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Referenznummer (Aussteller)]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[CustomerReference]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].Columns[ReasonTypeName]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="ReasonTypeName"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[NTG]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ReasonTypeName]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].Columns[VoucherTypeName]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="VoucherTypeName"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Typ]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Ausgabe der abgeleiteten Spalte].Columns[VoucherTypeName]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].Columns[RecipientTypeName]"
+                          cachedDataType="wstr"
+                          cachedLength="9"
+                          cachedName="RecipientTypeName"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Adressat]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Ausgabe der abgeleiteten Spalte].Columns[RecipientTypeName]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].Columns[StatusName]"
+                          cachedDataType="wstr"
+                          cachedLength="11"
+                          cachedName="StatusName"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Status]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Ausgabe der abgeleiteten Spalte].Columns[StatusName]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].Columns[LoadCarrierTypeName]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="LoadCarrierTypeName"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Ladungsträger]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[LoadCarrierTypeName]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].Columns[ProcurementLogistics]"
+                          cachedDataType="bool"
+                          cachedName="ProcurementLogistics"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Beschaffungslogistik]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ProcurementLogistics]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].Columns[LoadCarrierQuantity]"
+                          cachedDataType="i4"
+                          cachedName="LoadCarrierQuantity"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Menge]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[LoadCarrierQuantity]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].Columns[DocumentNumber]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="DocumentNumber"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Beleg Nr ]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[DocumentNumber]" />
+                        <inputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].Columns[ShipperCompanyName]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="ShipperCompanyName"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[anlief  Spedition]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ShipperCompanyName]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Ausstelldatum]"
+                          dataType="wstr"
+                          length="50"
+                          name="Ausstelldatum" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Verfallsdatum]"
+                          dataType="wstr"
+                          length="50"
+                          name="Verfallsdatum" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Lieferant]"
+                          dataType="wstr"
+                          length="50"
+                          name="Lieferant" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Referenznummer (Aussteller)]"
+                          dataType="wstr"
+                          length="50"
+                          name="Referenznummer (Aussteller)" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Ladungsträger]"
+                          dataType="wstr"
+                          length="50"
+                          name="Ladungsträger" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[NTG]"
+                          dataType="wstr"
+                          length="50"
+                          name="NTG" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Typ]"
+                          dataType="wstr"
+                          length="50"
+                          name="Typ" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Adressat]"
+                          dataType="wstr"
+                          length="50"
+                          name="Adressat" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Status]"
+                          dataType="wstr"
+                          length="50"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Beschaffungslogistik]"
+                          dataType="wstr"
+                          length="50"
+                          name="Beschaffungslogistik" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Menge]"
+                          dataType="wstr"
+                          length="50"
+                          name="Menge" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[Beleg Nr ]"
+                          dataType="wstr"
+                          length="50"
+                          name="Beleg Nr " />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels].ExternalColumns[anlief  Spedition]"
+                          dataType="wstr"
+                          length="50"
+                          name="anlief  Spedition" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB-Quelle;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Alle Rechte vorbehalten; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB-Quelle"
+                  name="Vouchers by CustomerDivisionId"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Die Anzahl der Sekunden für das Timeout eines Befehls. Der Wert &quot;0&quot; zeigt einen unendlichen Timeoutwert an."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Gibt den Namen des zum Öffnen eines Rowsets verwendeten Datenbankobjekts an."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Gibt die Variable an, die den Namen des zum Öffnen eines Rowsets verwendeten Datenbankobjekts enthält."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Der auszuführende SQL-Befehl."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT V.[Id]
+      --,[CreatedById]
+      ,V.[CreatedAt]
+      --,[ChangedById]
+      --,[ChangedAt]
+      --,[DeletedById]
+      --,[DeletedAt]
+      --,[IsDeleted]
+      --,[ExpressCodeId]
+	  --,E.DigitalCode 
+      ,V.[Type]
+      ,[Status]
+      ,[ValidUntil]
+      ,[ReasonTypeId]
+	  ,VR.RefLtmsReasonTypeId as ReasonTypeName
+      ,[RecipientId]
+      ,[RecipientType]
+      ,[SupplierId]
+	  ,Supplier.CompanyName AS SupplierCompanyName
+      ,[ShipperId]
+	  ,Shipper.CompanyName as ShipperCompanyName
+      ,[SubShipperId]
+	  ,D.Number as [DocumentNumber]
+      --,[DocumentId]
+      --,[CustomerDivisionId]
+      --,[Note]
+      --,[ReceivingPostingAccountId]
+      --,[ReceivingCustomerId]
+      ,[TruckDriverName]
+      ,[TruckDriverCompanyName]
+      ,[LicensePlate]
+      ,[LicensePlateCountryId]
+      --,[SubmissionId]
+      --,[RowGuid]
+      ,V.[CustomerReference]
+      ,[ProcurementLogistics]
+	  ,VP.LoadCarrierQuantity
+	  ,LT.[Name] AS LoadCarrierTypeName
+  FROM [dbo].[Vouchers] V
+  INNER JOIN VoucherPosition VP ON V.Id = VP.VoucherId
+  INNER JOIN LoadCarriers LC ON VP.LoadCarrierId = LC.Id
+  INNER JOIN LoadCarrierTypes LT ON LC.TypeId = LT.Id
+  INNER JOIN VoucherReasonTypes VR ON V.ReasonTypeId = VR.ID
+  --LEFT JOIN ExpressCodes E ON V.ExpressCodeId = E.ID 
+  INNER JOIN Documents D ON V.DocumentId = D.Id
+  LEFT JOIN CustomerPartners Shipper ON V.ShipperId = Shipper.Id
+  LEFT JOIN CustomerPartners Supplier ON V.SupplierId = Supplier.Id
+
+  WHERE V.IsDeleted &lt;&gt; 1 AND VP.IsDeleted &lt;&gt; 1 AND V.CustomerDivisionId = ? AND V.[CreatedAt] &gt;= ? AND V.[CreatedAt] &lt;= ?</property>
+                    <property
+                      dataType="System.String"
+                      description="Die Variable, die den auszuführenden SQL-Befehl enthält."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Gibt die zu verwendende Spaltencodepage an, wenn keine Codepageinformationen von der Datenquelle verfügbar sind."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Erzwingt die Verwendung des DefaultCodePage-Eigenschaftswerts beim Beschreiben von Zeichendaten."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Gibt den zum Zugreifen auf die Datenbank verwendeten Modus an."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="Die Zuordnungen zwischen den Parametern im SQL-Befehl und den Variablen."
+                      name="ParameterMapping">"Parameter0:Input",{86311ABE-A27B-4C7E-9E89-7FB2D7E2B705};"Parameter1:Input",{AF01E5A7-58CD-4248-A05F-7ED49B043C19};"Parameter2:Input",{38F85D69-0304-491F-87EB-95C464730F8B};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Connections[OleDbConnection]"
+                      connectionManagerID="{51D95E56-6328-47CF-B19B-833E65C979A0}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[OlmaDb]"
+                      description="Die für den Zugriff auf die Datenbank verwendete OLE DB-Laufzeitverbindung."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle]"
+                      name="Ausgabe der OLE DB-Quelle">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[Id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[Id]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[Id]"
+                          name="Id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[CreatedAt]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[CreatedAt]"
+                          length="27"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[CreatedAt]"
+                          name="CreatedAt"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[Type]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[Type]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[Type]"
+                          name="Type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[Status]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[Status]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[Status]"
+                          name="Status"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ValidUntil]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[ValidUntil]"
+                          length="27"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ValidUntil]"
+                          name="ValidUntil"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ReasonTypeId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[ReasonTypeId]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ReasonTypeId]"
+                          name="ReasonTypeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[RecipientId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[RecipientId]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[RecipientId]"
+                          name="RecipientId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[RecipientType]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[RecipientType]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[RecipientType]"
+                          name="RecipientType"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[SupplierId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[SupplierId]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[SupplierId]"
+                          name="SupplierId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[SupplierCompanyName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[SupplierCompanyName]"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[SupplierCompanyName]"
+                          name="SupplierCompanyName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ShipperId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[ShipperId]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ShipperId]"
+                          name="ShipperId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ShipperCompanyName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[ShipperCompanyName]"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ShipperCompanyName]"
+                          name="ShipperCompanyName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[SubShipperId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[SubShipperId]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[SubShipperId]"
+                          name="SubShipperId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[DocumentNumber]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[DocumentNumber]"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[DocumentNumber]"
+                          name="DocumentNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[TruckDriverName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[TruckDriverName]"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[TruckDriverName]"
+                          name="TruckDriverName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[TruckDriverCompanyName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[TruckDriverCompanyName]"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[TruckDriverCompanyName]"
+                          name="TruckDriverCompanyName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[LicensePlate]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[LicensePlate]"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[LicensePlate]"
+                          name="LicensePlate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[LicensePlateCountryId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[LicensePlateCountryId]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[LicensePlateCountryId]"
+                          name="LicensePlateCountryId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[CustomerReference]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[CustomerReference]"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[CustomerReference]"
+                          name="CustomerReference"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ProcurementLogistics]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[ProcurementLogistics]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ProcurementLogistics]"
+                          name="ProcurementLogistics"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[LoadCarrierQuantity]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[LoadCarrierQuantity]"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[LoadCarrierQuantity]"
+                          name="LoadCarrierQuantity"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[LoadCarrierTypeName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[LoadCarrierTypeName]"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[LoadCarrierTypeName]"
+                          name="LoadCarrierTypeName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ReasonTypeName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Konvertierung"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[ReasonTypeName]"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].Columns[ReasonTypeName]"
+                          name="ReasonTypeName"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[Id]"
+                          dataType="i4"
+                          name="Id" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[CreatedAt]"
+                          dataType="wstr"
+                          length="27"
+                          name="CreatedAt" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[Type]"
+                          dataType="i4"
+                          name="Type" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[Status]"
+                          dataType="i4"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[ValidUntil]"
+                          dataType="wstr"
+                          length="27"
+                          name="ValidUntil" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[ReasonTypeId]"
+                          dataType="i4"
+                          name="ReasonTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[RecipientId]"
+                          dataType="i4"
+                          name="RecipientId" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[RecipientType]"
+                          dataType="i4"
+                          name="RecipientType" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[SupplierId]"
+                          dataType="i4"
+                          name="SupplierId" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[SupplierCompanyName]"
+                          dataType="wstr"
+                          length="255"
+                          name="SupplierCompanyName" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[ShipperId]"
+                          dataType="i4"
+                          name="ShipperId" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[ShipperCompanyName]"
+                          dataType="wstr"
+                          length="255"
+                          name="ShipperCompanyName" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[SubShipperId]"
+                          dataType="i4"
+                          name="SubShipperId" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[DocumentNumber]"
+                          dataType="wstr"
+                          length="255"
+                          name="DocumentNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[TruckDriverName]"
+                          dataType="wstr"
+                          length="255"
+                          name="TruckDriverName" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[TruckDriverCompanyName]"
+                          dataType="wstr"
+                          length="255"
+                          name="TruckDriverCompanyName" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[LicensePlate]"
+                          dataType="wstr"
+                          length="255"
+                          name="LicensePlate" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[LicensePlateCountryId]"
+                          dataType="i4"
+                          name="LicensePlateCountryId" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[CustomerReference]"
+                          dataType="wstr"
+                          length="255"
+                          name="CustomerReference" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[ProcurementLogistics]"
+                          dataType="bool"
+                          name="ProcurementLogistics" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[LoadCarrierQuantity]"
+                          dataType="i4"
+                          name="LoadCarrierQuantity" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[LoadCarrierTypeName]"
+                          dataType="wstr"
+                          length="255"
+                          name="LoadCarrierTypeName" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle].ExternalColumns[ReasonTypeName]"
+                          dataType="wstr"
+                          length="255"
+                          name="ReasonTypeName" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle]"
+                      isErrorOut="true"
+                      name="Fehlerausgabe der OLE DB-Quelle">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[Id]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[Id]"
+                          name="Id" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[CreatedAt]"
+                          dataType="wstr"
+                          length="27"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[CreatedAt]"
+                          name="CreatedAt" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[Type]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[Type]"
+                          name="Type" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[Status]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[Status]"
+                          name="Status" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ValidUntil]"
+                          dataType="wstr"
+                          length="27"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ValidUntil]"
+                          name="ValidUntil" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ReasonTypeId]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ReasonTypeId]"
+                          name="ReasonTypeId" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ReasonTypeName]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ReasonTypeName]"
+                          name="ReasonTypeName" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[RecipientId]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[RecipientId]"
+                          name="RecipientId" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[RecipientType]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[RecipientType]"
+                          name="RecipientType" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[SupplierId]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[SupplierId]"
+                          name="SupplierId" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[SupplierCompanyName]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[SupplierCompanyName]"
+                          name="SupplierCompanyName" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ShipperId]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ShipperId]"
+                          name="ShipperId" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ShipperCompanyName]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ShipperCompanyName]"
+                          name="ShipperCompanyName" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[SubShipperId]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[SubShipperId]"
+                          name="SubShipperId" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[DocumentNumber]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[DocumentNumber]"
+                          name="DocumentNumber" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[TruckDriverName]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[TruckDriverName]"
+                          name="TruckDriverName" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[TruckDriverCompanyName]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[TruckDriverCompanyName]"
+                          name="TruckDriverCompanyName" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[LicensePlate]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[LicensePlate]"
+                          name="LicensePlate" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[LicensePlateCountryId]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[LicensePlateCountryId]"
+                          name="LicensePlateCountryId" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[CustomerReference]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[CustomerReference]"
+                          name="CustomerReference" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ProcurementLogistics]"
+                          dataType="bool"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ProcurementLogistics]"
+                          name="ProcurementLogistics" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[LoadCarrierQuantity]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[LoadCarrierQuantity]"
+                          name="LoadCarrierQuantity" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[LoadCarrierTypeName]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[LoadCarrierTypeName]"
+                          name="LoadCarrierTypeName" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Fehlerausgabe der OLE DB-Quelle].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach-Schleifencontainer\Datenflusstask.Paths[Ausgabe der abgeleiteten Spalte]"
+                  endId="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport.Inputs[Eingabe des Flatfileziels]"
+                  name="Ausgabe der abgeleiteten Spalte"
+                  startId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Outputs[Ausgabe der abgeleiteten Spalte]" />
+                <path
+                  refId="Package\Foreach-Schleifencontainer\Datenflusstask.Paths[Ausgabe der OLE DB-Quelle]"
+                  endId="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types.Inputs[Eingabe der abgeleiteten Spalte]"
+                  name="Ausgabe der OLE DB-Quelle"
+                  startId="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId.Outputs[Ausgabe der OLE DB-Quelle]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{108B48BE-37C3-4DCB-B392-BEA001375CFA}"
+          DTS:ObjectName="{108B48BE-37C3-4DCB-B392-BEA001375CFA}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::CustomerDivisionId" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{02325107-B95B-4116-83A6-9F86B83E1D8B}"
+          DTS:ObjectName="{02325107-B95B-4116-83A6-9F86B83E1D8B}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::CustomerDivisionName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get CustomerDivisions by CustomerId"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Get All CustomerDivivisionIds and Name by CustomerId"
+      DTS:DTSID="{DB4F2384-74D6-4872-ACEA-A23EEDC2AEAB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get CustomerDivisions by CustomerId"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{51D95E56-6328-47CF-B19B-833E65C979A0}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::CustomerDivisionsQueryString"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::CustomerDivisionQueryResult" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung]"
+      DTS:CreationName=""
+      DTS:DTSID="{0D1E898A-E605-4C7B-8765-A321F7B95498}"
+      DTS:From="Package\Get CustomerDivisions by CustomerId"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung"
+      DTS:To="Package\Foreach-Schleifencontainer" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Dieser CDATA-Abschnitt enthält die Layoutinformationen des Pakets, z.B. Informationen wie X-/Y-Koordinaten, Breite und Höhe.-->
+<!--Wenn Sie diesen Abschnitt manuell ändern und Ihnen ein Fehler unterläuft, können Sie ihn löschen. -->
+<!--Das Paket kann zwar weiterhin normal geladen werden, aber frühere Layoutinformationen gehen verloren, und die Elemente auf der Entwurfsoberfläche werden vom Designer automatisch neu angeordnet.-->
+<Objects
+  Version="8">
+  <!--Jeder darunter liegende Knoten enthält Eigenschaften, die sich nicht auf das Laufzeitverhalten auswirken.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Get CustomerDivisions by CustomerId"
+          TopLeft="41,20" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Foreach-Schleifencontainer\Datenflusstask"
+          TopLeft="37.5,18.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="237,115"
+          Size="237,158"
+          Id="Package\Foreach-Schleifencontainer"
+          TopLeft="62,117" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung]"
+          TopLeft="177.25,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Foreach-Schleifencontainer\Datenflusstask">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Foreach-Schleifencontainer\Datenflusstask\VoucherExport"
+          TopLeft="110.5,221.5" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId"
+          TopLeft="70,25" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Foreach-Schleifencontainer\Datenflusstask\Translate Types"
+          TopLeft="109.5,121.5" />
+        <EdgeLayout
+          Id="Package\Foreach-Schleifencontainer\Datenflusstask.Paths[Ausgabe der OLE DB-Quelle]"
+          TopLeft="188.75,67">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.5"
+              Start="0,0"
+              End="0,47">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach-Schleifencontainer\Datenflusstask.Paths[Ausgabe der abgeleiteten Spalte]"
+          TopLeft="187.5,163.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach-Schleifencontainer\Datenflusstask\Vouchers by CustomerDivisionId">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

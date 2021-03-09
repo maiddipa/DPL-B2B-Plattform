@@ -1,0 +1,232 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <div fxLayout="column" fxLayoutGap="20px">
+    <div
+      fxLayout="row"
+      fxLayoutAlign="end"
+      *hasPermission="resourceAction.CreateSorting"
+    >
+      <mat-button-toggle-group [(ngModel)]="selectedFilter">
+        <mat-button-toggle [value]="filterPreset.All" (click)="filterGrid()"
+          >Alle</mat-button-toggle
+        >
+        <mat-button-toggle
+          [value]="filterPreset.Completed"
+          (click)="filterGrid()"
+          >Sortiert</mat-button-toggle
+        >
+        <mat-button-toggle [value]="filterPreset.Open" (click)="filterGrid()"
+          >Sortierung ausstehend</mat-button-toggle
+        >
+      </mat-button-toggle-group>
+    </div>
+    <dx-data-grid
+      id="gridContainer"
+      [dataSource]="data.dataSource"
+      [showBorders]="true"
+      [remoteOperations]="true"
+      [masterDetail]="{ enabled: true, template: 'detail' }"
+    >
+      <dxo-filter-row [visible]="true"> </dxo-filter-row>
+      <dxi-column
+        caption="Dokument"
+        dataField="documentNumber"
+        dataType="string"
+        [width]="300"
+      >
+      </dxi-column>
+      <dxi-column
+        dataField="issuedDate"
+        dataType="date"
+        caption="Ausgestellt"
+        [sortIndex]="0"
+        [sortOrder]="'desc'"
+      >
+      </dxi-column>
+      <dxi-column
+        dataField="type"
+        dataType="string"
+        caption="Typ"
+        
+      >
+        <dxo-lookup
+          [dataSource]="data.typeLookupData"
+          [displayExpr]="lookUpDisplayExpression"
+          [valueExpr]="lookUpValueExpression"
+        ></dxo-lookup>
+      </dxi-column>
+      <dxi-column
+        dataField="truckDriverCompanyName"
+        cellTemplate="truckDriverDisplayTemplate"
+        caption="Empfänger"
+      >
+      </dxi-column>
+      <dxi-column
+        dataField="shipperCompanyName"
+        cellTemplate="shipperDisplayTemplate"
+        caption="Abholende Firma"
+      >
+      </dxi-column>
+      <dxi-column
+        dataField="isSortingRequired"
+        caption="Sortierung erforderlich"
+        dataType="boolean"
+        *hasPermission="resourceAction.CreateSorting"
+        allowFiltering="false"
+      >
+      </dxi-column>
+      <dxi-column
+        dataField="isSortingCompleted"
+        caption="Sortierung erfolgt"
+        dataType="boolean"
+        *hasPermission="resourceAction.CreateSorting"
+        allowFiltering="false"
+      >
+      </dxi-column>
+      <dxi-column type="buttons" class="grid-button-icons" alignment="left">
+        <dxi-button template="templateChatButton"></dxi-button>
+        <dxi-button
+          template="templateSortButton"
+          *hasPermission="resourceAction.CreateSorting"
+        ></dxi-button>
+        <dxi-button
+          template="templateEnableRequiredButton"
+          *hasPermission="resourceAction.CreateSorting"
+        ></dxi-button>
+        <dxi-button
+          template="templateDisableRequiredButton"
+          *hasPermission="resourceAction.CreateSorting"
+        ></dxi-button>
+      </dxi-column>
+
+      <!-- sort Button Template -->
+      <ng-container *dxTemplate="let btnData of 'templateChatButton'">
+        <dpl-chat-button
+          type="loadCarrierReceipt"
+          [data]="btnData.data"
+        ></dpl-chat-button>
+      </ng-container>
+      <!-- sort Button Template -->
+      <ng-container *dxTemplate="let data of 'templateSortButton'">
+        <button
+          mat-raised-button
+          *ngIf="data.data?.isSortingRequired && !data.data.isSortingCompleted"
+          (click)="openSortDialog(data.data?.id)"
+        >
+          Sortierung erfassen
+        </button>
+      </ng-container>
+      <ng-container *dxTemplate="let btnData of 'templateEnableRequiredButton'">
+        <button
+          mat-raised-button
+          *ngIf="
+            data.canUpdateSortRequired &&
+            !btnData.data?.isSortingRequired &&
+            !btnData.data?.isSortingCompleted
+          "
+          (click)="enableSortRequired(btnData.data?.id)"
+        >
+          Sortierung aktivieren
+        </button>
+      </ng-container>
+      <ng-container
+        *dxTemplate="let btnData of 'templateDisableRequiredButton'"
+      >
+        <button
+          mat-raised-button
+          *ngIf="
+            data.canUpdateSortRequired &&
+            btnData.data?.isSortingRequired &&
+            !btnData.data?.isSortingCompleted
+          "
+          (click)="disableSortRequired(btnData.data?.id)"
+        >
+          Sortierung deaktivieren
+        </button>
+      </ng-container>
+
+      <div *dxTemplate="let data of 'truckDriverDisplayTemplate'">
+        {{ data.data?.truckDriverCompanyName }} -
+        {{ data.data?.truckDriverName }}- {{ data.data?.licensePlate }}
+      </div>
+      <div *dxTemplate="let data of 'shipperDisplayTemplate'">
+        {{ data.data?.shipperCompanyName }} -
+        {{ data.data?.shipperAddress?.street1 }}-
+        {{ data.data?.shipperAddress?.city }}
+      </div>
+      <div *dxTemplate="let detail of 'detail'">
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div class="element-icon" fxFlex="5">
+            <a (click)="openDocument($event, detail.data.documentId)">
+              <img src="assets/images/pdf-icon.png" style="cursor: pointer; padding: 10px; max-width: 70px;"
+            /></a>
+          </div>
+          <div fxLayout="column" fxFlex="95">
+            <div>Postionen:</div>
+            <dx-data-grid
+              [dataSource]="
+                getPositionsDataSource(
+                  detail.data.id,
+                  detail.data.isSortingCompleted,
+                  detail.data.positions
+                )
+              "
+              [showBorders]="true"
+              [columnAutoWidth]="true"
+            >
+              <dxi-column
+            dataField="loadCarrierId"
+            [caption]="
+              detail.data.type === loadCarrierReceiptType.Delivery
+                ? 'Angenommen'
+                : 'Ausgegeben'
+            "
+            cellTemplate="loadCarrierTemplate"
+            [width]="120"
+            alignment="left"
+          ></dxi-column>
+          <div *dxTemplate="let data of 'loadCarrierTemplate'">
+            {{ data.value | loadCarrier: 'both' }}
+          </div>
+          <dxi-column
+            dataField="quantity"
+            caption="Anzahl"
+            [width]="120"
+          ></dxi-column>
+          <dxi-column
+            dataField="outputs"
+            caption="Sortiert"
+            *ngIf="detail.data.isSortingCompleted"
+            cellTemplate="sortTemplate"
+            alignment="left"
+            [width]="120"
+          ></dxi-column>
+          <div *dxTemplate="let data of 'sortTemplate'">
+            <div *ngFor="let output of data.data.outputs">
+              {{ output.loadCarrierQualityId | loadCarrier: 'quality' }}
+            </div>
+          </div>
+          <dxi-column
+            dataField="outputs2"
+            caption="Anzahl"
+            *ngIf="detail.data.isSortingCompleted"
+            cellTemplate="sortQuantityTemplate"
+            alignment="right"
+            [width]="120"
+          ></dxi-column>
+          <div *dxTemplate="let data of 'sortQuantityTemplate'">
+            <div *ngFor="let output of data.data.outputs">
+              {{ output.quantity }}
+            </div>
+          </div>
+            </dx-data-grid>
+          </div>
+        </div>
+      </div>
+      <dxo-paging [pageSize]="20"></dxo-paging>
+      <dxo-pager
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[5, 12, 20]"
+      ></dxo-pager>
+    </dx-data-grid>
+  </div>
+</ng-container>

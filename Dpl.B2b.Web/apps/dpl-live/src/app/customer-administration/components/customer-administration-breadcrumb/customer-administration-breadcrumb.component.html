@@ -1,0 +1,8 @@
+<ng-container *ngIf="parentUnit">
+  <dpl-customer-administration-breadcrumb
+    [unit]="parentUnit"
+    [allUnits]="allUnits"
+  ></dpl-customer-administration-breadcrumb>
+  >
+</ng-container>
+<a mat-stroked-button (click)="navigate()">{{ unit.name }}</a>

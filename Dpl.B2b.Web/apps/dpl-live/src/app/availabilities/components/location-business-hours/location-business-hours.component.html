@@ -1,0 +1,41 @@
+<div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="end">
+  <mat-form-field>
+    <mat-label i18n="OpeningHours|Öffnungszeiten@@OpeningHours"
+      >Öffnungszeiten laden</mat-label
+    >
+    <mat-select>
+      <mat-option>
+        Mo-Fr 8:30-17:30
+      </mat-option>
+      <mat-option>
+        Mo,Mi,Fr 6:30-10:30
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutGap="30px">
+  <app-business-hour-day
+    i18n-day="Monday|Label Montag@@Monday"
+    day="Montag"
+  ></app-business-hour-day>
+  <app-business-hour-day
+    i18n-day="Tuesday|Label Dienstag@@Tuesday"
+    day="Dienstag"
+  ></app-business-hour-day>
+  <app-business-hour-day
+    i18n-day="Wednesday|Label Mittwoch@@Wednesday"
+    day="Mittwoch"
+  ></app-business-hour-day>
+  <app-business-hour-day
+    i18n-day="Thursday|Label Donnerstag@@Thursday"
+    day="Donnerstag"
+  ></app-business-hour-day>
+  <app-business-hour-day
+    i18n-day="Friday|Label Freitag@@Friday"
+    day="Freitag"
+  ></app-business-hour-day>
+  <app-business-hour-day
+    i18n-day="Saturday|Label Samstag@@Saturday"
+    day="Samstag"
+  ></app-business-hour-day>
+</div>

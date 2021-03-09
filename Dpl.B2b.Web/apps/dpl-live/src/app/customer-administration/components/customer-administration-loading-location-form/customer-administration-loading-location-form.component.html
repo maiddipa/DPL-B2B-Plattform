@@ -1,0 +1,173 @@
+<ng-container *ngIf="viewData$ | async as data; else loading">
+  <form (submit)="onFormSubmit($event)">
+    <dx-form
+      id="form"
+      [colCount]="1"
+      [(formData)]="formData"
+      (onFieldDataChanged)="fieldDataChanged($event)"
+    >
+      <dxi-item itemType="group">
+        <dxi-item
+          i18n-caption="
+            Item Gruppen Überschrift: Ladestelle:
+            @@CustomerAdministrationLoadingLocationFormGroupItemCaption"
+          itemType="group"
+          caption="Ladestelle:"
+        >
+          <dxi-item
+            dataField="addressId"
+            editorType="dxLookup"
+            [editorOptions]="{
+              dataSource: data.addressesDataSource,
+              displayExpr: addressDisplayExpr,
+              valueExpr: 'id',
+              searchExpr: ['city', 'street1'],
+              searchEnabled: true,
+              searchMode: 'startswith'
+            }"
+          >
+            <dxo-label
+              i18n-text="
+                Label: Adresse
+                @@CustomerAdministrationLoadingLocationFormAdressItemLabel"
+              text="Adresse"
+            ></dxo-label>
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+          </dxi-item>
+
+          <dxi-item
+            dataField="partnerId"
+            editorType="dxLookup"
+            [editorOptions]="{
+              dataSource: data.partnersDataSource,
+              displayExpr: 'companyName',
+              valueExpr: 'id',
+              searchExpr: 'companyName',
+              searchEnabled: true,
+              searchMode: 'startswith'
+            }"
+          >
+            <dxo-label
+              i18n-text="
+                Label: Partner
+                @@CustomerAdministrationLoadingLocationFormPartnerItemLabel"
+              text="Partner"
+            ></dxo-label>
+          </dxi-item>
+          <dxi-item
+            dataField="customerPartnerId"
+            editorType="dxLookup"
+            [editorOptions]="{
+              dataSource: data.partnersDataSource,
+              displayExpr: 'companyName',
+              valueExpr: 'id',
+              searchExpr: 'companyName',
+              searchEnabled: true,
+              searchMode: 'startswith'
+            }"
+          >
+            <dxo-label
+              i18n-text="
+                Label: Kundenpartner
+                @@CustomerAdministrationLoadingLocationFormCustomerPartnerItemLabel"
+              text="Kundenpartner"
+            ></dxo-label>
+          </dxi-item>
+          <dxi-item
+            id="minHeight"
+            dataField="stackHeightMin"
+            editorType="dxNumberBox"
+            type="number"
+            digit-only
+          >
+            <dxo-label
+              i18n-text="
+                Label: Minimale Stapelhöhe
+                @@CustomerAdministrationLoadingLocationFormStackMinHeightItemLabel"
+              text="Minimale Stapelhöhe"
+            ></dxo-label>
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+            <dxi-validation-rule
+              i18n-message="
+                Validation Nachricht: Minimale Stapelhöhe muss kleiner sein als
+                die Maximale Stapelhöhe
+                @@CustomerAdministrationLoadingLocationFormStackMinHeightItemCustomValidationMessage"
+              type="custom"
+              message="Minimale Stapelhöhe muss kleiner sein als die Maximale Stapelhöhe"
+              [validationCallback]="customValidationCallbackstackHeight"
+              [reevaluate]="true"
+            >
+            </dxi-validation-rule>
+          </dxi-item>
+          <dxi-item
+            dataField="stackHeightMax"
+            editorType="dxNumberBox"
+            id="maxHeight"
+            type="number"
+            digit-only
+          >
+            <dxo-label
+              i18n-text="
+                Label: Maximale Stapelhöhe
+                @@CustomerAdministrationLoadingLocationFormStackMaxHeightItemLabel"
+              text="Maximale Stapelhöhe"
+            ></dxo-label>
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+            <dxi-validation-rule
+              i18n-message="
+                Validation Nachricht: Maximale Stapelhöhe muss größer sein als
+                die Minimale Stapelhöhe
+                @@CustomerAdministrationLoadingLocationFormStackMaxHeightItemCustomValidationMessage"
+              type="custom"
+              message="Maximale Stapelhöhe muss größer sein als die Minimale Stapelhöhe"
+              [validationCallback]="customValidationCallbackstackHeight"
+              [reevaluate]="true"
+            >
+            </dxi-validation-rule>
+          </dxi-item>
+          <dxi-item dataField="supportsPartialMatching" editorType="dxCheckBox">
+            <dxo-label
+              i18n-text="
+                Label: Unterstützt Teilladungen
+                @@CustomerAdministrationLoadingLocationFormSupportsPartialMatchingItemLabel"
+              text="Unterstützt Teilladungen"
+            ></dxo-label>
+          </dxi-item>
+          <dxi-item dataField="supportsRearLoading" editorType="dxCheckBox">
+            <dxo-label
+              i18n-text="
+                Label: Unterstützt Heckbeladung
+                @@CustomerAdministrationLoadingLocationFormSupportsRearLoadingItemLabel"
+              text="Unterstützt Heckbeladung"
+            ></dxo-label>
+          </dxi-item>
+          <dxi-item dataField="supportsSideLoading" editorType="dxCheckBox">
+            <dxo-label
+              i18n-text="
+                Label: Unterstützt Seitenbeladung
+                @@CustomerAdministrationLoadingLocationFormSupportsSideLoadingItemLabel"
+              text="Unterstützt Seitenbeladung"
+            ></dxo-label>
+          </dxi-item>
+          <dxi-item dataField="supportsJumboVehicles" editorType="dxCheckBox">
+            <dxo-label
+              i18n-text="
+                Label: Unterstützt Jumbo Fahrzeuge
+                @@CustomerAdministrationLoadingLocationFormSupportsJumboVehiclesItemLabel"
+              text="Unterstützt Jumbo Fahrzeuge"
+            ></dxo-label>
+          </dxi-item>
+        </dxi-item>
+      </dxi-item>
+      <dxi-item
+        itemType="button"
+        horizontalAlignment="left"
+        [buttonOptions]="buttonOptions"
+      >
+      </dxi-item>
+    </dx-form>
+  </form>
+</ng-container>
+<ng-template #loading>
+  <dpl-loading-spinner-on-page></dpl-loading-spinner-on-page>
+</ng-template>

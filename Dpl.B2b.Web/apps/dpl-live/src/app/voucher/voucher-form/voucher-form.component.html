@@ -1,0 +1,350 @@
+<mat-toolbar fxLayoutAlign="end center">
+  <span
+    i18n="
+      palletAcceptanceToolbarLabel|Pallet Acceptance Symbolleiste
+      Bezeichnung@@palletAcceptanceToolbarLabel"
+    >Digitale Pooling Gutschrift erstellen</span
+  >
+</mat-toolbar>
+
+<ng-container *ngIf="viewData$ | async as data">
+  <form [formGroup]="formGroup" autocomplete="off" novalidate>
+    <div fxLayout="column">
+      <dpl-required-hint></dpl-required-hint>
+    </div>
+
+    <div fxLayout="column" fxLayoutGap="20px" style="margin: 20px;">
+      <div
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxLayoutGap="10px"
+        fxLayoutAlign=" center"
+      >
+        <dpl-express-code
+          fxFlex="33%"
+          [preset]="expressCodePreset"
+          [printType]="printType"
+          [subForm]="formGroup.controls.expressCode"
+          (validatedExpressCode)="onExpressCode($event)"
+        >
+        </dpl-express-code>
+        <div fxFlex fxLayout="column">
+          <div fxFlex fxLayout="row" fxLayoutAlign="end">
+            <mat-radio-group [formControl]="formGroup.controls.voucherType">
+              <mat-radio-button
+                *ngFor="let option of data.voucherTypes"
+                [value]="option.value"
+                [disabled]="option.disabled"
+                >{{ option.value | voucherType }}</mat-radio-button
+              >
+            </mat-radio-group>
+          </div>
+          <div fxFlex fxLayout="row" fxLayoutAlign="end">
+            <mat-error
+              style="margin-right: 5px; font-size: 14px;"
+              *ngIf="
+                formGroup.controls.voucherType.touched &&
+                formGroup.controls.voucherType.errors?.required
+              "
+              >Pflichtfeld</mat-error
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="row-wrap"
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutGap="10px"
+        fxLayoutAlign=" stretch"
+        fxFlexOrder.lt-md="0"
+      >
+        <mat-card fxFlex="calc(50%-10px)">
+          <mat-card-header fxLayout="row">
+            <mat-card-title>
+              <span
+                i18n="
+                  DeliveringCarrier|Label Anliefernde
+                  Spedition@@DeliveringCarrier"
+                >Anliefernde Spedition</span
+              >
+              <strong> *</strong>
+            </mat-card-title>
+            <div fxFlex></div>
+            <mat-checkbox
+              [formControl]="
+                formGroup.controls.recipientSelection.controls.shipper
+              "
+              (change)="onRecipientChanged('shipper')"
+              i18n="DocumentRecipient|Label Beleg-Addressat@@DocumentRecipient"
+              >Beleg-Adressat</mat-checkbox
+            >
+          </mat-card-header>
+          <mat-card-content fxLayout="column">
+            <partner-lookup
+              fxLayout="column"
+              #shipperLookup
+              context="shipper"
+              [subForm]="formGroup.controls.shipper"
+              [required]="true"
+              title="Anliefernde Spedition"
+              i18n-title="
+                DeliveringCarrier|Label Anliefernde Spedition@@DeliveringCarrier"
+              placeholder="Firmenname"
+              i18n-placeholder="
+                CompanyNameOnTruck|Label Name@@CompanyNameOnTruck"
+            >
+            </partner-lookup>
+          </mat-card-content>
+        </mat-card>
+        <div fxFlex="calc(50%-10px)" fxFlexOrder.lt-md="3" fxLayoutGap="10px">
+        <mat-card fxFlex="calc(50%-10px)" fxFlexOrder.lt-md="3">
+          <mat-card-header>
+            <mat-card-title
+              ><span
+                i18n="
+                  VoucherReasonType|Label Nicht Tauschgrund@@VoucherReasonType"
+                >Nicht Tauschgrund</span
+              >
+              <strong> *</strong></mat-card-title
+            >
+          </mat-card-header>
+          <mat-card-content>
+            <div
+              style="margin-top: 10px; margin-bottom: 10px;"
+              fxLayout="column"
+            >
+              <mat-radio-group
+                class="column-radio-group"
+                [formControl]="formGroup.controls.voucherReasonTypeId"
+                #voucherReasonTypeId="ngForm"
+                [dplHighlight]="voucherReasonTypeId"
+              >
+                <mat-radio-button
+                  *ngFor="let option of data.voucherReasonTypes"
+                  [disabled]="option.disabled"
+                  class="radio-button"
+                  [value]="option.value"
+                  >{{
+                    option.value | voucherReasonType: 'long'
+                  }}</mat-radio-button
+                >
+              </mat-radio-group>
+              <mat-error
+                *ngIf="
+                  formGroup.controls.voucherReasonTypeId.touched &&
+                  formGroup.controls.voucherReasonTypeId.errors?.required
+                "
+                >Pflichtfeld</mat-error
+              >
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card
+            fxFlex="calc(50%-10px)"
+            fxLayout="column"
+            fxFlexOrder.lt-md="5"
+          >
+            <mat-card-header>
+              <mat-card-title
+              ><span i18n="Aussteller@@VoucherIssuerCardTitle">Aussteller</span>
+                <strong *ngIf="data.customerReferenceRequired"> *</strong>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div
+                style="margin-top: 10px; margin-bottom: 10px;"
+                fxLayout="column"
+              >
+                <mat-form-field>
+                  <!-- <input
+                    matInput
+                    [formControl]="formGroup.controls.customerReference"
+                    placeholder="{{data.customLabelsDict['CustomerReference'] ? data.customLabelsDict['CustomerReference'] : 'Referenznummer (Aussteller)'}}"
+                    i18n-placeholder="
+                      Referenznummer des
+                      Austellers@@VoucherIssuerReferenceFieldPlaceholder"
+                  /> -->
+                  <input
+                    matInput
+                    trim
+                    [formControl]="formGroup.controls.customerReference"
+                    placeholder="{{
+                    customersService.getCustomDocumentLabel(
+                      'CustomerReference'
+                    ) | async
+                  }}"
+                  />
+                  <mat-error
+                    *ngIf="
+                    formGroup.controls.customerReference.touched &&
+                    formGroup.controls.customerReference.errors?.required
+                  "
+                  >Pflichtfeld</mat-error
+                  >
+                  <mat-error
+                    *ngIf="
+                    formGroup.controls.customerReference.touched &&
+                    formGroup.controls.customerReference.errors?.maxlength
+                  "
+                  >Maximallänge
+                    {{
+                    formGroup.controls.customerReference.errors.maxlength
+                      .requiredLength
+                    }}
+                    Zeichen</mat-error
+                  >
+                </mat-form-field>
+                <mat-checkbox
+                  [formControl]="formGroup.controls.procurementLogistics"
+                >{{
+                  customersService.getCustomDocumentLabel('VoProLog') | async
+                  }}</mat-checkbox
+                >
+                <!-- <mat-checkbox
+                  [formControl]="formGroup.controls.procurementLogistics"
+                  >{{data.customLabelsDict['VoProLog'] ? data.customLabelsDict['VoProLog'] : 'Beschaffungslogistik'}}</mat-checkbox
+                > -->
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <mat-card fxFlexOrder.lt-md="1" fxFlex="calc(50%-10px)">
+          <mat-card-header fxLayout="row" fxLayoutGap="20px">
+            <mat-card-title i18n="Supplier|Label Lieferant@@Supplier"
+              >Lieferant
+              <strong *ngIf="data.supplierRequired"> *</strong>
+            </mat-card-title>
+
+            <div fxFlex></div>
+            <mat-checkbox
+              [formControl]="formGroup.controls.supplierIsShipper"
+              i18n="
+                Label für Checkbox die festlegt das Lieferant ist
+                Spediteur@@PalletAcceptanceSupplierIsShipper"
+            >
+              Lieferant ist Spediteur</mat-checkbox
+            >
+            <ng-container>
+              <mat-checkbox
+                [formControl]="
+                  formGroup.controls.recipientSelection.controls.supplier
+                "
+                (change)="onRecipientChanged('supplier')"
+                i18n="
+                  DocumentRecipient|Label Beleg-Addressat@@DocumentRecipient"
+                >Beleg-Adressat</mat-checkbox
+              >
+            </ng-container>
+          </mat-card-header>
+          <mat-card-content fxLayout="column">
+            <partner-lookup
+              #supplierLookup
+              fxLayout="column"
+              context="supplier"
+              [subForm]="formGroup.controls.supplier"
+              title="Lieferant"
+              i18n-title="Supplier|Label Lieferant@@Supplier"
+              placeholder="Firmenname (Versender der Ware)"
+              i18n-placeholder="
+                CompanyNameSupplier|Label Name@@CompanyNameSupplier"
+              [required]="data.supplierRequired"
+            >
+            </partner-lookup>
+          </mat-card-content>
+        </mat-card>
+        <app-load-carriers-form
+          fxFlex="calc(50%-10px)"
+          fxFlexOrder.lt-md="4"
+          [subForm]="formGroup.controls.loadCarriers"
+          context="voucher"
+        ></app-load-carriers-form>
+        <app-driver-info-form
+          fxFlex="calc(50%-10px)"
+          fxFlexOrder.lt-md="2"
+          [subForm]="formGroup.controls.driver"
+          title="Fahrzeug und Fahrer"
+          [shipper]="formGroup.controls.shipper.value"
+          [required]="data.driverRequired"
+          i18n-title="
+            VehicleAndDriver|Label Fahrzeug und Fahrer@@VehicleAndDriver"
+        >
+          Fahrzeug und Fahrer</app-driver-info-form
+        >
+        <mat-card
+          fxFlex="calc(50%-10px)"
+          fxLayout="column"
+          fxFlexOrder.lt-md="5"
+        >
+          <mat-card-header>
+            <mat-card-title i18n="Comment|Label Bemerkung@@Comment">
+              Bemerkungen (werden auf den Beleg gedruckt)
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content fxFlex fxLayout="column">
+            <mat-form-field fxFlex>
+              <textarea
+                fxFlex
+                class="app-textarea-form-field"
+                matInput
+                [formControl]="formGroup.controls.note"
+                placeholder="Hier können Sie Bemerkungen zur der Gutschrift eintragen. Diese werden gedruckt."
+                i18n-placeholder="
+                  palletAcceptanceDriverCommentInputPlaceholder|Palettenannahme
+                  Eingabe
+                  Bemerkung@@palletAcceptanceDriverCommentInputPlaceholder"
+              >
+              </textarea>
+              <mat-hint fxAlign="end"
+                >{{ formGroup.controls.note.value.length || 0 }} /
+                {{ ValidationDataService.maxLength.note }}</mat-hint
+              >
+              <mat-error *ngIf="formGroup.controls.note.errors?.maxlength">
+                <span i18n="MaxLength|Label Pflichtfeld@@MaxLength"
+                  >Die Eingabe ist zu lang</span
+                >
+              </mat-error>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
+        <mat-card
+          fxFlex="100%"
+          fxLayout="column"
+          fxLayoutAlign="stretch"
+          fxLayoutGap="10px"
+          fxFlexOrder.lt-md="6"
+        >
+          <mat-card-content
+            fxLayout="row"
+            fxLayoutAlign="end center"
+            fxLayoutGap="10px"
+          >
+            <app-print-settings-form
+              [subForm]="formGroup.controls.print"
+              [documentTypeId]="documentTypeId"
+            ></app-print-settings-form>
+            <button
+              type="button"
+              mat-raised-button
+              (click)="reset()"
+              i18n="Label um Formular zurückzusetzten@@ResetForm"
+            >
+              Verwerfen
+            </button>
+            <button
+              type="button"
+              mat-raised-button
+              color="primary"
+              (click)="onCreateVoucher()"
+              i18n="
+                CompleteAcceptance|Label Annahme abschließen@@CompleteAcceptance"
+            >
+              Annahme abschließen
+            </button>
+          </mat-card-content>
+        </mat-card>
+        <div fxFlex="100%" fxFlexOrder.lt-md="7"></div>
+      </div>
+    </div>
+  </form>
+</ng-container>

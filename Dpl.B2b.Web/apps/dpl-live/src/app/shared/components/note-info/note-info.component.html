@@ -1,0 +1,55 @@
+<div
+  fxLayout="column"
+  fxLayoutGap="10px"
+  *ngIf="notes && notes.length > 0"
+  class="dpl-note-info"
+>
+  <div *ngIf="showHeading">
+    <b i18n="@@ModifyByDpl">Bearbeitung durch DPL:</b>
+  </div>
+  <div *ngFor="let note of notes" fxFlex fxLayoutAlign=" center">
+    <b *ngIf="!showHeading">Bearbeitung durch DPL: </b>
+    <ng-container [ngSwitch]="note.type">
+      <mat-icon>
+        <ng-container *ngSwitchCase="employeeNoteType.Create">
+          add
+        </ng-container>
+        <ng-container *ngSwitchCase="employeeNoteType.Updated">
+          create
+        </ng-container>
+        <ng-container *ngSwitchCase="employeeNoteType.Cancellation">
+          clear
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          warning
+        </ng-container>
+      </mat-icon>
+    </ng-container>
+    <!-- Aktion ('DPL' Created) 'aufgrund' Reason (ContactedAt) 'von(Email,Fax)/mit(Telefon)' ContactPerson: Text -->
+    {{ note.createdAt | dateEx }} - {{ note.type | employeeNoteType }}
+    <ng-container *ngIf="mode === 'full'">
+      aufgrund
+      {{ note.reason || employeeNoteReason }}
+      ({{ note.contactedAt | date: 'shortDate' }})
+      {{ note.reason === noteReason.Phone ? 'mit' : 'von' }} {{ note.contact }}:
+      {{ note.text }}
+    </ng-container>
+    <ng-container *ngIf="mode === 'tiny'">
+      <button
+        mat-icon-button
+        matTooltip="{{ note.createdAt | dateEx }} - {{
+          note.type | employeeNoteType
+        }} aufgrund
+        {{ note.reason || employeeNoteReason }} ({{
+          note.contactedAt | date: 'shortDate'
+        }})
+        {{ note.reason === noteReason.Phone ? 'mit' : 'von' }} {{
+          note.contact
+        }}:
+        {{ note.text }}"
+      >
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+    </ng-container>
+  </div>
+</div>

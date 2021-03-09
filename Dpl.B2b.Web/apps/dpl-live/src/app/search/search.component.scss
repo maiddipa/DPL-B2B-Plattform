@@ -1,0 +1,26 @@
+app-search {
+  flex: 1 1 100%;
+}
+
+.mat-drawer-container[fullscreen] {
+  top: 72px !important;
+}
+
+.mat-tab-body-wrapper {
+  flex: 1;
+}
+
+app-search-list {
+  overflow: auto;
+}
+
+app-search-result-list {
+  overflow: auto;
+}
+
+.show-search-button {
+  position: absolute;
+  bottom: 14px;
+  left: 10px;
+  z-index: 10000;
+}

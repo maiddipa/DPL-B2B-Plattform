@@ -1,0 +1,7 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <app-voucher-form
+    [voucher]="data.defaultValues"
+    [defaultValues]="data.defaultValues"
+  >
+  </app-voucher-form>
+</ng-container>

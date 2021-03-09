@@ -1,0 +1,15 @@
+<ng-container *ngIf="viewData$ | async as data; else loading">
+  <mat-toolbar fxLayoutAlign="end center">
+    <span
+      i18n="TransferCreateTransfer|Label Create Transfer@@TransferCreateLabel"
+      >Umbuchung erstellen</span
+    >
+  </mat-toolbar>
+  <div fxLayout="column">
+    <dpl-required-hint></dpl-required-hint>
+  </div>
+  <dpl-transfer-form></dpl-transfer-form>
+</ng-container>
+<ng-template #loading>
+  <mat-spinner style="margin: auto;"></mat-spinner>
+</ng-template>

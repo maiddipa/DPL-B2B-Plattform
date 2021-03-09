@@ -1,0 +1,24 @@
+<div class="row" fxLayout="row" fxLayoutAlign="space-between center" fxFlexFill>
+  <div fxFlex="60" class="sec1">
+    {{ displayName }}
+    <ng-container *ngIf="additionalQuantity">
+      ({{ additionalQuantity | number }} {{ additionalText }})</ng-container
+    >
+  </div>
+  <div fxFlex="10" class="sec2">
+    {{ intact | number }}
+  </div>
+  <div fxFlex="10" class="sec3 subtotal">
+    <ng-container *ngIf="intactSubTotal !== undefined"
+      >({{ intactSubTotal | number }})</ng-container
+    >
+  </div>
+  <div fxFlex="10" class="sec4">
+    {{ defect | number }}
+  </div>
+  <div fxFlex="10" class="sec5 subtotal">
+    <ng-container *ngIf="defectSubTotal !== undefined">
+      ({{ defectSubTotal | number }})</ng-container
+    >
+  </div>
+</div>

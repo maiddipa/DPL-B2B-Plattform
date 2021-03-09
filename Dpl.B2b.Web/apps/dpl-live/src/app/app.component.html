@@ -1,0 +1,38 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <div fxLayout="column" style="height: 100%;">
+    <app-header></app-header>
+    <ng-container *ngIf="data.isLoggedIn; else home">
+      <div
+        *ngIf="data.isInitialized; else appDataLoading"
+        fxFlex
+        fxLayout="column"
+      >
+        <router-outlet></router-outlet>
+      </div>
+      <ng-template #appDataLoading>
+        <mat-progress-bar
+          *ngIf="!data.isLoggedIn || !data.isInitialized"
+          color="primary"
+          mode="query"
+          style="z-index: 9999; position: absolute;"
+        ></mat-progress-bar>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>DPL: live wird vorbereitet</mat-card-title>
+            <mat-card-subtitle>Daten werden geladen</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </ng-template>
+    </ng-container>
+    <ng-template #home>
+      <router-outlet></router-outlet>
+    </ng-template>
+
+    <app-footer></app-footer>
+
+    <!-- This shows global loading spinner from loading service -->
+    <ng-container *ngIf="loading$ | async">
+      <app-loading-spinner></app-loading-spinner>
+    </ng-container>
+  </div>
+</ng-container>

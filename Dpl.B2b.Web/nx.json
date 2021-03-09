@@ -1,0 +1,28 @@
+{
+  "npmScope": "dpl",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tslint.json": "*",
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
+  },
+  "projects": {
+    "dpl-live": {
+      "tags": []
+    },
+    "dpl-live-e2e": {
+      "tags": [],
+      "implicitDependencies": ["dpl-live"]
+    },
+    "dpl-lib": {
+      "tags": []
+    }
+  },
+  "affected": {
+    "defaultBase": "master"
+  }
+}

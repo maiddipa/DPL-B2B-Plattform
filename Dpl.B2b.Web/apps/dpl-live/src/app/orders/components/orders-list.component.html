@@ -1,0 +1,619 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dpl-filtered-table
+    #table
+    fxLayout="column"
+    fxLayoutGap="20px"
+    [filterContext]="context"
+    [getDataFn]="getDataFn"
+    [query]="query"
+    (updated)="status = $event"
+    [forceRefresh]="orderService.forceRefreshSubject"
+  >
+    <table
+      class="app-table orders-table"
+      mat-table
+      multiTemplateDataRows
+      matSort
+      [matSortActive]="sort.active"
+      [matSortDirection]="sort.direction"
+      matSortDisableClear
+    >
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        class="example-element-row"
+        [class.example-expanded-row]="expandedOrder === row"
+        (click)="selectedRowClick(row)"
+        [dplRouteHighlight]="row.id"
+        dplRouteHighlightParamName="highlightIds"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: ['expandedDetail']"
+        class="example-detail-row"
+      ></tr>
+      <tr
+        mat-footer-row
+        *matFooterRowDef="['noData']"
+        [hidden]="table.status.initialized && table.status.hasData"
+      ></tr>
+      <ng-container matColumnDef="number">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [mat-sort-header]="sortOption.Id"
+          class="number"
+        >
+          <span i18n="NumberAbr|Label Nr.@@NumberAbr">Nr.</span>
+        </th>
+        <td mat-cell *matCellDef="let element" class="number">
+          {{ element.orderNumber | numberEx: false }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="dplCode">
+        <th mat-header-cell *matHeaderCellDef class="alignRight dplcode">
+          <span i18n="DplDigitalCode|Label DPL-Digital-Code@@DplDigitalCode"
+            >DPL-Digital-Code</span
+          >
+        </th>
+        <td mat-cell *matCellDef="let element" class="alignRight dplcode">
+          <span *ngFor="let load of element.loads">
+            {{ load.digitalCode | digitalCode }}
+          </span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="timestamp">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [mat-sort-header]="sortOption.CreatedAt"
+          class="meldezeitpunkt alignRight"
+        >
+          <span
+            i18n="TimeOfNotification|Label Meldezeitpunkt@@TimeOfNotification"
+            >Meldezeitpunkt</span
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="meldezeitpunkt alignRight sort"
+        >
+          {{ element.createdAt | dateEx }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="earliestFulfillmentDateTime">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [mat-sort-header]="sortOption.EarliestFulfillmentDateTime"
+          class="earliestFulfillmentDateTime alignRight"
+        >
+          <span
+            i18n="
+              EarliestFulfillmentDate|Label Termin von@@EarliestFulfillmentDate"
+            >Termin von</span
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="earliestFulfillmentDateTime alignRight sort"
+        >
+          {{ element.earliestFulfillmentDateTime | date: 'shortDate' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="latestFulfillmentDateTime">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [mat-sort-header]="sortOption.LatestFulfillmentDateTime"
+          class="latestFulfillmentDateTime alignRight"
+        >
+          <span
+            i18n="LatestFulfillmentDate|Label Termin bis@@LatestFulfillmentDate"
+            >Termin bis</span
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="alignRight latestFulfillmentDateTime sort"
+        >
+          {{ element.latestFulfillmentDateTime | date: 'shortDate' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fulfillmentDateTime">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>Termin</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.fulfillmentDateTime }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="abholort">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="ladestelle"
+          [mat-sort-header]="sortOption.PostalCode"
+        >
+          <span i18n="LoadingStation|Label Ladestelle@@LoadingStation"
+            >Ladestelle</span
+          >
+        </th>
+        <td class="ladestelle" mat-cell *matCellDef="let element">
+          {{ element?.address?.postalCode }} {{ element?.address?.city }},
+          {{ element?.address?.street1 }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="typ">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [mat-sort-header]="sortOption.LoadCarrierName"
+          class="alignRight ladungstraeger"
+        >
+          <span i18n="LoadCarrier|Label Ladungsträger@@LoadCarrier"
+            >Ladungsträger</span
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="alignRight ladungstraeger sort"
+        >
+          {{ element.loadCarrierId | loadCarrier: 'both' }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef class="alignRight menge">
+          <span i18n="Amount|Label Menge@@Amount">Menge</span>
+        </th>
+        <td mat-cell *matCellDef="let element" class="alignRight menge">
+          {{ element.loadCarrierQuantity | number }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="stapel">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="alignRight stapel"
+          [mat-sort-header]="sortOption.NumberOfStacks"
+        >
+          <span i18n="Stack|Label Stapel@@Stack">Stapel</span>
+        </th>
+        <td mat-cell *matCellDef="let element" class="alignRight stapel sort">
+          {{
+            element.numberOfStacks ? (element.numberOfStacks | number) : ' - '
+          }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="stapelhoehe">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="alignRight stapelhoehe"
+          [mat-sort-header]="sortOption.StackHeightMax"
+        >
+          <span i18n="StackHeight|Label Stapelhöhe@@StackHeight"
+            >Stapelhöhe</span
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="alignRight stapelhoehe sort"
+        >
+          {{ element.stackHeightMax | number }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="traeger">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="alignRight traeger"
+          [mat-sort-header]="sortOption.BaseLoadCarrierName"
+        >
+          <span i18n="VehiclePallet|Label Träger-Palette@@VehiclePallet"
+            >Träger-Palette</span
+          >
+        </th>
+        <td mat-cell *matCellDef="let element" class="alignRight traeger sort">
+          {{
+            element.baseLoadCarrierId
+              ? (element.baseLoadCarrierId | loadCarrier: 'both')
+              : ' - '
+          }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="traegerQuantity">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="alignRight traegerquantity"
+        >
+          <span
+            i18n="VehiclePalletQuantity|Label Menge (TP)@@VehiclePalletQuantity"
+            >Menge (TP)</span
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="alignRight traegerquantity"
+        >
+          {{
+            element.baseLoadCarrierId
+              ? (element.baseLoadCarrierQuantity | number)
+              : ' - '
+          }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="terminDPL">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="alignRight plannedtermin"
+          [mat-sort-header]="sortOption.ConfirmedFulfillmentDate"
+        >
+          <ng-container
+            i18n="
+              ScheduledCollection|Label Geplante Abholung@@ScheduledCollection"
+            >Geplantes Datum</ng-container
+          >
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="alignRight plannedtermin sort"
+        >
+          {{ element.fulfillmentDateTime }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          [id]="sortOption.Status"
+          class="status"
+        >
+          <ng-container i18n="Status|Label Status@@Status">Status</ng-container>
+        </th>
+        <td mat-cell *matCellDef="let element" class="status">
+          <div style="display: flex; align-items: center;">
+            <i
+              class="material-icons"
+              [style.color]="getStatusColor(element.status, element.isLoad)"
+            >
+              brightness_1
+            </i>
+            <span style="margin-left: 5px;">
+              {{
+                !element.isLoad
+                  ? (element.status | orderStatus)
+                  : (element.status | orderLoadStatus)
+              }}
+            </span>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cancelOrder">
+        <th mat-header-cell *matHeaderCellDef class="cancel-order"></th>
+        <td mat-cell *matCellDef="let element" class="cancel-order">
+          <dpl-cancel-button
+            [type]="'Order'"
+            [item]="element"
+            [isEmployee]="data.isDplEmployee"
+          ></dpl-cancel-button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="receipt">
+        <th mat-header-cell *matHeaderCellDef class="receipt"></th>
+        <td mat-cell *matCellDef="let element" class="receipt">
+          <ng-container
+            *ngIf="element && element.loads && element.loads.length === 1"
+          >
+            <dpl-load-carrier-receipt-button
+              [load]="element.loads[0]"
+              [order]="element"
+            ></dpl-load-carrier-receipt-button>
+          </ng-container>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="chat">
+        <th mat-header-cell *matHeaderCellDef class="chat"></th>
+        <td mat-cell *matCellDef="let element" class="chat">
+          <dpl-chat-button type="order" [data]="element"></dpl-chat-button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderTypeJournal">
+        <th mat-header-cell *matHeaderCellDef class="type">Typ</th>
+        <td mat-cell *matCellDef="let element" class="type">
+          <span *ngIf="element.type === 'Supply'"
+            ><mat-icon
+              style="color: darkslategrey;"
+              title="Ausgabe"
+              i18n-title="
+                JournalOrderTypeSupply|Label Journal Tooltip
+                Supply@@JournalOrderTypeSupply"
+              svgIcon="dpl_outgoing"
+            >
+            </mat-icon
+          ></span>
+          <span *ngIf="element.type == 'Demand'"
+            ><mat-icon
+              style="color: darkslategrey;"
+              title="Annahme"
+              i18n-title="
+                JournalOrderTypeDemand|Label Journal Tooltip
+                Demand@@JournalOrderTypeDemand"
+              svgIcon="dpl_incoming"
+            >
+            </mat-icon
+          ></span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="orderTypePooling">
+        <th mat-header-cell *matHeaderCellDef class="type">Typ</th>
+        <td mat-cell *matCellDef="let element" class="type">
+          <span *ngIf="element.type === 'Supply'"
+            ><mat-icon
+              style="color: darkslategrey;"
+              title="Selbstanlieferung"
+              i18n-title="
+                PoolingOrderTypeSupply|Label Pooling Tooltip
+                Supply@@PoolingOrderTypeSupply"
+              svgIcon="dpl_outgoing"
+            >
+            </mat-icon
+          ></span>
+          <span *ngIf="element.type == 'Demand'"
+            ><mat-icon
+              style="color: darkslategrey;"
+              title="Selbstabholung"
+              i18n-title="
+                PoolingOrderTypeDemand|Label Pooling Tooltip
+                Demand@@PoolingOrderTypeDemand"
+              svgIcon="dpl_incoming"
+            >
+            </mat-icon
+          ></span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="transportType">
+        <th mat-header-cell *matHeaderCellDef class="alignRight">
+          Transporttyp
+        </th>
+        <td mat-cell *matCellDef="let element" class="alignRight">
+          {{ element.transportType | transportType }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="hasDplNote">
+        <th mat-header-cell *matHeaderCellDef>
+          DPL
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <dpl-note-info-icon
+            *ngIf="element.hasDplNote"
+            [notes]="element.dplNotes"
+          ></dpl-note-info-icon>
+          <!-- <button
+        mat-icon-button
+        *ngIf="element.hasDplNote"
+        title="von DPL bearbeitet"
+        i18n-title="ModifyByDpl|Label Von Dpl bearbeitet@@ModifyByDpl"
+      >
+        <mat-icon>
+          warning
+        </mat-icon>
+      </button> -->
+        </td>
+      </ng-container>
+      <!-- <dpl-column-employee-note        
+  ></dpl-column-employee-note> -->
+      <!-- detail row -->
+      <ng-container matColumnDef="expandedDetail">
+        <td
+          mat-cell
+          *matCellDef="let order"
+          [attr.colspan]="displayedColumns.length"
+        >
+          <div
+            class="example-element-detail"
+            fxLayout="row"
+            fxLayoutGap="5px"
+            fxLayoutAlign="left center"
+            [@detailExpand]="detailExpanded(order)"
+          >
+            <dpl-note-info [notes]="order.dplNotes"></dpl-note-info>
+            <!-- <div class="element-icon" fxFlex="nogrow">
+          <a (click)="openDocument(order)">
+            <img src="assets/images/pdf-icon.png"
+          /></a>
+        </div>
+        <div fxFlex="5"></div>
+
+        <div fxLayout="row" fxLayoutGap="30px">
+          <div fxLayout="column">
+            <div fxLayout="row" fxLayoutGap="20px">
+              <div>
+                <b
+                  ><span i18n="Postitions|Label Positionen@@Postitions"
+                    >Positionen</span
+                  >:
+                </b>
+              </div>
+              <div>
+                <div fxLayout="column">
+                  <div
+                    fxLayout="row"
+                    fxLayoutAlign="space-between center"
+                    fxFlexFill
+                    fxLayoutGap="10px"
+                    style="border-bottom: 1px solid black;"
+                  >
+                    <div
+                      i18n="LoadCarrier|Label Ladungsträger@@LoadCarrier"
+                    >
+                      Ladungsträger
+                    </div>
+                    <div i18n="Amount|Label Menge@@Amount">Menge</div>
+                  </div>
+                  <div
+                    fxLayout="row"
+                    fxLayoutAlign="space-between center"
+                    fxFlexFill
+                    fxLayoutGap="10px"
+                    *ngFor="
+                      let position of order?.loadCarrierReceipt?.positions
+                    "
+                  >
+                    <div>
+                      <ng-container
+                        *ngIf="
+                          getLoadCarrierById(position.loadCarrierId)
+                            | async as loadCarrier
+                        "
+                      >
+                        {{ loadCarrier.type | loadCarrier: 'type' }}
+                        {{ loadCarrier.quality | loadCarrier: 'quality' }}
+                      </ng-container>
+                    </div>
+                    <div style="min-width: 60px;text-align: right;">
+                      {{ position.quantity }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="column">
+            <div
+              fxLaout="row"
+              fxLayoutAlign="space-between center"
+              fxLayoutGap="10px"
+              *ngIf="order?.loadCarrierReceipt?.issuerCompanyName"
+            >
+              <div>
+                <b
+                  ><span i18n="Aussteller|Label Aussteller@@Aussteller"
+                    >Aussteller</span
+                  >:
+                </b>
+              </div>
+              <div>
+                {{ order?.loadCarrierReceipt?.issuerCompanyName }}
+              </div>
+            </div>
+
+            <div
+              fxLaout="row"
+              fxLayoutAlign="space-between center"
+              fxLayoutGap="10px"
+              *ngIf="order?.loadCarrierReceipt?.documentNumber"
+            >
+              <div>
+                <b
+                  ><span i18n="Belegnummer|Label Belegnummer@@Belegnummer"
+                    >Belegnummer</span
+                  >:
+                </b>
+              </div>
+              <div>{{ order?.loadCarrierReceipt?.documentNumber }}</div>
+            </div>
+          </div>
+          <div fxLayout="column">
+            <div
+              fxLaout="row"
+              fxLayoutAlign="space-between center"
+              fxLayoutGap="10px"
+              *ngIf="order?.loadCarrierReceipt?.licensePlate"
+            >
+              <div>
+                <b
+                  ><span
+                    i18n="LicensePlate|Label Kennzeichen@@LicensePlate"
+                    >Kennzeichen</span
+                  >:
+                </b>
+              </div>
+              <div>{{ order.loadCarrierReceipt.licensePlate }}</div>
+            </div>
+            <div
+              fxLaout="row"
+              fxLayoutAlign="space-between center"
+              fxLayoutGap="10px"
+              *ngIf="order?.loadCarrierReceipt?.truckDriverName"
+            >
+              <div>
+                <b
+                  ><span i18n="Driver|Label Fahrer@@Driver">Fahrer</span>:
+                </b>
+              </div>
+              <div>{{ order.loadCarrierReceipt.truckDriverName }}</div>
+            </div>
+          </div>
+        </div> -->
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="orderProcess">
+        <th mat-header-cell *matHeaderCellDef class="orderProcess"></th>
+        <td mat-cell *matCellDef="let element" class="orderProcess">
+          <button
+            mat-icon-button
+            (click)="orderProcesses.openDialog('order', element.id)"
+            title="Auftragsdetails öffnen"
+            i18n-title="
+              Tooltip für Button der Order Process details
+              öffnet@@OpenOrderProcessesDialog"
+          >
+            <mat-icon>info</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="loadCarrierSum">
+        <td mat-cell *matFooterCellDef [attr.colspan]="displayedColumns.length">
+          <div
+            style="text-align: center;"
+            i18n="
+              ListSumLoadCarrier|mat-table load carrier sum@@ListSumLoadCarrier"
+          >
+            <span>Summe Ladungsträger </span><span>{{ loadCarrierSum }}</span>
+          </div>
+        </td>
+      </ng-container> -->
+      <!-- No Data Row -->
+      <ng-container matColumnDef="noData">
+        <td mat-cell *matFooterCellDef [attr.colspan]="displayedColumns.length">
+          <div
+            style="text-align: center;"
+            *ngIf="!table.status.hasFilter"
+            i18n="ListNoItems|mat-table no items message@@ListNoItems"
+          >
+            Keine Einträge vorhanden
+          </div>
+          <div
+            style="text-align: center;"
+            *ngIf="table.status.hasFilter"
+            i18n="
+              ListNoItemsFilteres|mat-table no items message
+              filtered@@ListNoItemsFilteres"
+          >
+            Keine Einträge gefunden (Filter aktiv)
+          </div>
+        </td>
+      </ng-container>
+    </table>
+  </dpl-filtered-table>
+</ng-container>

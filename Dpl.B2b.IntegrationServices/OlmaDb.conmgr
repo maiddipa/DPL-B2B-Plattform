@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="OlmaDb"
+  DTS:DTSID="{51D95E56-6328-47CF-B19B-833E65C979A0}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=bmfch874fj.database.windows.net;User ID=DplLtmsDbDvitUser;Initial Catalog=OlmaDbDvit;Provider=MSOLEDBSQL.1;Persist Security Info=True;Application Name=SSIS-{51D95E56-6328-47CF-B19B-833E65C979A0}OlmaDb;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWswrpxI9Y0yBXMdLot5BDAAAAAACAAAAAAAQZgAAAAEAACAAAAC5ZrR7luXNstyvsB85UDq6wiYP7cKHY3fifL0OAkLt4AAAAAAOgAAAAAIAACAAAABHypdNfe22AfGb2y5ltVkAAkPZAchJ/krS/HeY7CG+5YAAAAC2riYEqOGMUP6KtPfEs9A5alUMA2SN8zOfN4hs5bM1mX792oUdRY+T6Ef90vzRqowCznYkxyKSCr/XN8jy1XtVm6xYWPJQ7jysjFe0h2EwY5lQKm41A++cF50d5h47lOmK3kP2CcJFFNW1wxmZy8KxnxFjaqvBdTeyyuC37oT+q0AAAAA597I38EbX/I+WEtYxJCx5fa50/1HM9YX4dUZmdJzwrHETIAEukmZo03r1Tpz3OOZb4PnpI3a86EBVTvkAU7SQ</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

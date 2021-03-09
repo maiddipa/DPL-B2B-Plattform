@@ -1,0 +1,255 @@
+<ng-container *ngIf="viewData$ | async as data; else loading"
+  ><mat-toolbar fxLayoutAlign="end center">
+    <span i18n="TransportBroker|Label Transport Broker@@TransportBroker"
+      >Transport Broker</span
+    >
+  </mat-toolbar>
+
+  <div fxLayout="column" fxLayoutGap="20px" style="margin: 20px;">
+    <voucher-filter [context]="filterContext"></voucher-filter>
+    <div class="container mat-elevation-z1">
+      <div class="table-container">
+        <table
+          mat-table
+          [dataSource]="data.rows"
+          class="example-table"
+          matSort
+          matSortDisableClear
+          dplPage
+          [dplPageConfig]="config"
+          [dplPagePaginator]="paginator"
+          (dplPageDataChange)="onData($event)"
+        >
+          <ng-container matColumnDef="referenceNumber">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              [mat-sort-header]="sortOption.ReferenceNumber"
+              class="referenceNumber"
+              i18n="NumberAbr|Label Nr.@@NumberAbr"
+            >
+              Nr.
+            </th>
+            <td mat-cell *matCellDef="let element" class="referenceNumber">
+              {{ element.referenceNumber }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              class="status"
+              i18n="Label for Status@@Status"
+            >
+              Status
+            </th>
+            <td mat-cell *matCellDef="let element" class="status">
+              {{ element.status | transportStatus }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="bids">
+            <th mat-header-cell *matHeaderCellDef class="bids">
+              <span i18n="Label Gebote@@TransportsListTableHeaderBids"
+                >Gebote</span
+              >
+            </th>
+            <td mat-cell *matCellDef="let element" class="bids">
+              {{ element.bids.length }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="earliestPickupDate">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              [mat-sort-header]="sortOption.SupplyFulfillmentDate"
+              class="date"
+            >
+              <span i18n="Date|Label Datum@@Date">Lade-Datum</span>
+            </th>
+            <td mat-cell *matCellDef="let element" class="date">
+              {{
+                element.supplyInfo.earliestFulfillmentDateTime
+                  | date: 'shortDate'
+              }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="latestDropoffDate">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              [mat-sort-header]="sortOption.DemandFulfillmentDate"
+              class="date"
+            >
+              <span i18n="Date|Label Datum@@Date">Entlade-Datum</span>
+            </th>
+            <td mat-cell *matCellDef="let element" class="date">
+              {{
+                element.demandInfo.latestFulfillmentDateTime | date: 'shortDate'
+              }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="country">
+            <th mat-header-cell *matHeaderCellDef class="country">
+              <span i18n="Country|Label Land@@Country">Land</span>
+            </th>
+            <td mat-cell *matCellDef="let element" class="country">
+              {{ element.supplyInfo.address.country | country: 'iso2' }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="zip">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              [mat-sort-header]="sortOption.SupplyPostalCode"
+              class="postalCode"
+            >
+              <span i18n="PostalCode|Label PLZ@@PostalCode">PLZ</span>
+            </th>
+            <td mat-cell *matCellDef="let element" class="postalCode">
+              {{ element.supplyInfo.address.postalCode }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="city">
+            <th mat-header-cell *matHeaderCellDef class="city">
+              <span i18n="Location|Label Ort@@Location">Ort</span>
+            </th>
+            <td mat-cell *matCellDef="let element" class="city">
+              {{ element.supplyInfo.address.city }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="targetCountry">
+            <th mat-header-cell *matHeaderCellDef class="country">
+              <span i18n="TargetCountry|Label Ziel Land@@TargetCountry"
+                >Ziel Land</span
+              >
+            </th>
+            <td mat-cell *matCellDef="let element" class="country">
+              {{ element.demandInfo.address.country | country: 'iso2' }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="targetZip">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              [mat-sort-header]="sortOption.DemandPostalCode"
+              class="postalCode"
+            >
+              <span i18n="TargetPostalCode|Label Ziel PLZ@@TargetPostalCode"
+                >Ziel PLZ</span
+              >
+            </th>
+            <td mat-cell *matCellDef="let element" class="postalCode">
+              {{ element.demandInfo.address.postalCode }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="targetCity">
+            <th mat-header-cell *matHeaderCellDef class="city">
+              <span i18n="TargetLocation|Label Ziel Ort@@TargetLocation"
+                >Ziel Ort</span
+              >
+            </th>
+            <td mat-cell *matCellDef="let element" class="city">
+              {{ element.demandInfo.address.city }}
+            </td>
+          </ng-container>
+          <!-- <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef class="alignRight">
+              <span i18n="Amount|Label Menge@@Amount">Menge</span>
+            </th>
+            <td mat-cell *matCellDef="let element" class="alignRight">
+              {{ element.amount | number }}
+            </td>
+          </ng-container> -->
+          <!-- <ng-container matColumnDef="length">
+            <th mat-header-cell *matHeaderCellDef class="alignRight">
+              <span i18n="Length|Label Länge@@Length">Länge</span>
+            </th>
+            <td mat-cell *matCellDef="let element" class="alignRight">
+              {{ element.length | number }} m
+            </td>
+          </ng-container> -->
+          <!-- <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef class="alignRight">
+              <span i18n="Weight|Label Gewicht@@Weight">Gewicht</span>
+            </th>
+            <td mat-cell *matCellDef="let element" class="alignRight">
+              {{ element.weight | number }} t
+            </td>
+          </ng-container> -->
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef class="type">
+              <span i18n="Type|Label Typ@@Type">Typ</span>
+            </th>
+            <td mat-cell *matCellDef="let element" class="type">
+              Plane
+              <!-- {{ element.type }} -->
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="distance">
+            <th mat-header-cell *matHeaderCellDef class="distance">
+              <span i18n="Distance|Label Entfernung@@Distance">Entfernung</span>
+            </th>
+            <td mat-cell *matCellDef="let element" class="distance">
+              {{
+                element.distance ? 'ca. ' + (element.distance | distance) : 'NA'
+              }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="chat">
+            <th mat-header-cell *matHeaderCellDef class="chat"></th>
+            <td mat-cell *matCellDef="let element" class="chat">
+              <dpl-chat-button
+                type="transport"
+                [data]="element"
+              ></dpl-chat-button>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="noData">
+            <td
+              mat-cell
+              *matFooterCellDef
+              [attr.colspan]="displayedColumns.length"
+            >
+              <div
+                style="text-align: center;"
+                *ngIf="!data.listFiltered"
+                i18n="ListNoItems|mat-table no items message@@ListNoItems"
+              >
+                Keine Einträge vorhanden
+              </div>
+              <div
+                style="text-align: center;"
+                *ngIf="data.listFiltered"
+                i18n="
+                  ListNoItemsFilteres|mat-table no items message
+                  filtered@@ListNoItemsFilteres"
+              >
+                Keine Einträge gefunden (Filter aktiv)
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            (click)="onTransportTapped(row)"
+          ></tr>
+          <tr
+            mat-footer-row
+            *matFooterRowDef="['noData']"
+            [hidden]="
+              data && data.rows && data.rows.length && data.rows.length > 0
+            "
+          ></tr>
+        </table>
+      </div>
+      <mat-paginator #paginator></mat-paginator>
+    </div>
+  </div>
+</ng-container>
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

@@ -1,0 +1,64 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="data.dataSource"
+    [showBorders]="true"
+    [remoteOperations]="true"
+    [columnAutoWidth]="true"
+    (onEditorPreparing)="onEditorPreparing($event)"
+  >
+    >
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+    <dxo-editing
+      mode="form"
+      [allowUpdating]="true"
+      [allowAdding]="true"
+      [allowDeleting]="true"
+    >
+    </dxo-editing>
+    <dxi-column
+      dataField="id"
+      dataType="number"
+      [formItem]="{ visible: false }"
+    >
+    </dxi-column>
+    <dxi-column dataField="street1" dataType="string">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="street2" dataType="string"> </dxi-column>
+    <dxi-column dataField="postalCode" dataType="string">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="city" dataType="string">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="country" [setCellValue]="setCountryValue">
+      <dxo-lookup
+        [dataSource]="data.countries"
+        valueExpr="id"
+        displayExpr="name"
+      >
+      </dxo-lookup>
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="state" cellTemplate="stateDisplayTemplate">
+      <dxo-lookup
+        [dataSource]="getFilteredStates"
+        valueExpr="id"
+        displayExpr="name"
+      >
+      </dxo-lookup>
+    </dxi-column>
+
+    <div *dxTemplate="let data of 'stateDisplayTemplate'">
+      {{ data.data.stateName }}
+    </div>
+
+    <dxo-paging [pageSize]="12"></dxo-paging>
+    <dxo-pager
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[5, 12, 20]"
+    ></dxo-pager>
+  </dx-data-grid>
+</ng-container>

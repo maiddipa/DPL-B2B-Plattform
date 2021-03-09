@@ -1,0 +1,196 @@
+<mat-toolbar fxLayoutAlign="end center">
+  <span i18n="OrderConfirmation|Label Abuftragsbestätigung@@OrderConfirmation"
+    >Auftragsbestätigung</span
+  >
+</mat-toolbar>
+<div
+  *ngIf="viewData$ | async as data"
+  fxLayout="column"
+  fxLayoutGap="10px"
+  class="app-form-padding"
+>
+  <mat-card>
+    <mat-card-title
+      i18n="
+        searchCheckoutSummaryCardTitle|Search Checkout Card Title
+        Zusammenfassung@@SearchCheckoutConfirmationCardTitle"
+      >Bestätigung</mat-card-title
+    >
+    <mat-card-subtitle
+      i18n="
+        searchCheckoutSummaryCardSubtitle|Search Checkout Card Subtitle
+        Zusammenfassung@@SearchCheckoutConfirmationCardSubTitle"
+      >Ihr Auftrag wurde erfolgreich erstellt</mat-card-subtitle
+    >
+    <div fxLayout="column">
+      <table
+        *ngIf="data.basket"
+        mat-table
+        [dataSource]="data.basketItemOrderLoads"
+      >
+        <ng-container matColumnDef="position">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            i18n="Position|Label Position@@Position"
+          >
+            Position
+          </th>
+          <td mat-cell *matCellDef="let item; let i = index">{{ i + 1 }}</td>
+        </ng-container>
+        <ng-container matColumnDef="orderType">
+          <th mat-header-cell *matHeaderCellDef i18n="Type|Label Typ@@Type">
+            Typ
+          </th>
+          <td mat-cell *matCellDef="let item">
+            {{
+              item.basketItem.data.response.input.orderType
+                | orderType: 'selfTransport'
+            }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="pallet">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            i18n="Pallet|Label Palette@@Pallet"
+          >
+            Palette
+          </th>
+          <td mat-cell *matCellDef="let item">
+            {{ item.basketItem.data.response.input.palletId | loadCarrier }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="quantity">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            i18n="Amount|Label Menge@@Amount"
+          >
+            Menge
+          </th>
+          <td mat-cell *matCellDef="let item">
+            {{ item.basketItem.data.response.input.calculatedQuantity }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="baseLoadCarrier">
+          <th mat-header-cell *matHeaderCellDef class="traeger">
+            <span i18n="VehiclePallet|Label Träger-Palette@@VehiclePallet"
+              >Träger-Palette</span
+            >
+          </th>
+          <td mat-cell *matCellDef="let item" class="traeger">
+            {{
+              item.basketItem.data.baseLoadCarrierId
+                ? (item.basketItem.data.baseLoadCarrierId | loadCarrier: 'both')
+                : ' - '
+            }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            i18n="PointOfTime|Label Zeitpunkt@@PointOfTime"
+          >
+            Zeitpunkt
+          </th>
+          <td mat-cell *matCellDef="let item">
+            {{
+              item.basketItem.data.response.input.calendarWeek | calendarWeek
+            }}
+            -
+            {{
+              item.basketItem.data.dayOfWeek
+                | dayOfWeek: item.basketItem.data.response.input.calendarWeek
+            }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="location">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            i18n="Location|Label Ort@@Location"
+          >
+            Ort
+          </th>
+          <td mat-cell *matCellDef="let item">
+            {{
+              item.basketItem.data.destination.info.address.country
+                | country: 'iso2'
+            }}-{{ item.basketItem.data.destination.info.address.zip }}
+            {{ item.basketItem.data.destination.info.address.street }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="code">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            i18n="DigitalCode|Label Digital-Code@@DigitalCode"
+          >
+            DPL-Digital-Code
+          </th>
+          <td mat-cell *matCellDef="let item">
+            <ng-container *ngIf="item.basketItem.response.status === 'ok'">
+              {{ item.orderLoad.digitalCode }}
+            </ng-container>
+            <ng-container
+              *ngFor="let error of item.basketItem.response?.errorMessages"
+              ><mat-error>{{ error }}</mat-error></ng-container
+            >
+          </td>
+        </ng-container>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="[
+            'position',
+            'orderType',
+            'pallet',
+            'quantity',
+            'baseLoadCarrier',
+            'date',
+            'location',
+            'code'
+          ]"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="
+            let row;
+            columns: [
+              'position',
+              'orderType',
+              'pallet',
+              'quantity',
+              'baseLoadCarrier',
+              'date',
+              'location',
+              'code'
+            ]
+          "
+        ></tr>
+      </table>
+    </div>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button (click)="onPrint()" [disabled]="true">
+        <span i18n="Print|Label Drucken@@Print">Drucken</span>
+      </button>
+      <button mat-raised-button [routerLink]="['../../start']" routerLinkOp>
+        <span
+          i18n="
+            CreateAnotherorder|Label Weiteren Auftrag
+            anlegen@@CreateAnotherorder"
+          >Weiteren Auftrag anlegen</span
+        >
+      </button>
+      <button
+        [routerLink]="['/order-loads']"
+        [queryParams]="getQueryParams(data.basketItemOrderLoads)"
+        mat-raised-button
+      >
+        <span i18n="Label Aufträge Navigations Button@@Orders">Aufträge</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,5 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dpl-customer-administration-loading-location-form fxFlex="60"
+    (formSubmit)="onFormSubmit($event, data)"
+  ></dpl-customer-administration-loading-location-form>
+</ng-container>

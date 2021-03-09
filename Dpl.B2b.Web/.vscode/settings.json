@@ -1,0 +1,9 @@
+{
+  "team.remoteUrl": "https://kt-it-user03@tfs.wp-one.com/tfs/IT",
+  "team.teamProject": "LAMA",
+  "ngschematics.schematics": ["@nrwl/angular", "@datorama/akita"],
+  "explorer.compactFolders": false,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "npm-scripts.showStartNotification": false,
+  "typescript.preferences.importModuleSpecifier": "relative"
+}

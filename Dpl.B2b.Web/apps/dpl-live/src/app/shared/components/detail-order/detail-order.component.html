@@ -1,0 +1,89 @@
+<dpl-detail-process [title]="title" [notes]="order.dplNotes" nodesMode="">
+  <ng-container first-column>
+    <div fxLayout="row" fxLayoutAlign="end">
+      <i
+        class="material-icons"
+        [style.color]="order.status | orderStatus: 'color'"
+      >
+        brightness_1
+      </i>
+      <span style="margin-left: 5px;">
+        <b style="vertical-align: sub;">{{ order.status | orderStatus }} </b>
+      </span>
+    </div>
+    <dpl-detail-line>
+      <div lineTitle>Gemeldet:</div>
+      <div lineValue>{{ order.createdAt | dateEx }}</div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle>Termin:</div>
+      <div lineValue>
+        {{ order.earliestFulfillmentDateTime | date: 'shortDate' }}
+        <span
+          *ngIf="
+            !dateIsEqual(
+              order.earliestFulfillmentDateTime,
+              order.latestFulfillmentDateTime
+            )
+          "
+          >-{{ order.latestFulfillmentDateTime | date: 'shortDate' }}
+        </span>
+      </div>
+    </dpl-detail-line>
+    <!-- <dpl-detail-line>
+        <div lineTitle>Geplantes Datum:</div>
+        <div lineValue>{{ order.fulfillmentDateTime }}</div>
+      </dpl-detail-line> -->
+    <dpl-detail-line>
+      <div lineTitle>Ladungsträger:</div>
+      <div lineValue>
+        {{ order.loadCarrierQuantity | number }}x{{
+          order.loadCarrierId | loadCarrier: 'both'
+        }}
+        | Stapelhöhe
+        {{ order.stackHeightMax | number }}
+      </div>
+    </dpl-detail-line>
+    <dpl-detail-line *ngIf="order.baseLoadCarrierId">
+      <div lineTitle>Trägerpalette:</div>
+      <div lineValue>
+        {{ order.baseLoadCarrierId | loadCarrier: 'both' }}
+      </div>
+    </dpl-detail-line>
+    <dpl-detail-line *ngIf="order.address">
+      <div lineTitle>Ladestelle:</div>
+      <div lineValue>
+        {{ order.address.postalCode }} {{ order.address.city }},
+        {{ order.address.street1 }} |
+        <span
+          i18n="LoadingSideways|Label Seitenbeladung@@LoadingSideways"
+          *ngIf="order.supportsSideLoading"
+          >Seitenbeladung
+        </span>
+        <span
+          i18n="LoadingFromBehind|Label Heckbeladung@@LoadingFromBehind"
+          *ngIf="order.supportsRearLoading"
+          >Heckbeladung
+        </span>
+        <span
+          i18n="LoadingJumboLoading|Label Jumbobeladung@@LoadingJumboLoading"
+          *ngIf="order.supportsJumboVehicles"
+          >Jumbobeladung
+        </span>
+        | Öffnungszeiten
+      </div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle>Teilladungen:</div>
+      <div lineValue>
+        <span *ngIf="order.supportsPartialMatching">Ja</span>
+        <span *ngIf="!order.supportsPartialMatching">Nein</span>
+      </div>
+    </dpl-detail-line>
+  </ng-container>
+
+  <ng-container actions>
+    <dpl-cancel-button type="Order" [item]="order"></dpl-cancel-button>
+    <dpl-chat-button type="order" [data]="order"></dpl-chat-button>
+  </ng-container>
+</dpl-detail-process>

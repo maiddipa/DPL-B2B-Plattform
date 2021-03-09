@@ -1,0 +1,67 @@
+<div fxLayout="column" fxLayoutGap="10px" [formGroup]="formGroup">
+  <mat-toolbar color="primary">
+    <span
+      class="fill-remaining-space"
+      i18n="
+        DaySelectorDialogToolbarLabel|DaySelectorDialog Toolbar
+        Label@@DaySelectorDialogToolbarLabel"
+      >Detailauswahl</span
+    >
+  </mat-toolbar>
+  <div fxLayout="row" fxLayoutGap="35px" *ngIf="viewData$ | async as data">
+    <div fxLayout="column">
+      <mat-label>Tag</mat-label>
+      <mat-radio-group
+        fxLayout="column"
+        fxLayoutGap="10px"
+        [formControl]="formGroup.controls.day"
+      >
+        <mat-radio-button
+          *ngFor="let option of data.options"
+          [value]="option"
+          >{{ option.dayOfWeekOption.label }}</mat-radio-button
+        >
+      </mat-radio-group>
+    </div>
+    <div fxLayout="column">
+      <mat-label>Träger-Palette</mat-label>
+      <mat-radio-group
+        fxLayout="column"
+        fxLayoutGap="10px"
+        [formControl]="formGroup.controls.baseLoadCarrier"
+      >
+        <mat-radio-button
+          *ngFor="let option of data.baseLoadCarrierOptions"
+          [value]="option"
+        >
+          <ng-container
+            *ngIf="option.baseLoadCarrierId; else noBaseLoadCarrier"
+            >{{ option.baseLoadCarrierId | loadCarrier: 'both' }}</ng-container
+          >
+          <ng-template #noBaseLoadCarrier>
+            <ng-container
+              i18n="
+                Listenoption keine
+                Trägerpalette@@AddToBasketDialogNoBaseLoadCarrier"
+              >Keine
+            </ng-container>
+          </ng-template></mat-radio-button
+        >
+      </mat-radio-group>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="5px">
+    <button type="button" mat-raised-button (click)="onCancel()">
+      Abbrechen
+    </button>
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      [disabled]="formGroup.invalid"
+      (click)="onAddToBasket()"
+    >
+      Zu Warenkorb hinzufügen
+    </button>
+  </div>
+</div>

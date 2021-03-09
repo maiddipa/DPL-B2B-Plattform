@@ -1,0 +1,40 @@
+.with-detail > td {
+  border-bottom-style: none !important;
+}
+
+.extended-detail {
+  margin-right: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+table {
+  max-height: 1500px;
+
+  th {
+    &:first-of-type {
+      text-align: start;
+    }
+  }
+
+  td,
+  th {
+    &.mat-cell:first-of-type {
+      padding-left: 0px !important;
+    }
+  }
+
+  tr:last-of-type td {
+    border-bottom: 0px;
+  }
+
+  td {
+    &.summary {
+      font-weight: bold;
+    }
+  }
+
+  tbody {
+    overflow-y: auto;
+  }
+}

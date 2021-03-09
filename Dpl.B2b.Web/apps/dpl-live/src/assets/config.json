@@ -1,0 +1,70 @@
+{
+    "app": {
+        "apiBaseUrl": "https://localhost:5001",
+        "info": {
+            "environment": "local",
+            "build": null,
+            "buildTime": null,
+            "release": null,
+            "releaseTime": null
+        },
+        "ui": {
+            "autoComplete": {
+              "minLength": 3,
+              "debounceTime": 0
+            },
+            "loading": {
+              "durationUntilUserCanHide": 45000,
+              "durationMax": 9999000
+            }
+        }
+    },
+    "msal": {
+        "config": {
+            "auth": {
+                "authority": "https://login.microsoftonline.com/a23fe416-cfa9-4c3e-bba4-094190bd796b",
+                "clientId": "de7e1320-9c95-4b83-a799-9383a4014440",
+                "redirectUri": "http://localhost:4200",
+                "navigateToLoginRequestUrl": false,
+                "postLogoutRedirectUri": "http://localhost:4200"
+            },
+            "cache": {
+                "cacheLocation": "localStorage"
+            }
+        },
+        "ngConfig": {
+            "consentScopes": [
+                "user.read",
+                "profile",
+                "api://19958bea-9920-4568-b98f-4e9cd6ed319a/ApiAccess"
+            ],
+            "protectedResourceMap": [
+                [
+                    "https://localhost:5001",
+                    [
+                        "api://19958bea-9920-4568-b98f-4e9cd6ed319a/ApiAccess"
+                    ]
+                ]
+            ],
+            "unprotectedResources": []
+        }
+    },
+    "applicationInsights": {
+        "instrumentationKey": null
+    },
+    "googleMaps": {
+        "apiKey": "AIzaSyDrZgaq6_Wog4ryR_nwM1TQkkCO9aGpp8I",
+        "libraries": [
+            "places"
+        ]
+    },
+    "stream": {
+        "key": "jdhkvzjuphpn"
+    },
+    "chat": {
+        "functions": {
+            "createChannelOrAddMeAsMember": "https://dplb2bfunctions.azurewebsites.net/api/DplB2bHandleProcessChannel",
+            "getChannelsWithMessages": "https://dplb2bfunctions.azurewebsites.net/api/DplB2bCheckChannelsForMessages"
+        }        
+    }
+}

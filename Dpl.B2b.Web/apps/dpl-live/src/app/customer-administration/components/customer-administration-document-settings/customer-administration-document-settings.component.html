@@ -1,0 +1,164 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="data.dataSource"
+    [showBorders]="true"
+    [remoteOperations]="true"
+    (onEditorPreparing)="onEditorPreparing($event)"
+  >
+    <!-- filter row-->
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <!-- editing mode and options-->
+    <dxo-editing
+      mode="form"
+      [allowUpdating]="true"
+      [allowAdding]="true"
+      [allowDeleting]="true"
+    >
+    </dxo-editing>
+    <!-- Document Type Column-->
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Dokumententyp@@CustomerAdministrationDocumentSettingsDocumentTypeColumnTitel"
+      dataField="documentTypeId"
+      name="documentTypeId"
+      caption="Dokumententyp"
+      cellTemplate="documentTypeTemplate"
+      editCellTemplate="documentTypeEditTemplate"
+      [allowFiltering]="false"
+      [minWidth]="150"
+    >
+      <dxi-validation-rule
+        i18n-message="
+          Fehlernachricht:Dokumenttyp muss ausgewählt
+          sein@@CustomerAdministrationDocumentSettingsDocumentTypeRequiredValidationMessage"
+        type="required"
+        message="Dokumenttyp muss ausgewählt sein"
+      ></dxi-validation-rule>
+    </dxi-column>
+    <!-- LoadCarrier Type Column-->
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Ladungsträger@@CustomerAdministrationDocumentSettingsLoadCarrierTypeColumnTitel"
+      dataField="loadCarrierTypeId"
+      name="loadCarrierTypeId"
+      caption="Ladungsträger"
+      cellTemplate="loadCarrierTypeTemplate"
+      editCellTemplate="loadCarrierTypeEditTemplate"
+    >
+    </dxi-column>
+    <!-- Threshold for Warnings Quantity Column-->
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Warn-Anzahl@@CustomerAdministrationDocumentSettingsThresholdForWarningQuantityColumnTitel"
+      dataField="thresholdForWarningQuantity"
+      name="thresholdForWarningQuantity"
+      caption="Warn-Anzahl"
+      dataType="number"
+    >
+      <!-- validation rule for Warnings Quantity-->
+      <dxi-validation-rule
+        i18n-message="
+          Fehlernachricht:Ist höher als die
+          Maximal-Anzahl@@CustomerAdministrationDocumentSettingsThresholdForWarningQuantityCustomValidationMessage"
+        type="custom"
+        message="Ist höher als die Maximal-Anzahl"
+        [validationCallback]="customValidationCallbackWarningQuantity"
+      >
+      </dxi-validation-rule>
+    </dxi-column>
+    <!-- Max Quantity Column-->
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Maximal-Anzahl@@CustomerAdministrationDocumentSettingsMaxQuantityColumnTitel"
+      dataField="maxQuantity"
+      name="maxQuantity"
+      caption="Maximal-Anzahl"
+      dataType="number"
+    >
+      <!-- validation rule for Max Quantity-->
+      <dxi-validation-rule
+        i18n-message="
+          Fehlernachricht:Ist niedriger als die
+          Warn-Anzahl@@CustomerAdministrationDocumentSettingsMaxQuantityCustomValidationMessage"
+        type="custom"
+        message="Ist niedriger als die Warn-Anzahl"
+        [validationCallback]="customValidationCallbackWarningQuantity"
+      >
+      </dxi-validation-rule>
+    </dxi-column>
+    <!-- Cancellation Time Span Column-->
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Storno-Zeitspanne@@CustomerAdministrationDocumentSettingsCancellationTimeSpanColumnTitel"
+      dataField="cancellationTimeSpan"
+      name="cancellationTimeSpan"
+      caption="Storno-Zeitspanne"
+      dataType="number"
+    >
+    </dxi-column>
+    <!-- Pager -->
+    <dxo-paging [pageSize]="12"></dxo-paging>
+    <dxo-pager
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[5, 12, 20]"
+    ></dxo-pager>
+    <!-- Tempaltes -->
+    <!-- Grid Templates -->
+    <!-- Document Cell Template-->
+    <div
+      *dxTemplate="let dataDocumentTypeTemplateData of 'documentTypeTemplate'"
+    >
+      <div class="custom-cell">
+        <span>
+          {{ getDocumentTypeName(data, dataDocumentTypeTemplateData.value) }}
+        </span>
+      </div>
+    </div>
+    <!-- Document Edit Template-->
+    <div
+      *dxTemplate="
+        let dataDocumentTypeTemplateData of 'documentTypeEditTemplate'
+      "
+    >
+      <dx-select-box
+        [items]="data.documentTypeData"
+        [displayExpr]="documentTypeDisplayExpr"
+        valueExpr="id"
+        [value]="dataDocumentTypeTemplateData.value"
+        (onValueChanged)="dataDocumentTypeTemplateData.setValue($event.value)"
+        [searchEnabled]="true"
+      ></dx-select-box>
+    </div>
+    <!-- LoadCarrier Type Cell Template-->
+    <div
+      *dxTemplate="let loadCarrierTypeTemplateData of 'loadCarrierTypeTemplate'"
+    >
+      <div class="custom-cell">
+        <span>{{
+          getLoadCarrierTypeName(data, loadCarrierTypeTemplateData.value)
+        }}</span>
+      </div>
+    </div>
+    <!-- LoadCarrier Type Edit Template-->
+    <div
+      *dxTemplate="
+        let loadCarrierTypeTemplateData of 'loadCarrierTypeEditTemplate'
+      "
+    >
+      <dx-select-box
+        [dataSource]="getLoadCarrierTypeDataSource(data)"
+        displayExpr="display"
+        valueExpr="value"
+        [value]="loadCarrierTypeTemplateData.value"
+        [searchEnabled]="true"
+        (onValueChanged)="loadCarrierTypeTemplateData.setValue($event.value)"
+      ></dx-select-box>
+    </div>
+  </dx-data-grid>
+</ng-container>

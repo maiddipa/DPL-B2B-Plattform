@@ -1,0 +1,27 @@
+.search-input-form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  .daysOfWeek {
+    display: flex;
+    flex-wrap: wrap;
+
+    .dayOfWeekCheck {
+      width: 33%;
+      flex-grow: 1;
+    }
+  }
+
+  .mat-radio-button {
+    margin: 10px 20px 10px 0;
+  }
+
+  .searchBtn {
+    margin-top: 20px;
+  }
+}
+
+.search-input-form > * {
+  width: 100%;
+}

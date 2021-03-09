@@ -1,0 +1,30 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <div
+    style="margin-top: 20px;"
+    fxLayout="row"
+    fxLayoutAlign="space-around"
+    [formGroup]="form"
+  >
+    <ngx-daterangepicker-material
+      (choosedDate)="choosedDateTime($event)"
+      [autoApply]="true"
+      [minDate]="data.today"
+      [isCustomDate]="data.isCustomDate"
+      inline="true"
+    ></ngx-daterangepicker-material>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 20px;">
+    <mat-form-field style="width: 90px;">
+      <input
+        type="number"
+        digit-only
+        matInput
+        placeholder="Anzahl Ladungen"
+        i18n-placeholder="NumberOfLoads|Label Anzahl Ladungen@@NumberOfLoads"
+        [(ngModel)]="loads"
+        (ngModelChange)="updateLoads($event)"
+        digit-only
+      />
+    </mat-form-field>
+  </div>
+</ng-container>

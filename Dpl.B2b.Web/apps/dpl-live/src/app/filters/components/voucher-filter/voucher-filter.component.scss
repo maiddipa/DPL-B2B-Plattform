@@ -1,0 +1,13 @@
+.mat-expansion-indicator::after {
+  visibility: hidden !important;
+  display: none !important;
+}
+
+mat-expansion-panel-header.filter {
+  color: rgba(0, 0, 0, 0.87);
+  mat-panel-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 16px;
+  }
+}

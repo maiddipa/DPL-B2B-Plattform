@@ -1,0 +1,12 @@
+<ng-container [formGroup]="form">
+  <div [formArrayName]="arrayName">
+    <mat-checkbox
+      *ngFor="let item of daysOfWeekOptions; let i = index"
+      [formControlName]="i.toString()"
+      [title]="i | dayOfWeek: calendarWeek"
+      color="primary"
+    >
+      {{ item }}
+    </mat-checkbox>
+  </div>
+</ng-container>

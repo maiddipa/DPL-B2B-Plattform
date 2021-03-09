@@ -1,0 +1,13 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <ng-container *ngIf="data.units?.length > 0">
+    <dx-select-box
+      [dataSource]="data.unitDataSource"
+      valueExpr="idString"
+      [grouped]="true"
+      displayExpr="name"
+      [searchEnabled]="true"
+      (onValueChanged)="unitSelected($event)"
+    >
+    </dx-select-box>
+  </ng-container>
+</ng-container>

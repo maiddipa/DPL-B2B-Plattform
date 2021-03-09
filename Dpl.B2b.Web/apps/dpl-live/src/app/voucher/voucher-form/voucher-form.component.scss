@@ -1,0 +1,21 @@
+@import '../../../variables';
+
+.column-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.mat-radio-button {
+  margin: 5px;
+}
+
+.required {
+  background-color: $base-light;
+}
+
+mat-card,
+app-driver-info-form,
+app-load-carriers-form {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

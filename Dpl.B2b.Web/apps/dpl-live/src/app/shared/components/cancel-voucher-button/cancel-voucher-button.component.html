@@ -1,0 +1,12 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <ng-container *hasPermission="resourceAction.CancelVoucher">
+    <button
+      mat-icon-button
+      [dplOnClickDisableUntil]="onCancel()"
+      [disabled]="data.disabled"
+      [title]="data.disabled ? '' : 'Stornieren'"
+    >
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </ng-container>
+</ng-container>

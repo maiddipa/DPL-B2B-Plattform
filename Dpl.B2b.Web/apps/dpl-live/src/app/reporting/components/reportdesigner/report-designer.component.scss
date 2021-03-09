@@ -1,0 +1,14 @@
+@import '~jquery-ui/themes/base/all.css';
+@import '~@devexpress/analytics-core/dist/css/dx-analytics.common';
+@import '~@devexpress/analytics-core/dist/css/dx-analytics.light';
+@import '~@devexpress/analytics-core/dist/css/dx-querybuilder';
+@import '~devexpress-reporting/dist/css/dx-webdocumentviewer';
+@import '~devexpress-reporting/dist/css/dx-reportdesigner';
+
+report-designer {
+  height: 100%;
+
+  .dx-editors .dx-fieldset .dx-field .dx-field-value{
+    margin-left: 120px;
+  }
+}

@@ -1,0 +1,13 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <mat-toolbar fxLayoutAlign="end center">
+    <span>
+      Sortierung
+    </span>
+  </mat-toolbar>
+  <div class="app-page-content">
+    <dpl-sorting-form
+      *ngIf="data.sortInput"
+      [sortInput]="data.sortInput"
+    ></dpl-sorting-form>
+  </div>
+</ng-container>

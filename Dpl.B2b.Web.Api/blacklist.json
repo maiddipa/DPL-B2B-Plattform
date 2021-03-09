@@ -1,0 +1,168 @@
+{
+  "PAKI": {
+    "FieldName": "*",
+    "Regex": {
+      "Pattern": "[^a-z]{0,3}p[^a-z]{0,3}a[^a-z]{0,3}k[^a-z]{0,3}i[^a-z]{0,3}",
+      "Options": 1
+    }
+  },
+  "FHG": {
+    "FieldName": "*",
+    "Regex": {
+      "Pattern": "[^a-z]{0,3}d[^a-z]{0,3}e[^a-z]{0,3}f[^a-z]{0,3}r[^a-z]{0,3}u[^a-z]{0,3}",
+      "Options": 1
+    }
+  },
+  "DEFRU": {
+    "FieldName": "*",
+    "Regex": {
+      "Pattern": "[^a-z]{0,3}d[^a-z]{0,3}e[^a-z]{0,3}f[^a-z]{0,3}r[^a-z]{0,3}u[^a-z]{0,3}",
+      "Options": 1
+    }
+  },
+  "DEFRO": {
+    "FieldName": "*",
+    "Regex": {
+      "Pattern": "[^a-z]{0,3}d[^a-z]{0,3}e[^a-z]{0,3}f[^a-z]{0,3}r[^a-z]{0,3}o[^a-z]{0,3}",
+      "Options": 1
+    }
+  },
+  "ARLA": {
+    "FieldName": "*",
+    "Regex": {
+      "Pattern": "[^a-z]{0,3}a[^a-z]{0,3}r[^a-z]{0,3}l[^a-z]{0,3}a[^a-z]{0,3}",
+      "Options": 1
+    }
+  },
+  "INTERPAL": {
+    "FieldName": "*",
+    "Regex": {
+      "Pattern": "[^a-z]{0,3}i[^a-z]{0,3}n[^a-z]{0,3}t[^a-z]{0,3}e[^a-z]{0,3}r[^a-z]{0,3}p[^a-z]{0,3}a[^a-z]{0,3}l[^a-z]{0,3}",
+      "Options": 1
+    }
+  },
+  "MILCHUNION": {
+    "FieldName": "*",
+    "Regex": {
+      "Pattern": "[^a-z]{0,3}m[^a-z]{0,3}i[^a-z]{0,3}l[^a-z]{0,3}c[^a-z]{0,3}h[^a-z]{0,3}u[^a-z]{0,3}n[^a-z]{0,3}i[^a-z]{0,3}o[^a-z]{0,3}n[^a-z]{0,3}",
+      "Options": 1
+    }
+  },
+  "MUH": {
+    "FieldName": "*",
+    "Regex": {
+      "Pattern": "[^a-z]{0,3}m[^a-z]{0,3}u[^a-z]{0,3}h[^a-z]{0,3}",
+      "Options": 1
+    }
+  },
+  "LICENSE_PLATE_NWM": {
+    "FieldName": "LicensePlate",
+    "Regex": {
+      "Pattern": "^(NWM).*(AF).*(343|345|346|347|348|349|350|351|352|353)",
+      "Options": 1
+    }
+  },
+  "LICENSE_PLATE_BIT": {
+    "FieldName": "LicensePlate",
+    "Regex": {
+      "Pattern": "^(BIT).*(MU).*(26.|336|339|352|374|40.|502|516|527|53.|54.|554|559|56.|57.|58.|617|64.|65.|67.|708|709|71.|72.|738|765)",
+      "Options": 1
+    }
+  },
+  "KeinGCDKennzeichenFürArla": {
+    "FieldName": "LicensePlate",
+    "Regex": {
+      "Pattern": "^(GC|DU|SLF|GZ|GT|GS|GL|GG|GD)[^\\w]{0,3}D",
+      "Options": 1
+    },
+    "Criterion": [
+      {
+        "FieldName": "CompanyName",
+        "Regex": {
+          "Pattern": "a[^a-z]{0,3}r[^a-z]{0,3}l[^a-z]{0,3}a[^a-z]{0,3}",
+          "Options": 1
+        }
+      }
+    ]
+  },
+  "KeinBITKennzeichenFürArla": {
+    "FieldName": "LicensePlate",
+    "Regex": {
+      "Pattern": "^BIT[^\\w]{0,3}MU",
+      "Options": 1
+    },
+    "Criterion": [
+      {
+        "FieldName": "CompanyName",
+        "Regex": {
+          "Pattern": "a[^a-z]{0,3}r[^a-z]{0,3}l[^a-z]{0,3}a[^a-z]{0,3}",
+          "Options": 1
+        }
+      }
+    ]
+  },
+  "KeinBITKennzeichenFürMuh": {
+    "FieldName": "LicensePlate",
+    "Regex": {
+      "Pattern": "^BIT[^\\w]{0,3}MU",
+      "Options": 1
+    },
+    "Criterion": [
+      {
+        "FieldName": "CompanyName",
+        "Regex": {
+          "Pattern": "[^a-z]{0,3}m[^a-z]{0,3}u[^a-z]{0,3}h[^a-z]{0,3}",
+          "Options": 1
+        }
+      }
+    ]
+  },
+  "KeinBITKennzeichenFürMilchunion": {
+    "FieldName": "LicensePlate",
+    "Regex": {
+      "Pattern": "^BIT[^\\w]{0,3}MU",
+      "Options": 1
+    },
+    "Criterion": [
+      {
+        "FieldName": "CompanyName",
+        "Regex": {
+          "Pattern": "[^a-z]{0,3}m[^a-z]{0,3}i[^a-z]{0,3}l[^a-z]{0,3}c[^a-z]{0,3}h[^a-z]{0,3}u[^a-z]{0,3}n[^a-z]{0,3}i[^a-z]{0,3}o[^a-z]{0,3}n[^a-z]{0,3}",
+          "Options": 1
+        }
+      }
+    ]
+  },
+  "KeinNWMKennzeichenFürMUH": {
+    "FieldName": "LicensePlate",
+    "Regex": {
+      "Pattern": "[^a-z]{0,3}n[^a-z]{0,3}w[^a-z]{0,3}m[^a-z]{0,3}",
+      "Options": 1
+    },
+    "Criterion": [
+      {
+        "FieldName": "CompanyName",
+        "Regex": {
+          "Pattern": "[^a-z]{0,3}m[^a-z]{0,3}u[^a-z]{0,3}h[^a-z]{0,3}",
+          "Options": 1
+        }
+      }
+    ]
+  },
+  "KeinNWMKennzeichenFürMILCHUNION": {
+    "FieldName": "LicensePlate",
+    "Regex": {
+      "Pattern": "[^a-z]{0,3}n[^a-z]{0,3}w[^a-z]{0,3}m[^a-z]{0,3}",
+      "Options": 1
+    },
+    "Criterion": [
+      {
+        "FieldName": "CompanyName",
+        "Regex": {
+          "Pattern": "[^a-z]{0,3}m[^a-z]{0,3}i[^a-z]{0,3}l[^a-z]{0,3}c[^a-z]{0,3}h[^a-z]{0,3}u[^a-z]{0,3}n[^a-z]{0,3}i[^a-z]{0,3}o[^a-z]{0,3}n[^a-z]{0,3}",
+          "Options": 1
+        }
+      }
+    ]
+  }
+}

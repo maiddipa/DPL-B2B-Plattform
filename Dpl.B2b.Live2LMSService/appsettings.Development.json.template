@@ -1,0 +1,16 @@
+{
+    "Settings": {
+        "ServiceInstanceName": "DEV",
+        "LMSUseIntegratedSecurity": "false",
+        "LMSDatabaseName": "Olma",
+        "LMSDatabaseTimeout": "15",
+        "LMSServerName": "localhost\\SQLEXPRESS",
+        "LMSUserName": "Live2LMSServiceUser",
+        "LMSPassword": "Live4711!",
+        "OverrideDefaultSchemaString": "LMS",
+        "DevelopmentEnvironment": "true",
+        "LiveQueueName": "ordersyncrequest<YOURLASTNAME>",
+        "LiveQueueConnectionString": "Endpoint=sb://dpllivesynclocal.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=6yZtbvE22nv76qUkhqOAInpxoGdG6Xz0IlUWZXdxdX8=",
+        "WaitSeconds": "2"
+    }
+}

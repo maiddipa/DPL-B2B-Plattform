@@ -1,0 +1,17 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dpl-customer-selection
+    *ngIf="data.userRole === userRole.DplEmployee"
+  ></dpl-customer-selection>
+  <ng-container
+    *ngIf="
+      data.userRole !== userRole.DplEmployee ||
+        (data.userRole === userRole.DplEmployee && data.customerId);
+      else dplEmployeeSelectCustomer
+    "
+  >
+    <router-outlet></router-outlet>
+  </ng-container>
+  <ng-template #dplEmployeeSelectCustomer>
+    <dpl-select-customer-message></dpl-select-customer-message>
+  </ng-template>
+</ng-container>

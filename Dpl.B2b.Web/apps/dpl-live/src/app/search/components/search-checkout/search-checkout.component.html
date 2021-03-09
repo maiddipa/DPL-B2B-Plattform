@@ -1,0 +1,223 @@
+<mat-toolbar fxLayoutAlign="end center">
+  <span
+    i18n="
+      SearchCheckoutToolbarLabel|Search Checkout Toolbar
+      Label@@SearchCheckoutToolbarLabel"
+    >Checkout</span
+  >
+</mat-toolbar>
+<div
+  *ngIf="viewData$ | async as data"
+  fxLayout="column"
+  fxLayoutGap="10px"
+  class="app-form-padding"
+>
+  <mat-card *ngIf="!data.customer.isPoolingPartner">
+    <mat-card-title
+      i18n="
+        searchCheckoutContractCardTitle|Search Checkout Auftragsbedingungen Card
+        Title@@searchCheckoutContractCardTitle"
+      >Auftragsbedingungen</mat-card-title
+    >
+    <mat-card-subtitle
+      i18n="
+        searchCheckoutContractCardSubtitle|Search Checkout Auftragsbedingungen
+        Card Subtitle@@searchCheckoutContractCardSubtitle"
+      >Diese sind bindend bei Bestätigung des Auftrags.</mat-card-subtitle
+    >
+    <mat-card-content>
+      <p
+        i18n="
+          searchCheckoutCardContent|Search Checkout Auftragsbedingungen Inhalts
+          Kopf@@searchCheckoutCardContent"
+      >
+        Für eine gebündelte Abwicklung von bestimmten Paletten-Mengen fallen
+        ggf. Kosten an. Diese richten sich nach einem zwischen Ihrem Unternehmen
+        und DPL bestehenden Vertrag oder allgemeinen Preislisten für
+        Einzelbeauftragungen. Klicken Sie bitte auf „Konditionen anzeigen“, für
+        weitere Details hierzu.
+      </p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button (click)="onShowPrices()">
+        <span i18n="ShowConditions|Label Konditionen anzeigen@@ShowConditions"
+          >Konditionen anzeigen</span
+        >
+      </button>
+      <button mat-raised-button (click)="onShowTerms()">
+        <span
+          i18n="
+            ShowTermsAndConditions|Label AGB anzeigen@@ShowTermsAndConditions"
+          >AGB anzeigen</span
+        >
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card>
+    <mat-card-title
+      i18n="
+        searchCheckoutSummaryCardTitle|Search Checkout Card Title
+        Zusammenfassung@@searchCheckoutSummaryCardTitle"
+      >Zusammenfassung</mat-card-title
+    >
+    <mat-card-subtitle
+      i18n="
+        searchCheckoutSummaryCardSubtitle|Search Checkout Card Subtitle
+        Zusammenfassung@@searchCheckoutSummaryCardSubtitle"
+      >Hier die wichtigsten Informationen zu Ihrem Auftrag</mat-card-subtitle
+    >
+    <div fxLayout="column">
+      <table *ngIf="data.basket" mat-table [dataSource]="data.basket.items">
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>
+            <span i18n="Position|Label Position@@Position">Position</span>
+          </th>
+          <td mat-cell *matCellDef="let item; let i = index">{{ i + 1 }}</td>
+        </ng-container>
+        <ng-container matColumnDef="orderType">
+          <th mat-header-cell *matHeaderCellDef>
+            <span i18n="Type|Label Typ@@Type">Typ</span>
+          </th>
+          <td mat-cell *matCellDef="let item">
+            {{
+              item.data.response.input.orderType | orderType: 'selfTransport'
+            }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="pallet">
+          <th mat-header-cell *matHeaderCellDef>
+            <span i18n="Palett|Label Palette@@Palett">Palette</span>
+          </th>
+          <td mat-cell *matCellDef="let item">
+            {{ item.data.response.input.palletId | loadCarrier }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef>
+            <span i18n="Amount|Label Menge@@Amount">Menge</span>
+          </th>
+          <td mat-cell *matCellDef="let item">
+            {{ item.data.response.input.calculatedQuantity }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="baseLoadCarrier">
+          <th mat-header-cell *matHeaderCellDef class="traeger">
+            <span i18n="VehiclePallet|Label Träger-Palette@@VehiclePallet"
+              >Träger-Palette</span
+            >
+          </th>
+          <td mat-cell *matCellDef="let item" class="traeger">
+            {{
+              item.data.baseLoadCarrierId
+                ? (item.data.baseLoadCarrierId | loadCarrier: 'both')
+                : ' - '
+            }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>
+            <span i18n="PointOfTime|Label Zeitpunkt@@PointOfTime"
+              >Zeitpunkt</span
+            >
+          </th>
+          <td mat-cell *matCellDef="let item">
+            {{ item.data.response.input.calendarWeek | calendarWeek }} -
+            {{
+              item.data.dayOfWeek
+                | dayOfWeek: item.data.response.input.calendarWeek
+            }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="location">
+          <th mat-header-cell *matHeaderCellDef>
+            <span i18n="Location|Label Ort@@Location">Ort</span>
+          </th>
+          <td mat-cell *matCellDef="let item">
+            {{
+              item.data.destination.info.address.country | country: 'iso2'
+            }}-{{ item.data.destination.info.address.details }}
+          </td>
+        </ng-container>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="[
+            'position',
+            'orderType',
+            'pallet',
+            'quantity',
+            'baseLoadCarrier',
+            'date',
+            'location'
+          ]"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="
+            let row;
+            columns: [
+              'position',
+              'orderType',
+              'pallet',
+              'quantity',
+              'baseLoadCarrier',
+              'date',
+              'location'
+            ]
+          "
+        ></tr>
+      </table>
+    </div>
+
+    <mat-card-actions align="end">
+      <!-- <button mat-raised-button (click)="onCancel()">
+        Abbrechen
+      </button> -->
+      <ng-container *ngIf="!data.customer.isPoolingPartner; else isPooling">
+        <div fxLayout="row" fxLayoutAlign=" center" fxLayoutGap="10px">
+          <mat-checkbox #agreedTerms labelPosition="after" color="primary">
+            <span
+              i18n="ConfirmOrderTerms|Label AGB bestätigen@@ConfirmSiteTerms"
+              >AGB bestätigen</span
+            >
+          </mat-checkbox>
+          <mat-checkbox #agreedOrderTerms labelPosition="after" color="primary">
+            <span
+              i18n="
+                ConfirmOrderTerms|Label Konditionen u. Auftrag
+                bestätigen@@ConfirmOrderTerms"
+              >Konditionen u. Auftrag bestätigen</span
+            >
+          </mat-checkbox>
+          <button
+            mat-raised-button
+            [disabled]="!agreedTerms.checked || !agreedOrderTerms.checked"
+            (click)="onCheckout()"
+            color="primary"
+          >
+            <span i18n="BindingOrder|Label Verbindlich bestellen@@BindingOrder"
+              >Verbindlich bestellen</span
+            >
+          </button>
+        </div>
+      </ng-container>
+      <ng-template #isPooling>
+        <div fxLayout="row" fxLayoutAlign=" center" fxLayoutGap="10px">
+          <span>
+            <ng-container
+              i18n="
+                searchCheckoutIsPoolingText|Search Checkout IsPooling
+                Text@@searchCheckoutIsPoolingText"
+              >Es gelten die Vertraglich mit DPL vereinbarten
+              Bedingungen.</ng-container
+            >
+          </span>
+          <button mat-raised-button (click)="onCheckout()" color="primary">
+            <span i18n="BindingOrder|Label Verbindlich bestellen@@BindingOrder"
+              >Verbindlich bestellen</span
+            >
+          </button>
+        </div>
+      </ng-template>
+    </mat-card-actions>
+  </mat-card>
+</div>

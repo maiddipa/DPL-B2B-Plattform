@@ -1,0 +1,59 @@
+<dpl-detail-process [notes]="booking.dplNote">
+  <ng-container first-column>
+    <div fxLayout="row" fxLayoutAlign="end">
+      <i
+        class="material-icons"
+        [style.color]="booking.status | accountingRecordStatus: 'color'"
+      >
+        brightness_1
+      </i>
+      <span style="margin-left: 5px;">
+        <b style="vertical-align: sub;"
+          >{{ booking.status | accountingRecordStatus }}
+        </b>
+      </span>
+    </div>
+    <dpl-detail-line>
+      <div lineTitle i18n="RecordDate|Label Datum@@RecordDate">Datum:</div>
+      <div lineValue>{{ booking.date | date: 'shortDate' }}</div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle i18n="ReferenceNumber|Label Nummer@@ReferenceNumber">
+        Nummer:
+      </div>
+      <div lineValue>{{ booking.referenceNumber }}</div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle i18n="Type|Label Typ@@Type">Typ:</div>
+      <div lineValue>
+        <span
+          matTooltip="{{ booking.type | accountingRecordType: 'description' }}"
+          >{{ booking.type }}</span
+        >
+      </div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div
+        lineTitle
+        i18n="ExtDescription|Label Externe Beschreibung@@ExtDescription"
+      >
+        Beschreibung:
+      </div>
+      <div lineValue>{{ booking.extDescription }}</div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle i18n="LoadCarrier|Label Ladungsträger@@LoadCarrier">
+        Ladungsträger:
+      </div>
+      <div lineValue>
+        {{ booking.quantity | number }}x{{
+          booking.loadCarrierId | loadCarrier: 'both'
+        }}
+      </div>
+    </dpl-detail-line>
+  </ng-container>
+
+  <ng-container actions>
+    <dpl-chat-button type="accoutingRecord" [data]="booking"></dpl-chat-button>
+  </ng-container>
+</dpl-detail-process>

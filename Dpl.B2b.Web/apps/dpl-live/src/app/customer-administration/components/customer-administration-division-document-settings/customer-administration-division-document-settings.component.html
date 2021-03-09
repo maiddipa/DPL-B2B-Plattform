@@ -1,0 +1,132 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="data.dataSource"
+    [showBorders]="true"
+    [remoteOperations]="true"
+    (onEditorPreparing)="onEditorPreparing($event)"
+  >
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+    <dxo-editing mode="form" [allowUpdating]="true"> </dxo-editing>
+    <dxi-column
+      dataField="id"
+      dataType="number"
+      [formItem]="{ visible: false }"
+      [width]="80"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für Dokument
+        @@CustomerAdministrationDivisionDocumentSettingsDocumentTypeColumnTitel"
+      dataField="documentType"
+      name="documentTypeid"
+      caption="Dokument"
+      [allowFiltering]="false"
+      [allowSorting]="true"
+      editCellTemplate="documentTypeEditTemplate"
+      sortIndex="0"
+      [calculateCellValue]="getCalculatedValue"
+      [calculateDisplayValue]="getCalculatedDisplayValue"
+      calculateSortValue="documentType.name"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für Nummernkreis
+        @@CustomerAdministrationDivisionDocumentSettingsDocumentNumberSequenceColumnTitel"
+      dataField="documentNumberSequence.id"
+      name="documentNumberSequenceid"
+      caption="Nummernkreis"
+      [allowFiltering]="false"
+      [allowSorting]="true"
+      cellTemplate="documentNumberSequenceTemplate"
+      editCellTemplate="documentNumberSequenceEditTemplate"
+      calculateSortValue="documentNumberSequence.displayName"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für Minimale Druckanzahl
+        @@CustomerAdministrationDivisionDocumentSettingsPrintCountMinColumnTitel"
+      dataField="printCountMin"
+      dataType="number"
+      caption="Minimale Druckanzahl"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für Maximale Druckanzahl
+        @@CustomerAdministrationDivisionDocumentSettingsPrintCountMaxColumnTitel"
+      dataField="printCountMax"
+      dataType="number"
+      caption="Maximale Druckanzahl"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für Standard Druckanzahl
+        @@CustomerAdministrationDivisionDocumentSettingsDefaultPrintCountColumnTitel"
+      dataField="defaultPrintCount"
+      dataType="number"
+      caption="Standard Druckanzahl"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für Überschreibbar
+        @@CustomerAdministrationDivisionDocumentSettingsOverrideColumnTitel"
+      dataField="override"
+      dataType="boolean"
+      caption="Überschreibbar"
+    >
+    </dxi-column>
+
+    <dxo-paging [pageSize]="12"></dxo-paging>
+    <dxo-pager
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[5, 12, 20]"
+    ></dxo-pager>
+
+    <!-- Document Edit Template-->
+    <div *dxTemplate="let dataDocumentTypeRow of 'documentTypeEditTemplate'">
+      <dx-select-box
+        [items]="data.documentTypeData"
+        displayExpr="name"
+        valueExpr="id"
+        [value]="dataDocumentTypeRow.value"
+        [readOnly]="readOnlyTrue"
+        (onValueChanged)="dataDocumentTypeRow.setValue($event.value)"
+      ></dx-select-box>
+    </div>
+    <!-- Numbersequence Cell Template-->
+    <div
+      *dxTemplate="
+        let dataDocumentNumberSequenceRow of 'documentNumberSequenceTemplate'
+      "
+    >
+      <div class="custom-cell">
+        <span>{{
+          dataDocumentNumberSequenceRow.data.documentNumberSequence.displayName
+        }}</span>
+      </div>
+    </div>
+    <!-- Numbersequence Edit Template -->
+    <div
+      *dxTemplate="
+        let dataDocumentNumberSequenceRow of 'documentNumberSequenceEditTemplate'
+      "
+    >
+      <dx-select-box
+        [dataSource]="
+          getNumberSequenceDataSource(
+            data,
+            dataDocumentNumberSequenceRow.data.documentType.name
+          )
+        "
+        displayExpr="displayName"
+        [value]="dataDocumentNumberSequenceRow.value"
+        valueExpr="id"
+        (onValueChanged)="dataDocumentNumberSequenceRow.setValue($event.value)"
+      ></dx-select-box>
+    </div>
+  </dx-data-grid>
+</ng-container>

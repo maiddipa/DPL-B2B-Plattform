@@ -1,0 +1,93 @@
+<dpl-detail-process [notes]="load.dplNotes">
+  <ng-container first-column>
+    <div fxLayout="row" fxLayoutAlign="end">
+      <i
+        class="material-icons"
+        [style.color]="load.status | orderLoadStatus: 'color'"
+      >
+        brightness_1
+      </i>
+      <span style="margin-left: 5px;">
+        <b style="vertical-align: sub;">{{ load.status | orderLoadStatus }} </b>
+      </span>
+    </div>
+    <dpl-detail-line>
+      <div lineTitle>Digital Code:</div>
+      <div lineValue>
+        {{ load.digitalCode }}
+      </div>
+    </dpl-detail-line>
+    <dpl-detail-line
+      *ngIf="load.actualFulfillmentDateTime; else plannedFulfillmentDateTime"
+    >
+      <div lineTitle>Datum:</div>
+      <div lineValue>{{ load.actualFulfillmentDateTime | dateEx }}</div>
+    </dpl-detail-line>
+    <ng-template #plannedFulfillmentDateTime>
+      <dpl-detail-line>
+        <div lineTitle>Termin:</div>
+        <div lineValue>
+          {{ load.plannedFulfillmentDateTime | date: 'shortDate' }}
+        </div>
+      </dpl-detail-line>
+    </ng-template>
+
+    <dpl-detail-line>
+      <div lineTitle>Ladungsträger:</div>
+      <div lineValue>
+        {{ load.loadCarrierQuantity | number }} x
+        {{ load.loadCarrierId | loadCarrier: 'both' }}
+        ({{ load.numberOfStacks }} x Stapel / Stapelhöhe
+        {{ load.loadCarrierStackHeight | number }})
+      </div>
+    </dpl-detail-line>
+    <dpl-detail-line *ngIf="load.baseLoadCarrierId">
+      <div lineTitle>Trägerpalette:</div>
+      <div lineValue>
+        {{ load.baseLoadCarrierQuantity | number }} x
+        {{ load.baseLoadCarrierId | loadCarrier: 'both' }}
+      </div>
+    </dpl-detail-line>
+    <dpl-detail-line *ngIf="load.address as address">
+      <div lineTitle>Ladestelle:</div>
+      <div lineValue>
+        {{ address | address: 'long' }} |
+        <span
+          i18n="LoadingSideways|Label Seitenbeladung@@LoadingSideways"
+          *ngIf="load.supportsSideLoading"
+          >Seitenbeladung
+        </span>
+        <span
+          i18n="LoadingFromBehind|Label Heckbeladung@@LoadingFromBehind"
+          *ngIf="load.supportsRearLoading"
+          >Heckbeladung
+        </span>
+        <span
+          i18n="LoadingJumboLoading|Label Jumbobeladung@@LoadingJumboLoading"
+          *ngIf="load.supportsJumboVehicles"
+          >Jumbobeladung
+        </span>
+      </div>
+    </dpl-detail-line>
+
+    <dpl-detail-line>
+      <div lineTitle>Transportart:</div>
+      <div lineValue>
+        <span *ngIf="load.transportType === transportType.ProvidedByOthers"
+          >Frei Haus</span
+        >
+        <span *ngIf="load.transportType === transportType.Self"
+          >Selbstransport</span
+        >
+      </div>
+    </dpl-detail-line>
+  </ng-container>
+
+  <ng-container actions>
+    <dpl-load-carrier-receipt-button
+      [load]="load"
+    ></dpl-load-carrier-receipt-button>
+    <dpl-cancel-button type="OrderLoad" [item]="load"></dpl-cancel-button>
+    <dpl-chat-button type="orderLoad" [data]="load"></dpl-chat-button>
+  </ng-container>
+</dpl-detail-process>

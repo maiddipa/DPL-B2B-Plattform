@@ -1,0 +1,36 @@
+@import '../../../variables.scss';
+
+tr {
+  &.canceled {
+    opacity: 0.6;
+  }
+
+  .position {
+    width: 50px;
+  }
+
+  .status {
+    width: 150px;
+    text-align: right;
+  }
+
+  .pickupDate,
+  .deliveryDate {
+    width: 150px;
+    text-align: right;
+  }
+
+  .note {
+    text-align: center;
+  }
+
+  .price {
+    width: 150px;
+    text-align: right;
+  }
+
+  .action {
+    width: 120px;
+    text-align: right;
+  }
+}

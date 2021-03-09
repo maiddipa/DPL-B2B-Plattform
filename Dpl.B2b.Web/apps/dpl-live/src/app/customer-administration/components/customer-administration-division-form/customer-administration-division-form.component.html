@@ -1,0 +1,63 @@
+<ng-container *ngIf="viewData$ | async as data; else loading">
+  <form (submit)="onFormSubmit($event)">
+    <dx-form id="form" [colCount]="1" [(formData)]="formData">
+      <dxi-item itemType="group">
+        <dxi-item
+          i18n-caption="
+            Item Gruppen Überschrift: Abteilung:
+            @@CustomerAdministrationDivisionFormItemGroupTitel"
+          itemType="group"
+          caption="Abteilung:"
+        >
+          <dxi-item dataField="name">
+            <dxo-label
+              i18n-text="Name@@CustomerAdministrationDivisionFormNameLabelText"
+              text="Name"
+            ></dxo-label>
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+          </dxi-item>
+          <dxi-item dataField="shortName">
+            <dxo-label
+              i18n-text="
+                Kurzname@@CustomerAdministrationDivisionFormShortNameLabelText"
+              text="Kurzname"
+            ></dxo-label>
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+          </dxi-item>
+          <dxi-item
+            dataField="postingAccountId"
+            editorType="dxSelectBox"
+            [editorOptions]="data.postingAccountSelectBoxOptions"
+          >
+            <dxo-label
+              i18n-text="
+                Buchungskonto@@CustomerAdministrationDivisionFormPostingAccountLabelText"
+              text="Buchungskonto"
+            ></dxo-label>
+          </dxi-item>
+          <dxi-item
+            dataField="defaultLoadingLocationId"
+            editorType="dxSelectBox"
+            [editorOptions]="data.loadingLocationsSelectBoxOptions"
+          >
+            <dxo-label
+              i18n-text="
+                Standard
+                Ladestelle@@CustomerAdministrationDivisionFormDefaultLoadingLocationLabelText"
+              text="Standard Ladestelle"
+            ></dxo-label>
+          </dxi-item>
+        </dxi-item>
+      </dxi-item>
+      <dxi-item
+        itemType="button"
+        horizontalAlignment="left"
+        [buttonOptions]="buttonOptions"
+      >
+      </dxi-item>
+    </dx-form>
+  </form>
+</ng-container>
+<ng-template #loading>
+  <dpl-loading-spinner-on-page></dpl-loading-spinner-on-page>
+</ng-template>

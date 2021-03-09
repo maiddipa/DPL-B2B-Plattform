@@ -1,0 +1,20 @@
+<div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="end">
+  <div>
+    <span i18n="SelectItem|Label Artikel wählen@@SelectItem"
+      >Belegdetails anzeigen für Artikel</span
+    >:
+    <mat-form-field style="margin-left: 5px;">
+      <!-- <mat-label i18n="SelectItem|Label Artikel wählen@@SelectItem"
+        >Artikel wählen</mat-label
+      > -->
+      <mat-select
+        [value]="selectedTypeId$ | async"
+        (selectionChange)="selectLoadCarrierType($event)"
+      >
+        <mat-option *ngFor="let type of typeOptions" [value]="type">
+          {{ type | loadCarrier: 'type' }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

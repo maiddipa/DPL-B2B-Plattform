@@ -1,0 +1,120 @@
+<mat-toolbar color="primary">
+  <span
+    i18n="
+      Label für Verzeichnisbasierte
+      Firmenauswahl@@PartnerDirectoryLookupHeaderLabel"
+    >Firmen Auswahl</span
+  >
+</mat-toolbar>
+<div fxLayout="column" style="height: 600px; width: 950px;" fxLayoutGap="10px">
+  <ng-container *ngIf="viewData$ | async as data; else loading">
+    <div fxFlex fxLayout="row" fxLayoutGap="10px" fxLayoutAlign=" stretch">
+      <mat-card fxLayout="column">
+        <mat-card-header class="verzeichnis">
+          <mat-card-title
+            i18n="
+              Label für Verzeichnis
+              liste@@PartnerDirectoryLookupDirectoryListLabel"
+            >Verzeichnis</mat-card-title
+          >
+          <!-- <mat-form-field fxFlex fxLayout="row-reverse"> -->
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="directoryNameFormControl"
+              placeholder="Verzeichnissuche"
+              i18n-placeholder="
+                Label Partberverzeichnis suche@@PartnerDirectorySearchText"
+            />
+          </mat-form-field>
+        </mat-card-header>
+        <mat-list fxFlex="0 0 500px" class="scrollable">
+          <ng-container
+            *ngFor="
+              let directory of data.partnerDirectories;
+              trackBy: trackById
+            "
+          >
+            <mat-list-item
+              [ngClass]="{
+                selected: directory.id === data.selectedPartnerDirectoryId
+              }"
+              (click)="onPartnerDirectorySelected(directory.id)"
+            >
+              <div fxFlex>{{ directory.name }}</div>
+
+              <mat-radio-button
+                [checked]="directory.id === data.selectedPartnerDirectoryId"
+              ></mat-radio-button>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </ng-container>
+        </mat-list>
+      </mat-card>
+      <mat-card fxFlex fxLayout="column">
+        <mat-card-header>
+          <mat-card-title
+            i18n="
+              Label für Firmen liste@@PartnerDirectoryLookupCompanyListLabel"
+            >Firma</mat-card-title
+          >
+          <!-- <mat-form-field fxFlex fxLayout="row-reverse"> -->
+          <mat-form-field>
+            <input
+              matInput
+              [formControl]="companyNameFormControl"
+              placeholder="Firmensuche"
+              i18n-placeholder="Label Partnersuche@@PartnerSearchText"
+            />
+          </mat-form-field>
+        </mat-card-header>
+        <mat-list>
+          <ng-container
+            *ngFor="let partner of data.partners?.data; trackBy: trackById"
+          >
+            <mat-list-item
+              [ngClass]="{
+                selected: partner.id === data.selectedPartnerId
+              }"
+              (click)="onPartnerSelected(partner)"
+              >{{ partner | partnerToString }}
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </ng-container>
+        </mat-list>
+        <mat-paginator
+          hidePageSize="true"
+          showFirstLastButtons="true"
+          pageSize="10"
+          [pageIndex]="data.partners.currentPage - 1"
+          [length]="data.partners.total"
+          (page)="onPaginate($event)"
+        >
+        </mat-paginator>
+      </mat-card>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+      <button
+        mat-raised-button
+        (click)="onCancel()"
+        i18n="
+          Buttom zum Abbrechen der Firmenauswahl@@PartnerDirectoryLookupCancel"
+      >
+        Abbrechen
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onClose()"
+        i18n="
+          Buttom zum Bestätigen der
+          Firmenauswahl@@PartnerDirectoryLookupConfirmSelection"
+      >
+        Auswahl bestätigen
+      </button>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-template>
+</div>

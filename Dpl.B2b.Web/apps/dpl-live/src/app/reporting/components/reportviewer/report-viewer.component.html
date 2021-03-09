@@ -1,0 +1,8 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dx-report-viewer [reportUrl]="data.report" height="800px">
+    <dxrv-request-options
+      [invokeAction]="data.path"
+      [host]="data.host"
+    ></dxrv-request-options>
+  </dx-report-viewer>
+</ng-container>

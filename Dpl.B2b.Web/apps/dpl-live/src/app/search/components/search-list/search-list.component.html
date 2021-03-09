@@ -1,0 +1,49 @@
+<ng-container *ngIf="responses">
+  <!-- <mat-toolbar color="primary">
+    <span class="fill-remaining-space">Suchanfragen</span>
+    <button mat-icon-button (click)="onClearAll()">
+      <mat-icon class="icon">clear</mat-icon>
+    </button>
+  </mat-toolbar> -->
+
+  <mat-list>
+    <mat-list-item
+      *ngFor="let response of responses; let i = index"
+      [ngClass]="selectedResponseIndex == i ? 'selected' : ''"
+      (click)="selectResponse(i)"
+    >
+      <mat-icon *ngIf="response.input.orderType == orderType.Demand" matListIcon
+        >arrow_upward</mat-icon
+      >
+      <mat-icon *ngIf="response.input.orderType == orderType.Supply" matListIcon
+        >arrow_downward</mat-icon
+      >
+      <h3 matLine>
+        <ng-container *ngIf="!response.input.isZipOnlySearch; else zipOnly">
+          {{ response.origin.address.country | country: 'iso2' }}-{{
+            response.origin.address.details
+          }}
+        </ng-container>
+        <ng-template #zipOnly>
+          {{ response.origin.label }}
+        </ng-template>
+      </h3>
+      <button mat-icon-button (click)="removeResponse(i)">
+        <mat-icon matListIcon class="icon">clear</mat-icon>
+      </button>
+      <!-- <p matLine *ngIf="response.origin.address.country && response.origin.address.details">
+        {{ response.origin.address.country | country: 'iso2' }}-{{
+          response.origin.address.details
+        }}
+      </p> -->
+      <p matLine>
+        {{ response.input.orderType | orderType }}:
+        {{ response.input.calculatedQuantity }} x
+        {{ response.input.palletId | loadCarrier }}
+      </p>
+      <p matLine>
+        {{ response.input.calendarWeek | calendarWeek: 'range' }}
+      </p>
+    </mat-list-item>
+  </mat-list>
+</ng-container>

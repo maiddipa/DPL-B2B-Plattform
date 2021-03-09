@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de" class="testapp">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Chat</title>
+  </head>
+  <body class="testapp">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="dpl-chat-plugin"></div>
+    <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const userFromQueryString = urlParams.get("user");
+            const userId = userFromQueryString || "demo_user_at_dpl_ltms_com";
+            const userName = userFromQueryString || "Demo User";
+            const language = localStorage.getItem("language") || "de";
+            const channelTypes = [
+              { label: "Nachrichten", labelShort: "NO", value: "" },
+              {
+                label: "Buchung",
+                labelShort: "BUCH",
+                value: "accounting-record",
+              },
+              { label: "Gutschrift", labelShort: "DPG", value: "voucher" },
+              { label: "Bedarf", labelShort: "BED", value: "demand" },
+              { label: "Verfügbarkeit", labelShort: "VER", value: "supply" },
+            ];
+            const languages = [
+              //Alle zugelassen Sprachen
+              { label: "Orginal", labelShort: "O", value: "" },
+              { label: "Deutsch", labelShort: "de", value: "de" },
+              { label: "Englisch", labelShort: "en", value: "en" },
+              { label: "Polnisch", labelShort: "pl", value: "pl" },
+              { label: "Französisch", labelShort: "fr", value: "fr" },
+              { label: "Spanisch", labelShort: "es", value: "es" },
+              { label: "Italienisch", labelShort: "it", value: "it" },
+            ];
+
+            window.dplChatConfig = {
+              streamKey:  "jdhkvzjuphpn",
+              userId,
+              channelId: "69",
+              channelName: "",
+              userName: userName,
+              userLanguage: "de",
+              userImage: getUserImage(userId),
+              userLanguages: ["de", "en", "pl"],
+              language: "de",
+              languages,
+              channelTypes,
+            };
+
+
+      //       export const config = {
+      //   //! change chatclient API Key below
+      //   //  - than commit it
+      //   //  - than use the comand yarn build:clean in dpl\dpl-chat\dpl-chat-plugin
+      //   // PROD-Key: since 22.09
+      //   // stream: { key: "dwmcn2vegh5f" },
+      //   // Dvit/Fait-Client-Key: since 22.09
+      //    stream: {key: "ckb7v55d4gsj"},
+      //   // Demo-Client-Key: since 22.09
+      //   // stream: {key: "empp3rkkgvcw"},
+      //   // Dvit/Func-Key: since 22.09
+      //   // stream: { key: "3vkbkzmy2nmn" },
+      //   //Test Chat Key
+      //   // stream: { key: "a4a8va633zt7" }, //- multitendent key 1
+      //   // stream: { key: "vkkwfzy45nu3" }, //- multitendent key 2
+      //   // stream: { key: "e5nysf73yfby" }, //- function
+      // };
+            setTimeout(() => {
+              const eventName = "dpl-chat-plugin-start";
+              const event = new Event(eventName);
+              window.dispatchEvent(event);
+            }, 2000);
+
+            function getUserImage(userId) {
+              switch (userId) {
+                case "niko":
+                  return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWlEwIxnbpUOVZKitE7g7Bg_OUtYUy9Etc6BEfxF_S0z2VmeWy&s";
+                  break;
+                case "mischa":
+                  return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWlEwIxnbpUOVZKitE7g7Bg_OUtYUy9Etc6BEfxF_S0z2VmeWy&s";
+                  break;
+                case "test":
+                  return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWlEwIxnbpUOVZKitE7g7Bg_OUtYUy9Etc6BEfxF_S0z2VmeWy&s";
+                  break;
+                default:
+                  return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWlEwIxnbpUOVZKitE7g7Bg_OUtYUy9Etc6BEfxF_S0z2VmeWy&s";
+                  break;
+              }
+            }
+    </script>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>

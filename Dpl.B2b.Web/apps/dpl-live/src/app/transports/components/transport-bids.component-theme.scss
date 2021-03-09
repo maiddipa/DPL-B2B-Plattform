@@ -1,0 +1,25 @@
+@import '~@angular/material/theming';
+
+@mixin dpl-transport-bid-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  dpl-transport-bids {
+    .active {
+      background-color: mat-color($primary, lighter);
+    }
+
+    .won {
+      background-color: mat-color($accent, lighter);
+    }
+
+    .lost {
+      background-color: mat-color($warn, lighter);
+    }
+
+    .canceled {
+      opacity: 0.6;
+    }
+  }
+}

@@ -1,0 +1,139 @@
+<mat-card
+  [ngClass]="{ primaryFilter: filterPosition === position.primary }"
+  [style.background-color]="(filterIsChanged$ | async) ? 'lightblue' : ''"
+>
+  <mat-card-header>
+    <!-- <mat-card-title>Filter {{filterItem.title}}</mat-card-title> -->
+  </mat-card-header>
+  <mat-card-content fxLayout="row" fxLayoutAlign="left center">
+    <form [formGroup]="form" fxFlex="90">
+      <ng-container
+        *ngIf="!filterItem.isChoice && filterItem.type === checkType.Text"
+      >
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="filterValue"
+            placeholder="{{ filterItem.title }}"
+          />
+        </mat-form-field>
+      </ng-container>
+      <ng-container *ngIf="filterItem.isChoice && !filterItem.isMulti">
+        <mat-form-field>
+          <mat-label>{{ filterItem.title }}</mat-label>
+          <mat-select formControlName="filterValue">
+            <mat-option
+              [value]="choice.value"
+              *ngFor="let choice of filterItem.choices"
+            >
+              {{ choice.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+      <ng-container *ngIf="filterItem.isChoice && filterItem.isMulti">
+        <mat-form-field>
+          <mat-label>{{ filterItem.title }}</mat-label>
+          <mat-select formControlName="filterValue" multiple>
+            <mat-option
+              [value]="choice.value"
+              *ngFor="let choice of filterItem.choices"
+            >
+              {{ choice.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-container>
+      <ng-container *ngIf="filterItem.type === checkType.Date">
+        <mat-form-field>
+          <mat-label>
+            {{ filterItem.title }}
+          </mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input
+              matStartDate
+              formControlName="filterValueFrom"
+              placeholder="von"
+              placeholder-i18n="From|Label von@@From"
+            />
+            <input
+              matEndDate
+              formControlName="filterValueTo"
+              placeholder="bis"
+              placeholder-i18n="Until|Label bis@@Until"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+
+        <!-- <div fxLayout="row" fxLayoutGap="5px">
+          <mat-form-field>
+            <mat-label>
+              {{ filterItem.title }}
+              <span i18n="From|Label von@@From">von</span>
+            </mat-label>
+            <input
+              matInput
+              [matDatepicker]="fromDatepicker"
+              formControlName="filterValueFrom"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="fromDatepicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #fromDatepicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label i18n="Until|Label bis@@Until">bis</mat-label>
+            <input
+              matInput
+              [matDatepicker]="toDatepicker"
+              formControlName="filterValueTo"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="toDatepicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #toDatepicker></mat-datepicker>
+          </mat-form-field>
+        </div> -->
+      </ng-container>
+      <ng-container
+        *ngIf="!filterItem.isChoice && filterItem.type === checkType.Number"
+      >
+        <div fxLayout="row" fxLayoutGap="5px">
+          <mat-form-field>
+            <mat-label>
+              {{ filterItem.title }}
+              <span i18n="From|Label von@@From">von</span>
+            </mat-label>
+            <input type="number" matInput formControlName="filterValueFrom" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label i18n="Until|Label bis@@Until">bis</mat-label>
+            <input type="number" matInput formControlName="filterValueTo" />
+          </mat-form-field>
+        </div>
+      </ng-container>
+    </form>
+    <!-- <div fxFlex="nogrow" fxLayout="row" *ngIf="filterPosition === position.primary">
+          <button mat-icon-button (click)="apply()" [disabled]="form.invalid || form.pristine" class="green" title="Filter anwenden"><mat-icon>done</mat-icon></button>
+          <button mat-icon-button (click)="remove()" class="red" title="Filter entfernen"><mat-icon>clear</mat-icon></button>
+      </div> -->
+    <div fxFlex="nogrow" fxLayout="row">
+      <button
+        mat-icon-button
+        (click)="clearValue()"
+        class="red"
+        title="Filter entfernen"
+        i18n-title="RemoveFilter|Label Filter entfernen@@RemoveFilter"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

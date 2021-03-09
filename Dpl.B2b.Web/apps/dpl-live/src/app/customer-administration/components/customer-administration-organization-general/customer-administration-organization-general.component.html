@@ -1,0 +1,38 @@
+<ng-container *ngIf="viewData$ | async as data; else loading">
+  <div
+    class="customer-administration-organization-general-div customer-administration-general"
+    fxLayout="row"
+    fxLayoutGap="20px"
+  >
+    <div
+      class="customer-administration-organization-form-parent-div"
+      fxFlex="60"
+    >
+      <dpl-customer-administration-organization-form
+        (formSubmit)="onFormSubmit($event, data)"
+        [formData]="data.organization"
+      ></dpl-customer-administration-organization-form>
+    </div>
+    <div class="customer-administration-form-delete-button" fxFlex>
+      <dx-button
+        i18n-hint="
+          Löschen Mouseover Button Text: Löschen der Organisation
+          @@CustomerAdministrationOrganizationGeneralDeleteButtonHint"
+        i18n-text="
+          Löschen Button Text:
+          Löschen@@CustomerAdministrationLoadingLocationGeneralDeleteButtonText"
+        hint="Löschen der Organisation"
+        stylingMode="outlined"
+        text="Löschen"
+        type="danger"
+        [width]="120"
+        (onClick)="delete()"
+      >
+      </dx-button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <dpl-loading-spinner-on-page></dpl-loading-spinner-on-page>
+</ng-template>

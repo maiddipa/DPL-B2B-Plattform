@@ -1,0 +1,63 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <mat-card>
+    <mat-card-content>
+      <mat-card-header>
+        <mat-card-title i18n="Appointment|Label Termin@@Appointment"
+          >Terminplanung</mat-card-title
+        >
+        <div
+          fxLayout="row"
+          fxLayoutGap="10px"
+          fxFlex
+          fxLayoutAlign="end center"
+        >
+          <!--  -->
+          <mat-slide-toggle
+            color="primary"
+            (change)="dateTypeChange($event)"
+            [checked]="data.isFixDate"
+            labelPosition="before"
+            ><div
+              *ngIf="!data.isFixDate"
+              i18n="
+                LiabilitiesOfTimeWindow|Label verbindl.
+                Zeitfenster@@LiabilitiesOfTimeWindow"
+            >
+              verbindl. Zeitfenster
+            </div>
+            <div
+              *ngIf="data.isFixDate"
+              i18n="FixedDate|Label Fixtermin@@FixedDate"
+            >
+              Fixtermin
+            </div>
+          </mat-slide-toggle>
+        </div>
+      </mat-card-header>
+      <app-availability-date-range
+        *ngIf="!data.isFixDate"
+        [form]="form"
+        (selectionChanged)="selectedLoadsPerDay($event)"
+      ></app-availability-date-range>
+      <app-availability-fix-dates
+        *ngIf="data.isFixDate"
+        (selectionChanged)="selectedLoadsPerDay($event)"
+      ></app-availability-fix-dates> </mat-card-content
+  ></mat-card>
+
+  <!-- <div
+    fxLayout="row"
+    fxLayoutGap="10px"
+    fxLayoutAlign="end center"
+    style="margin-right: 85px;"
+  >
+    <div i18n="LiabilitiesOfTimeWindow|Label verbindl. Zeitfenster@@LiabilitiesOfTimeWindow">verbindl. Zeitfenster</div>
+    <mat-slide-toggle
+      color="primary"
+      (change)="dateTypeChange($event)"
+      [checked]="data.isFixDate"
+      i18n="FixedDate|Label Fixtermin@@FixedDate"
+      >Fixtermin</mat-slide-toggle
+    >
+  </div> -->
+</ng-container>

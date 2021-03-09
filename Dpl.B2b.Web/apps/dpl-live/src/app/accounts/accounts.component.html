@@ -1,0 +1,33 @@
+<mat-toolbar fxLayoutAlign="space-between center">
+  <div fxLayoutGap="20px"
+       fxLayout="row"
+       style="margin-left: 10px; font-size: 14px; color: gray;">
+  <app-account-selector-articles></app-account-selector-articles>
+  </div>
+  <span i18n="AccountSummary|Label Kontenübersicht@@AccountSummary"
+    >Kontenübersicht</span>
+</mat-toolbar>
+<div fxLayout="column" fxLayoutGap="20px" style="margin: 20px;">
+  <app-account-summary></app-account-summary>
+  <app-account-bookings></app-account-bookings>
+<!--  <app-account-bookings-->
+<!--    *ngIf="activeAccountLoadCarrierType$ | async"-->
+<!--  ></app-account-bookings>-->
+<!--  <ng-container *ngIf="userRole$ | async as userRole">-->
+<!--    <div-->
+<!--      fxLayout="row"-->
+<!--      fxLayoutGap="5px"-->
+<!--      fxLayoutAlign="end"-->
+<!--      *ngIf="userRole === role.Shipper"-->
+<!--    >-->
+<!--      <a mat-raised-button [routerLink]="['/transfer/create']" color="primary">-->
+<!--        <ng-container-->
+<!--          i18n="-->
+<!--            TransferCreateAction|Schaltfläche Umbuchung-->
+<!--            erstellen@@TransferCreateAction"-->
+<!--          >Umbuchung erstellen</ng-container-->
+<!--        >-->
+<!--      </a>-->
+<!--    </div>-->
+<!--  </ng-container>-->
+</div>

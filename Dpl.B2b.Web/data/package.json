@@ -1,0 +1,30 @@
+{
+  "name": "data",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@google/maps": "^0.5.5",
+    "@types/csvtojson": "^1.1.5",
+    "@types/d3": "^5.7.2",
+    "@types/jsonfile": "^5.0.0",
+    "@types/lodash": "^4.14.136",
+    "@types/mssql": "^6.0.1",
+    "@types/node": "^8.9.5",
+    "@types/topojson": "^3.2.2",
+    "csv-write-stream": "^2.0.0",
+    "csvtojson": "^2.0.10",
+    "d3": "^5.9.7",
+    "google-maps-api-typings": "^1.0.5",
+    "jsonfile": "^5.0.0",
+    "mapshaper": "^0.4.125",
+    "msnodesqlv8": "^1.1.5",
+    "mssql": "^6.2.0",
+    "node-geocoder": "^3.27.0",
+    "topojson": "^3.0.2",
+    "ts-node": "^7.0.1",
+    "tslint": "~5.15.0",
+    "typescript": "~3.4.3"
+  }
+}

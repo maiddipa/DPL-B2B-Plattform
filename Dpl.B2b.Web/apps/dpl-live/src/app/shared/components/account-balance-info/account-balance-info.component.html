@@ -1,0 +1,31 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <div fxLayout="row" fxLayoutGap="10px">
+    <div fxLayout="column">
+      <span *ngFor="let balance of data.balances"
+        ><span
+          i18n="BalanceInfoSaldo|Label Balance Info Saldo@@BalanceInfoSaldo"
+          >Saldo
+        </span>
+        {{ balance.typeBalance.id | loadCarrier: 'type' }}:</span
+      >
+    </div>
+    <!-- <div fxLayout="column" fxLayoutAlign="flex-end flex-end">
+        <span *ngFor="let balance of data.balances"><strong>{{ balance.carrierBalance.balance | number }}</strong></span>
+    </div>
+    <div fxLayout="column">
+        <span *ngFor="let balance of data.balances" i18n="BalanceInfoOverall|Label Balance Info insgesamt@@BalanceInfoOverall">insgesamt</span>
+    </div> -->
+    <div fxLayout="column" fxLayoutAlign="flex-end flex-end">
+      <span *ngFor="let balance of data.balances"
+        ><strong>{{ balance.typeBalance.balance | number }}</strong></span
+      >
+    </div>
+    <div fxLayout="column">
+      <span
+        *ngFor="let balance of data.balances"
+        i18n="BalanceInfoIntakt|Label Balance Info intakt@@BalanceInfoIntakt"
+        >intakt</span
+      >
+    </div>
+  </div>
+</ng-container>

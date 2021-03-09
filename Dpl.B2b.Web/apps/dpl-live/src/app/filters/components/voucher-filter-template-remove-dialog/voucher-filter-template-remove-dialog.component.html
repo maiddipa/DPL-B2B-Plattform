@@ -1,0 +1,25 @@
+<h1 mat-dialog-title i18n="ClearSearch|Label Suche löschen@@ClearSearch">
+  Filter löschen
+</h1>
+<div
+  mat-dialog-content
+  i18n="
+    VoucherFilterTemplateRemoveConfirmationMessage|VoucherFilterTemplateRemoveDialog
+    Confirmation Message@@VoucherFilterTemplateRemoveConfirmationMessage"
+>
+  Sind Sie sicher, dass Sie den Filter {{ dialogData.templateTitle }} löschen
+  wollen?
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()" i18n="Abort|Label Abbrechen@@Abort">
+    Abbrechen
+  </button>
+  <button
+    mat-button
+    (click)="delete()"
+    cdkFocusInitial
+    i18n="Clear|Label Löschen@@Clear"
+  >
+    Löschen
+  </button>
+</div>

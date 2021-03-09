@@ -1,0 +1,74 @@
+<mat-card class="pickup-location">
+  <mat-card-title-group>
+    <mat-card-title
+      >{{ location.info.address.country | country: 'iso2' }}-{{
+        location.info.address.details
+      }}</mat-card-title
+    >
+    <mat-card-subtitle fxLayout="column">
+      <span *ngIf="location.routing.duration"
+        >{{ location.routing.distance.text }} /
+        {{ location.routing.duration.text }}</span
+      >
+      <span *ngIf="!location.routing.duration">{{
+        location.routing.distance.text
+      }}</span>
+    </mat-card-subtitle>
+  </mat-card-title-group>
+  <mat-card-content>
+    <div fxLayout="column">
+      <table>
+        <thead>
+          <tr>
+            <th i18n="Day|Label Tag@@Day">Tag</th>
+            <th i18n="OpeningHours|Label Öffnungszeiten@@OpeningHours">
+              Öffnungszeiten
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="location?.info?.data">
+            <tr *ngFor="let group of businessHoursGroupedByDay">
+              <td fxLayoutAlign="start start">
+                <div fxLayout="column">
+                  <span>{{ group.dayOfWeek | dayOfWeek }}</span>
+                </div>
+              </td>
+              <td>
+                <div fxLayout="column">
+                  <span *ngFor="let hours of group.hours">
+                    {{ hours.fromTime | date: 'HH:mm':'+0000' }}
+                    -
+                    {{ hours.toTime | date: 'HH:mm':'+0000' }}</span
+                  >
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button *ngIf="!inBasket" (click)="onAddToBasket(location)">
+      <mat-icon>shopping_basket</mat-icon>
+    </button>
+    <button mat-button *ngIf="inBasket" (click)="onRemoveFromBasket(location)">
+      <mat-icon>clear</mat-icon>
+    </button>
+    <button
+      [title]="isZoomed ? 'Zurück zu Übersicht' : 'Mehr details'"
+      i18n-title="Höhere Details / Zurück button@@PickupLocaltionInfoZoomButton"
+      mat-button
+      (click)="onZoomToggle()"
+    >
+      <mat-icon>{{ isZoomed ? 'zoom_out' : 'zoom_in' }}</mat-icon>
+    </button>
+    <a mat-button [href]="location.googleRoutingLink" target="routing"
+      ><mat-icon>directions</mat-icon></a
+    >
+    <a mat-button [href]="'mailto:?body=' + getMailBody()"
+      ><mat-icon>share</mat-icon></a
+    >
+  </mat-card-actions>
+</mat-card>

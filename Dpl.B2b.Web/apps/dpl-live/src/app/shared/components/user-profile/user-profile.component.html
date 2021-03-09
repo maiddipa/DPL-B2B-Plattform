@@ -1,0 +1,34 @@
+<ng-container *ngIf="currentUser$ | async as currentUser; else loggedOut">
+  <a mat-button [matMenuTriggerFor]="userProfile"
+    >{{ currentUser.name
+    }}<mat-icon style="margin-left: 12px;">account_circle</mat-icon></a
+  >
+  <mat-menu #userProfile="matMenu">
+    <a
+      mat-menu-item
+      i18n="Profile|Label Profile@@Profile"
+      [routerLink]="['profile']"
+      >Profil</a
+    >
+    <a
+      mat-menu-item
+      i18n="Settings|Label Einstellungen@@Settings"
+      [routerLink]="['user-settings']"
+      >Einstellungen</a
+    >
+    <mat-divider></mat-divider>
+    <a
+      mat-menu-item
+      i18n="ContactSupport|Label Kontakt Support@@ContactSupport"
+      [routerLink]="['contact']"
+      >Kontakt / Support</a
+    >
+    <mat-divider></mat-divider>
+    <a mat-menu-item (click)="logout()" i18n="Logout|Label Abmelden@@Logout"
+      >Abmelden</a
+    >
+  </mat-menu>
+</ng-container>
+<ng-template #loggedOut>
+  <a mat-button (click)="login()" i18n="Login|Label Anmelden@@Login">Login</a>
+</ng-template>

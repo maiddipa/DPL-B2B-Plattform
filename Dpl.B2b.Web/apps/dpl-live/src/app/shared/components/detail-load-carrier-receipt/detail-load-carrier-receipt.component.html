@@ -1,0 +1,90 @@
+<dpl-detail-process [columns]="2" [notes]="receipt.dplNotes">
+  <ng-container first-column>
+    <dpl-detail-line>
+      <div lineTitle>Typ:</div>
+      <div lineValue>{{ receipt.type | loadCarrierReceiptType }}</div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle>Quittungs-Nr:</div>
+      <div lineValue>{{ receipt.documentNumber }}</div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle>Ladungsträger:</div>
+      <div lineValue>
+        <span *ngFor="let item of receipt.positions"
+          >{{ item.quantity }} x {{ item.loadCarrierId | loadCarrier }}</span
+        >
+      </div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle>Datum:</div>
+      <div lineValue>{{ receipt.issuedDate | date: 'shortDate' }}</div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle>Spedition</div>
+      <div lineValue>
+        {{ receipt.shipperCompanyName }}
+      </div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle></div>
+      <div lineValue>
+        {{ receipt.shipperAddress | address: 'long' }}
+      </div>
+    </dpl-detail-line>
+  </ng-container>
+  <ng-container second-column>
+    <dpl-detail-line>
+      <div lineTitle>Fahrer (Name):</div>
+      <div lineValue>{{ receipt.truckDriverName }}</div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle>Fahrer (Firma):</div>
+      <div lineValue>{{ receipt.truckDriverCompanyName }}</div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle>Kennzeichen:</div>
+      <div lineValue>
+        {{ receipt.licensePlateCountryId | country: 'licensePlate' }}-{{
+          receipt.licensePlate
+        }}
+      </div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle>Lieferschein:</div>
+      <div lineValue>
+        {{ receipt.deliveryNoteNumber }}
+        <ng-container *ngIf="!receipt.deliveryNoteShown"
+          ><mat-icon class="inline-icon" title="Beleg wurde nicht vorgelegt"
+            >warning</mat-icon
+          ></ng-container
+        >
+      </div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle>Abholschein:</div>
+      <div lineValue>
+        {{ receipt.pickUpNoteNumber }}
+        <ng-container *ngIf="!receipt.pickUpNoteShown"
+          ><mat-icon class="inline-icon" title="Beleg wurde nicht vorgelegt"
+            >warning</mat-icon
+          ></ng-container
+        >
+      </div>
+    </dpl-detail-line>
+    <dpl-detail-line>
+      <div lineTitle>Referenz:</div>
+      <div lineValue>{{ receipt.customerReference }}</div>
+    </dpl-detail-line>
+  </ng-container>
+
+  <ng-container actions>
+    <button mat-icon-button title="Beleg öffnen">
+      <mat-icon>receipt</mat-icon>
+    </button>
+    <dpl-chat-button
+      type="loadCarrierReceipt"
+      [data]="receipt"
+    ></dpl-chat-button>
+  </ng-container>
+</dpl-detail-process>

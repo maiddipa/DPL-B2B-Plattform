@@ -1,0 +1,8 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dx-report-designer [reportUrl]="data.report" height="100%">
+    <dxrd-request-options
+      [getDesignerModelAction]="data.path"
+      [host]="data.host"
+    ></dxrd-request-options>
+  </dx-report-designer>
+</ng-container>

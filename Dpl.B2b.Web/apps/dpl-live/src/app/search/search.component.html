@@ -1,0 +1,96 @@
+<mat-toolbar fxLayoutAlign="end center">
+  <span
+    i18n="
+      topNavigationSearchStartBtn|Top Navigation Schaltfläche
+      Abholung@@topNavigationSearchStartBtn"
+    >Abholung / Abgabe planen</span
+  >
+</mat-toolbar>
+<ng-container *ngIf="viewData$ | async as data">
+  <mat-sidenav-container fxFill fxLayout="row">
+    <mat-sidenav
+      #sidenav
+      mode="side"
+      position="start"
+      fxFlex="300px"
+      [(opened)]="showSidebar"
+    >
+      <app-search-input
+        (search)="onSearch($event)"
+        (changed)="onSearchChanged($event)"
+        [responses]="data.responses"
+      ></app-search-input>
+    </mat-sidenav>
+
+    <mat-sidenav-content fxFlex="auto">
+      <p class="show-search-button">
+        <mat-checkbox
+          [(ngModel)]="showSidebar"
+          color="primary"
+          i18n="ShowSearchBar|Label Suchleiste anzeigen@@ShowSearchBar"
+          >Suchleiste anzeigen</mat-checkbox
+        >
+      </p>
+      <app-search-result-map
+        fxFill
+        *ngIf="showMap"
+        [response]="data.selectedResponse"
+        [selected]="data.selectedDestinationId"
+        [basketId]="data.basket.id"
+        (selectionChanged)="onDestinationSelected($event)"
+        (search)="onMapSearch($event)"
+        (radiusChanged)="onRadiusChanged($event)"
+        (addToBasket)="onAddToBasket($event)"
+      ></app-search-result-map>
+    </mat-sidenav-content>
+    <mat-sidenav
+      *ngIf="data.responses.length > 0"
+      mode="side"
+      position="end"
+      fxFlex="0 1 322px"
+      [(opened)]="showResponses"
+    >
+      <mat-tab-group class="tabs" mat-align-tabs="center" fxFill>
+        <mat-tab label="Suche" fxFill i18n-label="Search|Label Suche@@Search">
+          <app-search-list
+            fxFlex="auto"
+            [basketId]="data.basket.id"
+            [responses]="data.responses"
+            [selected]="data.selectedResponse"
+            (selectionChanged)="onResponseSelected($event)"
+          ></app-search-list>
+          <app-search-result-list
+            [response]="data.selectedResponse"
+            [selected]="data.selectedDestinationId"
+            [basketId]="data.basket.id"
+            (selectionChanged)="onDestinationSelected($event)"
+            (addToBasket)="onAddToBasket($event)"
+          ></app-search-result-list>
+        </mat-tab>
+        <mat-tab fxFill>
+          <ng-template matTabLabel>
+            <span
+              [matBadge]="data.basket.items.length.toString()"
+              [matBadgeHidden]="data.basket.items.length === 0"
+              matBadgePosition="above after"
+              matBadgeColor="accent"
+              matBadgeOverlap="false"
+              i18n="ShoppingCart|Label Warenkorb@@ShoppingCart"
+              >Warenkorb</span
+            >
+          </ng-template>
+
+          <app-basket-list
+            fxFlex="auto"
+            [basketId]="data.basket.id"
+            [selected]="data.selectedBasketItemId"
+            (selectionChanged)="onBasketItemSelectionChanged($event)"
+            (checkout)="onCheckout()"
+          ></app-basket-list>
+
+          <ng-template #info> </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-sidenav>
+  </mat-sidenav-container>
+</ng-container>

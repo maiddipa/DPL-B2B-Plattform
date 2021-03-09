@@ -1,0 +1,64 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="data.dataSource"
+    [showBorders]="true"
+    [remoteOperations]="true"
+  >
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+    <dxo-editing mode="form" [allowUpdating]="true"> </dxo-editing>
+    <dxi-column
+    i18n-caption="
+        Spalten Überschrift: Gruppe
+        @@CustomerAdministrationMembershipGridUserGroupColumnCaption"
+      dataField="userGroup.name"
+      caption="Gruppe"
+      dataType="string"
+      [allowEditing]="false"
+      [width]="150"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spalten Überschrift: Mitglieder
+        @@CustomerAdministrationMembershipGridUsersColumnCaption"
+      dataField="users"
+      caption="Mitglieder"
+      cellTemplate="userListTemplate"
+      editCellTemplate="tagBoxEditor"
+      dataType="string"
+      [allowFiltering]="true"
+      [allowSorting]="false"
+      [filterOperations]="['contains']"
+      [calculateFilterExpression]="getFilterExpressionUsers"
+    >
+    </dxi-column>
+    <dxo-paging [pageSize]="12"></dxo-paging>
+    <dxo-pager
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[5, 12, 20]"
+    ></dxo-pager>
+    <div *dxTemplate="let data of 'userListTemplate'">
+      <dpl-grid-text-tooltip
+        [values]="getUsersDisplayValue(data)"
+        [displayCount]="10"
+      ></dpl-grid-text-tooltip>
+    </div>
+    <div *dxTemplate="let cellInfo of 'tagBoxEditor'">
+      <dx-tag-box
+        [dataSource]="data.usersDataSource"
+        [value]="cellInfo.value"
+        [displayExpr]="tagBoxUserDisplayExpression"
+        [showSelectionControls]="true"
+        [maxDisplayedTags]="100"
+        [showMultiTagOnly]="false"
+        applyValueMode="useButtons"
+        [searchEnabled]="true"
+        (onValueChanged)="cellInfo.setValue($event.value)"
+        (onSelectionChanged)="cellInfo.component.updateDimensions()"
+      >
+      </dx-tag-box>
+    </div>
+  </dx-data-grid>
+</ng-container>

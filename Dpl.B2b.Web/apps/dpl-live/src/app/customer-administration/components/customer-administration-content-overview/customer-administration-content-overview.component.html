@@ -1,0 +1,24 @@
+<!--Todo: Use i18n for the next line-->
+<h2>Übersicht {{ unit.name }}</h2>
+
+<!-- <div class="caption">Tabs</div>
+<div class="navigation-button-row" id="scrolledtaps">
+<dx-tabs
+  [items]="childs"
+  [scrollByContent]="true"
+  [showNavButtons]="true"
+  (onItemClick)="selectTab($event)"
+  itemTemplate="itemTemplate"
+  scrollingEnabled="true"
+>
+  <div *dxTemplate="let child of 'itemTemplate'">
+    <span>{{ child.name }}</span>
+  </div>
+</dx-tabs>
+</div> -->
+
+<div class="navigation-button-row">
+  <button mat-button *ngFor="let child of childs" (click)="selectUnit(child)">
+    {{ child.name }}
+  </button>
+</div>

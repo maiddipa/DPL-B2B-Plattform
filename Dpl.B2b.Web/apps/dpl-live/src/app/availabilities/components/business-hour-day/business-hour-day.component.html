@@ -1,0 +1,42 @@
+<mat-card [formGroup]="form">
+  <mat-card-title>{{ day }}</mat-card-title>
+  <mat-card-content>
+    <mat-slide-toggle color="primary"></mat-slide-toggle>
+    <div fxLayout="column" fxLayoutGap="20px">
+      <div fxLayout="row" fxLayoutGap="30px">
+        <mat-form-field class="businessHourSelectionHour">
+          <mat-label i18n="From|Label von@@From">von</mat-label>
+          <mat-select formControlName="fromHour">
+            <mat-option *ngFor="let hour of hourOptions" [value]="hour">
+              {{ hour }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="businessHourSelectionMinute">
+          <mat-select formControlName="fromMinute">
+            <mat-option *ngFor="let minute of minuteOptions" [value]="minute">
+              {{ minute }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="30px">
+        <mat-form-field class="businessHourSelectionHour">
+          <mat-label i18n="Until|Label bis@@Until">bis</mat-label>
+          <mat-select formControlName="toHour">
+            <mat-option *ngFor="let hour of hourOptions" [value]="hour">
+              {{ hour }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="businessHourSelectionMinute">
+          <mat-select formControlName="toMinute">
+            <mat-option *ngFor="let minute of minuteOptions" [value]="minute">
+              {{ minute }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

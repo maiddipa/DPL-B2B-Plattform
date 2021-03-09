@@ -1,0 +1,247 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="data.dataSource"
+    [showBorders]="true"
+    [remoteOperations]="true"
+  >
+    <dxo-editing
+      mode="form"
+      [allowUpdating]="true"
+      [allowAdding]="true"
+      [allowDeleting]="true"
+    >
+    </dxo-editing>
+    <dxi-column
+      caption="ID"
+      dataField="id"
+      [visible]="false"
+      [allowEditing]="false"
+      [formItem]="{ visible: false }"
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Wochentage@@CustomerAdministrationLoadingLocationBusinessHoursDayOfWeekColumnTitel"
+      caption="Wochentag"
+      dataField="dayOfWeek"
+      cellTemplate="cellTemplateDayOfWeek"
+      [calculateSortValue]="getDayOfWeekSortValues"
+      editCellTemplate="editCellTemplateDayOfWeek"
+      sortOrder="asc"
+      [sortIndex]="0"
+      ><dxi-validation-rule type="required"></dxi-validation-rule
+    ></dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für Öffnungszeiten
+        (von)@@CustomerAdministrationLoadingLocationBusinessHoursFromTimeColumnTitel"
+      caption="Öffungszeiten (von)"
+      dataField="fromTime"
+      dataType="datetime"
+      format="shortTime"
+      pickerType="rollers"
+      [editorOptions]="{ type: 'time' }"
+      [sortIndex]="1"
+      sortOrder="asc"
+      ><dxi-validation-rule type="required"></dxi-validation-rule>
+      <dxi-validation-rule
+        i18n-message="
+          Fehlernachricht für Öffnungszeiten (von): Öffnungszeit (von) muss
+          kleiner sein als die Öffnungszeit
+          (bis)@@CustomerAdministrationLoadingLocationBusinessHoursFromTimeCustomValidationMessage"
+        type="custom"
+        message="Öffnungszeit (von) muss kleiner sein als die Öffnungszeit (bis)"
+        [validationCallback]="customValidationCallbackBusinessHours"
+        [reevaluate]="true"
+        [ignoreEmptyValue]="true"
+      >
+      </dxi-validation-rule>
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für Öffnungszeiten
+        (bis)@@CustomerAdministrationLoadingLocationBusinessHoursToTimeColumnTitel"
+      caption="Öffungszeiten (bis)"
+      dataField="toTime"
+      dataType="datetime"
+      format="shortTime"
+      pickerType="rollers"
+      [editorOptions]="{ type: 'time' }"
+      sortOrder="asc"
+      [sortIndex]="2"
+      ><dxi-validation-rule type="required"></dxi-validation-rule>
+      <dxi-validation-rule
+        i18n-message="
+          Fehlernachricht für Öffnungszeiten (bis): Öffnungszeit (bis) muss
+          größer sein als die Öffnungszeit
+          (von)@@CustomerAdministrationLoadingLocationBusinessHoursToTimeCustomValidationMessage"
+        type="custom"
+        message="Öffnungszeit (bis) muss größer sein als die Öffnungszeit (von)"
+        [validationCallback]="customValidationCallbackBusinessHours"
+        [reevaluate]="true"
+        [ignoreEmptyValue]="true"
+      >
+      </dxi-validation-rule
+    ></dxi-column>
+    <!-- Buttons for Grid-->
+    <dxi-column type="buttons" class="grid-button-icons">
+      <!-- edit button -->
+      <dxi-button name="edit"></dxi-button>
+      <!-- delete button -->
+      <dxi-button name="delete"></dxi-button>
+      <!-- duplicate Button -->
+      <dxi-button template="templateDuplicateButton">
+        <!-- duplicate Button Template -->
+        <a *dxTemplate="let dataButton of 'templateDuplicateButton'">
+          <mat-icon
+            i18n-title="
+              Duplizieren der Öffnungszeiten, Mouseover
+              Informationstext@@CustomerAdministrationLoadingLocationBusinessHoursDuplicateIconTitle"
+            title="Duplizieren der Öffnungszeiten"
+            class="mat-duplicate-icon"
+            (click)="clickDuplicateRow(dataButton)"
+          >
+            control_point_duplicate
+          </mat-icon>
+        </a>
+      </dxi-button>
+    </dxi-column>
+    <!-- Cell template for Day of Week -->
+    <div *dxTemplate="let templateDataDayOfWeek of 'cellTemplateDayOfWeek'">
+      <!--Todo: check for translations-->
+      {{ templateDataDayOfWeek.value | dayOfWeek }}
+    </div>
+    <!-- Edit template for Day of Week -->
+    <div *dxTemplate="let templateDataDayOfWeek of 'editCellTemplateDayOfWeek'">
+      <!-- Day of Week Select-Box for Grid -->
+      <dx-select-box
+        id="duplicate-row-business-hours-day-of-week"
+        [dataSource]="data.dayOfWeeksTypeData"
+        displayExpr="display"
+        valueExpr="value"
+        [(value)]="templateDataDayOfWeek.value"
+        (onValueChanged)="templateDataDayOfWeek.setValue($event.value)"
+      >
+      </dx-select-box>
+    </div>
+  </dx-data-grid>
+  <!-- Validation Group to validate fromTime and toTime on the popUp-->
+  <dx-validation-group #popUpValidationGroup>
+    <!-- Duplicate Row PopUp -->
+    <dx-popup
+      i18n-title="
+        Popup Titel: Anpassen der Duplizierung
+        @@CustomerAdministrationLoadingLocationBusinessHoursDuplicatePopUpTitle"
+      [width]="450"
+      [height]="300"
+      [showTitle]="true"
+      title="Anpassen der Duplizierung"
+      [dragEnabled]="false"
+      [closeOnOutsideClick]="true"
+      [(visible)]="popupDuplicateVisible"
+      (onHiding)="onHidePopUp($event)"
+    >
+      <!-- Duplicate PopUp Template of content-->
+      <div *dxTemplate="let popupdata of 'content'">
+        <div id="duplicate-popup-data-div" fxLayout="column">
+          <!-- Day of Week Select-Box for PopUp -->
+          <dx-select-box
+            id="duplicate-row-business-hours-day-of-week"
+            [dataSource]="data.dayOfWeeksTypeData"
+            displayExpr="display"
+            valueExpr="value"
+            [(value)]="selectDefaultValuePopUpDayOfWeek"
+          >
+            <dx-validator>
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dx-validator>
+          </dx-select-box>
+          <!-- DateBox -->
+          <dx-date-box
+            dataType="datetime"
+            id="duplicate-row-business-hours-from-time"
+            [(value)]="selectDefaultValuePopUpFromTime"
+            type="time"
+          >
+            <dx-validator>
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+              <dxi-validation-rule
+                i18n-message="
+                  Fehlernachricht für Öffnungszeiten (von): Öffnungszeit (von)
+                  muss kleiner sein als die Öffnungszeit
+                  (bis)@@CustomerAdministrationLoadingLocationBusinessHoursFromTimePopUpCustomValidationMessage"
+                type="custom"
+                message="Öffnungszeit (von) muss kleiner sein als die Öffnungszeit (bis)"
+                [validationCallback]="customValidationCallbackBusinessHourPopUp"
+                [reevaluate]="true"
+                [ignoreEmptyValue]="true"
+              >
+              </dxi-validation-rule>
+            </dx-validator>
+          </dx-date-box>
+          <!-- DateBox -->
+          <dx-date-box
+            dataType="datetime"
+            id="duplicate-row-business-hours-to-time"
+            [(value)]="selectDefaultValuePopUpToTime"
+            type="time"
+          >
+            <dx-validator>
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+              <dxi-validation-rule
+                i18n-message="
+                  Fehlernachricht für Öffnungszeiten (bis): Öffnungszeit (bis)
+                  muss größer sein als die Öffnungszeit
+                  (von)@@CustomerAdministrationLoadingLocationBusinessHoursToTimePopUpCustomValidationMessage"
+                type="custom"
+                message="Öffnungszeit (bis) muss größer sein als die Öffnungszeit (von)"
+                [validationCallback]="customValidationCallbackBusinessHourPopUp"
+                [reevaluate]="true"
+                [ignoreEmptyValue]="true"
+              >
+              </dxi-validation-rule>
+            </dx-validator>
+          </dx-date-box>
+        </div>
+        <div>
+          <!-- Toolbar for Button save and close -->
+          <dx-toolbar>
+            <dxi-item location="before"
+              ><dx-button
+                i18n-hint="
+                  Mouseover Button PopUp Text: Speichern der angepassten
+                  Duplizierung@@CustomerAdministrationLoadingLocationBusinessHoursPopUpSaveButtonHint"
+                i18n-text="
+                  PopUp Speichern Button Text:
+                  Speichern@@CustomerAdministrationLoadingLocationBusinessHoursPopUpSaveButtonText"
+                hint="Speichern der angepassten Duplizierung"
+                icon="save"
+                text="Speichern"
+                (onClick)="clickSaveDuplicatePopUp()"
+                [disabled]="saveButtonDisable"
+              ></dx-button
+            ></dxi-item>
+            <dxi-item location="after">
+              <dx-button
+                i18n-hint="
+                  Mouseover Button PopUp Text: Schließe das
+                  Fenster@@CustomerAdministrationLoadingLocationBusinessHoursPopUpCloseButtonHint"
+                i18n-text="
+                  PopUp Schließen Button Text:
+                  Abbrechen@@CustomerAdministrationLoadingLocationBusinessHoursPopUpCloseButtonText"
+                hint="Schließe das Fenster"
+                icon="close"
+                text="Abbrechen"
+                (onClick)="clickCancelDuplicatePopUp()"
+              ></dx-button
+            ></dxi-item>
+          </dx-toolbar>
+        </div>
+        <!-- <div>
+          <dx-validation-summary id="summary"></dx-validation-summary>
+        </div> -->
+      </div>
+    </dx-popup>
+  </dx-validation-group>
+</ng-container>

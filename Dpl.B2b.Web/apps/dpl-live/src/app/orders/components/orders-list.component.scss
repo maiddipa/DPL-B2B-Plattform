@@ -1,0 +1,180 @@
+.example-table-container {
+  position: relative;
+  max-height: 600px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+td.alignRight {
+  text-align: end;
+  padding-right: 10px;
+}
+td.alignRight.sort {
+  text-align: end;
+  padding-right: 26px;
+}
+th.alignRight {
+  text-align: end;
+  ::ng-deep .mat-sort-header-container {
+    justify-content: flex-end !important;
+  }
+  padding-right: 10px;
+}
+
+.mat-header-cell {
+  /* color:rgba(0, 0, 0, 0.87); */
+
+  color: black; /* for demo */
+  font-size: 14px;
+}
+
+//table styling
+
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type,
+th.mat-header-cell:last-of-type {
+  padding-right: 0px;
+}
+
+.number {
+  width: 8%;
+  white-space: nowrap;
+}
+
+td.dplcode {
+  span {
+    display: block;
+  }
+}
+.dplcode {
+  width: 8%;
+}
+.meldezeitpunkt {
+  width: 10%;
+}
+.ladestelle {
+  width: 14%;
+  white-space: pre-line;
+}
+
+.earliestFulfillmentDateTime {
+  width: 6%;
+}
+
+.latestFulfillmentDateTime {
+  width: 6%;
+}
+
+.ladungstraeger {
+  width: 5%;
+}
+.quality {
+  width: 3%;
+}
+.ladungen {
+  width: 5%;
+}
+.menge {
+  width: 3%;
+}
+.stapel {
+  width: 3%;
+}
+.stapelhoehe {
+  width: 5%;
+}
+.traeger {
+  width: 5%;
+}
+.traegerquality {
+  width: 5%;
+}
+.traegerquantity {
+  width: 5%;
+}
+.plannedtermin {
+  width: 10%;
+}
+.status {
+  width: 5%;
+}
+
+.cancel-order {
+  width: 1%;
+}
+
+.receipt {
+  width: 1%;
+}
+.type {
+  width: 2%;
+  padding-top: 4px;
+  padding-left: 3px;
+}
+
+.chat {
+  width: 1%;
+}
+
+.mat-column-hasDplNote {
+  width: 1%;
+}
+
+.mat-column-orderType {
+  width: 2%;
+}
+
+// Icon size
+.element-icon img {
+  width: 64px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+// Table Detail Row Part
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}

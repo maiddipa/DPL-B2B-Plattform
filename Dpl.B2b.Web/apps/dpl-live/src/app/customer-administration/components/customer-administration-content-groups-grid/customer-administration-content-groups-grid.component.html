@@ -1,0 +1,80 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="data.dataSource"
+    [showBorders]="true"
+    [remoteOperations]="true"
+    (onEditorPreparing)="onEditorPreparing($event)"
+    [width]="null"
+    [height]="null"
+  >
+    >
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+    <dxo-editing mode="form" [allowUpdating]="true" [allowAdding]="true">
+    </dxo-editing>
+    <dxi-column
+      dataField="id"
+      dataType="number"
+      [formItem]="{ visible: false }"
+      [width]="80"
+    >
+    </dxi-column>
+    <dxi-column dataField="name" dataType="string" [width]="150">
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Systemgruppe@@CustomerAdministrationContentGroupGridIsSystemGroupColumnTitel"
+      dataField="isSystemGroup"
+      dataType="boolean"
+      [allowEditing]="false"
+      caption="Systemgruppe"
+      [width]="150"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Berechtigungen@@CustomerAdministrationContentGroupGridPermissionsColumnTitel"
+      dataField="permissions"
+      dataType="string"
+      cellTemplate="permissionListTemplate"
+      editCellTemplate="tagBoxEditor"
+      [filterOperations]="['contains']"
+      [allowFiltering]="true"
+      [allowSorting]="false"
+      [calculateFilterExpression]="getFilterExpressionPermissions"
+      caption="Berechtigungen"
+      [calculateCellValue]="getCalculatedCellValue"
+    >
+    </dxi-column>
+    <dxo-paging [pageSize]="12"></dxo-paging>
+    <dxo-pager
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[5, 12, 20]"
+    ></dxo-pager>
+    <div *dxTemplate="let resource of 'permissionListTemplate'">
+      <dpl-grid-text-tooltip
+        [values]="resource.displayValue"
+        [displayCount]="8"
+      ></dpl-grid-text-tooltip>
+    </div>
+    <div *dxTemplate="let cellInfo of 'tagBoxEditor'">
+      <dx-tag-box
+        [dataSource]="data.permissionsDataSource"
+        [value]="cellInfo.value"
+        [displayExpr]="tagBoxUserDisplayExpression"
+        [showSelectionControls]="true"
+        [maxDisplayedTags]="100"
+        [showMultiTagOnly]="false"
+        applyValueMode="useButtons"
+        [searchEnabled]="true"
+        (onValueChanged)="cellInfo.setValue($event.value)"
+        (onSelectionChanged)="cellInfo.component.updateDimensions()"
+      >
+      </dx-tag-box>
+    </div>
+  </dx-data-grid>
+</ng-container>

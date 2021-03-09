@@ -1,0 +1,409 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <div fxLayout="column">
+    <div fxLayout="column">
+      <dpl-required-hint></dpl-required-hint>
+    </div>
+    <div
+      class="app-form-padding"
+      fxFlex
+      fxLayout="column"
+      [formGroup]="formGroup"
+    >
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div
+          fxFlex="50%"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="10px"
+        >
+          <dpl-express-code
+            fxFlex
+            [preset]="expressCodePreset"
+            [printType]="getPrintType()"
+            [subForm]="formGroup.controls.digitalCode"
+            (validatedExpressCode)="onDigitalCode($event)"
+          >
+          </dpl-express-code>
+          <mat-form-field
+            *ngIf="isDepoContext && data.depoPresets?.length > 0"
+            fxFlex="50%"
+            class="app-form-field-auto"
+            appearance="outline"
+          >
+            <mat-label
+              i18n="
+                BookingAccount|Label
+                Buchungskonto@@LoadCarrierReceiptDepoPresetPickerLabel"
+              >Szenario</mat-label
+            >
+            <mat-select [formControl]="formGroup.controls.depoPresetId">
+              <mat-option
+                *ngFor="let preset of data.depoPresets"
+                [value]="preset.id"
+              >
+                {{ preset.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field
+            *ngIf="!(isDepoContext && data.depoPresets?.length > 0)"
+            fxFlex="160px"
+            class="app-form-field-auto"
+          >
+            <input
+              matInput
+              [matDatepicker]="dp1"
+              [formControl]="formGroup.controls.date"
+              placeholder="Geplantes Datum"
+              i18n-placeholder="PlanedDate|Label Geplantes Datum@@PlanedDate"
+              [min]="minDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="dp1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <mat-form-field
+          *ngIf="isDepoContext && data.depoPresets?.length > 0"
+          fxFlex="160px"
+          class="app-form-field-auto"
+        >
+          <input
+            matInput
+            [matDatepicker]="dp1"
+            [formControl]="formGroup.controls.date"
+            placeholder="Geplantes Datum"
+            i18n-placeholder="PlanedDate|Label Geplantes Datum@@PlanedDate"
+            [min]="minDate"
+          />
+          <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+          <mat-datepicker #dp1></mat-datepicker>
+        </mat-form-field>
+        <app-posting-account-picker
+          fxFlex="160px"
+          label="Quellkonto"
+          [subForm]="formGroup.controls.sourcePostingAccountId"
+        ></app-posting-account-picker>
+        <mat-form-field
+          fxFlex="160px"
+          class="app-form-field-auto"
+          *ngIf="!data.generated"
+        >
+          <mat-label i18n="BookingAccount|Label Buchungskonto@@BookingAccount"
+            >Zielkonto</mat-label
+          >
+          <mat-select [value]="unkownTargetPostingAccountId">
+            <mat-option [value]="unkownTargetPostingAccountId">
+              Unbekannt
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- <ng-template #generatedTargetAccount>
+          <app-posting-account-picker fxFlex="160px" label="Zielkonto"
+            [formControl]="formGroup.controls.targetPostingAccountId"></app-posting-account-picker>
+        </ng-template> -->
+
+        <div fxFlex></div>
+      </div>
+      <div fxLayout="column" fxLayoutGap="10px">
+        <div fxLayout="row" fxLayoutAlign=" stretch" fxLayoutGap="10px">
+          <div fxFlex="50">
+            <app-load-carriers-form
+              fxFlex
+              [showAddAndRemove]="!isDepoContext"
+              [allowLoadCarrierSelection]="!isDepoContext"
+              [context]="loadCarrierPickerContext"
+              [subForm]="formGroup.controls.loadCarriers"
+            >
+            </app-load-carriers-form>
+          </div>
+          <div fxFlex="50">
+            <mat-card>
+              <mat-card-header>
+                <div fxFlex fxLayout="row" fxLayoutAlign=" end">
+                  <mat-card-title
+                    i18n="
+                      MoreInformation|Label Weitere Angaben@@MoreInformation"
+                    >Weitere Angaben<strong> *</strong></mat-card-title
+                  >
+                  <div fxFlex fxLayout="row" fxLayoutAlign="end">
+                    <span
+                      i18n="
+                        DocumentSubmitted|Label Dokument
+                        vorgelegt@@DocumentSubmitted"
+                      >Dokument vorgelegt</span
+                    >
+                  </div>
+                </div>
+              </mat-card-header>
+              <mat-card-content fxLayout="column">
+                <div
+                  fxLayout="row"
+                  fxLayoutAlign="space-between center"
+                  fxLayoutGap="10px"
+                >
+                  <mat-form-field fxFlex="70" class="app-form-field-auto">
+                    <input
+                      matInput
+                      [formControl]="formGroup.controls.deliveryNoteNumber"
+                      placeholder="Lieferscheinnummer"
+                      i18n-placeholder="
+                        DeliveryReceiptNumber|Label
+                        Lieferscheinnumer@@DeliveryReceiptNumber"
+                      #deliveryReceipt="ngForm"
+                      [dplHighlight]="deliveryReceipt"
+                    />
+                    <mat-error
+                      *ngIf="
+                        formGroup.controls.deliveryNoteNumber.errors?.maxlength
+                      "
+                    >
+                      <span i18n="MaxLength|Label Pflichtfeld@@MaxLength"
+                        >Die Eingabe ist zu lang</span
+                      >
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-radio-group
+                    fxLayoutGap="10px"
+                    [formControl]="formGroup.controls.deliveryNoteDocument"
+                  >
+                    <mat-radio-button
+                      #deliveryNoteDocumentYes
+                      [value]="true"
+                      (click)="
+                        checkResetRadio(
+                          deliveryNoteDocumentYes,
+                          formGroup.controls.deliveryNoteDocument
+                        )
+                      "
+                      i18n="Yes|Label Ja@@Yes"
+                      >Ja</mat-radio-button
+                    >
+                    <mat-radio-button
+                      #deliveryNoteDocumentNo
+                      [value]="false"
+                      (click)="
+                        checkResetRadio(
+                          deliveryNoteDocumentNo,
+                          formGroup.controls.deliveryNoteDocument
+                        )
+                      "
+                      i18n="No|Label No@@Nein"
+                      >Nein</mat-radio-button
+                    >
+                  </mat-radio-group>
+                </div>
+                <div
+                  fxLayout="row"
+                  fxLayoutAlign="space-between center"
+                  fxLayoutGap="10px"
+                >
+                  <mat-form-field fxFlex="70" class="app-form-field-auto">
+                    <input
+                      matInput
+                      [formControl]="formGroup.controls.pickupNoteNumber"
+                      placeholder="Abholscheinnummer"
+                      i18n-placeholder="
+                        PickupSlipNumber|Label
+                        Abholscheinnumer@@PickupSlipNumber"
+                      #pickupSlip="ngForm"
+                      [dplHighlight]="pickupSlip"
+                    />
+                    <mat-error
+                      *ngIf="
+                        formGroup.controls.pickupNoteNumber.errors?.maxlength
+                      "
+                    >
+                      <span i18n="MaxLength|Label Pflichtfeld@@MaxLength"
+                        >Die Eingabe ist zu lang</span
+                      >
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-radio-group
+                    fxLayoutGap="10px"
+                    [formControl]="formGroup.controls.pickupNoteDocument"
+                  >
+                    <mat-radio-button
+                      #pickupNoteDocumentYes
+                      [value]="true"
+                      (click)="
+                        checkResetRadio(
+                          pickupNoteDocumentYes,
+                          formGroup.controls.pickupNoteDocument
+                        )
+                      "
+                      i18n="Yes|Label Ja@@Yes"
+                      >Ja</mat-radio-button
+                    >
+                    <mat-radio-button
+                      #pickupNoteDocumentNo
+                      [value]="false"
+                      (click)="
+                        checkResetRadio(
+                          pickupNoteDocumentNo,
+                          formGroup.controls.pickupNoteDocument
+                        )
+                      "
+                      i18n="No|Label No@@Nein"
+                      >Nein</mat-radio-button
+                    >
+                  </mat-radio-group>
+                </div>
+                <mat-form-field>
+                  <input
+                    matInput
+                    type="text"
+                    [formControl]="formGroup.controls.referenceNumber"
+                    placeholder="Sonstige-Nr"
+                    i18n-placeholder="OtherNo|Label Sonstige-Nr@@OtherNo"
+                  />
+                  <mat-error
+                    i18n="
+                      ErrorMustbeGreaterZero|Fehler Wert muss größer 0
+                      sein@@ErrorMustBeGreaterZero"
+                  >
+                    Der Wert muss größer 0 sein
+                  </mat-error>
+                  <mat-error
+                    *ngIf="formGroup.controls.referenceNumber.errors?.maxlength"
+                  >
+                    <span i18n="MaxLength|Label Pflichtfeld@@MaxLength"
+                      >Die Eingabe ist zu lang</span
+                    >
+                  </mat-error>
+                </mat-form-field>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign=" stretch" fxLayoutGap="10px">
+          <mat-card fxFlex fxLayout="column">
+            <mat-card-header>
+              <mat-card-title
+                i18n="
+                  LoadCarrierReceiptFormInstructionsHeader|Instruction
+                  Header@@LoadCarrierReceiptFormInstructionsHeader"
+              >
+                Zu beachten bei Abwicklung: (Info von DPL)</mat-card-title
+              >
+            </mat-card-header>
+            <mat-form-field fxFlex appearance="fill">
+              <textarea
+                matInput
+                [formControl]="formGroup.controls.instructions"
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="3"
+                cdkAutosizeMaxRows="5"
+              ></textarea>
+            </mat-form-field>
+          </mat-card>
+          <mat-card fxFlex fxLayout="column">
+            <mat-card-header>
+              <mat-card-title
+                i18n="
+                  LoadCarrierReceiptFormNoteHeader|Bemerkung Überschrift
+                  Interner Kommentar@@LoadCarrierReceiptFormNoteHeader"
+              >
+                Interner Kommentar an DPL</mat-card-title
+              >
+            </mat-card-header>
+            <mat-form-field fxFlex appearance="fill">
+              <textarea
+                matInput
+                [formControl]="formGroup.controls.note"
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="3"
+                cdkAutosizeMaxRows="3"
+              ></textarea>
+              <mat-hint fxAlign="end"
+                >{{ formGroup.controls.note.value?.length || 0 }} /
+                {{ ValidationDataService.maxLength.note }}</mat-hint
+              >
+              <mat-error *ngIf="formGroup.controls.note.errors?.maxlength">
+                <span i18n="MaxLength|Label Pflichtfeld@@MaxLength"
+                  >Die Eingabe ist zu lang</span
+                >
+              </mat-error>
+            </mat-form-field>
+          </mat-card>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="10px">
+          <app-driver-info-form
+            fxFlex="50%"
+            [subForm]="formGroup.controls.driver"
+            title="Belegempfänger"
+            [shipper]="null"
+            [required]="true"
+            i18n-title="
+              DocumentRecipients|Label Belegempfänger@@DocumentRecipients"
+          ></app-driver-info-form>
+          <ng-container [ngSwitch]="action">
+            <app-shipper-form
+              *ngSwitchCase="loadCarrierReceiptType.Delivery"
+              fxFlex="50%"
+              title="Anliefernde Firma"
+              i18n-title="
+                Label Spediteur wenn
+                Anliefernd@@LoadCarrierReceiptDeliveryShipperTitle"
+              [subForm]="formGroup.controls.shipper"
+            ></app-shipper-form>
+            <app-shipper-form
+              *ngSwitchCase="loadCarrierReceiptType.Pickup"
+              fxFlex="50%"
+              title="Abholende Firma"
+              i18n-title="
+                Label Spediteur wenn
+                Abholend@@LoadCarrierReceiptPickupShipperTitle"
+              [subForm]="formGroup.controls.shipper"
+            ></app-shipper-form>
+            <app-shipper-form
+              *ngSwitchCase="loadCarrierReceiptType.Exchange"
+              fxFlex="50%"
+              title="Anliefernde/Abholende Firma"
+              i18n-title="
+                Label Spediteur wenn Anliefernd +
+                Abholend@@LoadCarrierReceiptExchangeShipperTitle"
+              [subForm]="formGroup.controls.shipper"
+            ></app-shipper-form>
+          </ng-container>
+        </div>
+
+        <mat-card>
+          <mat-card-content
+            fxLayout="row"
+            fxLayoutAlign="end center"
+            fxLayoutGap="10px"
+          >
+            <app-print-settings-form
+              [subForm]="formGroup.controls.print"
+              [documentTypeId]="documentTypeId"
+            >
+            </app-print-settings-form>
+            <button
+              type="button"
+              mat-raised-button
+              (click)="reset()"
+              i18n="Label um Formular zurückzusetzten@@ResetForm"
+            >
+              Verwerfen
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="onSubmit()"
+              [disabled]="!formGroup.touched || formGroup.invalid"
+              i18n="
+                PrintLoadCarrierReceipt|Label Name Button Ladungsträger Quittung
+                drucken@@LoadCarrierPrintReceipt"
+            >
+              Quittung drucken
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</ng-container>

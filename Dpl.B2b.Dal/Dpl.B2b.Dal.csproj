@@ -1,0 +1,174 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>Dpl.B2b.Dal</RootNamespace>
+    <AssemblyName>Dpl.B2b.Dal</AssemblyName>
+    <Configurations>Debug;Release;Migration</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Migration|AnyCPU'">
+    <DefineConstants>TRACE;SKIPVIEWRELATIONS</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Ltms\Excluded\**" />
+    <Compile Remove="Olma\**" />
+    <EmbeddedResource Remove="Models\Ltms\Excluded\**" />
+    <EmbeddedResource Remove="Olma\**" />
+    <None Remove="Models\Ltms\Excluded\**" />
+    <None Remove="Olma\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Seed\DropAllOlmaTables.sql" />
+    <None Remove="Seed\dummy-loading-locations-from-lms-customers.gz" />
+    <None Remove="Seed\Indexes.sql" />
+    <None Remove="Seed\lms-update-loading-location-ids.sql" />
+    <None Remove="Seed\LmsCustomersGeocoded.csv" />
+    <None Remove="Seed\LmsCustomers\addresses.csv" />
+    <None Remove="Seed\LmsCustomers\business-hours.csv" />
+    <None Remove="Seed\LmsCustomers\loading-locations.csv" />
+    <None Remove="Seed\report-template-2-converted - Kopieren.xml" />
+    <None Remove="Seed\report-template-LoadCarrierReceiptDelivery.xml" />
+    <None Remove="Seed\report-template-LoadCarrierReceiptExchange.xml" />
+    <None Remove="Seed\report-template-LoadCarrierReceiptPickup.xml" />
+    <None Remove="Seed\report-template-TransportVoucher.xml" />
+    <None Remove="Seed\report-template-VoucherCommon.xml" />
+    <None Remove="Trigger\LMS\OnCreateAvailUpdateOrders.sql" />
+    <None Remove="Trigger\LMS\OnCreateDeliveryUpdateOrders.sql" />
+    <None Remove="Trigger\LTMS\OnCreateUpdatePostingRequestStatus.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="LTMS\AccountSampleData.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LTMS\AccountSampleData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LTMS\BookingSampleData.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LTMS\BookingSampleData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="LTMS\ltms-script.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Seed\DropAllOlmaTables.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Seed\dummy-loading-locations-from-lms-customers.gz">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Seed\lms-update-loading-location-ids.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Seed\LmsCustomersGeocoded.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Seed\LmsCustomers\addresses.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Seed\LmsCustomers\business-hours.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Seed\LmsCustomers\loading-locations.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Seed\report-template-LoadCarrierReceiptDelivery.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Seed\report-template-LoadCarrierReceiptExchange.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Seed\report-template-LoadCarrierReceiptPickup.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Trigger\LMS\OnCreateAvailUpdateOrders.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Seed\report-template-3.xml" />
+    <None Remove="Seed\report-template-6-converted.xml" />
+    <None Remove="Seed\report-template-6.xml" />
+    <None Remove="Seed\report-template-7-converted.xml" />
+    <None Remove="Seed\report-template-7.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Seed\Indexes.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Seed\report-template-TransportVoucher.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Seed\report-template-VoucherCommon.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="15.0.5" />
+    <PackageReference Include="LinqKit" Version="1.1.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="3.1.3" />
+    <PackageReference Include="Microsoft.SqlServer.SqlManagementObjects" Version="160.2004021.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Security.Principal.Windows" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dpl.B2b.Contracts\Dpl.B2b.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Trigger\LMS\OnCreateDeliveryUpdateOrders.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Trigger\LTMS\OnCreateUpdatePostingRequestStatus.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LTMS\ReportBookingSampleData.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="LTMS\ReportSampleData.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+</Project>

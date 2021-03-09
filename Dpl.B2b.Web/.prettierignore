@@ -1,0 +1,9 @@
+# Add files here to ignore them from prettier formatting
+
+/data
+/dist
+/coverage
+/**/assets
+
+# apps/dpl-live
+/apps/dpl-live/**/dpl-api-services.ts

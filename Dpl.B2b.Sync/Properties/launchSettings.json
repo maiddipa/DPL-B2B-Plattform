@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Dpl.B2b.Sync": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "CustomDev"
+      }
+    }
+  }
+}

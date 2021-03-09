@@ -1,0 +1,233 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <div
+    fxLayout="row wrap"
+    fxLayoutGap="15px grid"
+    fxLayoutAlign="space-between"
+    [formGroup]="formGroup"
+  >
+    <div
+      fxLayout="column"
+      fxFlex.lt-lg="50%"
+      fxLayoutGap="0px"
+      fxLayoutAlign="start"
+      fxFlex="30"
+    >
+      <mat-card fxFlex>
+        <mat-card-content>
+          <mat-card-header>
+            <mat-card-title
+              i18n="
+                availabilityRowCardTitle|Verfügbarkeiten Zeile Card
+                Title@@availabilityRowCardTitle"
+              >Ladungsträger
+            </mat-card-title>
+          </mat-card-header>
+
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
+            <load-carrier-picker
+              [subForm]="loadCarrierControl"
+              [context]="context"
+              [mode]="loadCarrierPickerMode"
+            ></load-carrier-picker>
+            <!-- <mat-form-field>
+              <mat-label
+                i18n="availabilityRowFormTitle|Verfügbarkeiten Form Label@@availabilityRowFormTitle"
+                >Ladungsträger</mat-label
+              >
+              <mat-select formControlName="loadCarrier">
+                <mat-option
+                  *ngFor="let carrier of data.loadCarriers"
+                  [value]="carrier"
+                >
+                  {{ carrier.id | loadCarrier: 'both' }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> -->
+            <mat-form-field style="width: 105px;">
+              <input
+                matInput
+                formControlName="loadCarrierQuantityRange"
+                placeholder="Menge LT pro Ladung"
+                i18n-placeholder="
+                  AvailabilityRowLoadCarrierQuantityRange|Amount per
+                  Charge@@AvailabilityRowLoadCarrierQuantityRange"
+              />
+            </mat-form-field>
+            <!-- <mat-form-field>
+                  <mat-label>Qualität</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let quality of qualityOptions" [value]="quality.id">
+                      {{ quality.title }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field> -->
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="start">
+            <ng-container formGroupName="loadConfiguration">
+              <mat-form-field style="width: 80px;">
+                <mat-label>Stapelhöhe</mat-label>
+                <mat-select formControlName="stackHeightMin">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+                <!-- <input
+                  matInput
+                  type="number"
+                  placeholder="Stapelhöhe (min)"
+                  i18n-placeholder="AvailabilityRowStackHeightMin|Eingabe Bezeichnung Stapelhöhe min@@AvailabilityRowStackHeightMin"
+                  formControlName="stackHeightMin"
+                /> -->
+              </mat-form-field>
+              <mat-form-field style="width: 80px;">
+                <input
+                  matInput
+                  type="number"
+                  digit-only
+                  placeholder="Stellplätze"
+                  i18n-placeholder="
+                    AvailabilityRowNumberOfStacks|Eingabe Bezeichnung
+                    Stellplätze@@AvailabilityRowNumberOfStacks"
+                  formControlName="numberOfStacks"
+                  min="0"
+                  digit-only
+                />
+                <mat-error
+                  *ngIf="
+                    formGroup
+                      .get('loadConfiguration')
+                      .get('numberOfStacks')
+                      .hasError('min')
+                  "
+                  ><span
+                    i18n="MinValidation|Der Wert ist du klein@@MinValidation"
+                    >Die Eingabe ist zu klein</span
+                  ></mat-error
+                >
+                <mat-error
+                  *ngIf="
+                    formGroup
+                      .get('loadConfiguration')
+                      .get('numberOfStacks')
+                      .hasError('max')
+                  "
+                  ><span
+                    i18n="MaxValidation|Der Wert ist du groß@@MaxValidation"
+                    >Die Eingabe ist zu groß</span
+                  ></mat-error
+                >
+              </mat-form-field>
+              <mat-form-field style="width: 135px;">
+                <input
+                  matInput
+                  placeholder="Stapel pro Stellplatz"
+                  i18n-placeholder="
+                    AvailabilityRowQuantityPerEur|Eingabe Bezeichnung Stapel pro
+                    Stellplatz@@AvailabilityRowQuantityPerEur"
+                  formControlName="quantityPerEur"
+                />
+              </mat-form-field>
+              <!-- <mat-form-field>
+                <input 
+                  matInput
+                  type="number"
+                  placeholder="Stapelhöhe (max)"
+                  i18n-placeholder="AvailabilityRowStackHeightMax|Eingabe Bezeichnung Stapelhöhe max@@AvailabilityRowStackHeightMax"
+                  formControlName="stackHeightMax"
+                />
+              </mat-form-field> -->
+            </ng-container>
+          </div>
+          <!-- <div 
+            formGroupName="loadConfiguration"
+            fxLayout="row wrap"
+            fxLayoutGap="10px"
+            fxLayoutAlign="start"
+          >
+            <mat-checkbox
+              color="primary"
+              formControlName="requiresSpecialAmount"
+              i18n="AvailabilityRowRequiredSpecialAmountLabel|Checkbox Sondermenge melden@@AvailabilityRowRequiredSpecialAmountLabel"
+              >Sondermenge melden (Prüfung durch DPL)</mat-checkbox
+            >
+          </div> -->
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxLayout="column" fxFlex.lt-lg="50%" fxLayoutGap="0px" fxFlex="20">
+      <mat-card fxFlex>
+        <!-- <div class="base-load-carrier-overlay" *ngIf="data.baseLoadCarrierDisabled"></div> -->
+        <mat-card-content>
+          <mat-card-header>
+            <mat-card-title
+              i18n="VehiclePallet|Label Träger-Palette@@VehiclePallet"
+              >Träger-Palette</mat-card-title
+            >
+          </mat-card-header>
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
+            <mat-form-field>
+              <mat-label
+                i18n="VehiclePallet|Label Träger-Palette@@VehiclePallet"
+                >Träger-Palette</mat-label
+              >
+              <mat-select formControlName="baseLoadCarrier">
+                <mat-option
+                  *ngFor="let carrier of data.baseLoadCarriers"
+                  [value]="carrier"
+                >
+                  {{ carrier.id | loadCarrier: 'both' }}
+                </mat-option>
+                <mat-option
+                  *ngIf="
+                    data.baseLoadCarrierInfo === baseLoadCarrierInfo.Optional
+                  "
+                  [value]="nonBaseLoadCarrier"
+                  i18n="
+                    Dropdown options label wenn keine Trägerpalette verwendet
+                    werden soll@@BaseLoadCarrierLabelNone"
+                >
+                  Keine
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <!-- <mat-form-field>
+                  <mat-label>Qualität (TP))</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let carrierType of trQualityOptions" [value]="carrierType.id">
+                      {{ carrierType.title }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field> -->
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="start">
+            <mat-form-field>
+              <input
+                matInput
+                formControlName="baseLoadCarrierQuantity"
+                placeholder="Menge (TP)"
+                i18n="
+                  AvailabilityRowBaseLoadCarrierQuantity|AvailabilityRow Menge
+                  TP@@AvailabilityRowBaseLoadCarrierQuantity"
+              />
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div
+      fxLayout="column"
+      fxFlex="50"
+      fxFlex.lt-lg="100%"
+      fxLayoutGap="0px"
+      fxLayoutAlign="start"
+    >
+      <app-availability-date-selector
+        style="width: 100%;"
+        [form]="formGroup"
+        (selectionChanged)="selectedLoadsPerDay($event)"
+      ></app-availability-date-selector>
+    </div>
+  </div>
+</ng-container>

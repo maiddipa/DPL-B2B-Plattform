@@ -1,0 +1,6 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <ng-container *ngIf="data?.user?.role">
+    <span i18n="Rolle|Label Rolle@@Rolle">Rolle</span><span>: </span>
+    <span>{{ data?.user?.role | userRole }}</span>
+  </ng-container>
+</ng-container>

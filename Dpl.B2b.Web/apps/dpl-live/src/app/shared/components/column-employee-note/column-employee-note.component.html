@@ -1,0 +1,15 @@
+<ng-container matColumnDef="hasDplNote">
+  <th mat-header-cell *matHeaderCellDef>DPL</th>
+  <td mat-cell *matCellDef="let element">
+    <button
+      mat-icon-button
+      *ngIf="element.hasDplNote"
+      title="von DPL bearbeitet"
+      i18n-title="ModifyByDpl|Label Von Dpl bearbeitet@@ModifyByDpl"
+    >
+      <mat-icon>
+        warning
+      </mat-icon>
+    </button>
+  </td>
+</ng-container>

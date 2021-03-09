@@ -1,0 +1,76 @@
+<mat-card>
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+    <ng-container *ngIf="activeCustomer">
+      <div class="label">Aktuell verwalteter Kunde:</div>
+      <div>
+        {{ activeCustomer.displayName }} |
+        {{ activeCustomer.address | address: 'long' }}
+      </div>
+      <div>
+        <button mat-icon-button (click)="reset()">
+          <mat-icon title="Kunde wechseln">edit</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!activeCustomer">
+      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+        <mat-form-field>
+          <input
+            type="text"
+            placeholder="Kunden suchen"
+            matInput
+            [matAutocomplete]="auto"
+            [formControl]="customerControl"
+          />
+
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="onOptionSelected($event.option.value)"
+            [displayWith]="displayFn"
+            panelWidth="auto"
+          >
+            <mat-option
+              *ngFor="let option of options$ | async"
+              [value]="option"
+            >
+              <!-- <mat-chip
+                color="primary"
+                selected
+                *ngIf="option.type === type.Customer"
+                >Kunde</mat-chip
+              >
+              <mat-chip
+                color="primary"
+                selected
+                *ngIf="option.type === type.Division"
+                >Abteilung</mat-chip
+              >
+              <mat-chip
+                color="primary"
+                selected
+                *ngIf="option.type === type.PostingAccount"
+                >Konto</mat-chip
+              > -->
+              <div
+                [innerHtml]="
+                  option.displayNameLong + ' | ' + (option.address | address)
+                    | highlight: customerControl.value
+                "
+              ></div>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <!-- <button mat-icon-button class="confirm" [disabled]="!activeCustomer">
+            <mat-icon title="Kunde wechseln">check</mat-icon>
+          </button> -->
+          <button mat-icon-button class="cancel" (click)="reset()">
+            <mat-icon title="Kunde wechseln">close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    <!-- <div class="label">Konto:</div>
+    <div>Account 34</div> -->
+  </div>
+</mat-card>

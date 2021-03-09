@@ -1,0 +1,101 @@
+<div fxLayout="column" fxLayoutGap="10px">
+  <mat-toolbar color="primary">
+    <span
+      i18n="
+        DialogExecuteActionTitle|Title Dialog Aktion
+        ausführen@@DialogExecuteActionTitle"
+      >Aktion ausführen im Namen von
+    </span>
+    <span> '{{ customerName }}'</span>
+  </mat-toolbar>
+  <div mat-dialog-content>
+    <div fxLayout="column" [formGroup]="formGroup">
+      <div fxLayout="column" fxLayoutGap="10px" style="margin-bottom: 10px;">
+        <span
+          i18n="OnBehalfOfReason|Label Grund@@OnBehalfOfReason"
+          class="app-form-radio-group-title"
+        >
+          Kommunikationsweg
+        </span>
+        <mat-radio-group
+          aria-label="Grund"
+          [formControl]="formGroup.controls.reason"
+          fxLayoutGap="10px"
+          color="primary"
+        >
+          <mat-radio-button [value]="reason.Mail">Email</mat-radio-button>
+          <mat-radio-button [value]="reason.Phone">Telefon</mat-radio-button>
+          <mat-radio-button [value]="reason.Fax">Fax</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div fxLayout="row" fxLayoutAlign=" center" fxLayoutGap="10px">
+        <mat-form-field fxFlex="0 0 100px" class="app-form-field-auto">
+          <mat-label i18n="OnBehalfOfDate|Label Datum@@OnBehalfOfDate"
+            >Zeitpunkt</mat-label
+          >
+          <input
+            matInput
+            [matDatepicker]="datePicker"
+            [formControl]="formGroup.controls.contactedAt"
+            cdkFocusInitial
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="datePicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #datePicker></mat-datepicker>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          (click)="now()"
+          i18n="onBehalfOfDateToday|Label Button Heute@@onBehalfOfDateToday"
+        >
+          Heute
+        </button>
+      </div>
+
+      <mat-form-field>
+        <mat-label
+          i18n="
+            OnBehalfOfContactPerson|Label Kontaktperson@@OnBehalfOfContactPerson"
+          >Kontaktperson (Kommunikation)</mat-label
+        >
+        <input
+          matInput
+          type="text"
+          [formControl]="formGroup.controls.contact"
+        />
+      </mat-form-field>
+
+      <mat-form-field fxFlex>
+        <textarea
+          matInput
+          [formControl]="formGroup.controls.text"
+          placeholder="Kommentar (für den Kunden sichtbar)"
+          i18n-placeholder="
+            OnBehalfOfComment|OnBehalfOf Kommentar@@OnBehalfOfComment"
+        >
+        </textarea>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions fxLayoutAlign="end">
+    <button
+      mat-raised-button
+      (click)="cancel()"
+      i18n="Abort|Label Abbrechen@@Abort"
+    >
+      Abbrechen
+    </button>
+    <button
+      mat-button
+      (click)="confirm()"
+      [disabled]="formGroup.invalid"
+      mat-raised-button
+      i18n="Execute|Label Ausführen@@Execute"
+      color="primary"
+    >
+      Ausführen
+    </button>
+  </div>
+</div>

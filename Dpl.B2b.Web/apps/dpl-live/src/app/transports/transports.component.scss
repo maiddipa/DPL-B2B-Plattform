@@ -1,0 +1,100 @@
+@import '../../variables.scss';
+
+.container {
+  position: relative;
+  min-height: 200px;
+}
+
+.table-container {
+  position: relative;
+  max-height: 600px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+.mat-row:hover {
+  background-color: $base-light;
+  cursor: pointer;
+}
+
+.mat-header-cell {
+  /* color:rgba(0, 0, 0, 0.87); */
+
+  color: black; /* for demo */
+  font-size: 14px;
+}
+
+@mixin mat-sortable-th-right {
+  ::ng-deep .mat-sort-header-container {
+    justify-content: flex-end !important;
+  }
+}
+
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type,
+th.mat-header-cell:last-of-type {
+  padding-right: 0px;
+}
+
+tr {
+  $padding-th: 10px;
+  $padding-td: 26px;
+
+  .referenceNumber {
+    width: 100px;
+    min-width: 100px;
+  }
+
+  .status {
+    width: 150px;
+  }
+
+  .bids {
+    width: 60px;
+    text-align: right;
+  }
+
+  .postalCode {
+    width: 80px;
+  }
+
+  th.date {
+    @include mat-sortable-th-right;
+    padding-right: $padding-th;
+  }
+
+  td.date {
+    width: 150px;
+    text-align: right;
+    padding-right: $padding-td;
+  }
+
+  .country {
+    width: 60px;
+  }
+
+  .city {
+    width: 150px;
+  }
+
+  .type {
+    width: 150px;
+  }
+
+  .distance {
+    width: 90px;
+    text-align: right;
+  }
+
+  .chat {
+    width: 80px;
+    text-align: right;
+  }
+}

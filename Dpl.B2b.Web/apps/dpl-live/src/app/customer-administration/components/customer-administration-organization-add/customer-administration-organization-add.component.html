@@ -1,0 +1,22 @@
+<button mat-icon-button (click)="popupVisible = true">
+  <mat-icon>add</mat-icon>
+</button>
+
+<dx-popup
+  i18n-title="
+    PopUp Titel: Organisation hinzufügen
+    @@CustomerAdministrationOrganizationAddPopUpTitle"
+  [width]="500"
+  [height]="500"
+  [showTitle]="true"
+  title="Organisation hinzufügen"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="popupVisible"
+>
+  <div *dxTemplate="let popupdata of 'content'">
+    <dpl-customer-administration-organization-form
+      (formSubmit)="formSubmit($event)"
+    ></dpl-customer-administration-organization-form>
+  </div>
+</dx-popup>

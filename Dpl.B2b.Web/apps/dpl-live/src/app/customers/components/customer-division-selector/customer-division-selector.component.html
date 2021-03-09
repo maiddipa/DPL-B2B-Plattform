@@ -1,0 +1,17 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <!-- <mat-form-field> -->
+  <mat-select
+    placeholder="Abteilung"
+    [formControl]="form"
+    (selectionChange)="onSelectionChange()"
+    i18n-placeholder="Department|Label Abteilung@@Department"
+  >
+    <mat-option
+      *ngFor="let division of data.customerDivisions"
+      [value]="division.id"
+    >
+      {{ division.name }}
+    </mat-option>
+  </mat-select>
+  <!-- </mat-form-field> -->
+</ng-container>

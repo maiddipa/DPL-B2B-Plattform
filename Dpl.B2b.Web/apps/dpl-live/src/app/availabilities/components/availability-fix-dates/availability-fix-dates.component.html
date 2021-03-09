@@ -1,0 +1,95 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <div fxLayout="column">
+    <div fxLayout="row" class="navigator" fxLayoutAlign="center center">
+      <button
+        mat-icon-button
+        aria-label="Eine Woche zurück"
+        (click)="previousWeek(data.currentWeek)"
+        [matBadge]="data.lastWeekActive"
+        matBadgePosition="before"
+        matBadgeColor="primary"
+        matBadgeSize="small"
+        [matBadgeHidden]="data.lastWeekActive == 0"
+      >
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+      <div fxLayoutAlign="center center" class="calendarWeek">
+        {{ data.currentWeek | calendarWeek }}
+        <i class="material-icons" style="margin-left: 10px;">
+          date_range
+        </i>
+      </div>
+      <button
+        mat-icon-button
+        [matBadge]="data.nextWeekActive"
+        matBadgePosition="after"
+        matBadgeColor="primary"
+        matBadgeSize="small"
+        [matBadgeHidden]="data.nextWeekActive == 0"
+        aria-label="Eine Woche weiter"
+        (click)="nextWeek(data.currentWeek)"
+      >
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
+      <mat-card
+        *ngFor="let i of data.workWorkdays"
+        class="weekdayCard"
+        fxFlex
+        [ngClass]="{
+          weekdayCardDisabled:
+            data.validWeekdays.indexOf(i) === -1 ||
+            data.currentWeek.day(i).isBefore(today)
+        }"
+        title="{{
+          data.validWeekdays.indexOf(i) === -1
+            ? 'Außerhalb der Öffnungszeiten'
+            : data.currentWeek.day(i).isBefore(today)
+            ? 'Termin liegt in der Vergangenheit'
+            : ''
+        }}"
+        ><div class="weekday" fxLayoutAlign="center center">
+          {{ data.currentWeek.day(i).format('dddd') }}
+        </div>
+        <div class="weekdayDate" fxLayoutAlign="center center">
+          {{ data.currentWeek.day(i).format('DD.MM.YY') }}
+        </div>
+        <div class="amountCarrier" fxLayoutAlign="center center">
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              digit-only
+              min="0"
+              max="15"
+              value="0"
+              [disabled]="
+                data.validWeekdays.indexOf(i) === -1 ||
+                data.currentWeek.day(i).isBefore(today)
+              "
+              i18n-placeholder="Charges|Label Ladungen@@Charges"
+              placeholder="Ladungen"
+              [(ngModel)]="data.selectedDates[i]"
+              (ngModelChange)="
+                updateSelectedDate($event, data.currentWeek.day(i))
+              "
+              digit-only
+            />
+          </mat-form-field></div
+      ></mat-card>
+    </div>
+    <div
+      fxLayoutAlign="center center"
+      style="margin-top: 10px; font-size: 16px;"
+    >
+      (<ng-container
+        i18n="
+          availabilityFixDatesCharges|Verfügarkeit
+          Ladungen@@availabilityFixDatesCharges"
+        >{data.loads, plural, =0 {0 Ladungen} =1 {1 Ladung} other
+        {{{data.loads}} Ladungen}}</ng-container
+      >)
+    </div>
+  </div>
+</ng-container>

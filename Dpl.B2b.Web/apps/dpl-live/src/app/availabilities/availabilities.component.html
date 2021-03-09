@@ -1,0 +1,360 @@
+<mat-toolbar fxLayoutAlign="space-between center">
+  <div
+    fxLayoutGap="20px"
+    fxLayout="row"
+    style="margin-left: 10px; font-size: 14px; color: gray;"
+  >
+    <!-- <mat-form-field>
+      <mat-label i18n="labelLoadTemplate|Label Vorlage laden@@LoadTemplate"
+        >Vorlage laden</mat-label
+      >
+      <mat-select (selectionChange)="loadFilterChanged($event)">
+        <mat-option *ngFor="let filter of savedFilters" [value]="filter.title">
+          {{ filter.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div
+      class="savedFilterControls"
+      fxLayout="row"
+      fxLayoutGap="10px"
+      fxLayoutAlign="end center"
+    >
+      <mat-icon
+        i18n-title="SaveTemplate|Label Vorlage speichern@@SaveTemplate"
+        title="Vorlage speichern"
+        >save
+      </mat-icon>
+      <mat-icon
+        i18n-title="DiscardChanges|Label Änderungen verwerfen@@DiscardChanges"
+        title="Änderungen verwerfen"
+        >undo
+      </mat-icon>
+      <mat-icon
+        i18n-title="DeleteTemplate|Label Vorlage löschen@@DeleteTemplate"
+        title="Vorlage löschen"
+        >clear
+      </mat-icon>
+    </div> -->
+    <app-posting-account-picker
+      [subForm]="formGroup.controls.postingAccountId"
+      fxFlex="160px"
+    ></app-posting-account-picker>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end">
+    <span
+      i18n="
+        availabilitiesToolbarLabel|Verfügbarkeiten Beschriftung
+        Symbolleiste@@availabilitiesToolbarLabel"
+      >Verfügbarkeiten melden</span
+    >
+  </div>
+</mat-toolbar>
+
+<ng-container *ngIf="viewData$ | async as data; else loading">
+  <ng-container *ngIf="data.currentDivision; else noDivision">
+    <div fxLayout="column">
+      <dpl-required-hint></dpl-required-hint>
+    </div>
+    <div fxLayout="column" fxLayoutGap="20px" style="margin: 20px;">
+      <div>
+        <div
+          fxLayout="row wrap"
+          fxLayoutGap="15px grid"
+          [formGroup]="formGroup"
+        >
+          <div fxFlex.lt-lg="100%" fxFlex="50">
+            <mat-card class="required">
+              <mat-card-content>
+                <div fxLayout="column" fxLayoutGap="0px">
+                  <div fxLayout="row" fxLayoutGap="30px">
+                    <mat-form-field>
+                      <input
+                        matInput
+                        placeholder="Verf. Melde Nr."
+                        i18n-placeholder="
+                          availabilitiesInputPlaceholderNumber|Verfügbarkeiten
+                          Eingabe
+                          Beschriftung@@availabilitiesInputPlaceholderNumber"
+                        disabled
+                      />
+                    </mat-form-field>
+                    <mat-form-field>
+                      <input
+                        matInput
+                        placeholder="Meldezeitpunkt"
+                        i18n-placeholder="
+                          availabilitiesInputPlaceholderTimeOfNotification|Verfügbarkeiten
+                          Eingabe
+                          Meldezeitpunkt@@availabilitiesInputPlaceholderTimeOfNotification"
+                        disabled
+                      />
+                    </mat-form-field>
+                    <mat-form-field>
+                      <input
+                        matInput
+                        placeholder="Ihre Auftragsnummer"
+                        i18n-placeholder="
+                          availabilitiesInputPlaceholderOrderNumber|Verfügbarkeiten
+                          Eingabe
+                          Auftragsnummer@@availabilitiesInputPlaceholderOrderNumber"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <span
+                    style="font-size: 14px;"
+                    i18n="LoadingStation|Label Ladestelle@@LoadingStation"
+                    >Ladestelle</span
+                  >
+
+                  <div fxLayout="row" fxLayoutGap="30px">
+                    <mat-form-field [style.width]="'390px'">
+                      <mat-label
+                        i18n="
+                          labelSelectLoadingPoint|Label Ladestelle
+                          auswählen@@SelectLoadingPoint"
+                        >Ladestelle auswählen</mat-label
+                      >
+                      <mat-select formControlName="locationControl">
+                        <mat-option
+                          *ngFor="let location of data.locationOptions"
+                          [value]="location"
+                        >
+                          {{ location.id }} - {{ location.address.city }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout="row" fxLayoutGap="30px">
+                    <mat-form-field>
+                      <input
+                        matInput
+                        placeholder="Land"
+                        formControlName="country"
+                        i18n-placeholder="Country|Label Land@@Country"
+                      />
+                    </mat-form-field>
+                    <mat-form-field [style.width]="'90px'">
+                      <input
+                        matInput
+                        placeholder="PLZ"
+                        formControlName="zip"
+                        i18n-placeholder="PostalCode|Label PLZ@@PostalCode"
+                      />
+                    </mat-form-field>
+                    <mat-form-field [style.width]="'270px'">
+                      <input
+                        matInput
+                        placeholder="Ort"
+                        formControlName="city"
+                        i18n-placeholder="Location|Label Ort@@Location"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout="row" fxLayoutGap="30px">
+                    <mat-form-field [style.width]="'90px'">
+                      <input
+                        matInput
+                        placeholder="Anrede"
+                        formControlName="salutation"
+                        i18n-placeholder="Salutation|Label Anrede@@Salutation"
+                      />
+                    </mat-form-field>
+                    <mat-form-field [style.width]="'270px'">
+                      <!-- Todo i18n -->
+                      <input
+                        matInput
+                        placeholder="Nachname (Ansprechpartner)"
+                        i18n-placeholder="
+                          AvailabilitiesNamePlaceholder|Verfügbarkeiten
+                          Bezeichnung Eingabe
+                          Name@@AvailabilitiesNamePlaceholder"
+                        formControlName="name1"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div fxFlex fxLayoutAlign="stretch" fxFlex.lt-lg="50%">
+            <mat-card fxFlex>
+              <mat-card-title style="font-size: 14px; text-align: center;">
+                <span
+                  i18n="
+                    ChargingOpeningTimes|Label
+                    Lade-Öffnungszeiten@@ChargingOpeningTimes"
+                  >Ihre Lade-Öffnungszeiten</span
+                >
+              </mat-card-title>
+              <mat-card-content>
+                <div fxLayoutAlign="center">
+                  <ng-container *ngIf="data.selectedLocation">
+                    <app-availabilities-business-hours
+                      [businessHours]="data.selectedLocation.businessHours"
+                    >
+                    </app-availabilities-business-hours>
+                  </ng-container>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div fxFlex fxFlex.lt-lg="50%" fxLayoutAlign="stretch">
+            <mat-card fxFlex>
+              <mat-card-title style="font-size: 14px; text-align: center;">
+                <span
+                  i18n="LoadingVariants|Label Verladevarianten@@LoadingVariants"
+                  >Ihre Verladevarianten</span
+                ><span> *</span>
+              </mat-card-title>
+              <mat-card-content>
+                <div fxLayoutAlign="center">
+                  <ng-container
+                    *ngIf="data.selectedLocation"
+                    formGroupName="loadingOptions"
+                  >
+                    <table>
+                      <tr>
+                        <mat-slide-toggle
+                          [color]="'primary'"
+                          formControlName="supportsSideLoading"
+                          style="height: 35px;"
+                          i18n="
+                            LoadingSideways|Label
+                            Seitenbeladung@@LoadingSideways"
+                        >
+                          Seitenbeladung
+                        </mat-slide-toggle>
+                      </tr>
+                      <tr>
+                        <mat-slide-toggle
+                          [color]="'primary'"
+                          formControlName="supportsRearLoading"
+                          style="height: 35px;"
+                          i18n="
+                            LoadingFromBehind|Label
+                            Heckbeladung@@LoadingFromBehind"
+                        >
+                          Heckbeladung
+                        </mat-slide-toggle>
+                      </tr>
+                      <tr>
+                        <mat-slide-toggle
+                          [color]="'primary'"
+                          formControlName="supportsJumboVehicles"
+                          style="height: 35px;"
+                          i18n="
+                            LoadingJumboLoading|Label
+                            Jumbobeladung@@LoadingJumboLoading"
+                        >
+                          Jumbobeladung
+                        </mat-slide-toggle>
+                      </tr>
+                    </table>
+                  </ng-container>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+
+      <ng-container *ngIf="data.selectedLocation">
+        <ng-container
+          *ngTemplateOutlet="headerRow; context: { $implicit: availabilities }"
+        ></ng-container>
+
+        <mat-card
+          *ngFor="
+            let availabiltyGroup of availabilities.controls;
+            let i = index
+          "
+          [matBadge]="availabilities.controls.length - i"
+          matBadgePosition="after"
+          matBadgeColor="primary"
+          class="orderRow"
+        >
+          <mat-card-content>
+            <mat-card-header fxLayout="row">
+              <mat-card-title> </mat-card-title>
+              <div fxFlex></div>
+              <mat-icon
+                title="Verfügbarkeit löschen"
+                style="cursor: pointer;"
+                (click)="removeRow(i)"
+                *ngIf="availabilities.controls.length > 1"
+                i18n-title="
+                  ClearAvailability|Label Verfügbarkeit
+                  löschen@@ClearAvailability"
+                >clear</mat-icon
+              >
+            </mat-card-header>
+            <app-availability-row
+              [subForm]="availabiltyGroup"
+              [index]="availabilities.controls.length - i - 1"
+              [context]="loadCarrierContext"
+              (selectedLoadsPerDayChanged)="selectedLoadsPerDayChanged($event)"
+            >
+            </app-availability-row>
+          </mat-card-content>
+        </mat-card>
+
+        <ng-container
+          *ngIf="availabilities.controls && availabilities.controls.length > 1"
+        >
+          <ng-container
+            *ngTemplateOutlet="
+              headerRow;
+              context: { $implicit: availabilities }
+            "
+          ></ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
+</ng-container>
+
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>
+
+<ng-template #noDivision>
+  <dpl-select-customer-message></dpl-select-customer-message>
+</ng-template>
+
+<ng-template #headerRow let-availabilities>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxFlex="1"></div>
+    <div fxLayoutGap="20px" fxLayout="row" fxLayoutAlign="end">
+      <a
+        mat-raised-button
+        color="primary"
+        (click)="availabilities.controls.unshift(createAvailabilitiesGroup())"
+        ><i class="material-icons">
+          add_box
+        </i>
+        Verfügbarkeit</a
+      >
+      <button
+        type="button"
+        mat-raised-button
+        (click)="reset()"
+        i18n="Label um Formular zurückzusetzten@@ResetForm"
+      >
+        Verwerfen
+      </button>
+      <!-- <a mat-raised-button>Entwurf speichern</a> -->
+      <a
+        mat-raised-button
+        (click)="submit()"
+        color="primary"
+        [disabled]="formGroup.invalid || !allAvailabilitiesLoadExists"
+        i18n="
+          GenerateAvailabilities|Label Verfügbarkeiten
+          generieren@@GenerateAvailabilities"
+        >Verfügbarkeiten generieren ({{ totalLoads }})</a
+      >
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,24 @@
+.bottomFooter {
+  background-color: #fff;
+  width: 100%;
+  flex: 0;
+  // z-index: 100;
+  .footerRow {
+    background-color: #fff;
+    // box-shadow: 0 -3px 5px 1px rgba(0, 0, 0, 0.2), 0 -6px 10px 0 rgba(0, 0, 0, 0.14),
+    // 0 -1px 18px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .footerLink {
+    font-size: 14px;
+    text-decoration: none;
+    color: #3f51b5;
+  }
+  .footerLink:visited {
+    color: #3f51b5;
+  }
+  .footerLink:hover {
+    text-decoration: underline;
+    color: #3f51b5;
+  }
+}

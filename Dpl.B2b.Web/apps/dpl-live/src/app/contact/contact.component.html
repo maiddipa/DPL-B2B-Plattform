@@ -1,0 +1,40 @@
+<div class="contact" fxLayout="column" fxLayoutAlign="center center">
+  <mat-list>
+    <mat-list-item>
+      <h2 i18n="ContactTitle|Kontakte & Support@@ContactTitle">
+        Kontakt & Support
+      </h2>
+    </mat-list-item>
+    <mat-list-item
+      ><h3 i18n="ContactSubtitle|Impressum@@ContactSubtitle">
+        Impressum
+      </h3></mat-list-item
+    >
+    <mat-list-item>
+      <mat-icon matListIcon>business</mat-icon>
+      {{ infos.name }}
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon matListIcon>location_on</mat-icon>
+      {{ locationText }}
+    </mat-list-item>
+
+    <mat-list-item>
+      <mat-icon matListIcon>phone</mat-icon>
+      {{ infos.phone }}
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon matListIcon>email</mat-icon>
+      {{ infos.email }}
+    </mat-list-item>
+    <mat-list-item>
+      <button
+        mat-raised-button
+        color="accent"
+        [chatLink]="['general', undefined]"
+      >
+        Zum persönlichen Chat
+      </button>
+    </mat-list-item>
+  </mat-list>
+</div>

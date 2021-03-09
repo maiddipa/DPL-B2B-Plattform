@@ -1,0 +1,120 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <ng-container *ngIf="data.unit">
+    <!-- breadcrumb -->
+    <div>
+      <dpl-customer-administration-breadcrumb
+        [unit]="data.unit"
+        [allUnits]="data.allUnits"
+      ></dpl-customer-administration-breadcrumb>
+    </div>
+    <mat-card>
+      <mat-card-content>
+        <!-- switch view on unit scope -->
+        <ng-container [ngSwitch]="data.unit.scope">
+          <!-- organization general -->
+          <ng-container *ngSwitchCase="scope.OrganizationGeneral">
+            <dpl-customer-administration-organization-general></dpl-customer-administration-organization-general>
+          </ng-container>
+          <!-- users -->
+          <ng-container *ngSwitchCase="scope.OrganizationUsers">
+            <dpl-customer-administration-content-users-grid>
+            </dpl-customer-administration-content-users-grid>
+          </ng-container>
+          <!-- organization customers -->
+          <ng-container *ngSwitchCase="scope.OrganizationCustomers">
+            <dpl-customer-administration-content-overview
+              [unit]="data.unit"
+              [childs]="getOrganizationCustomerUnits(data)"
+            ></dpl-customer-administration-content-overview>
+          </ng-container>
+          <!-- customer add -->
+          <ng-container *ngSwitchCase="scope.OrganizationCustomerAdd">
+            <dpl-customer-administration-customer-add></dpl-customer-administration-customer-add>
+          </ng-container>
+          <!-- customer general -->
+          <ng-container *ngSwitchCase="scope.CustomerGeneral">
+            <dpl-customer-administration-customer-general></dpl-customer-administration-customer-general>
+          </ng-container>
+          <ng-container *ngSwitchCase="scope.CustomerUsers">
+            <dpl-customer-administration-content-users-grid>
+            </dpl-customer-administration-content-users-grid>
+          </ng-container>
+          <!-- groups -->
+          <ng-container *ngSwitchCase="scope.OrganizationGroups">
+            <dpl-customer-administration-content-groups-grid></dpl-customer-administration-content-groups-grid>
+          </ng-container>
+          <ng-container *ngSwitchCase="scope.CustomerGroups">
+            <dpl-customer-administration-content-groups-grid></dpl-customer-administration-content-groups-grid>
+          </ng-container>
+          <ng-container *ngSwitchCase="scope.DivisionGroups">
+            <dpl-customer-administration-content-groups-grid></dpl-customer-administration-content-groups-grid>
+          </ng-container>
+          <!-- membership -->
+          <ng-container *ngSwitchCase="scope.OrganizationGroupMembership">
+            <dpl-customer-administration-membership-grid></dpl-customer-administration-membership-grid>
+          </ng-container>
+          <ng-container *ngSwitchCase="scope.CustomerGroupMembership">
+            <dpl-customer-administration-membership-grid></dpl-customer-administration-membership-grid>
+          </ng-container>
+          <ng-container *ngSwitchCase="scope.DivisionGroupMembership">
+            <dpl-customer-administration-membership-grid></dpl-customer-administration-membership-grid>
+          </ng-container>
+          <!-- number sequences -->
+          <ng-container *ngSwitchCase="scope.CustomerNumberSequences">
+            <dpl-customer-administration-number-sequences></dpl-customer-administration-number-sequences>
+          </ng-container>
+          <!-- document settings -->
+          <ng-container *ngSwitchCase="scope.CustomerDocumentSettings">
+            <dpl-customer-administration-document-settings></dpl-customer-administration-document-settings>
+          </ng-container>
+          <!-- customer posting accounts -->
+          <ng-container *ngSwitchCase="scope.CustomerPostingAccounts">
+            <dpl-customer-administration-posting-accounts></dpl-customer-administration-posting-accounts>
+          </ng-container>
+          <!-- division add -->
+          <ng-container *ngSwitchCase="scope.CustomerDivisionAdd">
+            <dpl-customer-administration-division-add></dpl-customer-administration-division-add>
+          </ng-container>
+          <!-- division general -->
+          <ng-container *ngSwitchCase="scope.DivisionGeneral">
+            <dpl-customer-administration-division-general></dpl-customer-administration-division-general>
+          </ng-container>
+          <!-- division document settings -->
+          <ng-container *ngSwitchCase="scope.DivisionDocumentSettings">
+            <dpl-customer-administration-division-document-settings></dpl-customer-administration-division-document-settings>
+          </ng-container>
+          <!-- loading location add -->
+          <ng-container *ngSwitchCase="scope.DivisionLoadingLocationAdd">
+            <dpl-customer-administration-loading-location-add></dpl-customer-administration-loading-location-add>
+          </ng-container>
+          <!-- loading location general -->
+          <ng-container *ngSwitchCase="scope.LoadingLocationGeneral">
+            <dpl-customer-administration-loading-location-general></dpl-customer-administration-loading-location-general>
+          </ng-container>
+          <!-- loading location business hours -->
+          <ng-container *ngSwitchCase="scope.LoadingLocationBusinessHours">
+            <dpl-customer-administration-loading-location-business-hours></dpl-customer-administration-loading-location-business-hours>
+          </ng-container>
+          <!-- loading location business hours exceptions -->
+          <ng-container
+            *ngSwitchCase="scope.LoadingLocationBusinessHoursExceptions"
+          >
+            <dpl-customer-administration-loading-location-business-hours-exceptions></dpl-customer-administration-loading-location-business-hours-exceptions>
+          </ng-container>
+          <!-- not implemented -->
+          <ng-container *ngSwitchDefault>
+            <ng-container *ngIf="data.childs?.length > 0; else other">
+              <!-- tab overview -->
+              <dpl-customer-administration-content-overview
+                [unit]="data.unit"
+                [childs]="data.childs"
+              ></dpl-customer-administration-content-overview>
+            </ng-container>
+            <ng-template #other>
+              <dpl-customer-administration-content-no-content></dpl-customer-administration-content-no-content>
+            </ng-template>
+          </ng-container>
+        </ng-container> </mat-card-content
+    ></mat-card>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,20 @@
+<!-- order transport type !== self -->
+<ng-container
+  *ngIf="
+    order.transportType !== transportType.Self &&
+    load.status === orderLoadStatus.TransportPlanned
+  "
+>
+  <button
+    mat-icon-button
+    (click)="onCreateReceipt(load)"
+    title="Beleg erstellen"
+  >
+    <mat-icon>receipt</mat-icon>
+  </button>
+</ng-container>
+<ng-container *ngIf="load.status === orderLoadStatus.Fulfilled">
+  <button mat-icon-button (click)="openDocument(load)" title="Beleg öffnen">
+    <mat-icon>remove_red_eye</mat-icon>
+  </button>
+</ng-container>

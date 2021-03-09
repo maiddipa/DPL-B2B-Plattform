@@ -1,0 +1,53 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <mat-card>
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="end">
+        <mat-form-field>
+          <mat-label i18n="ChooseAccountingRecordStatus|Label Status wählen@@ChooseAccountingRecordStatus"
+          >Status wählen</mat-label
+          >
+          <mat-select
+            [value]="selectedAccountingRecordStatus"
+            (selectionChange)="selectAccountingRecordStatus($event)"
+          >
+            <mat-option>Keine Auswahl</mat-option>
+            <mat-option
+              *ngFor="let status of accountingRecordStatusOptions"
+              [value]="status.value"
+            >
+              {{ status.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <dx-data-grid
+        id="gridContainer"
+        [dataSource]="data.dataSource"
+        [remoteOperations]="true"
+        [wordWrapEnabled]="true"
+        [showBorders]="true"
+        dateSerializationFormat="yyyy-MM-dd">
+        >
+        <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxi-column dataField="date" dataType="date" sortOrder="desc" [width]="150" caption="Datum" [editorOptions]="{ showClearButton: true }"></dxi-column>
+        <dxi-column dataField="type" dataType="string" [width]="100" caption="Typ" [editorOptions]="{ showClearButton: true }"></dxi-column>
+        <dxi-column dataField="referenceNumber" dataType="string" caption="Nummer" [editorOptions]="{ showClearButton: true }"></dxi-column>
+        <dxi-column dataField="status" dataType="string" [width]="150" [allowFiltering]="false" [allowSorting]="false"
+                    caption="Status"></dxi-column>
+        <dxi-column dataField="extDescription" dataType="string" [allowSorting]="false" caption="Beschreibung" [editorOptions]="{ showClearButton: true }"></dxi-column>
+        <dxi-column dataField="loadCarrierTypeName" dataType="string" [width]="150" caption="Ladungsträger" alignment="right" [allowFiltering]="false" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="qualityName" dataType="string" [width]="80" caption="Qualität" alignment="right" [editorOptions]="{ showClearButton: true }"></dxi-column>
+        <dxi-column dataField="charge" dataType="number" [width]="100" caption="Eingang" alignment="right" [editorOptions]="{ showClearButton: true }"></dxi-column>
+        <dxi-column dataField="credit" dataType="number" [width]="100" caption="Ausgang" alignment="right" [editorOptions]="{ showClearButton: true }"></dxi-column>
+        <dxi-column dataField="chat" cellTemplate="chatButtonTemplate" [width]="80" [allowFiltering]="false" [allowSorting]="false" caption=""></dxi-column>
+        <div *dxTemplate="let data of 'chatButtonTemplate'">
+          <dpl-chat-button
+            type="accounting-record"
+            [data]="data.data"
+          ></dpl-chat-button>
+        </div>
+      </dx-data-grid>
+    </mat-card-content>
+  </mat-card>
+</ng-container>

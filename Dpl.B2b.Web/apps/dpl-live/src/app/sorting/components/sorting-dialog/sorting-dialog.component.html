@@ -1,0 +1,24 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <div fxLayout="column" fxLayoutGap="10px">
+    <mat-toolbar color="primary">
+      <span mat-dialog-title>Sortierung</span>
+    </mat-toolbar>
+    <div mat-dialog-content>
+      <dpl-sorting-form
+        [sortInput]="data.sortInput"
+        [openedInDialog]="true"
+        [submitFromDialog]="submit$"
+        [resetFromDialog]="reset$"
+        (formValid)="formStatusChange($event)"
+        (formSubmitted)="formSubmitted($event)"
+      ></dpl-sorting-form>
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="end">
+      <button mat-raised-button (click)="close()">Abbrechen</button>
+      <button mat-raised-button (click)="reset()">Zurücksetzen</button>
+      <button mat-raised-button [disabled]="!formValid" (click)="submit()">
+        Abschließen
+      </button>
+    </div>
+  </div>
+</ng-container>

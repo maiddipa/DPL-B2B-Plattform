@@ -1,0 +1,38 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dpl-customer-administration-unit-search></dpl-customer-administration-unit-search>
+  <mat-tree [dataSource]="data.dataSource" [treeControl]="data.treeControl">
+    <!-- This is the tree node template for leaf nodes -->
+    <mat-tree-node
+      *matTreeNodeDef="let node"
+      matTreeNodePadding
+      matTreeNodePaddingIndent="20"
+    >
+      <!-- use a disabled button to provide padding for tree leaf -->
+      <button mat-icon-button disabled></button>
+      <dpl-customer-administration-node
+        [node]="node"
+      ></dpl-customer-administration-node>
+    </mat-tree-node>
+    <!-- This is the tree node template for expandable nodes -->
+    <mat-tree-node
+      *matTreeNodeDef="let node; when: hasChild"
+      matTreeNodePadding
+      matTreeNodePaddingIndent="20"
+    >
+      <button
+        mat-icon-button
+        matTreeNodeToggle
+        [attr.aria-label]="'Toggle ' + node.name"
+      >
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{
+            data.treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'
+          }}
+        </mat-icon>
+      </button>
+      <dpl-customer-administration-node
+        [node]="node"
+      ></dpl-customer-administration-node>
+    </mat-tree-node>
+  </mat-tree>
+</ng-container>

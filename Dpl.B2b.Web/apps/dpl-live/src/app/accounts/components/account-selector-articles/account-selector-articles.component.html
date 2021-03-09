@@ -1,0 +1,61 @@
+<ng-container *ngIf="viewData$ | async as data">
+      <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="end">
+        <div>
+          <mat-form-field>
+            <mat-label i18n="ChooseAccount|Label Konto wählen@@ChooseAccount"
+              >Konto wählen</mat-label
+            >
+            <mat-select
+              [value]="data.selectedAccountId"
+              (selectionChange)="selectAccount($event)"
+            >
+              <mat-option
+                *ngFor="let account of data.accounts"
+                [value]="account.id"
+              >
+                {{ account.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label i18n="SelectArticle|Label Artikel wählen@@SelectArticle"
+              >Artikel wählen</mat-label
+            >
+            <mat-select
+              [value]="data.selectedCarrierTypeId"
+              (selectionChange)="selectLoadCarrierType($event)"
+            >
+              <mat-option
+                *ngFor="let type of data.carrierTypeIds"
+                [value]="type"
+              >
+                {{ type | loadCarrier: 'type' }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- <mat-form-field>
+            <mat-label i18n="ChooseView|Label Ansicht wählen@@ChooseView"
+              >Ansicht wählen</mat-label
+            >
+            <mat-select
+              [value]="data.accountOverviewType"
+              (selectionChange)="selectAccountOverviewType($event)"
+            >
+              <mat-option
+                [value]="accountOverviewType.Record"
+              >
+                Buchung
+              </mat-option>
+              <mat-option
+                [value]="accountOverviewType.Request"
+                i18n="Inquiry|Label Anfrage@@Inquiry"
+              >
+                Anfrage
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+        </div>
+      </div>
+  </ng-container>

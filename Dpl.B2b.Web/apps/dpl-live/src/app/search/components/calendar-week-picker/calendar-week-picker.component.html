@@ -1,0 +1,17 @@
+<mat-form-field fxFlex>
+  <mat-select
+    [formControl]="form"
+    placeholder="KW"
+    i18n-placeholder="
+      calendarWeekPickerInput|Eingabe Bezeichnung Wochenkalenderauswahl
+      Control@@calendarWeekPickerInput"
+      [compareWith]="compareWith"
+  >
+    <mat-option
+      *ngFor="let startDate of calendarWeekOptions"
+      [value]="startDate"
+    >
+      {{ startDate | calendarWeek: 'range' }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

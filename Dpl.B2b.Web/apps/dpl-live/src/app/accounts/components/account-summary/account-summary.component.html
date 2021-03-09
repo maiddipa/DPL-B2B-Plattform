@@ -1,0 +1,85 @@
+<ng-container *ngIf="activeLoadCarrierType$ | async as loadCarrierType; else loadCarrierTypeNotSelected">
+
+<ng-container *ngIf="viewData$ | async as data; else Loading">
+  <mat-card *ngIf="balancesLoaded; else balancesLoading">
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+        <mat-list>
+          <mat-list-item><b>Salden</b>
+            <button mat-icon-button (click)="loadBalances(true)"
+                    aria-label="refresh balances"
+                    matTooltip="Salden aktualisieren"
+                    matTooltipPosition="right"
+            >
+            <mat-icon>refresh</mat-icon>
+          </button>
+<!--            (Negative Mengen entsprechen einer Paletten-Schuld gegenüber DPL)-->
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Saldo (aus bis dato abgestimmten Buchungen)</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Vorläufige Belastungen <span *ngIf="data?.postingRequestBalance?.provisionalCharge">({{data.postingRequestBalance.provisionalCharge | number}} noch in Übermittlung an DPL)</span></mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Vorläufige Gutschriften <span *ngIf="data?.postingRequestBalance?.provisionalCredit">({{data.postingRequestBalance.provisionalCredit | number}} noch in Übermittlung an DPL)</span></mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Unabgestimmte Belastungen</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Unabgestimmte Gutschriften</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Vorläufige Summe aller Buchungen</mat-list-item>
+        </mat-list>
+        <mat-list *ngFor="let balance of data.balances" >
+          <mat-list-item class="sec2" fxLayoutAlign="end"><b>{{balance.name}}</b></mat-list-item>
+          <mat-list-item class="sec2" fxLayoutAlign="end">{{balance.coordinatedBalance | number}}</mat-list-item>
+          <mat-list-item class="sec2" fxLayoutAlign="end">{{balance.provisionalCharge | number}}</mat-list-item>
+          <mat-list-item class="sec2" fxLayoutAlign="end">{{balance.provisionalCredit | number}}</mat-list-item>
+          <mat-list-item class="sec2" fxLayoutAlign="end">{{balance.uncoordinatedCharge | number}}</mat-list-item>
+          <mat-list-item class="sec2" fxLayoutAlign="end">{{balance.uncoordinatedCredit | number}}</mat-list-item>
+          <mat-list-item class="sec2" fxLayoutAlign="end">{{balance.coordinatedBalance + balance.provisionalCharge +balance.provisionalCredit + balance.uncoordinatedCharge + balance.uncoordinatedCredit | number}}</mat-list-item>
+        </mat-list>
+        <mat-list>
+          <mat-list-item class="sec3" fxLayoutAlign="end"><b i18n="Intakt|Label Intakt@@Intakt">Intakt</b></mat-list-item>
+          <mat-list-item class="sec3" fxLayoutAlign="end">{{data.intactBalance.coordinatedBalance | number}}</mat-list-item>
+          <mat-list-item class="sec3" fxLayoutAlign="end">{{data.intactBalance.provisionalCharge | number}}</mat-list-item>
+          <mat-list-item class="sec3" fxLayoutAlign="end">{{data.intactBalance.provisionalCredit | number}}</mat-list-item>
+          <mat-list-item class="sec3" fxLayoutAlign="end">{{data.intactBalance.uncoordinatedCharge | number}}</mat-list-item>
+          <mat-list-item class="sec3" fxLayoutAlign="end">{{data.intactBalance.uncoordinatedCredit | number}}</mat-list-item>
+          <mat-list-item class="sec3" fxLayoutAlign="end">{{data.intactBalance.coordinatedBalance + data.intactBalance.provisionalCharge +data.intactBalance.provisionalCredit + data.intactBalance.uncoordinatedCharge + data.intactBalance.uncoordinatedCredit | number}}</mat-list-item>
+        </mat-list>
+        <mat-list>
+          <mat-list-item class="sec4" fxLayoutAlign="end"><b i18n="Defect|Label Defekte@@Defect">Defekt</b></mat-list-item>
+          <mat-list-item class="sec4" fxLayoutAlign="end">{{data.defectBalance.coordinatedBalance | number}}</mat-list-item>
+          <mat-list-item class="sec4" fxLayoutAlign="end">{{data.defectBalance.provisionalCharge | number}}</mat-list-item>
+          <mat-list-item class="sec4" fxLayoutAlign="end">{{data.defectBalance.provisionalCredit | number}}</mat-list-item>
+          <mat-list-item class="sec4" fxLayoutAlign="end">{{data.defectBalance.uncoordinatedCharge | number}}</mat-list-item>
+          <mat-list-item class="sec4" fxLayoutAlign="end">{{data.defectBalance.uncoordinatedCredit | number}}</mat-list-item>
+          <mat-list-item class="sec4" fxLayoutAlign="end">{{data.defectBalance.coordinatedBalance + data.defectBalance.provisionalCharge +data.defectBalance.provisionalCredit + data.defectBalance.uncoordinatedCharge + data.defectBalance.uncoordinatedCredit | number}}</mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+
+</ng-container>
+<ng-template #loadCarrierTypeNotSelected>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-subtitle>Bitte wählen Sie einen Ladungsträger aus, um fortzufahren.</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card></ng-template>
+<ng-template #balancesLoading>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-subtitle>Ihre Salden werden gerade berechnet.</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</ng-template>
+<ng-template #Loading>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-subtitle *ngIf="!balancesLoaded">Ihre Konto wird geladen.</mat-card-subtitle>
+      <mat-card-subtitle *ngIf="balancesLoaded">Ihre Salden werden neu berechnet.</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</ng-template>
+

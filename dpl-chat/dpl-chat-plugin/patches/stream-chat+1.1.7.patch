@@ -1,0 +1,22 @@
+diff --git a/node_modules/stream-chat/types/stream-chat/index.d.ts b/node_modules/stream-chat/types/stream-chat/index.d.ts
+index 322eec0..08f7a07 100644
+--- a/node_modules/stream-chat/types/stream-chat/index.d.ts
++++ b/node_modules/stream-chat/types/stream-chat/index.d.ts
+@@ -176,7 +176,7 @@ export class StreamChat {
+   setAnonymousUser(): Promise<void>;
+   setGuestUser(user: User): Promise<void>;
+ 
+-  on(callbackOrString: string, callbackOrNothing?: any): { unsubsribe(): void };
++  on(callbackOrString: any, callbackOrNothing?: any): { unsubsribe(): void };
+   off(callbackOrString: string, callbackOrNothing?: any): void;
+ 
+   get(url: string, params: object): Promise<APIResponse>;
+@@ -211,7 +211,7 @@ export class StreamChat {
+   ): Promise<Channel[]>;
+   search(
+     filterConditions: object,
+-    query: object,
++    query: string,
+     options: object,
+   ): Promise<SearchAPIResponse>;
+ 

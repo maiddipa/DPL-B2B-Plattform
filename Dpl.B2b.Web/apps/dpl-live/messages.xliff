@@ -1,0 +1,3091 @@
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="de" target-language="de" original="ng2.template" datatype="plaintext">
+    <body>
+      <trans-unit id="Yes" datatype="html">
+        <source>Ja</source>
+        <target>Ja</target>
+      </trans-unit>
+      <trans-unit id="No" datatype="html">
+        <source>Nein</source>
+        <target>Nein</target>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationOrganizationFormGroupItemCaption" datatype="html">
+        <source>Organisation:</source>
+        <target>Organisation:</target>
+        <note priority="1" from="description">Item Gruppen Überschrift: Organisation:
+          </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationOrganizationFormAdressItemLabel" datatype="html">
+        <source>Adresse</source>
+        <target>Adresse</target>
+        <note priority="1" from="description">Item Label: Adresse
+              </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationOrganizationAddPopUpTitle" datatype="html">
+        <source>Organisation hinzufügen</source>
+        <target>Organisation hinzufügen</target>
+        <note priority="1" from="description">PopUp Titel: Organisation hinzufügen
+    </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationOrganizationGeneralDeleteButtonHint" datatype="html">
+        <source>Löschen der Organisation</source>
+        <target>Löschen der Organisation</target>
+        <note priority="1" from="description">Löschen Mouseover Button Text: Löschen der Organisation
+          </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationGeneralDeleteButtonText" datatype="html">
+        <source>Löschen</source>
+        <target>Löschen</target>
+        <note priority="1" from="description">Löschen Button Text:
+          Löschen</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridEditingAddRowHint" datatype="html">
+        <source>Hinzufügen einer Reihe</source>
+        <target>Hinzufügen einer Reihe</target>
+        <note priority="1" from="description">Icon Mouseover Text: Hinzufügen einer Reihe
+          </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridIDColumnTitel" datatype="html">
+        <source>ID</source>
+        <target>ID</target>
+        <note priority="1" from="description">Spaltenname für ID</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridUPNColumnTitel" datatype="html">
+        <source>UPN</source>
+        <target>UPN</target>
+        <note priority="1" from="description">Spaltenname für UPN</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridCreatedAtColumnTitel" datatype="html">
+        <source>Erstellt</source>
+        <target>Erstellt</target>
+        <note priority="1" from="description">Spaltenname für
+        Erstellt</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridChangeAtColumnTitel" datatype="html">
+        <source>Geändert</source>
+        <target>Geändert</target>
+        <note priority="1" from="description">Spaltenname für
+        Geändert</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridLockedColumnTitel" datatype="html">
+        <source>Gesperrt</source>
+        <target>Gesperrt</target>
+        <note priority="1" from="description">Spaltenname für
+        Gesperrt</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridFirstLoginDateColumnTitel" datatype="html">
+        <source>Erstes Login</source>
+        <target>Erstes Login</target>
+        <note priority="1" from="description">Spaltenname für Erstes
+        Login</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridLastLoginDateColumnTitel" datatype="html">
+        <source>Letztes Login</source>
+        <target>Letztes Login</target>
+        <note priority="1" from="description">Spaltenname für Letztes
+        Login</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridRoleColumnTitel" datatype="html">
+        <source>Rolle</source>
+        <target>Rolle</target>
+        <note priority="1" from="description">Spaltenname für
+        Rolle</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridGenderColumnTitel" datatype="html">
+        <source>Geschlecht</source>
+        <target>Geschlecht</target>
+        <note priority="1" from="description">Spaltenname für
+        Geschlecht</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridSalutationColumnTitel" datatype="html">
+        <source>Anrede</source>
+        <target>Anrede</target>
+        <note priority="1" from="description">Spaltenname für
+        Anrede</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridFirstNameColumnTitel" datatype="html">
+        <source>Vorname</source>
+        <target>Vorname</target>
+        <note priority="1" from="description">Spaltenname für
+        Vorname</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridLastNameColumnTitel" datatype="html">
+        <source>Nachname</source>
+        <target>Nachname</target>
+        <note priority="1" from="description">Spaltenname für
+        Nachname</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridEMailColumnTitel" datatype="html">
+        <source>E-Mail</source>
+        <target>E-Mail</target>
+        <note priority="1" from="description">Spaltenname für
+        E-Mail</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridPhoneNumberColumnTitel" datatype="html">
+        <source>Telefonnummer</source>
+        <target>Telefonnummer</target>
+        <note priority="1" from="description">Spaltenname für
+        Telefonnummer</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridMobileNumberColumnTitel" datatype="html">
+        <source>Mobilnummer</source>
+        <target>Mobilnummer</target>
+        <note priority="1" from="description">Spaltenname für
+        Mobilnummer</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridAddUserToCustomerPopUpTitel" datatype="html">
+        <source>Nutzer zum Kunden hinzufügen</source>
+        <target>Nutzer zum Kunden hinzufügen</target>
+        <note priority="1" from="description">Popup Titel:Nutzer zum Kunden
+      hinzufügen</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridInitialPasswordPopUpTitel" datatype="html">
+        <source>Passwort</source>
+        <target>Passwort</target>
+        <note priority="1" from="description">Popup
+      Titel:Passwort</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridLockIconTitel" datatype="html">
+        <source>Lock</source>
+        <target>Lock</target>
+        <note priority="1" from="description">Icon Mouseover:Speeren oder Entspeeren des
+              Users</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridRemoveFromCustomerIconTitel" datatype="html">
+        <source>Entfernen vom Kunden</source>
+        <target>Entfernen vom Kunden</target>
+        <note priority="1" from="description">Icon Mouseover:Entfernen vom
+              Kunden</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridResetPasswordIconTitel" datatype="html">
+        <source>Zurücksetzen des Passwords</source>
+        <target>Zurücksetzen des Passwords</target>
+        <note priority="1" from="description">Icon Mouseover:Zurücksetzen des
+              Passwort</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridAddUserToCustomerPopUpSaveButtonHint" datatype="html">
+        <source>User hinzufügen zum Kunden</source>
+        <target>User hinzufügen zum Kunden</target>
+        <note priority="1" from="description">Popup Speicher Button Mouseover:User hinzufügen zum
+                Kunden</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridAddUserToCustomerPopUpSaveButtonText" datatype="html">
+        <source>Speichern</source>
+        <target>Speichern</target>
+        <note priority="1" from="description">Popup Speicher Button
+                Mouseover:Speichern</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridAddUserToCustomerPopUpCloseButtonHint" datatype="html">
+        <source>Schließe das Fenster</source>
+        <target>Schließe das Fenster</target>
+        <note priority="1" from="description">Popup Abbrechen Button Mouseover:Schließe das
+                Fenster</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridAddUserToCustomerPopUpCloseButtonText" datatype="html">
+        <source>Abbrechen</source>
+        <target>Abbrechen</target>
+        <note priority="1" from="description">Popup Abbrechen Button
+                Mouseover:Abbrechen</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridInitialPasswordPopUpCloseButtonHint" datatype="html">
+        <source>Schließe das Fenster</source>
+        <target>Schließe das Fenster</target>
+        <note priority="1" from="description">Popup Schließen Button Mouseover:Schließe das
+                Fenster</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentUserGridInitialPasswordPopUpCloseButtonText" datatype="html">
+        <source>Schließen</source>
+        <target>Schließen</target>
+        <note priority="1" from="description">Popup Abbrechen Button
+                Mouseover:Schließen</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationCustomerFormGroupItemTitel" datatype="html">
+        <source>Kunde:</source>
+        <target>Kunde:</target>
+        <note priority="1" from="description">Item Gruppen Überschrift: Kunde:
+          </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationCustomerFormRefErpCustomerNumberItemLabelText" datatype="html">
+        <source>Ref Erp Kundennummer</source>
+        <target>Ref Erp Kundennummer</target>
+        <note priority="1" from="description">Ref Erp
+              Kundennummer</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationCustomerFormDefaultLanguageItemLabelText" datatype="html">
+        <source>Standard Sprache</source>
+        <target>Standard Sprache</target>
+        <note priority="1" from="description">Standard
+              Sprache</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationCustomerFormIsPoolingPartnerItemLabelText" datatype="html">
+        <source>Pooling Partner</source>
+        <target>Pooling Partner</target>
+        <note priority="1" from="description">Pooling
+              Partner</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationCustomerFormAddressItemLabelText" datatype="html">
+        <source>Adresse</source>
+        <target>Adresse</target>
+        <note priority="1" from="description">Adresse</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationCustomerFormPartnerItemLabelText" datatype="html">
+        <source>Partner</source>
+        <target>Partner</target>
+        <note priority="1" from="description">Partner</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationCustomerFormIsActiveItemLabelText" datatype="html">
+        <source>Aktiv</source>
+        <target>Aktiv</target>
+        <note priority="1" from="description">Aktiv</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationCustomerGeneralDeleteButtonHint" datatype="html">
+        <source>Löschen des Kundens</source>
+        <target>Löschen des Kundens</target>
+        <note priority="1" from="description">Löschen Mouseover Button Text: Löschen des
+          Kundens</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationCustomerGeneralDeleteButtonText" datatype="html">
+        <source>Löschen</source>
+        <target>Löschen</target>
+        <note priority="1" from="description">Löschen Button Text:
+          Löschen</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentGroupGridIsSystemGroupColumnTitel" datatype="html">
+        <source>Systemgruppe</source>
+        <target>Systemgruppe</target>
+        <note priority="1" from="description">Spaltenname für
+        Systemgruppe</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationContentGroupGridPermissionsColumnTitel" datatype="html">
+        <source>Berechtigungen</source>
+        <target>Berechtigungen</target>
+        <note priority="1" from="description">Spaltenname für
+        Berechtigungen</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationMembershipGridUserGroupColumnCaption" datatype="html">
+        <source>Gruppe</source>
+        <target>Gruppe</target>
+        <note priority="1" from="description">Spalten Überschrift: Gruppe
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationMembershipGridUsersColumnCaption" datatype="html">
+        <source>Mitglieder</source>
+        <target>Mitglieder</target>
+        <note priority="1" from="description">Spalten Überschrift: Mitglieder
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesDocumentTypeColumnCaption" datatype="html">
+        <source>Dokumententyp</source>
+        <target>Dokumententyp</target>
+        <note priority="1" from="description">Spalten Überschrift: Dokumententyp
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesDisplayNameColumnCaption" datatype="html">
+        <source>Anzeigename</source>
+        <target>Anzeigename</target>
+        <note priority="1" from="description">Spalten Überschrift: Anzeigename
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesCounterColumnCaption" datatype="html">
+        <source>Zähler</source>
+        <target>Zähler</target>
+        <note priority="1" from="description">Spalten Überschrift: Zähler
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesPrefixColumnCaption" datatype="html">
+        <source>Vorsilbe</source>
+        <target>Vorsilbe</target>
+        <note priority="1" from="description">Spalten Überschrift: Vorsilbe
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesSeparatorAfterPrefixColumnCaption" datatype="html">
+        <source>Trennzeichen nach Vorsilbe</source>
+        <target>Trennzeichen nach Vorsilbe</target>
+        <note priority="1" from="description">Spalten Überschrift: Trennzeichen nach Vorsilbe
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesCanAddDocumentTypeShortNameColumnCaption" datatype="html">
+        <source>Dokumentenkurznamen hinzufügbar</source>
+        <target>Dokumentenkurznamen hinzufügbar</target>
+        <note priority="1" from="description">Spalten Überschrift: Dokumentenkurznamen hinzufügbar
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesCanAddPaddingForCustomerNumberColumnCaption" datatype="html">
+        <source>Polsterung der Kundennummer hinzufügbar</source>
+        <target>Polsterung der Kundennummer hinzufügbar</target>
+        <note priority="1" from="description">Spalten Überschrift: Polsterung der Kundennummer hinzufügbar
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesPaddingLengthForCustomerNumberColumnCaption" datatype="html">
+        <source>Polsterung der Kundennummerlänge</source>
+        <target>Polsterung der Kundennummerlänge</target>
+        <note priority="1" from="description">Spalten Überschrift: Polsterung der Kundennummerlänge
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesPostfixForCustomerNumberColumnCaption" datatype="html">
+        <source>Postfix der Kundennummer</source>
+        <target>Postfix der Kundennummer</target>
+        <note priority="1" from="description">Spalten Überschrift: Postfix der Kundennummer
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesCanAddDivisionShortNameColumnCaption" datatype="html">
+        <source>Abteilungskurznamen hinzufügbar</source>
+        <target>Abteilungskurznamen hinzufügbar</target>
+        <note priority="1" from="description">Spalten Überschrift: Abteilungskurznamen hinzufügbar
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesPrefixForCounterColumnCaption" datatype="html">
+        <source>Zählervorzeichen</source>
+        <target>Zählervorzeichen</target>
+        <note priority="1" from="description">Spalten Überschrift: Zählervorzeichen
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesCanAddPaddingForCounterColumnCaption" datatype="html">
+        <source>Polsterung des Zählers hinzufügbar</source>
+        <target>Polsterung des Zählers hinzufügbar</target>
+        <note priority="1" from="description">Spalten Überschrift: Polsterung des Zählers hinzufügbar
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesPaddingLengthForCounterColumnCaption" datatype="html">
+        <source>Polsterung der Zählerlänge</source>
+        <target>Polsterung der Zählerlänge</target>
+        <note priority="1" from="description">Spalten Überschrift: Polsterung der Zählerlänge
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationNumberSequencesSeparatorColumnCaption" datatype="html">
+        <source>Trennzeichen</source>
+        <target>Trennzeichen</target>
+        <note priority="1" from="description">Spalten Überschrift: Trennzeichen
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDocumentSettingsDocumentTypeColumnTitel" datatype="html">
+        <source>Dokumententyp</source>
+        <target>Dokumententyp</target>
+        <note priority="1" from="description">Spaltenname für
+        Dokumententyp</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDocumentSettingsDocumentTypeRequiredValidationMessage" datatype="html">
+        <source>Dokumenttyp muss ausgewählt sein</source>
+        <target>Dokumenttyp muss ausgewählt sein</target>
+        <note priority="1" from="description">Fehlernachricht:Dokumenttyp muss ausgewählt
+          sein</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDocumentSettingsLoadCarrierTypeColumnTitel" datatype="html">
+        <source>Ladungsträger</source>
+        <target>Ladungsträger</target>
+        <note priority="1" from="description">Spaltenname für
+        Ladungsträger</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDocumentSettingsThresholdForWarningQuantityColumnTitel" datatype="html">
+        <source>Warn-Anzahl</source>
+        <target>Warn-Anzahl</target>
+        <note priority="1" from="description">Spaltenname für
+        Warn-Anzahl</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDocumentSettingsThresholdForWarningQuantityCustomValidationMessage" datatype="html">
+        <source>Ist höher als die Maximal-Anzahl</source>
+        <target>Ist höher als die Maximal-Anzahl</target>
+        <note priority="1" from="description">Fehlernachricht:Ist höher als die
+          Maximal-Anzahl</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDocumentSettingsMaxQuantityColumnTitel" datatype="html">
+        <source>Maximal-Anzahl</source>
+        <target>Maximal-Anzahl</target>
+        <note priority="1" from="description">Spaltenname für
+        Maximal-Anzahl</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDocumentSettingsMaxQuantityCustomValidationMessage" datatype="html">
+        <source>Ist niedriger als die Warn-Anzahl</source>
+        <target>Ist niedriger als die Warn-Anzahl</target>
+        <note priority="1" from="description">Fehlernachricht:Ist niedriger als die
+          Warn-Anzahl</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDocumentSettingsCancellationTimeSpanColumnTitel" datatype="html">
+        <source>Storno-Zeitspanne</source>
+        <target>Storno-Zeitspanne</target>
+        <note priority="1" from="description">Spaltenname für
+        Storno-Zeitspanne</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationPostingAccountsDisplayNameColumnCaption" datatype="html">
+        <source>Anzeigename</source>
+        <target>Anzeigename</target>
+        <note priority="1" from="description">Spalten Überschrift: Anzeigename
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationPostingAccountsRefLtmsAccountIdColumnCaption" datatype="html">
+        <source>Ref Ltms Konto</source>
+        <target>Ref Ltms Konto</target>
+        <note priority="1" from="description">Spalten Überschrift: Ref Ltms Konto
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationPostingAccountsAddressColumnCaption" datatype="html">
+        <source>Adresse</source>
+        <target>Adresse</target>
+        <note priority="1" from="description">Spalten Überschrift: Adresse
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDivisionFormItemGroupTitel" datatype="html">
+        <source>Abteilung:</source>
+        <target>Abteilung:</target>
+        <note priority="1" from="description">Item Gruppen Überschrift: Abteilung:
+            </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDivisionFormNameLabelText" datatype="html">
+        <source>Name</source>
+        <target>Name</target>
+        <note priority="1" from="description">Name</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDivisionFormShortNameLabelText" datatype="html">
+        <source>Kurzname</source>
+        <target>Kurzname</target>
+        <note priority="1" from="description">Kurzname</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDivisionFormPostingAccountLabelText" datatype="html">
+        <source>Buchungskonto</source>
+        <target>Buchungskonto</target>
+        <note priority="1" from="description">Buchungskonto</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDivisionFormDefaultLoadingLocationLabelText" datatype="html">
+        <source>Standard Ladestelle</source>
+        <target>Standard Ladestelle</target>
+        <note priority="1" from="description">Standard
+                Ladestelle</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDivisionGeneralDeleteButtonHint" datatype="html">
+        <source>Löschen der Abteilung</source>
+        <target>Löschen der Abteilung</target>
+        <note priority="1" from="description">Löschen Mouseover Button Text: Löschen der
+          Abteilung</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDivisionGeneralDeleteButtonText" datatype="html">
+        <source>Löschen</source>
+        <target>Löschen</target>
+        <note priority="1" from="description">Löschen Button Text:
+          Löschen</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDivisionDocumentSettingsDocumentTypeColumnTitel" datatype="html">
+        <source>Dokument</source>
+        <target>Dokument</target>
+        <note priority="1" from="description">Spaltenname für Dokument
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDivisionDocumentSettingsDocumentNumberSequenceColumnTitel" datatype="html">
+        <source>Nummernkreis</source>
+        <target>Nummernkreis</target>
+        <note priority="1" from="description">Spaltenname für Nummernkreis
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDivisionDocumentSettingsPrintCountMinColumnTitel" datatype="html">
+        <source>Minimale Druckanzahl</source>
+        <target>Minimale Druckanzahl</target>
+        <note priority="1" from="description">Spaltenname für Minimale Druckanzahl
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDivisionDocumentSettingsPrintCountMaxColumnTitel" datatype="html">
+        <source>Maximale Druckanzahl</source>
+        <target>Maximale Druckanzahl</target>
+        <note priority="1" from="description">Spaltenname für Maximale Druckanzahl
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDivisionDocumentSettingsDefaultPrintCountColumnTitel" datatype="html">
+        <source>Standard Druckanzahl</source>
+        <target>Standard Druckanzahl</target>
+        <note priority="1" from="description">Spaltenname für Standard Druckanzahl
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationDivisionDocumentSettingsOverrideColumnTitel" datatype="html">
+        <source>Überschreibbar</source>
+        <target>Überschreibbar</target>
+        <note priority="1" from="description">Spaltenname für Überschreibbar
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationFormGroupItemCaption" datatype="html">
+        <source>Ladestelle:</source>
+        <target>Ladestelle:</target>
+        <note priority="1" from="description">Item Gruppen Überschrift: Ladestelle:
+            </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationFormAdressItemLabel" datatype="html">
+        <source>Adresse</source>
+        <target>Adresse</target>
+        <note priority="1" from="description">Label: Adresse
+                </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationFormPartnerItemLabel" datatype="html">
+        <source>Partner</source>
+        <target>Partner</target>
+        <note priority="1" from="description">Label: Partner
+                </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationFormCustomerPartnerItemLabel" datatype="html">
+        <source>Kundenpartner</source>
+        <target>Kundenpartner</target>
+        <note priority="1" from="description">Label: Kundenpartner
+                </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationFormStackMinHeightItemLabel" datatype="html">
+        <source>Minimale Stapelhöhe</source>
+        <target>Minimale Stapelhöhe</target>
+        <note priority="1" from="description">Label: Minimale Stapelhöhe
+                </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationFormStackMinHeightItemCustomValidationMessage" datatype="html">
+        <source>Minimale Stapelhöhe muss kleiner sein als die Maximale Stapelhöhe</source>
+        <target>Minimale Stapelhöhe muss kleiner sein als die Maximale Stapelhöhe</target>
+        <note priority="1" from="description">Validation Nachricht: Minimale Stapelhöhe muss kleiner sein als
+                die Maximale Stapelhöhe
+                </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationFormStackMaxHeightItemLabel" datatype="html">
+        <source>Maximale Stapelhöhe</source>
+        <target>Maximale Stapelhöhe</target>
+        <note priority="1" from="description">Label: Maximale Stapelhöhe
+                </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationFormStackMaxHeightItemCustomValidationMessage" datatype="html">
+        <source>Maximale Stapelhöhe muss größer sein als die Minimale Stapelhöhe</source>
+        <target>Maximale Stapelhöhe muss größer sein als die Minimale Stapelhöhe</target>
+        <note priority="1" from="description">Validation Nachricht: Maximale Stapelhöhe muss größer sein als
+                die Minimale Stapelhöhe
+                </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationFormSupportsPartialMatchingItemLabel" datatype="html">
+        <source>Unterstützt Teilladungen</source>
+        <target>Unterstützt Teilladungen</target>
+        <note priority="1" from="description">Label: Unterstützt Teilladungen
+                </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationFormSupportsRearLoadingItemLabel" datatype="html">
+        <source>Unterstützt Heckbeladung</source>
+        <target>Unterstützt Heckbeladung</target>
+        <note priority="1" from="description">Label: Unterstützt Heckbeladung
+                </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationFormSupportsSideLoadingItemLabel" datatype="html">
+        <source>Unterstützt Seitenbeladung</source>
+        <target>Unterstützt Seitenbeladung</target>
+        <note priority="1" from="description">Label: Unterstützt Seitenbeladung
+                </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationFormSupportsJumboVehiclesItemLabel" datatype="html">
+        <source>Unterstützt Jumbo Fahrzeuge</source>
+        <target>Unterstützt Jumbo Fahrzeuge</target>
+        <note priority="1" from="description">Label: Unterstützt Jumbo Fahrzeuge
+                </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationGeneralDeleteButtonHint" datatype="html">
+        <source>Löschen der Ladestelle</source>
+        <target>Löschen der Ladestelle</target>
+        <note priority="1" from="description">Löschen Mouseover Button Text: Löschen der
+          Ladestelle</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursDayOfWeekColumnTitel" datatype="html">
+        <source>Wochentag</source>
+        <target>Wochentag</target>
+        <note priority="1" from="description">Spaltenname für
+        Wochentage</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursFromTimeColumnTitel" datatype="html">
+        <source>Öffungszeiten (von)</source>
+        <target>Öffungszeiten (von)</target>
+        <note priority="1" from="description">Spaltenname für Öffnungszeiten
+        (von)</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursFromTimeCustomValidationMessage" datatype="html">
+        <source>Öffnungszeit (von) muss kleiner sein als die Öffnungszeit (bis)</source>
+        <target>Öffnungszeit (von) muss kleiner sein als die Öffnungszeit (bis)</target>
+        <note priority="1" from="description">Fehlernachricht für Öffnungszeiten (von): Öffnungszeit (von) muss
+          kleiner sein als die Öffnungszeit
+          (bis)</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursToTimeColumnTitel" datatype="html">
+        <source>Öffungszeiten (bis)</source>
+        <target>Öffungszeiten (bis)</target>
+        <note priority="1" from="description">Spaltenname für Öffnungszeiten
+        (bis)</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursToTimeCustomValidationMessage" datatype="html">
+        <source>Öffnungszeit (bis) muss größer sein als die Öffnungszeit (von)</source>
+        <target>Öffnungszeit (bis) muss größer sein als die Öffnungszeit (von)</target>
+        <note priority="1" from="description">Fehlernachricht für Öffnungszeiten (bis): Öffnungszeit (bis) muss
+          größer sein als die Öffnungszeit
+          (von)</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursDuplicatePopUpTitle" datatype="html">
+        <source>Anpassen der Duplizierung</source>
+        <target>Anpassen der Duplizierung</target>
+        <note priority="1" from="description">Popup Titel: Anpassen der Duplizierung
+        </note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursDuplicateIconTitle" datatype="html">
+        <source>Duplizieren der Öffnungszeiten</source>
+        <target>Duplizieren der Öffnungszeiten</target>
+        <note priority="1" from="description">Duplizieren der Öffnungszeiten, Mouseover
+              Informationstext</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursFromTimePopUpCustomValidationMessage" datatype="html">
+        <source>Öffnungszeit (von) muss kleiner sein als die Öffnungszeit (bis)</source>
+        <target>Öffnungszeit (von) muss kleiner sein als die Öffnungszeit (bis)</target>
+        <note priority="1" from="description">Fehlernachricht für Öffnungszeiten (von): Öffnungszeit (von)
+                  muss kleiner sein als die Öffnungszeit
+                  (bis)</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursToTimePopUpCustomValidationMessage" datatype="html">
+        <source>Öffnungszeit (bis) muss größer sein als die Öffnungszeit (von)</source>
+        <target>Öffnungszeit (bis) muss größer sein als die Öffnungszeit (von)</target>
+        <note priority="1" from="description">Fehlernachricht für Öffnungszeiten (bis): Öffnungszeit (bis)
+                  muss größer sein als die Öffnungszeit
+                  (von)</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursPopUpSaveButtonHint" datatype="html">
+        <source>Speichern der angepassten Duplizierung</source>
+        <target>Speichern der angepassten Duplizierung</target>
+        <note priority="1" from="description">Mouseover Button PopUp Text: Speichern der angepassten
+                  Duplizierung</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursPopUpSaveButtonText" datatype="html">
+        <source>Speichern</source>
+        <target>Speichern</target>
+        <note priority="1" from="description">PopUp Speichern Button Text:
+                  Speichern</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursPopUpCloseButtonHint" datatype="html">
+        <source>Schließe das Fenster</source>
+        <target>Schließe das Fenster</target>
+        <note priority="1" from="description">Mouseover Button PopUp Text: Schließe das
+                  Fenster</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursPopUpCloseButtonText" datatype="html">
+        <source>Abbrechen</source>
+        <target>Abbrechen</target>
+        <note priority="1" from="description">PopUp Schließen Button Text:
+                  Abbrechen</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursExceptionsTypeColumnTitel" datatype="html">
+        <source>Öffnungszustand</source>
+        <target>Öffnungszustand</target>
+        <note priority="1" from="description">Spaltenname für
+        Öffnungszustand</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursExceptionsFromDateTimeColumnTitel" datatype="html">
+        <source>Von</source>
+        <target>Von</target>
+        <note priority="1" from="description">Spaltenname für
+        Von</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursExceptionsFromDateTimeCustomValidationMessage" datatype="html">
+        <source>Das Datum (von) muss kleiner sein als das Datum (bis)</source>
+        <target>Das Datum (von) muss kleiner sein als das Datum (bis)</target>
+        <note priority="1" from="description">Fehlernachricht für Von Datum: Das Datum (von) muss kleiner sein als
+          das Datum
+          (bis)</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursExceptionsToDateTimeColumnTitel" datatype="html">
+        <source>Bis</source>
+        <target>Bis</target>
+        <note priority="1" from="description">Spaltenname für
+        Bis</note>
+      </trans-unit>
+      <trans-unit id="CustomerAdministrationLoadingLocationBusinessHoursExceptionsToDateTimeCustomValidationMessage" datatype="html">
+        <source>Das Datum (bis) muss größer sein als das Datum (von)</source>
+        <target>Das Datum (bis) muss größer sein als das Datum (von)</target>
+        <note priority="1" from="description">Fehlernachricht für Bis Datum: Das Datum (bis) muss größer sein als
+          das Datum
+          (von)</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptInstructions" datatype="html">
+        <source>Reihenfolge beachten!</source>
+        <target>Reihenfolge beachten!</target>
+        <note priority="1" from="description">LoadCarrierReceipt Instructions</note>
+        <note priority="1" from="meaning">LoadCarrierReceiptInstructions</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptPickupActionLabel" datatype="html">
+        <source>Ausgabe-Quittung erstellen</source>
+        <target>Ausgabe-Quittung erstellen</target>
+        <note priority="1" from="description">Action Label
+            pickup</note>
+        <note priority="1" from="meaning">LoadCarrierReceiptPickupActionLabel</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptActionDeliveryLabel" datatype="html">
+        <source>Annahme-Quittung erstellen</source>
+        <target>Annahme-Quittung erstellen</target>
+        <note priority="1" from="description">Action Label delivery
+            </note>
+        <note priority="1" from="meaning">LoadCarrierReceiptActionDeliveryLabel</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptActionExchangeLabel" datatype="html">
+        <source>Tausch-Quittung erstellen</source>
+        <target>Tausch-Quittung erstellen</target>
+        <note priority="1" from="description">Action Label
+            exchange</note>
+        <note priority="1" from="meaning">LoadCarrierReceiptActionExchangeLabel</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptActionDefaultLabel" datatype="html">
+        <source>Quittung erstellen</source>
+        <target>Quittung erstellen</target>
+        <note priority="1" from="description">Action Label
+            Default</note>
+        <note priority="1" from="meaning">LoadCarrierReceiptActionDefaultLabel</note>
+      </trans-unit>
+      <trans-unit id="MoreInformation" datatype="html">
+        <source>Weitere Angaben<x id="START_TAG_STRONG"/> *<x id="CLOSE_TAG_STRONG"/></source>
+        <target>Weitere Angaben<x id="START_TAG_STRONG"/> *<x id="CLOSE_TAG_STRONG"/></target>
+        <note priority="1" from="description">Label Weitere Angaben</note>
+        <note priority="1" from="meaning">MoreInformation</note>
+      </trans-unit>
+      <trans-unit id="DocumentSubmitted" datatype="html">
+        <source>Dokument vorgelegt</source>
+        <target>Dokument vorgelegt</target>
+        <note priority="1" from="description">Label Dokument
+                        vorgelegt</note>
+        <note priority="1" from="meaning">DocumentSubmitted</note>
+      </trans-unit>
+      <trans-unit id="DeliveryReceiptNumber" datatype="html">
+        <source>Lieferscheinnummer</source>
+        <target>Lieferscheinnummer</target>
+        <note priority="1" from="description">Label
+                        Lieferscheinnumer</note>
+        <note priority="1" from="meaning">DeliveryReceiptNumber</note>
+      </trans-unit>
+      <trans-unit id="Nein" datatype="html">
+        <source>Nein</source>
+        <target>Nein</target>
+        <note priority="1" from="description">Label No</note>
+        <note priority="1" from="meaning">No</note>
+      </trans-unit>
+      <trans-unit id="PickupSlipNumber" datatype="html">
+        <source>Abholscheinnummer</source>
+        <target>Abholscheinnummer</target>
+        <note priority="1" from="description">Label
+                        Abholscheinnumer</note>
+        <note priority="1" from="meaning">PickupSlipNumber</note>
+      </trans-unit>
+      <trans-unit id="OtherNo" datatype="html">
+        <source>Sonstige-Nr</source>
+        <target>Sonstige-Nr</target>
+        <note priority="1" from="description">Label Sonstige-Nr</note>
+        <note priority="1" from="meaning">OtherNo</note>
+      </trans-unit>
+      <trans-unit id="ErrorMustBeGreaterZero" datatype="html">
+        <source> Der Wert muss größer 0 sein </source>
+        <target> Der Wert muss größer 0 sein </target>
+        <note priority="1" from="description">Fehler Wert muss größer 0
+                      sein</note>
+        <note priority="1" from="meaning">ErrorMustbeGreaterZero</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptFormInstructionsHeader" datatype="html">
+        <source> Zu beachten bei Abwicklung: (Info von DPL)</source>
+        <target> Zu beachten bei Abwicklung: (Info von DPL)</target>
+        <note priority="1" from="description">Instruction
+                  Header</note>
+        <note priority="1" from="meaning">LoadCarrierReceiptFormInstructionsHeader</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptFormNoteHeader" datatype="html">
+        <source> Interner Kommentar an DPL</source>
+        <target> Interner Kommentar an DPL</target>
+        <note priority="1" from="description">Bemerkung Überschrift
+                  Interner Kommentar</note>
+        <note priority="1" from="meaning">LoadCarrierReceiptFormNoteHeader</note>
+      </trans-unit>
+      <trans-unit id="DocumentRecipients" datatype="html">
+        <source>Belegempfänger</source>
+        <target>Belegempfänger</target>
+        <note priority="1" from="description">Label Belegempfänger</note>
+        <note priority="1" from="meaning">DocumentRecipients</note>
+      </trans-unit>
+      <trans-unit id="ResetForm" datatype="html">
+        <source> Verwerfen </source>
+        <target> Verwerfen </target>
+        <note priority="1" from="description">Label um Formular zurückzusetzten</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierPrintReceipt" datatype="html">
+        <source> Quittung drucken </source>
+        <target> Quittung drucken </target>
+        <note priority="1" from="description">Label Name Button Ladungsträger Quittung
+                drucken</note>
+        <note priority="1" from="meaning">PrintLoadCarrierReceipt</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptDepoPresetPickerLabel" datatype="html">
+        <source>Szenario</source>
+        <target>Szenario</target>
+        <note priority="1" from="description">Label
+                Buchungskonto</note>
+        <note priority="1" from="meaning">BookingAccount</note>
+      </trans-unit>
+      <trans-unit id="PlanedDate" datatype="html">
+        <source>Geplantes Datum</source>
+        <target>Geplantes Datum</target>
+        <note priority="1" from="description">Label Geplantes Datum</note>
+        <note priority="1" from="meaning">PlanedDate</note>
+      </trans-unit>
+      <trans-unit id="BookingAccount" datatype="html">
+        <source>Zielkonto</source>
+        <target>Zielkonto</target>
+        <note priority="1" from="description">Label Buchungskonto</note>
+        <note priority="1" from="meaning">BookingAccount</note>
+      </trans-unit>
+      <trans-unit id="MaxLength" datatype="html">
+        <source>Die Eingabe ist zu lang</source>
+        <target>Die Eingabe ist zu lang</target>
+        <note priority="1" from="description">Label Pflichtfeld</note>
+        <note priority="1" from="meaning">MaxLength</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptDeliveryShipperTitle" datatype="html">
+        <source>Anliefernde Firma</source>
+        <target>Anliefernde Firma</target>
+        <note priority="1" from="description">Label Spediteur wenn
+                Anliefernd</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptPickupShipperTitle" datatype="html">
+        <source>Abholende Firma</source>
+        <target>Abholende Firma</target>
+        <note priority="1" from="description">Label Spediteur wenn
+                Abholend</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptExchangeShipperTitle" datatype="html">
+        <source>Anliefernde/Abholende Firma</source>
+        <target>Anliefernde/Abholende Firma</target>
+        <note priority="1" from="description">Label Spediteur wenn Anliefernd +
+                Abholend</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptDeliveryConfirmationDialogTitle" datatype="html">
+        <source>Annahme-Quittung erstellen</source>
+        <target>Annahme-Quittung erstellen</target>
+        <note priority="1" from="description">Titel für Dialog zur Bestätigung von Annahme-Quittung</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptPickupConfirmationDialogTitle" datatype="html">
+        <source>Ausgabe-Quittung erstellen</source>
+        <target>Ausgabe-Quittung erstellen</target>
+        <note priority="1" from="description">Titel für Dialog zur Bestätigung von Ausgabe-Quittung</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierReceiptExchangeConfirmationDialogTitle" datatype="html">
+        <source>Tausch-Quittung erstellen</source>
+        <target>Tausch-Quittung erstellen</target>
+        <note priority="1" from="description">Titel für Dialog zur Bestätigung von Tausch-Quittung</note>
+      </trans-unit>
+      <trans-unit id="NumberOfLoads" datatype="html">
+        <source>Anzahl Ladungen</source>
+        <target>Anzahl Ladungen</target>
+        <note priority="1" from="description">Label Anzahl Ladungen</note>
+        <note priority="1" from="meaning">NumberOfLoads</note>
+      </trans-unit>
+      <trans-unit id="availabilityFixDatesCharges" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {0 Ladungen} =1 {1 Ladung} other {{INTERPOLATION} Ladungen}}</source>
+        <target>{VAR_PLURAL, plural, =0 {0 Ladungen} =1 {1 Ladung} other {{INTERPOLATION} Ladungen}}</target>
+        <note priority="1" from="description">Verfügarkeit
+          Ladungen</note>
+        <note priority="1" from="meaning">availabilityFixDatesCharges</note>
+      </trans-unit>
+      <trans-unit id="Charges" datatype="html">
+        <source>Ladungen</source>
+        <target>Ladungen</target>
+        <note priority="1" from="description">Label Ladungen</note>
+        <note priority="1" from="meaning">Charges</note>
+      </trans-unit>
+      <trans-unit id="Appointment" datatype="html">
+        <source>Terminplanung</source>
+        <target>Terminplanung</target>
+        <note priority="1" from="description">Label Termin</note>
+        <note priority="1" from="meaning">Appointment</note>
+      </trans-unit>
+      <trans-unit id="LiabilitiesOfTimeWindow" datatype="html">
+        <source> verbindl. Zeitfenster </source>
+        <target> verbindl. Zeitfenster </target>
+        <note priority="1" from="description">Label verbindl.
+                Zeitfenster</note>
+        <note priority="1" from="meaning">LiabilitiesOfTimeWindow</note>
+      </trans-unit>
+      <trans-unit id="FixedDate" datatype="html">
+        <source> Fixtermin </source>
+        <target> Fixtermin </target>
+        <note priority="1" from="description">Label Fixtermin</note>
+        <note priority="1" from="meaning">FixedDate</note>
+      </trans-unit>
+      <trans-unit id="availabilityRowCardTitle" datatype="html">
+        <source>Ladungsträger </source>
+        <target>Ladungsträger </target>
+        <note priority="1" from="description">Verfügbarkeiten Zeile Card
+                Title</note>
+        <note priority="1" from="meaning">availabilityRowCardTitle</note>
+      </trans-unit>
+      <trans-unit id="AvailabilityRowLoadCarrierQuantityRange" datatype="html">
+        <source>Menge LT pro Ladung</source>
+        <target>Menge LT pro Ladung</target>
+        <note priority="1" from="description">Amount per
+                  Charge</note>
+        <note priority="1" from="meaning">AvailabilityRowLoadCarrierQuantityRange</note>
+      </trans-unit>
+      <trans-unit id="AvailabilityRowNumberOfStacks" datatype="html">
+        <source>Stellplätze</source>
+        <target>Stellplätze</target>
+        <note priority="1" from="description">Eingabe Bezeichnung
+                    Stellplätze</note>
+        <note priority="1" from="meaning">AvailabilityRowNumberOfStacks</note>
+      </trans-unit>
+      <trans-unit id="AvailabilityRowQuantityPerEur" datatype="html">
+        <source>Stapel pro Stellplatz</source>
+        <target>Stapel pro Stellplatz</target>
+        <note priority="1" from="description">Eingabe Bezeichnung Stapel pro
+                    Stellplatz</note>
+        <note priority="1" from="meaning">AvailabilityRowQuantityPerEur</note>
+      </trans-unit>
+      <trans-unit id="VehiclePallet" datatype="html">
+        <source>Träger-Palette</source>
+        <target>Träger-Palette</target>
+        <note priority="1" from="description">Label Träger-Palette</note>
+        <note priority="1" from="meaning">VehiclePallet</note>
+      </trans-unit>
+      <trans-unit id="MinValidation" datatype="html">
+        <source>Die Eingabe ist zu klein</source>
+        <target>Die Eingabe ist zu klein</target>
+        <note priority="1" from="description">Der Wert ist du klein</note>
+        <note priority="1" from="meaning">MinValidation</note>
+      </trans-unit>
+      <trans-unit id="MaxValidation" datatype="html">
+        <source>Die Eingabe ist zu groß</source>
+        <target>Die Eingabe ist zu groß</target>
+        <note priority="1" from="description">Der Wert ist du groß</note>
+        <note priority="1" from="meaning">MaxValidation</note>
+      </trans-unit>
+      <trans-unit id="BaseLoadCarrierLabelNone" datatype="html">
+        <source> Keine </source>
+        <target> Keine </target>
+        <note priority="1" from="description">Dropdown options label wenn keine Trägerpalette verwendet
+                    werden soll</note>
+      </trans-unit>
+      <trans-unit id="availabilitiesToolbarLabel" datatype="html">
+        <source>Verfügbarkeiten melden</source>
+        <target>Verfügbarkeiten melden</target>
+        <note priority="1" from="description">Verfügbarkeiten Beschriftung
+        Symbolleiste</note>
+        <note priority="1" from="meaning">availabilitiesToolbarLabel</note>
+      </trans-unit>
+      <trans-unit id="availabilitiesInputPlaceholderNumber" datatype="html">
+        <source>Verf. Melde Nr.</source>
+        <target>Verf. Melde Nr.</target>
+        <note priority="1" from="description">Verfügbarkeiten
+                          Eingabe
+                          Beschriftung</note>
+        <note priority="1" from="meaning">availabilitiesInputPlaceholderNumber</note>
+      </trans-unit>
+      <trans-unit id="availabilitiesInputPlaceholderTimeOfNotification" datatype="html">
+        <source>Meldezeitpunkt</source>
+        <target>Meldezeitpunkt</target>
+        <note priority="1" from="description">Verfügbarkeiten
+                          Eingabe
+                          Meldezeitpunkt</note>
+        <note priority="1" from="meaning">availabilitiesInputPlaceholderTimeOfNotification</note>
+      </trans-unit>
+      <trans-unit id="availabilitiesInputPlaceholderOrderNumber" datatype="html">
+        <source>Ihre Auftragsnummer</source>
+        <target>Ihre Auftragsnummer</target>
+        <note priority="1" from="description">Verfügbarkeiten
+                          Eingabe
+                          Auftragsnummer</note>
+        <note priority="1" from="meaning">availabilitiesInputPlaceholderOrderNumber</note>
+      </trans-unit>
+      <trans-unit id="LoadingStation" datatype="html">
+        <source>Ladestelle</source>
+        <target>Ladestelle</target>
+        <note priority="1" from="description">Label Ladestelle</note>
+        <note priority="1" from="meaning">LoadingStation</note>
+      </trans-unit>
+      <trans-unit id="SelectLoadingPoint" datatype="html">
+        <source>Ladestelle auswählen</source>
+        <target>Ladestelle auswählen</target>
+        <note priority="1" from="description">Label Ladestelle
+                          auswählen</note>
+        <note priority="1" from="meaning">labelSelectLoadingPoint</note>
+      </trans-unit>
+      <trans-unit id="Country" datatype="html">
+        <source>Land</source>
+        <target>Land</target>
+        <note priority="1" from="description">Label Land</note>
+        <note priority="1" from="meaning">Country</note>
+      </trans-unit>
+      <trans-unit id="PostalCode" datatype="html">
+        <source>PLZ</source>
+        <target>PLZ</target>
+        <note priority="1" from="description">Label PLZ</note>
+        <note priority="1" from="meaning">PostalCode</note>
+      </trans-unit>
+      <trans-unit id="Location" datatype="html">
+        <source>Ort</source>
+        <target>Ort</target>
+        <note priority="1" from="description">Label Ort</note>
+        <note priority="1" from="meaning">Location</note>
+      </trans-unit>
+      <trans-unit id="Salutation" datatype="html">
+        <source>Anrede</source>
+        <target>Anrede</target>
+        <note priority="1" from="description">Label Anrede</note>
+        <note priority="1" from="meaning">Salutation</note>
+      </trans-unit>
+      <trans-unit id="AvailabilitiesNamePlaceholder" datatype="html">
+        <source>Nachname (Ansprechpartner)</source>
+        <target>Nachname (Ansprechpartner)</target>
+        <note priority="1" from="description">Verfügbarkeiten
+                          Bezeichnung Eingabe
+                          Name</note>
+        <note priority="1" from="meaning">AvailabilitiesNamePlaceholder</note>
+      </trans-unit>
+      <trans-unit id="ChargingOpeningTimes" datatype="html">
+        <source>Ihre Lade-Öffnungszeiten</source>
+        <target>Ihre Lade-Öffnungszeiten</target>
+        <note priority="1" from="description">Label
+                    Lade-Öffnungszeiten</note>
+        <note priority="1" from="meaning">ChargingOpeningTimes</note>
+      </trans-unit>
+      <trans-unit id="LoadingVariants" datatype="html">
+        <source>Ihre Verladevarianten</source>
+        <target>Ihre Verladevarianten</target>
+        <note priority="1" from="description">Label Verladevarianten</note>
+        <note priority="1" from="meaning">LoadingVariants</note>
+      </trans-unit>
+      <trans-unit id="LoadingSideways" datatype="html">
+        <source> Seitenbeladung </source>
+        <target> Seitenbeladung </target>
+        <note priority="1" from="description">Label
+                            Seitenbeladung</note>
+        <note priority="1" from="meaning">LoadingSideways</note>
+      </trans-unit>
+      <trans-unit id="LoadingFromBehind" datatype="html">
+        <source> Heckbeladung </source>
+        <target> Heckbeladung </target>
+        <note priority="1" from="description">Label
+                            Heckbeladung</note>
+        <note priority="1" from="meaning">LoadingFromBehind</note>
+      </trans-unit>
+      <trans-unit id="LoadingJumboLoading" datatype="html">
+        <source> Jumbobeladung </source>
+        <target> Jumbobeladung </target>
+        <note priority="1" from="description">Label
+                            Jumbobeladung</note>
+        <note priority="1" from="meaning">LoadingJumboLoading</note>
+      </trans-unit>
+      <trans-unit id="ClearAvailability" datatype="html">
+        <source>Verfügbarkeit löschen</source>
+        <target>Verfügbarkeit löschen</target>
+        <note priority="1" from="description">Label Verfügbarkeit
+                  löschen</note>
+        <note priority="1" from="meaning">ClearAvailability</note>
+      </trans-unit>
+      <trans-unit id="GenerateAvailabilities" datatype="html">
+        <source>Verfügbarkeiten generieren (<x id="INTERPOLATION"/>)</source>
+        <target>Verfügbarkeiten generieren (<x id="INTERPOLATION"/>)</target>
+        <note priority="1" from="description">Label Verfügbarkeiten
+          generieren</note>
+        <note priority="1" from="meaning">GenerateAvailabilities</note>
+      </trans-unit>
+      <trans-unit id="ReportRequirement" datatype="html">
+        <source>Bedarf melden</source>
+        <target>Bedarf melden</target>
+        <note priority="1" from="description">Label Bedarf melden</note>
+        <note priority="1" from="meaning">ReportRequirement</note>
+      </trans-unit>
+      <trans-unit id="NeedsRepNrInput" datatype="html">
+        <source>Bed. Melde Nr.</source>
+        <target>Bed. Melde Nr.</target>
+        <note priority="1" from="description">Eingabe Bezeichung Bed Melde
+                        Nr</note>
+        <note priority="1" from="meaning">NeedsRepNrInput</note>
+      </trans-unit>
+      <trans-unit id="NeedsTimeOfNotificationInput" datatype="html">
+        <source>Meldezeitpunkt</source>
+        <target>Meldezeitpunkt</target>
+        <note priority="1" from="description">Eingabe Bezeichnung
+                        Meldezeitpunkt</note>
+        <note priority="1" from="meaning">NeedsTimeOfNotificationInput</note>
+      </trans-unit>
+      <trans-unit id="NeedsOrderNumberInput" datatype="html">
+        <source>Ihre Auftragsnummer</source>
+        <target>Ihre Auftragsnummer</target>
+        <note priority="1" from="description">Eingabe Bezeichung Ihre
+                        Auftragsnummer</note>
+        <note priority="1" from="meaning">NeedsOrderNumberInput</note>
+      </trans-unit>
+      <trans-unit id="UnLoadingStation" datatype="html">
+        <source>Entladestelle</source>
+        <target>Entladestelle</target>
+        <note priority="1" from="description">Label Entladestelle</note>
+        <note priority="1" from="meaning">UnLoadingStation</note>
+      </trans-unit>
+      <trans-unit id="needsLoadingStationHint" datatype="html">
+        <source> Ladestelle auswählen</source>
+        <target> Ladestelle auswählen</target>
+        <note priority="1" from="description">Hint Ladestelle
+                        auswählen</note>
+        <note priority="1" from="meaning">needsLoadingStationHint</note>
+      </trans-unit>
+      <trans-unit id="UnLoadingOpeningTimes" datatype="html">
+        <source>Ihre Entlade-Öffnungszeiten</source>
+        <target>Ihre Entlade-Öffnungszeiten</target>
+        <note priority="1" from="description">Label
+                  Entlade-Öffnungszeiten</note>
+        <note priority="1" from="meaning">UnLoadingOpeningTimes</note>
+      </trans-unit>
+      <trans-unit id="UnLoadingVariants" datatype="html">
+        <source>Ihre Entladevarianten</source>
+        <target>Ihre Entladevarianten</target>
+        <note priority="1" from="description">Label Entladevarianten</note>
+        <note priority="1" from="meaning">UnLoadingVariants</note>
+      </trans-unit>
+      <trans-unit id="DeleteDemand" datatype="html">
+        <source>Verfügbarkeit löschen</source>
+        <target>Verfügbarkeit löschen</target>
+        <note priority="1" from="description">Label Bedarf löschen</note>
+        <note priority="1" from="meaning">DeleteDemand</note>
+      </trans-unit>
+      <trans-unit id="GenerateNeeds" datatype="html">
+        <source>Bedarfe generieren (<x id="INTERPOLATION"/>)</source>
+        <target>Bedarfe generieren (<x id="INTERPOLATION"/>)</target>
+        <note priority="1" from="description">Label Bedarfe generieren</note>
+        <note priority="1" from="meaning">GenerateNeeds</note>
+      </trans-unit>
+      <trans-unit id="NumberAbr" datatype="html">
+        <source>Nr.</source>
+        <target>Nr.</target>
+        <note priority="1" from="description">Label Nr.</note>
+        <note priority="1" from="meaning">NumberAbr</note>
+      </trans-unit>
+      <trans-unit id="DplDigitalCode" datatype="html">
+        <source>DPL-Digital-Code</source>
+        <target>DPL-Digital-Code</target>
+        <note priority="1" from="description">Label DPL-Digital-Code</note>
+        <note priority="1" from="meaning">DplDigitalCode</note>
+      </trans-unit>
+      <trans-unit id="TimeOfNotification" datatype="html">
+        <source>Meldezeitpunkt</source>
+        <target>Meldezeitpunkt</target>
+        <note priority="1" from="description">Label Meldezeitpunkt</note>
+        <note priority="1" from="meaning">TimeOfNotification</note>
+      </trans-unit>
+      <trans-unit id="PlannedFulfillmentDate" datatype="html">
+        <source>Termin</source>
+        <target>Termin</target>
+        <note priority="1" from="description">Label für geplanten Termin</note>
+      </trans-unit>
+      <trans-unit id="ActualFulfillmentDate" datatype="html">
+        <source>Abgewickelt am</source>
+        <target>Abgewickelt am</target>
+        <note priority="1" from="description">Label für tatsächliches Abwicklungsdatum</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrier" datatype="html">
+        <source>Ladungsträger</source>
+        <target>Ladungsträger</target>
+        <note priority="1" from="description">Label Ladungsträger</note>
+        <note priority="1" from="meaning">LoadCarrier</note>
+      </trans-unit>
+      <trans-unit id="Amount" datatype="html">
+        <source>Menge</source>
+        <target>Menge</target>
+        <note priority="1" from="description">Label Menge</note>
+        <note priority="1" from="meaning">Amount</note>
+      </trans-unit>
+      <trans-unit id="Stack" datatype="html">
+        <source>Stapel</source>
+        <target>Stapel</target>
+        <note priority="1" from="description">Label Stapel</note>
+        <note priority="1" from="meaning">Stack</note>
+      </trans-unit>
+      <trans-unit id="StackHeight" datatype="html">
+        <source>Stapelhöhe</source>
+        <target>Stapelhöhe</target>
+        <note priority="1" from="description">Label Stapelhöhe</note>
+        <note priority="1" from="meaning">StackHeight</note>
+      </trans-unit>
+      <trans-unit id="VehiclePalletQuantity" datatype="html">
+        <source>Menge (TP)</source>
+        <target>Menge (TP)</target>
+        <note priority="1" from="description">Label Menge (TP)</note>
+        <note priority="1" from="meaning">VehiclePalletQuantity</note>
+      </trans-unit>
+      <trans-unit id="Status" datatype="html">
+        <source>Status</source>
+        <target>Status</target>
+        <note priority="1" from="description">Label Status</note>
+        <note priority="1" from="meaning">Status</note>
+      </trans-unit>
+      <trans-unit id="JournalOrderTypeSupply" datatype="html">
+        <source>Ausgabe</source>
+        <target>Ausgabe</target>
+        <note priority="1" from="description">Label Journal Tooltip
+                Supply</note>
+        <note priority="1" from="meaning">JournalOrderTypeSupply</note>
+      </trans-unit>
+      <trans-unit id="JournalOrderTypeDemand" datatype="html">
+        <source>Annahme</source>
+        <target>Annahme</target>
+        <note priority="1" from="description">Label Journal Tooltip
+                Demand</note>
+        <note priority="1" from="meaning">JournalOrderTypeDemand</note>
+      </trans-unit>
+      <trans-unit id="PoolingOrderTypeSupply" datatype="html">
+        <source>Selbstanlieferung</source>
+        <target>Selbstanlieferung</target>
+        <note priority="1" from="description">Label Pooling Tooltip
+                Supply</note>
+        <note priority="1" from="meaning">PoolingOrderTypeSupply</note>
+      </trans-unit>
+      <trans-unit id="PoolingOrderTypeDemand" datatype="html">
+        <source>Selbstabholung</source>
+        <target>Selbstabholung</target>
+        <note priority="1" from="description">Label Pooling Tooltip
+                Demand</note>
+        <note priority="1" from="meaning">PoolingOrderTypeDemand</note>
+      </trans-unit>
+      <trans-unit id="OpenOrderProcessesDialog" datatype="html">
+        <source>Auftragsdetails öffnen</source>
+        <target>Auftragsdetails öffnen</target>
+        <note priority="1" from="description">Tooltip für Button der Order Process details
+              öffnet</note>
+      </trans-unit>
+      <trans-unit id="ListNoItems" datatype="html">
+        <source> Keine Einträge vorhanden </source>
+        <target> Keine Einträge vorhanden </target>
+        <note priority="1" from="description">mat-table no items message</note>
+        <note priority="1" from="meaning">ListNoItems</note>
+      </trans-unit>
+      <trans-unit id="ListNoItemsFilteres" datatype="html">
+        <source> Keine Einträge gefunden (Filter aktiv) </source>
+        <target> Keine Einträge gefunden (Filter aktiv) </target>
+        <note priority="1" from="description">mat-table no items message
+              filtered</note>
+        <note priority="1" from="meaning">ListNoItemsFilteres</note>
+      </trans-unit>
+      <trans-unit id="topNavigationJournalBtnRetailer" datatype="html">
+        <source> Ausgaben </source>
+        <target> Ausgaben </target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+            Journal</note>
+        <note priority="1" from="meaning">topNavigationJournalBtnRetailer</note>
+      </trans-unit>
+      <trans-unit id="topNavigationJournalBtn" datatype="html">
+        <source> Annahmen / Ausgaben </source>
+        <target> Annahmen / Ausgaben </target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+            Journal</note>
+        <note priority="1" from="meaning">topNavigationJournalBtn</note>
+      </trans-unit>
+      <trans-unit id="Orders" datatype="html">
+        <source>Aufträge</source>
+        <target>Aufträge</target>
+        <note priority="1" from="description">Label Aufträge Navigations Button</note>
+      </trans-unit>
+      <trans-unit id="EarliestFulfillmentDate" datatype="html">
+        <source>Termin von</source>
+        <target>Termin von</target>
+        <note priority="1" from="description">Label Termin von</note>
+        <note priority="1" from="meaning">EarliestFulfillmentDate</note>
+      </trans-unit>
+      <trans-unit id="LatestFulfillmentDate" datatype="html">
+        <source>Termin bis</source>
+        <target>Termin bis</target>
+        <note priority="1" from="description">Label Termin bis</note>
+        <note priority="1" from="meaning">LatestFulfillmentDate</note>
+      </trans-unit>
+      <trans-unit id="ScheduledCollection" datatype="html">
+        <source>Geplantes Datum</source>
+        <target>Geplantes Datum</target>
+        <note priority="1" from="description">Label Geplante Abholung</note>
+        <note priority="1" from="meaning">ScheduledCollection</note>
+      </trans-unit>
+      <trans-unit id="ReportedAvailability" datatype="html">
+        <source>Gemeldete Verfügbarkeiten</source>
+        <target>Gemeldete Verfügbarkeiten</target>
+        <note priority="1" from="description">Label Gemeldete
+          Verfügbarkeiten</note>
+        <note priority="1" from="meaning">ReportedAvailability</note>
+      </trans-unit>
+      <trans-unit id="ReportedRequirements" datatype="html">
+        <source>Gemeldete Bedarfe</source>
+        <target>Gemeldete Bedarfe</target>
+        <note priority="1" from="description">Label Gemeldete Bedarfe</note>
+        <note priority="1" from="meaning">ReportedRequirements</note>
+      </trans-unit>
+      <trans-unit id="ReportAvailability" datatype="html">
+        <source> Verfügbarkeit melden </source>
+        <target> Verfügbarkeit melden </target>
+        <note priority="1" from="description">Label Verfügbarkeit melden</note>
+        <note priority="1" from="meaning">ReportAvailability</note>
+      </trans-unit>
+      <trans-unit id="ReportNewNeeds" datatype="html">
+        <source> Bedarf melden </source>
+        <target> Bedarf melden </target>
+        <note priority="1" from="description">Label Neuen Bedarf melden</note>
+        <note priority="1" from="meaning">ReportNewNeeds</note>
+      </trans-unit>
+      <trans-unit id="SearchCheckoutToolbarLabel" datatype="html">
+        <source>Checkout</source>
+        <target>Checkout</target>
+        <note priority="1" from="description">Search Checkout Toolbar
+      Label</note>
+        <note priority="1" from="meaning">SearchCheckoutToolbarLabel</note>
+      </trans-unit>
+      <trans-unit id="searchCheckoutSummaryCardTitle" datatype="html">
+        <source>Zusammenfassung</source>
+        <target>Zusammenfassung</target>
+        <note priority="1" from="description">Search Checkout Card Title
+        Zusammenfassung</note>
+        <note priority="1" from="meaning">searchCheckoutSummaryCardTitle</note>
+      </trans-unit>
+      <trans-unit id="searchCheckoutSummaryCardSubtitle" datatype="html">
+        <source>Hier die wichtigsten Informationen zu Ihrem Auftrag</source>
+        <target>Hier die wichtigsten Informationen zu Ihrem Auftrag</target>
+        <note priority="1" from="description">Search Checkout Card Subtitle
+        Zusammenfassung</note>
+        <note priority="1" from="meaning">searchCheckoutSummaryCardSubtitle</note>
+      </trans-unit>
+      <trans-unit id="searchCheckoutContractCardTitle" datatype="html">
+        <source>Auftragsbedingungen</source>
+        <target>Auftragsbedingungen</target>
+        <note priority="1" from="description">Search Checkout Auftragsbedingungen Card
+        Title</note>
+        <note priority="1" from="meaning">searchCheckoutContractCardTitle</note>
+      </trans-unit>
+      <trans-unit id="searchCheckoutContractCardSubtitle" datatype="html">
+        <source>Diese sind bindend bei Bestätigung des Auftrags.</source>
+        <target>Diese sind bindend bei Bestätigung des Auftrags.</target>
+        <note priority="1" from="description">Search Checkout Auftragsbedingungen
+        Card Subtitle</note>
+        <note priority="1" from="meaning">searchCheckoutContractCardSubtitle</note>
+      </trans-unit>
+      <trans-unit id="searchCheckoutCardContent" datatype="html">
+        <source> Für eine gebündelte Abwicklung von bestimmten Paletten-Mengen fallen ggf. Kosten an. Diese richten sich nach einem zwischen Ihrem Unternehmen und DPL bestehenden Vertrag oder allgemeinen Preislisten für Einzelbeauftragungen. Klicken Sie bitte auf „Konditionen anzeigen“, für weitere Details hierzu. </source>
+        <target> Für eine gebündelte Abwicklung von bestimmten Paletten-Mengen fallen ggf. Kosten an. Diese richten sich nach einem zwischen Ihrem Unternehmen und DPL bestehenden Vertrag oder allgemeinen Preislisten für Einzelbeauftragungen. Klicken Sie bitte auf „Konditionen anzeigen“, für weitere Details hierzu. </target>
+        <note priority="1" from="description">Search Checkout Auftragsbedingungen Inhalts
+          Kopf</note>
+        <note priority="1" from="meaning">searchCheckoutCardContent</note>
+      </trans-unit>
+      <trans-unit id="ShowConditions" datatype="html">
+        <source>Konditionen anzeigen</source>
+        <target>Konditionen anzeigen</target>
+        <note priority="1" from="description">Label Konditionen anzeigen</note>
+        <note priority="1" from="meaning">ShowConditions</note>
+      </trans-unit>
+      <trans-unit id="ShowTermsAndConditions" datatype="html">
+        <source>AGB anzeigen</source>
+        <target>AGB anzeigen</target>
+        <note priority="1" from="description">Label AGB anzeigen</note>
+        <note priority="1" from="meaning">ShowTermsAndConditions</note>
+      </trans-unit>
+      <trans-unit id="Position" datatype="html">
+        <source>Position</source>
+        <target>Position</target>
+        <note priority="1" from="description">Label Position</note>
+        <note priority="1" from="meaning">Position</note>
+      </trans-unit>
+      <trans-unit id="Type" datatype="html">
+        <source>Typ</source>
+        <target>Typ</target>
+        <note priority="1" from="description">Label Typ</note>
+        <note priority="1" from="meaning">Type</note>
+      </trans-unit>
+      <trans-unit id="Palett" datatype="html">
+        <source>Palette</source>
+        <target>Palette</target>
+        <note priority="1" from="description">Label Palette</note>
+        <note priority="1" from="meaning">Palett</note>
+      </trans-unit>
+      <trans-unit id="PointOfTime" datatype="html">
+        <source>Zeitpunkt</source>
+        <target>Zeitpunkt</target>
+        <note priority="1" from="description">Label Zeitpunkt</note>
+        <note priority="1" from="meaning">PointOfTime</note>
+      </trans-unit>
+      <trans-unit id="ConfirmSiteTerms" datatype="html">
+        <source>AGB bestätigen</source>
+        <target>AGB bestätigen</target>
+        <note priority="1" from="description">Label AGB bestätigen</note>
+        <note priority="1" from="meaning">ConfirmOrderTerms</note>
+      </trans-unit>
+      <trans-unit id="ConfirmOrderTerms" datatype="html">
+        <source>Konditionen u. Auftrag bestätigen</source>
+        <target>Konditionen u. Auftrag bestätigen</target>
+        <note priority="1" from="description">Label Konditionen u. Auftrag
+                bestätigen</note>
+        <note priority="1" from="meaning">ConfirmOrderTerms</note>
+      </trans-unit>
+      <trans-unit id="BindingOrder" datatype="html">
+        <source>Verbindlich bestellen</source>
+        <target>Verbindlich bestellen</target>
+        <note priority="1" from="description">Label Verbindlich bestellen</note>
+        <note priority="1" from="meaning">BindingOrder</note>
+      </trans-unit>
+      <trans-unit id="searchCheckoutIsPoolingText" datatype="html">
+        <source>Es gelten die Vertraglich mit DPL vereinbarten Bedingungen.</source>
+        <target>Es gelten die Vertraglich mit DPL vereinbarten Bedingungen.</target>
+        <note priority="1" from="description">Search Checkout IsPooling
+                Text</note>
+        <note priority="1" from="meaning">searchCheckoutIsPoolingText</note>
+      </trans-unit>
+      <trans-unit id="DaySelectorDialogToolbarLabel" datatype="html">
+        <source>Detailauswahl</source>
+        <target>Detailauswahl</target>
+        <note priority="1" from="description">DaySelectorDialog Toolbar
+        Label</note>
+        <note priority="1" from="meaning">DaySelectorDialogToolbarLabel</note>
+      </trans-unit>
+      <trans-unit id="AddToBasketDialogNoBaseLoadCarrier" datatype="html">
+        <source>Keine </source>
+        <target>Keine </target>
+        <note priority="1" from="description">Listenoption keine
+                Trägerpalette</note>
+      </trans-unit>
+      <trans-unit id="calendarWeekPickerInput" datatype="html">
+        <source>KW</source>
+        <target>KW</target>
+        <note priority="1" from="description">Eingabe Bezeichnung Wochenkalenderauswahl
+      Control</note>
+        <note priority="1" from="meaning">calendarWeekPickerInput</note>
+      </trans-unit>
+      <trans-unit id="MondayAbr" datatype="html">
+        <source>Mo</source>
+        <target>Mo</target>
+        <note priority="1" from="description">Abkürzung Montag</note>
+        <note priority="1" from="meaning">MondayAbr</note>
+      </trans-unit>
+      <trans-unit id="TuesdayAbr" datatype="html">
+        <source>Di</source>
+        <target>Di</target>
+        <note priority="1" from="description">Abkürzung Dienstag</note>
+        <note priority="1" from="meaning">TuesdayAbr</note>
+      </trans-unit>
+      <trans-unit id="WednesdayAbr" datatype="html">
+        <source>Mi</source>
+        <target>Mi</target>
+        <note priority="1" from="description">Abkürzung Mittwoch</note>
+        <note priority="1" from="meaning">WednesdayAbr</note>
+      </trans-unit>
+      <trans-unit id="ThursdayAbr" datatype="html">
+        <source>Do</source>
+        <target>Do</target>
+        <note priority="1" from="description">Abkürzung Donnerstag</note>
+        <note priority="1" from="meaning">ThursdayAbr</note>
+      </trans-unit>
+      <trans-unit id="FridayAbr" datatype="html">
+        <source>Fr</source>
+        <target>Fr</target>
+        <note priority="1" from="description">Abkürzung Freitag</note>
+        <note priority="1" from="meaning">MondayAbr</note>
+      </trans-unit>
+      <trans-unit id="SaturdayAbr" datatype="html">
+        <source>Sa</source>
+        <target>Sa</target>
+        <note priority="1" from="description">Abkürzung Samstag</note>
+        <note priority="1" from="meaning">SaturdayAbr</note>
+      </trans-unit>
+      <trans-unit id="Search" datatype="html">
+        <source>Suche</source>
+        <target>Suche</target>
+        <note priority="1" from="description">Label Suche</note>
+        <note priority="1" from="meaning">Search</note>
+      </trans-unit>
+      <trans-unit id="SearchText" datatype="html">
+        <source>Suchtext</source>
+        <target>Suchtext</target>
+        <note priority="1" from="description">Label Suchtext</note>
+      </trans-unit>
+      <trans-unit id="SearchCriteria" datatype="html">
+        <source> Suchkriterien </source>
+        <target> Suchkriterien </target>
+        <note priority="1" from="description">Label Suchkriterien</note>
+        <note priority="1" from="meaning">SearchCriteria</note>
+      </trans-unit>
+      <trans-unit id="Account" datatype="html">
+        <source>Konto</source>
+        <target>Konto</target>
+        <note priority="1" from="description">Label Konto</note>
+        <note priority="1" from="meaning">Account</note>
+      </trans-unit>
+      <trans-unit id="Radius" datatype="html">
+        <source>Umkreis</source>
+        <target>Umkreis</target>
+        <note priority="1" from="description">Label Umkreis</note>
+        <note priority="1" from="meaning">Radius</note>
+      </trans-unit>
+      <trans-unit id="StackHeightInputLabel" datatype="html">
+        <source>Stapelhöhe</source>
+        <target>Stapelhöhe</target>
+        <note priority="1" from="description">Label für die Auwahl der Stapelhöhe</note>
+      </trans-unit>
+      <trans-unit id="BaseLoadCarrierInputLabel" datatype="html">
+        <source>Träger-Palette</source>
+        <target>Träger-Palette</target>
+        <note priority="1" from="description">Label für die Auwahl der Träger-Palette</note>
+      </trans-unit>
+      <trans-unit id="BeeLine" datatype="html">
+        <source>Luftlinie</source>
+        <target>Luftlinie</target>
+        <note priority="1" from="description">Label Luftlinie</note>
+        <note priority="1" from="meaning">BeeLine</note>
+      </trans-unit>
+      <trans-unit id="Routing" datatype="html">
+        <source>Routing</source>
+        <target>Routing</target>
+        <note priority="1" from="description">Label Routing</note>
+        <note priority="1" from="meaning">Routing</note>
+      </trans-unit>
+      <trans-unit id="Fetch" datatype="html">
+        <source>Abholen</source>
+        <target>Abholen</target>
+        <note priority="1" from="description">Label Abholen</note>
+        <note priority="1" from="meaning">Fetch</note>
+      </trans-unit>
+      <trans-unit id="Give" datatype="html">
+        <source>Abgeben</source>
+        <target>Abgeben</target>
+        <note priority="1" from="description">Label Abgeben</note>
+        <note priority="1" from="meaning">Give</note>
+      </trans-unit>
+      <trans-unit id="Day" datatype="html">
+        <source>Tag</source>
+        <target>Tag</target>
+        <note priority="1" from="description">Label Tag</note>
+        <note priority="1" from="meaning">Day</note>
+      </trans-unit>
+      <trans-unit id="OpeningHours" datatype="html">
+        <source> Öffnungszeiten </source>
+        <target> Öffnungszeiten </target>
+        <note priority="1" from="description">Label Öffnungszeiten</note>
+        <note priority="1" from="meaning">OpeningHours</note>
+      </trans-unit>
+      <trans-unit id="RadiusSearch" datatype="html">
+        <source>UMKREISSUCHE</source>
+        <target>UMKREISSUCHE</target>
+        <note priority="1" from="description">Label Umkreissuche</note>
+        <note priority="1" from="meaning">RadiusSearch</note>
+      </trans-unit>
+      <trans-unit id="searchResultListToolbarLabel" datatype="html">
+        <source>Suchergebnisse (<x id="INTERPOLATION"/>)</source>
+        <target>Suchergebnisse (<x id="INTERPOLATION"/>)</target>
+        <note priority="1" from="description">Search Result List Symbolleiste
+        Beschriftung</note>
+        <note priority="1" from="meaning">searchResultListToolbarLabel</note>
+      </trans-unit>
+      <trans-unit id="NoOffersFound" datatype="html">
+        <source> Keine Angebote gefunden </source>
+        <target> Keine Angebote gefunden </target>
+        <note priority="1" from="description">Label Keine Angebote gefunden</note>
+        <note priority="1" from="meaning">NoOffersFound</note>
+      </trans-unit>
+      <trans-unit id="topNavigationSearchStartBtn" datatype="html">
+        <source>Abholung / Abgabe planen</source>
+        <target>Abholung / Abgabe planen</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+      Abholung</note>
+        <note priority="1" from="meaning">topNavigationSearchStartBtn</note>
+      </trans-unit>
+      <trans-unit id="ShowSearchBar" datatype="html">
+        <source>Suchleiste anzeigen</source>
+        <target>Suchleiste anzeigen</target>
+        <note priority="1" from="description">Label Suchleiste anzeigen</note>
+        <note priority="1" from="meaning">ShowSearchBar</note>
+      </trans-unit>
+      <trans-unit id="ShoppingCart" datatype="html">
+        <source>Warenkorb</source>
+        <target>Warenkorb</target>
+        <note priority="1" from="description">Label Warenkorb</note>
+        <note priority="1" from="meaning">ShoppingCart</note>
+      </trans-unit>
+      <trans-unit id="OrderConfirmation" datatype="html">
+        <source>Auftragsbestätigung</source>
+        <target>Auftragsbestätigung</target>
+        <note priority="1" from="description">Label Abuftragsbestätigung</note>
+        <note priority="1" from="meaning">OrderConfirmation</note>
+      </trans-unit>
+      <trans-unit id="SearchCheckoutConfirmationCardTitle" datatype="html">
+        <source>Bestätigung</source>
+        <target>Bestätigung</target>
+        <note priority="1" from="description">Search Checkout Card Title
+        Zusammenfassung</note>
+        <note priority="1" from="meaning">searchCheckoutSummaryCardTitle</note>
+      </trans-unit>
+      <trans-unit id="SearchCheckoutConfirmationCardSubTitle" datatype="html">
+        <source>Ihr Auftrag wurde erfolgreich erstellt</source>
+        <target>Ihr Auftrag wurde erfolgreich erstellt</target>
+        <note priority="1" from="description">Search Checkout Card Subtitle
+        Zusammenfassung</note>
+        <note priority="1" from="meaning">searchCheckoutSummaryCardSubtitle</note>
+      </trans-unit>
+      <trans-unit id="Print" datatype="html">
+        <source>Drucken</source>
+        <target>Drucken</target>
+        <note priority="1" from="description">Label Drucken</note>
+        <note priority="1" from="meaning">Print</note>
+      </trans-unit>
+      <trans-unit id="CreateAnotherorder" datatype="html">
+        <source>Weiteren Auftrag anlegen</source>
+        <target>Weiteren Auftrag anlegen</target>
+        <note priority="1" from="description">Label Weiteren Auftrag
+            anlegen</note>
+        <note priority="1" from="meaning">CreateAnotherorder</note>
+      </trans-unit>
+      <trans-unit id="Pallet" datatype="html">
+        <source> Palette </source>
+        <target> Palette </target>
+        <note priority="1" from="description">Label Palette</note>
+        <note priority="1" from="meaning">Pallet</note>
+      </trans-unit>
+      <trans-unit id="DigitalCode" datatype="html">
+        <source> DPL-Digital-Code </source>
+        <target> DPL-Digital-Code </target>
+        <note priority="1" from="description">Label Digital-Code</note>
+        <note priority="1" from="meaning">DigitalCode</note>
+      </trans-unit>
+      <trans-unit id="ClearSearch" datatype="html">
+        <source> Filter löschen
+</source>
+        <target> Filter löschen
+</target>
+        <note priority="1" from="description">Label Suche löschen</note>
+        <note priority="1" from="meaning">ClearSearch</note>
+      </trans-unit>
+      <trans-unit id="VoucherFilterTemplateRemoveConfirmationMessage" datatype="html">
+        <source> Sind Sie sicher, dass Sie den Filter <x id="INTERPOLATION"/> löschen wollen?
+</source>
+        <target> Sind Sie sicher, dass Sie den Filter <x id="INTERPOLATION"/> löschen wollen?
+</target>
+        <note priority="1" from="description">VoucherFilterTemplateRemoveDialog
+    Confirmation Message</note>
+        <note priority="1" from="meaning">VoucherFilterTemplateRemoveConfirmationMessage</note>
+      </trans-unit>
+      <trans-unit id="Abort" datatype="html">
+        <source> Abbrechen </source>
+        <target> Abbrechen </target>
+        <note priority="1" from="description">Label Abbrechen</note>
+        <note priority="1" from="meaning">Abort</note>
+      </trans-unit>
+      <trans-unit id="Clear" datatype="html">
+        <source> Löschen </source>
+        <target> Löschen </target>
+        <note priority="1" from="description">Label Löschen</note>
+        <note priority="1" from="meaning">Clear</note>
+      </trans-unit>
+      <trans-unit id="SaveFilter" datatype="html">
+        <source> Filter speichern
+</source>
+        <target> Filter speichern
+</target>
+        <note priority="1" from="description">Label Filter speichern</note>
+        <note priority="1" from="meaning">SaveFilter</note>
+      </trans-unit>
+      <trans-unit id="Save" datatype="html">
+        <source> Speichern </source>
+        <target> Speichern </target>
+        <note priority="1" from="description">Label Speichern</note>
+        <note priority="1" from="meaning">Save</note>
+      </trans-unit>
+      <trans-unit id="LoadFilter" datatype="html">
+        <source>Filter laden</source>
+        <target>Filter laden</target>
+        <note priority="1" from="description">Label Filter laden</note>
+        <note priority="1" from="meaning">LoadFilter</note>
+      </trans-unit>
+      <trans-unit id="DiscardChanges" datatype="html">
+        <source>Änderungen verwerfen</source>
+        <target>Änderungen verwerfen</target>
+        <note priority="1" from="description">Label Änderungen verwerfen</note>
+        <note priority="1" from="meaning">DiscardChanges</note>
+      </trans-unit>
+      <trans-unit id="DeleteFilter" datatype="html">
+        <source>Filter löschen</source>
+        <target>Filter löschen</target>
+        <note priority="1" from="description">Label Filter löschen</note>
+        <note priority="1" from="meaning">DeleteFilter</note>
+      </trans-unit>
+      <trans-unit id="SearchUnsavedChanges" datatype="html">
+        <source>Änderungen vorhanden!</source>
+        <target>Änderungen vorhanden!</target>
+        <note priority="1" from="description">Hint Unsaved Changes</note>
+        <note priority="1" from="meaning">SearchUnsavedChanges</note>
+      </trans-unit>
+      <trans-unit id="RemoveFilter" datatype="html">
+        <source>Filter entfernen</source>
+        <target>Filter entfernen</target>
+        <note priority="1" from="description">Label Filter entfernen</note>
+        <note priority="1" from="meaning">RemoveFilter</note>
+      </trans-unit>
+      <trans-unit id="From" datatype="html">
+        <source>von</source>
+        <target>von</target>
+        <note priority="1" from="description">Label von</note>
+        <note priority="1" from="meaning">From</note>
+      </trans-unit>
+      <trans-unit id="Until" datatype="html">
+        <source>bis</source>
+        <target>bis</target>
+        <note priority="1" from="description">Label bis</note>
+        <note priority="1" from="meaning">Until</note>
+      </trans-unit>
+      <trans-unit id="Filter" datatype="html">
+        <source>Filter</source>
+        <target>Filter</target>
+        <note priority="1" from="description">Label Filter</note>
+        <note priority="1" from="meaning">Filter</note>
+      </trans-unit>
+      <trans-unit id="ResetFilter" datatype="html">
+        <source> Filter zurücksetzen </source>
+        <target> Filter zurücksetzen </target>
+        <note priority="1" from="description">Label Filter zürücksetzen</note>
+        <note priority="1" from="meaning">ResetFilter</note>
+      </trans-unit>
+      <trans-unit id="Apply" datatype="html">
+        <source>Anwenden</source>
+        <target>Anwenden</target>
+        <note priority="1" from="description">Label Anwenden</note>
+        <note priority="1" from="meaning">Apply</note>
+      </trans-unit>
+      <trans-unit id="ShowMoreFilter" datatype="html">
+        <source>Weitere Filter anzeigen</source>
+        <target>Weitere Filter anzeigen</target>
+        <note priority="1" from="description">Label Weitere Filter anzeigen</note>
+        <note priority="1" from="meaning">ShowMoreFilter</note>
+      </trans-unit>
+      <trans-unit id="HideMoreFilter" datatype="html">
+        <source>Weitere Filter anzeigen</source>
+        <target>Weitere Filter anzeigen</target>
+        <note priority="1" from="description">Label Weitere Filter verbergen</note>
+        <note priority="1" from="meaning">HideMoreFilter</note>
+      </trans-unit>
+      <trans-unit id="SourceAccount" datatype="html">
+        <source>Quell-Konto<x id="START_TAG_STRONG"/> *<x id="CLOSE_TAG_STRONG"/></source>
+        <target>Quell-Konto<x id="START_TAG_STRONG"/> *<x id="CLOSE_TAG_STRONG"/></target>
+        <note priority="1" from="description">Label Quell-Konto</note>
+        <note priority="1" from="meaning">SourceAccount</note>
+      </trans-unit>
+      <trans-unit id="TransferFormNote" datatype="html">
+        <source> Kommentar an DPL </source>
+        <target> Kommentar an DPL </target>
+        <note priority="1" from="description">Kommentar an DPL</note>
+        <note priority="1" from="meaning">TransferFormNote</note>
+      </trans-unit>
+      <trans-unit id="TargetAccount" datatype="html">
+        <source>Ziel-Konto<x id="START_TAG_STRONG"/> *<x id="CLOSE_TAG_STRONG"/></source>
+        <target>Ziel-Konto<x id="START_TAG_STRONG"/> *<x id="CLOSE_TAG_STRONG"/></target>
+        <note priority="1" from="description">Label Ziel-Konto</note>
+        <note priority="1" from="meaning">TargetAccount</note>
+      </trans-unit>
+      <trans-unit id="AccountSummary" datatype="html">
+        <source>Kontenübersicht</source>
+        <target>Kontenübersicht</target>
+        <note priority="1" from="description">Label Kontenübersicht</note>
+        <note priority="1" from="meaning">AccountSummary</note>
+      </trans-unit>
+      <trans-unit id="Refusal" datatype="html">
+        <source> Verwerfen </source>
+        <target> Verwerfen </target>
+        <note priority="1" from="description">Label Verwerfen</note>
+        <note priority="1" from="meaning">Refusal</note>
+      </trans-unit>
+      <trans-unit id="Rebook" datatype="html">
+        <source> Umbuchen </source>
+        <target> Umbuchen </target>
+        <note priority="1" from="description">Label Umbuchen</note>
+        <note priority="1" from="meaning">Rebook</note>
+      </trans-unit>
+      <trans-unit id="TransferConfirmationDialogTitle" datatype="html">
+        <source>Umbuchung bestätigen</source>
+        <target>Umbuchung bestätigen</target>
+        <note priority="1" from="description">Titel für Dialog zur Bestätigung von Umbuchungen</note>
+      </trans-unit>
+      <trans-unit id="TransferConfirmationDialogDescription" datatype="html">
+        <source>Die Erstellung einer Umbuchung löst eine Buchung aus</source>
+        <target>Die Erstellung einer Umbuchung löst eine Buchung aus</target>
+        <note priority="1" from="description">Beschreibung für Dialog zur Bestätigung von Umbuchungen</note>
+      </trans-unit>
+      <trans-unit id="TransferCreateLabel" datatype="html">
+        <source>Umbuchung erstellen</source>
+        <target>Umbuchung erstellen</target>
+        <note priority="1" from="description">Label Create Transfer</note>
+        <note priority="1" from="meaning">TransferCreateTransfer</note>
+      </trans-unit>
+      <trans-unit id="TransportDetailsLoadingPropertiesLabel" datatype="html">
+        <source>Ladungsarten:</source>
+        <target>Ladungsarten:</target>
+        <note priority="1" from="description">Label für Ladungsarten auf transport
+                details</note>
+      </trans-unit>
+      <trans-unit id="SideLoadingLabel" datatype="html">
+        <source>Seitenbeladung</source>
+        <target>Seitenbeladung</target>
+      </trans-unit>
+      <trans-unit id="RearLoadingLabel" datatype="html">
+        <source>Heckbeladung</source>
+        <target>Heckbeladung</target>
+      </trans-unit>
+      <trans-unit id="JumboVehiclesLabel" datatype="html">
+        <source>Jumbobeladung</source>
+        <target>Jumbobeladung</target>
+      </trans-unit>
+      <trans-unit id="TransportDetailsLoadTypeLabel" datatype="html">
+        <source>Ladungsgut:</source>
+        <target>Ladungsgut:</target>
+        <note priority="1" from="description">Label für Ladungstypen auf transport
+                details</note>
+      </trans-unit>
+      <trans-unit id="TransportDetailsDistanceLabel" datatype="html">
+        <source>Entfernung:</source>
+        <target>Entfernung:</target>
+        <note priority="1" from="description">Label für Ladung auf transport
+              details</note>
+      </trans-unit>
+      <trans-unit id="TransportBrokerDetailsRouteInformationBtn" datatype="html">
+        <source>Routeninformationen (Premium)</source>
+        <target>Routeninformationen (Premium)</target>
+        <note priority="1" from="description">Schaltfläche
+                Routeninformationen
+                (Premium)</note>
+        <note priority="1" from="meaning">TransportBrokerDetailsRouteInformationBtn</note>
+      </trans-unit>
+      <trans-unit id="TransportDetailsLoadLabel" datatype="html">
+        <source>Ladung:</source>
+        <target>Ladung:</target>
+        <note priority="1" from="description">Label für Ladung auf transport
+                details</note>
+      </trans-unit>
+      <trans-unit id="TransportBidsListLabel" datatype="html">
+        <source>Meine Gebote</source>
+        <target>Meine Gebote</target>
+        <note priority="1" from="description">Label für Liste von Geboten</note>
+      </trans-unit>
+      <trans-unit id="TransportBidNumber" datatype="html">
+        <source> Nr. </source>
+        <target> Nr. </target>
+        <note priority="1" from="description">Label für Gebotsnummer</note>
+      </trans-unit>
+      <trans-unit id="TransportBidStatus" datatype="html">
+        <source> Status </source>
+        <target> Status </target>
+        <note priority="1" from="description">Label für Gebotsstatus</note>
+      </trans-unit>
+      <trans-unit id="TransportBidNote" datatype="html">
+        <source> Notiz </source>
+        <target> Notiz </target>
+        <note priority="1" from="description">Label für Transportgebots Notiz</note>
+      </trans-unit>
+      <trans-unit id="TransportBidPickupDate" datatype="html">
+        <source> Abholdatum </source>
+        <target> Abholdatum </target>
+        <note priority="1" from="description">Label für Transport Abholdatum</note>
+      </trans-unit>
+      <trans-unit id="TransportBidDeliveryDate" datatype="html">
+        <source> Lieferdatum </source>
+        <target> Lieferdatum </target>
+        <note priority="1" from="description">Label für Transport Lieferdatum</note>
+      </trans-unit>
+      <trans-unit id="TransportBidPrice" datatype="html">
+        <source> Angebot (€) </source>
+        <target> Angebot (€) </target>
+        <note priority="1" from="description">Label Preis für Gebot</note>
+      </trans-unit>
+      <trans-unit id="TransportBidAction" datatype="html">
+        <source> Aktion </source>
+        <target> Aktion </target>
+        <note priority="1" from="description">Label für Aktionen die auf Geboten ausgeführt werden
+              können</note>
+      </trans-unit>
+      <trans-unit id="TransportBidFormTitle" datatype="html">
+        <source>Angebot abgeben</source>
+        <target>Angebot abgeben</target>
+        <note priority="1" from="description">Label für Gebot abgeben form</note>
+      </trans-unit>
+      <trans-unit id="TransportBidMinimumPriceError" datatype="html">
+        <source>Der Wert muss größer 1 sein.</source>
+        <target>Der Wert muss größer 1 sein.</target>
+        <note priority="1" from="description">Fehelr wenn Mindestgebot für Transport
+                unterschritten</note>
+      </trans-unit>
+      <trans-unit id="TransportBidPlaceBidButtonLabel" datatype="html">
+        <source>Gebot abgeben</source>
+        <target>Gebot abgeben</target>
+        <note priority="1" from="description">Button Label um Gebot abzugeben</note>
+      </trans-unit>
+      <trans-unit id="TransportBidDeliveryDatePriorToPickupDateError" datatype="html">
+        <source> Lieferdatum kann nicht vor Abholdatum liegen </source>
+        <target> Lieferdatum kann nicht vor Abholdatum liegen </target>
+        <note priority="1" from="description">Form Validierungsfehler der angezeigt wird wenn Lieferdatum vor
+                Abholdatum</note>
+      </trans-unit>
+      <trans-unit id="TransportBroker" datatype="html">
+        <source>Transport Broker</source>
+        <target>Transport Broker</target>
+        <note priority="1" from="description">Label Transport Broker</note>
+        <note priority="1" from="meaning">TransportBroker</note>
+      </trans-unit>
+      <trans-unit id="TransportOverview" datatype="html">
+        <source>Transporte Übersicht</source>
+        <target>Transporte Übersicht</target>
+        <note priority="1" from="description">Label Btn Zurück Transport
+              Übersicht</note>
+        <note priority="1" from="meaning">TransportOverview</note>
+      </trans-unit>
+      <trans-unit id="TransportsListTableHeaderBids" datatype="html">
+        <source>Gebote</source>
+        <target>Gebote</target>
+        <note priority="1" from="description">Label Gebote</note>
+      </trans-unit>
+      <trans-unit id="Date" datatype="html">
+        <source>Lade-Datum</source>
+        <target>Lade-Datum</target>
+        <note priority="1" from="description">Label Datum</note>
+        <note priority="1" from="meaning">Date</note>
+      </trans-unit>
+      <trans-unit id="TargetCountry" datatype="html">
+        <source>Ziel Land</source>
+        <target>Ziel Land</target>
+        <note priority="1" from="description">Label Ziel Land</note>
+        <note priority="1" from="meaning">TargetCountry</note>
+      </trans-unit>
+      <trans-unit id="TargetPostalCode" datatype="html">
+        <source>Ziel PLZ</source>
+        <target>Ziel PLZ</target>
+        <note priority="1" from="description">Label Ziel PLZ</note>
+        <note priority="1" from="meaning">TargetPostalCode</note>
+      </trans-unit>
+      <trans-unit id="TargetLocation" datatype="html">
+        <source>Ziel Ort</source>
+        <target>Ziel Ort</target>
+        <note priority="1" from="description">Label Ziel Ort</note>
+        <note priority="1" from="meaning">TargetLocation</note>
+      </trans-unit>
+      <trans-unit id="Distance" datatype="html">
+        <source>Entfernung</source>
+        <target>Entfernung</target>
+        <note priority="1" from="description">Label Entfernung</note>
+        <note priority="1" from="meaning">Distance</note>
+      </trans-unit>
+      <trans-unit id="Summary" datatype="html">
+        <source>Zusammenfassung</source>
+        <target>Zusammenfassung</target>
+        <note priority="1" from="description">Label Zusammenfassung</note>
+        <note priority="1" from="meaning">Summary</note>
+      </trans-unit>
+      <trans-unit id="Article" datatype="html">
+        <source> Artikel </source>
+        <target> Artikel </target>
+        <note priority="1" from="description">Label Artikel</note>
+        <note priority="1" from="meaning">Article</note>
+      </trans-unit>
+      <trans-unit id="Total" datatype="html">
+        <source>Gesamt</source>
+        <target>Gesamt</target>
+        <note priority="1" from="description">Label Gesamt</note>
+        <note priority="1" from="meaning">Total</note>
+      </trans-unit>
+      <trans-unit id="Issued" datatype="html">
+        <source>Ausgestellt</source>
+        <target>Ausgestellt</target>
+        <note priority="1" from="description">Label Ausgestellt</note>
+        <note priority="1" from="meaning">Issued</note>
+      </trans-unit>
+      <trans-unit id="VouchersSummary" datatype="html">
+        <source> (Belege)</source>
+        <target> (Belege)</target>
+        <note priority="1" from="description">Vouchers Summary</note>
+        <note priority="1" from="meaning">VouchersSummary</note>
+      </trans-unit>
+      <trans-unit id="Submitted" datatype="html">
+        <source>Eingereicht</source>
+        <target>Eingereicht</target>
+        <note priority="1" from="description">Label Eingereicht</note>
+        <note priority="1" from="meaning">Submitted</note>
+      </trans-unit>
+      <trans-unit id="Balanced" datatype="html">
+        <source>Gebucht</source>
+        <target>Gebucht</target>
+        <note priority="1" from="description">Label Ausgeglichen</note>
+        <note priority="1" from="meaning">Balanced</note>
+      </trans-unit>
+      <trans-unit id="Canceled" datatype="html">
+        <source>Storniert</source>
+        <target>Storniert</target>
+        <note priority="1" from="description">Label Storniert</note>
+        <note priority="1" from="meaning">Canceled</note>
+      </trans-unit>
+      <trans-unit id="Expire" datatype="html">
+        <source>Verfallen</source>
+        <target>Verfallen</target>
+        <note priority="1" from="description">Label Verfallen</note>
+        <note priority="1" from="meaning">Expire</note>
+      </trans-unit>
+      <trans-unit id="ReceiptNumber" datatype="html">
+        <source>Beleg Nr.</source>
+        <target>Beleg Nr.</target>
+        <note priority="1" from="description">Label Beleg Nr.</note>
+        <note priority="1" from="meaning">ReceiptNumber</note>
+      </trans-unit>
+      <trans-unit id="Issuer" datatype="html">
+        <source>Austeller</source>
+        <target>Austeller</target>
+        <note priority="1" from="description">Label Aussteller</note>
+        <note priority="1" from="meaning">Issuer</note>
+      </trans-unit>
+      <trans-unit id="IssuedDate" datatype="html">
+        <source>Ausstelldatum</source>
+        <target>Ausstelldatum</target>
+        <note priority="1" from="description">Label Austelldatum</note>
+        <note priority="1" from="meaning">IssuedDate</note>
+      </trans-unit>
+      <trans-unit id="ValidUntil" datatype="html">
+        <source>Verfallsdatum</source>
+        <target>Verfallsdatum</target>
+        <note priority="1" from="description">Label Verfallsdatum</note>
+        <note priority="1" from="meaning">ValidUntil</note>
+      </trans-unit>
+      <trans-unit id="RecipientType" datatype="html">
+        <source>Adressat</source>
+        <target>Adressat</target>
+        <note priority="1" from="description">Label Empf</note>
+        <note priority="1" from="meaning">RecipientType</note>
+      </trans-unit>
+      <trans-unit id="Shipper" datatype="html">
+        <source>Spediteur</source>
+        <target>Spediteur</target>
+        <note priority="1" from="description">Label Spediteur</note>
+        <note priority="1" from="meaning">Shipper</note>
+      </trans-unit>
+      <trans-unit id="Supplier" datatype="html">
+        <source>Lieferant</source>
+        <target>Lieferant</target>
+        <note priority="1" from="description">Label Lieferant</note>
+        <note priority="1" from="meaning">Supplier</note>
+      </trans-unit>
+      <trans-unit id="Recipient" datatype="html">
+        <source>Adressat</source>
+        <target>Adressat</target>
+        <note priority="1" from="description">Label Empfänger</note>
+        <note priority="1" from="meaning">Recipient</note>
+      </trans-unit>
+      <trans-unit id="ReasonType" datatype="html">
+        <source>NTG</source>
+        <target>NTG</target>
+        <note priority="1" from="description">Label Grund</note>
+        <note priority="1" from="meaning">ReasonType</note>
+      </trans-unit>
+      <trans-unit id="Paperless" datatype="html">
+        <source>Direkt-Buchung</source>
+        <target>Direkt-Buchung</target>
+        <note priority="1" from="description">Label Papierlos</note>
+        <note priority="1" from="meaning">Paperless</note>
+      </trans-unit>
+      <trans-unit id="Digital" datatype="html">
+        <source>Digitale Einreichung</source>
+        <target>Digitale Einreichung</target>
+        <note priority="1" from="description">Label Digital</note>
+        <note priority="1" from="meaning">Digital</note>
+      </trans-unit>
+      <trans-unit id="Original" datatype="html">
+        <source>Original Einreichung</source>
+        <target>Original Einreichung</target>
+        <note priority="1" from="description">Label Original</note>
+        <note priority="1" from="meaning">Original</note>
+      </trans-unit>
+      <trans-unit id="Postitions" datatype="html">
+        <source>Positionen</source>
+        <target>Positionen</target>
+        <note priority="1" from="description">Label Positionen</note>
+        <note priority="1" from="meaning">Postitions</note>
+      </trans-unit>
+      <trans-unit id="CompanyNameOnTruck" datatype="html">
+        <source>Firmenname (auf LKW)</source>
+        <target>Firmenname (auf LKW)</target>
+        <note priority="1" from="description">Label Name</note>
+        <note priority="1" from="meaning">CompanyNameOnTruck</note>
+      </trans-unit>
+      <trans-unit id="LicensePlate" datatype="html">
+        <source>Kennzeichen</source>
+        <target>Kennzeichen</target>
+        <note priority="1" from="description">Label Kennzeichen</note>
+        <note priority="1" from="meaning">LicensePlate</note>
+      </trans-unit>
+      <trans-unit id="Driver" datatype="html">
+        <source>Fahrer</source>
+        <target>Fahrer</target>
+        <note priority="1" from="description">Label Fahrer</note>
+        <note priority="1" from="meaning">Driver</note>
+      </trans-unit>
+      <trans-unit id="DigitalPoolingCredits" datatype="html">
+        <source>Digitale Pooling Gutschriften</source>
+        <target>Digitale Pooling Gutschriften</target>
+        <note priority="1" from="description">Label Digitale Pooling
+      Gutschriften</note>
+        <note priority="1" from="meaning">DigitalPoolingCredits</note>
+      </trans-unit>
+      <trans-unit id="DigitalPoolingCreditsNoActiveCarrier" datatype="html">
+        <source>Ladungsträger (oben) wählen um hier Belegdetails anzuzeigen</source>
+        <target>Ladungsträger (oben) wählen um hier Belegdetails anzuzeigen</target>
+        <note priority="1" from="description">Label Ladungsträger wählen um
+            Belegdetail anzuzeigen</note>
+        <note priority="1" from="meaning">DigitalPoolingCreditsNoActiveCarrier</note>
+      </trans-unit>
+      <trans-unit id="VoucherRegisterCreateAction" datatype="html">
+        <source>Digitale Pooling Gutschrift erstellen</source>
+        <target>Digitale Pooling Gutschrift erstellen</target>
+        <note priority="1" from="description">Schaltfläche Gutschrift
+              erstellen</note>
+        <note priority="1" from="meaning">VoucherRegisterCreateAction</note>
+      </trans-unit>
+      <trans-unit id="palletAcceptanceToolbarLabel" datatype="html">
+        <source>Digitale Pooling Gutschrift erstellen</source>
+        <target>Digitale Pooling Gutschrift erstellen</target>
+        <note priority="1" from="description">Pallet Acceptance Symbolleiste
+      Bezeichnung</note>
+        <note priority="1" from="meaning">palletAcceptanceToolbarLabel</note>
+      </trans-unit>
+      <trans-unit id="DeliveringCarrier" datatype="html">
+        <source>Anliefernde Spedition</source>
+        <target>Anliefernde Spedition</target>
+        <note priority="1" from="description">Label Anliefernde
+                  Spedition</note>
+        <note priority="1" from="meaning">DeliveringCarrier</note>
+      </trans-unit>
+      <trans-unit id="DocumentRecipient" datatype="html">
+        <source>Beleg-Adressat</source>
+        <target>Beleg-Adressat</target>
+        <note priority="1" from="description">Label Beleg-Addressat</note>
+        <note priority="1" from="meaning">DocumentRecipient</note>
+      </trans-unit>
+      <trans-unit id="VoucherReasonType" datatype="html">
+        <source>Nicht Tauschgrund</source>
+        <target>Nicht Tauschgrund</target>
+        <note priority="1" from="description">Label Nicht Tauschgrund</note>
+        <note priority="1" from="meaning">VoucherReasonType</note>
+      </trans-unit>
+      <trans-unit id="VoucherIssuerCardTitle" datatype="html">
+        <source>Aussteller</source>
+        <target>Aussteller</target>
+        <note priority="1" from="description">Aussteller</note>
+      </trans-unit>
+      <trans-unit id="PalletAcceptanceSupplierIsShipper" datatype="html">
+        <source> Lieferant ist Spediteur</source>
+        <target> Lieferant ist Spediteur</target>
+        <note priority="1" from="description">Label für Checkbox die festlegt das Lieferant ist
+                Spediteur</note>
+      </trans-unit>
+      <trans-unit id="CompanyNameSupplier" datatype="html">
+        <source>Firmenname (Versender der Ware)</source>
+        <target>Firmenname (Versender der Ware)</target>
+        <note priority="1" from="description">Label Name</note>
+        <note priority="1" from="meaning">CompanyNameSupplier</note>
+      </trans-unit>
+      <trans-unit id="VehicleAndDriver" datatype="html">
+        <source>Fahrzeug und Fahrer</source>
+        <target>Fahrzeug und Fahrer</target>
+        <note priority="1" from="description">Label Fahrzeug und Fahrer</note>
+        <note priority="1" from="meaning">VehicleAndDriver</note>
+      </trans-unit>
+      <trans-unit id="Comment" datatype="html">
+        <source> Bemerkungen (werden auf den Beleg gedruckt) </source>
+        <target> Bemerkungen (werden auf den Beleg gedruckt) </target>
+        <note priority="1" from="description">Label Bemerkung</note>
+        <note priority="1" from="meaning">Comment</note>
+      </trans-unit>
+      <trans-unit id="palletAcceptanceDriverCommentInputPlaceholder" datatype="html">
+        <source>Hier können Sie Bemerkungen zur der Gutschrift eintragen. Diese werden gedruckt.</source>
+        <target>Hier können Sie Bemerkungen zur der Gutschrift eintragen. Diese werden gedruckt.</target>
+        <note priority="1" from="description">Palettenannahme
+                  Eingabe
+                  Bemerkung</note>
+        <note priority="1" from="meaning">palletAcceptanceDriverCommentInputPlaceholder</note>
+      </trans-unit>
+      <trans-unit id="CompleteAcceptance" datatype="html">
+        <source> Annahme abschließen </source>
+        <target> Annahme abschließen </target>
+        <note priority="1" from="description">Label Annahme abschließen</note>
+        <note priority="1" from="meaning">CompleteAcceptance</note>
+      </trans-unit>
+      <trans-unit id="VoucherDirectConfirmationDialogTitle" datatype="html">
+        <source>Digitale Pooling Gutschrift erstellen (Direkt-Buchung)</source>
+        <target>Digitale Pooling Gutschrift erstellen (Direkt-Buchung)</target>
+        <note priority="1" from="description">Titel für Dialog zur Bestätigung der erstellung von Gutschrift (Direkt-Buchung)</note>
+      </trans-unit>
+      <trans-unit id="VoucherDirectConfirmationDialogDescription" datatype="html">
+        <source>Dieser Vorgang erzeugt eine Buchung.</source>
+        <target>Dieser Vorgang erzeugt eine Buchung.</target>
+        <note priority="1" from="description">Beschreibung für Dialog zur Bestätigung von Gutschriften (Direkt-Buchung)</note>
+      </trans-unit>
+      <trans-unit id="VoucherDigitalConfirmationDialogTitle" datatype="html">
+        <source>Digitale Pooling Gutschrift erstellen (Digitale Einreichung)</source>
+        <target>Digitale Pooling Gutschrift erstellen (Digitale Einreichung)</target>
+        <note priority="1" from="description">Titel für Dialog zur Bestätigung der erstellung von Gutschrift (Digitale Einreichung)</note>
+      </trans-unit>
+      <trans-unit id="VoucherOriginalConfirmationDialogTitle" datatype="html">
+        <source>Digitale Pooling Gutschrift erstellen (Original Einreichung)</source>
+        <target>Digitale Pooling Gutschrift erstellen (Original Einreichung)</target>
+        <note priority="1" from="description">Titel für Dialog zur Bestätigung der erstellung von Gutschrift (Original Einreichung)</note>
+      </trans-unit>
+      <trans-unit id="Incoming" datatype="html">
+        <source>Eingang</source>
+        <target>Eingang</target>
+        <note priority="1" from="description">Label Eingang</note>
+        <note priority="1" from="meaning">Incoming</note>
+      </trans-unit>
+      <trans-unit id="Outgoing" datatype="html">
+        <source>Ausgang</source>
+        <target>Ausgang</target>
+        <note priority="1" from="description">Label Ausgang</note>
+        <note priority="1" from="meaning">Outgoing</note>
+      </trans-unit>
+      <trans-unit id="Difference" datatype="html">
+        <source>Differenz</source>
+        <target>Differenz</target>
+        <note priority="1" from="description">Label Differenz</note>
+        <note priority="1" from="meaning">Difference</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierFormRequiredError" datatype="html">
+        <source>Mindestens eine Palette</source>
+        <target>Mindestens eine Palette</target>
+        <note priority="1" from="description">Validierungsfehler der angezeigt wird wenn weniger nicht keine Palette ausgewählt ist.</note>
+      </trans-unit>
+      <trans-unit id="ModifyByDpl" datatype="html">
+        <source>von DPL bearbeitet</source>
+        <target>von DPL bearbeitet</target>
+        <note priority="1" from="description">Label Von Dpl bearbeitet</note>
+        <note priority="1" from="meaning">ModifyByDpl</note>
+      </trans-unit>
+      <trans-unit id="CreateOrder" datatype="html">
+        <source>Auftrag erstellen</source>
+        <target>Auftrag erstellen</target>
+        <note priority="1" from="description">Label Auftrag erstellen</note>
+        <note priority="1" from="meaning">CreateOrder</note>
+      </trans-unit>
+      <trans-unit id="basketListEmptyHint" datatype="html">
+        <source> Der Einkaufskorb ist leer. </source>
+        <target> Der Einkaufskorb ist leer. </target>
+        <note priority="1" from="description">Warenkorb Hinweis Leer</note>
+        <note priority="1" from="meaning">basketListEmptyHint</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierErrorMaxBalance" datatype="html">
+        <source>Saldo nicht ausreichend</source>
+        <target>Saldo nicht ausreichend</target>
+        <note priority="1" from="description">Saldo nicht
+            ausreichend</note>
+        <note priority="1" from="meaning">LoadCarrierErrorMaxBalance</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierErrorMaxQuantity" datatype="html">
+        <source>Maximale Anzahl überschritten</source>
+        <target>Maximale Anzahl überschritten</target>
+        <note priority="1" from="description">Konfigurierte Maximale Anzahl
+            überschritten</note>
+        <note priority="1" from="meaning">LoadCarrierErrorMaxQuantity</note>
+      </trans-unit>
+      <trans-unit id="LoadCarrierErrorThresholdForWarningQuantity" datatype="html">
+        <source>Der Wert scheint sehr hoch!</source>
+        <target>Der Wert scheint sehr hoch!</target>
+        <note priority="1" from="description">Der Wert scheint sehr
+            Hoch</note>
+        <note priority="1" from="meaning">LoadCarrierErrorThresholdForWarningQuantity</note>
+      </trans-unit>
+      <trans-unit id="ChatNoFilter" datatype="html">
+        <source>Nachrichten</source>
+        <target>Nachrichten</target>
+        <note priority="1" from="meaning">ChatNoFilter</note>
+      </trans-unit>
+      <trans-unit id="ChatBooking" datatype="html">
+        <source>Buchung</source>
+        <target>Buchung</target>
+        <note priority="1" from="meaning">ChatBooking</note>
+      </trans-unit>
+      <trans-unit id="ChatDPG" datatype="html">
+        <source>Gutschrift</source>
+        <target>Gutschrift</target>
+        <note priority="1" from="meaning">ChatDPG</note>
+      </trans-unit>
+      <trans-unit id="ChatBedarf" datatype="html">
+        <source>Bedarf</source>
+        <target>Bedarf</target>
+        <note priority="1" from="meaning">ChatBedarf</note>
+      </trans-unit>
+      <trans-unit id="ChatVerfügbarkeit" datatype="html">
+        <source>Verfügbarkeit</source>
+        <target>Verfügbarkeit</target>
+        <note priority="1" from="meaning">ChatVerfügbarkeit</note>
+      </trans-unit>
+      <trans-unit id="ChatTransport" datatype="html">
+        <source>Transport</source>
+        <target>Transport</target>
+        <note priority="1" from="description">Label für Channel Type Dropdown im Chat</note>
+      </trans-unit>
+      <trans-unit id="ChatChannelTypeLoadCarrierReceipt" datatype="html">
+        <source>Quittung</source>
+        <target>Quittung</target>
+        <note priority="1" from="description">Label für Channel Type Dropdown im Chat</note>
+      </trans-unit>
+      <trans-unit id="ChatOrginal" datatype="html">
+        <source>Orginal</source>
+        <target>Orginal</target>
+        <note priority="1" from="meaning">chatOrginal</note>
+      </trans-unit>
+      <trans-unit id="Rolle" datatype="html">
+        <source>Rolle</source>
+        <target>Rolle</target>
+        <note priority="1" from="description">Label Rolle</note>
+        <note priority="1" from="meaning">Rolle</note>
+      </trans-unit>
+      <trans-unit id="PrintConfirmationDialogTitle" datatype="html">
+        <source>War der Druck erfolgreich?</source>
+        <target>War der Druck erfolgreich?</target>
+        <note priority="1" from="description">Titel für Dialog zur Bestätigung ob Durck geklappt hat</note>
+      </trans-unit>
+      <trans-unit id="PrintConfirmationDialogDescription" datatype="html">
+        <source>ACHTUNG!!! Der Beleg wurde wie erfasst bereits gespeichert. Auch wenn Sie diesen jetzt nicht gedruckt haben bzw. drucken konnten, müssen Sie ihn gegebenenfalls stornieren. Dies gilt auch, wenn der Druck erfolgreich war, Sie den Beleg dennoch nicht herausgegeben haben.</source>
+        <target>ACHTUNG!!! Der Beleg wurde wie erfasst bereits gespeichert. Auch wenn Sie diesen jetzt nicht gedruckt haben bzw. drucken konnten, müssen Sie ihn gegebenenfalls stornieren. Dies gilt auch, wenn der Druck erfolgreich war, Sie den Beleg dennoch nicht herausgegeben haben.</target>
+        <note priority="1" from="description">Beschreibung für Dialog zur Bestätigung ob Durck geklappt hat</note>
+      </trans-unit>
+      <trans-unit id="PrintConfirmationYesButtonLabel" datatype="html">
+        <source>Ja</source>
+        <target>Ja</target>
+        <note priority="1" from="description">Label für ja Button</note>
+      </trans-unit>
+      <trans-unit id="PrintConfirmationNoButtonLabel" datatype="html">
+        <source>Nein</source>
+        <target>Nein</target>
+        <note priority="1" from="description">Label für Nein Button</note>
+      </trans-unit>
+      <trans-unit id="PrintConfirmationStornoButtonLabel" datatype="html">
+        <source>Stornieren</source>
+        <target>Stornieren</target>
+        <note priority="1" from="description">Label für Stornieren Button</note>
+      </trans-unit>
+      <trans-unit id="PrintConfirmationCancelButtonLabel" datatype="html">
+        <source>Vorgang abbrechen</source>
+        <target>Vorgang abbrechen</target>
+        <note priority="1" from="description">Label für Abbrechen Button</note>
+      </trans-unit>
+      <trans-unit id="PrintCancelDialogQuestionVoucher" datatype="html">
+        <source>Wurde der Beleg ausgegeben? Mit einem Klick auf &quot;Nein&quot; bestätigen Sie den Beleg zu stornieren nicht ausgegeben und das Original vernichtet zu haben. Mit einem Klick auf &quot;Ja&quot; bestätigen Sie den Beleg stornieren zu möchten, obwohl dieser von Ihnen ausgegeben wurde. Nur sofern der Beleg bei DPL nicht eingegangen ist, kann eine Stornierung vollzogen werden.</source>
+        <target>Wurde der Beleg ausgegeben? Mit einem Klick auf &quot;Nein&quot; bestätigen Sie den Beleg zu stornieren nicht ausgegeben und das Original vernichtet zu haben. Mit einem Klick auf &quot;Ja&quot; bestätigen Sie den Beleg stornieren zu möchten, obwohl dieser von Ihnen ausgegeben wurde. Nur sofern der Beleg bei DPL nicht eingegangen ist, kann eine Stornierung vollzogen werden.</target>
+        <note priority="1" from="description">Frage für Dialog Druck Stornieren Voucher</note>
+      </trans-unit>
+      <trans-unit id="PrintCancelDialogQuestionLoadCarrierReceipt" datatype="html">
+        <source>Wurde die Ware ausgegeben?</source>
+        <target>Wurde die Ware ausgegeben?</target>
+        <note priority="1" from="description">Frage für Dialog Druck Stornieren LoadCarrierReceipt</note>
+      </trans-unit>
+      <trans-unit id="PrintCancelDialogCancelTitle" datatype="html">
+        <source>Stornieren des Belegs</source>
+        <target>Stornieren des Belegs</target>
+        <note priority="1" from="description">Titel für Dialog Druck Stornieren</note>
+      </trans-unit>
+      <trans-unit id="Cancel" datatype="html">
+        <source>Abbrechen</source>
+        <target>Abbrechen</target>
+      </trans-unit>
+      <trans-unit id="PrintCancelDialogNoCancelPossible" datatype="html">
+        <source>Stornieren ist in diesem Fall nicht möglich, wenden Sie sich an DPL</source>
+        <target>Stornieren ist in diesem Fall nicht möglich, wenden Sie sich an DPL</target>
+        <note priority="1" from="description">Description für Dialog Druck Stornieren nicht moeglich </note>
+      </trans-unit>
+      <trans-unit id="PrintCancelDialogCancelConfirmation" datatype="html">
+        <source>Wurde die Ware wirklich nicht ausgegeben? Sind Sie da ganz sicher?</source>
+        <target>Wurde die Ware wirklich nicht ausgegeben? Sind Sie da ganz sicher?</target>
+        <note priority="1" from="description">Description für Dialog Druck Stornieren Bestaetigung </note>
+      </trans-unit>
+      <trans-unit id="PrintCancelDialogTitle" datatype="html">
+        <source>Druck abgebrochen</source>
+        <target>Druck abgebrochen</target>
+        <note priority="1" from="description">Titel für Dialog Druck abgebrochen</note>
+      </trans-unit>
+      <trans-unit id="PrintCancelDialogDescription" datatype="html">
+        <source>Hiermit wurde der Druckvorgang abgebrochen. Der Beleg wurde bereits erstellt. Falls Sie eine Stornierung des Belegs wünschen, nehmen Sie bitte über den Chat Kontakt mit unserem Service auf.</source>
+        <target>Hiermit wurde der Druckvorgang abgebrochen. Der Beleg wurde bereits erstellt. Falls Sie eine Stornierung des Belegs wünschen, nehmen Sie bitte über den Chat Kontakt mit unserem Service auf.</target>
+        <note priority="1" from="description">Text für Dialog Druck abgebrochen</note>
+      </trans-unit>
+      <trans-unit id="SearchEmptyStartpointMessage" datatype="html">
+        <source>Es wurde kein Startpunkt zu den von Ihnen eingegeben Suchparametern gefunden.</source>
+        <target>Es wurde kein Startpunkt zu den von Ihnen eingegeben Suchparametern gefunden.</target>
+        <note priority="1" from="description">Hinweis Leere Suchparameter</note>
+        <note priority="1" from="meaning">SearchEmptyStartpointMessage</note>
+      </trans-unit>
+      <trans-unit id="Street" datatype="html">
+        <source>Straße</source>
+        <target>Straße</target>
+        <note priority="1" from="description">Label Straße</note>
+        <note priority="1" from="meaning">Street</note>
+      </trans-unit>
+      <trans-unit id="CompanyName" datatype="html">
+        <source>Name der Firma</source>
+        <target>Name der Firma</target>
+        <note priority="1" from="description">Label Name der Firma</note>
+        <note priority="1" from="meaning">CompanyName</note>
+      </trans-unit>
+      <trans-unit id="Directory" datatype="html">
+        <source>Verzeichnis</source>
+        <target>Verzeichnis</target>
+        <note priority="1" from="description">Label Verzeichniss</note>
+        <note priority="1" from="meaning">Directory</note>
+      </trans-unit>
+      <trans-unit id="RequiredField" datatype="html">
+        <source>Pflichfeld</source>
+        <target>Pflichfeld</target>
+        <note priority="1" from="description">Label Pflichtfeld</note>
+        <note priority="1" from="meaning">RequiredField</note>
+      </trans-unit>
+      <trans-unit id="homePagetitle" datatype="html">
+        <source>DPL :live</source>
+        <target>DPL :live</target>
+        <note priority="1" from="description">Home Seitentitel</note>
+        <note priority="1" from="meaning">homePagetitle</note>
+      </trans-unit>
+      <trans-unit id="topNavigationCreateMenuBtn" datatype="html">
+        <source>Erstellen</source>
+        <target>Erstellen</target>
+        <note priority="1" from="description">Top Navigation Menü
+        Erstellen</note>
+        <note priority="1" from="meaning">topNavigationCreateMenuBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationOverviewMenuBtn" datatype="html">
+        <source>Übersicht</source>
+        <target>Übersicht</target>
+        <note priority="1" from="description">Top Navigation Menü
+        Übersicht</note>
+        <note priority="1" from="meaning">topNavigationOverviewMenuBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationAccountsStartBtn" datatype="html">
+        <source>Pooling Konto</source>
+        <target>Pooling Konto</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche Pooling
+          Konto</note>
+        <note priority="1" from="meaning">topNavigationAccountsStartBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationReportingDesignerBtn" datatype="html">
+        <source>Designer</source>
+        <target>Designer</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+          Designer</note>
+        <note priority="1" from="meaning">topNavigationReportingDesignerBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationReportingViewerBtn" datatype="html">
+        <source>Viewer</source>
+        <target>Viewer</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+          Viewer</note>
+        <note priority="1" from="meaning">topNavigationReportingViewerBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationPalletAcceptanceBtn" datatype="html">
+        <source>Digitale Pooling Gutschriften</source>
+        <target>Digitale Pooling Gutschriften</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+          Palettenannahme</note>
+        <note priority="1" from="meaning">topNavigationPalletAcceptanceBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationAvailabilitiesStartBtn" datatype="html">
+        <source> Verfügbarkeit</source>
+        <target> Verfügbarkeit</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+          Verfügbarkeit</note>
+        <note priority="1" from="meaning">topNavigationAvailabilitiesStartBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationNeedsStartBtn" datatype="html">
+        <source> Bedarf</source>
+        <target> Bedarf</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+          Bedarf</note>
+        <note priority="1" from="meaning">topNavigationNeedsStartBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationLoadCarrierDeliveryReceiptBtn" datatype="html">
+        <source>Annahme-Quittung</source>
+        <target>Annahme-Quittung</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+          Annahme-Quittung</note>
+      </trans-unit>
+      <trans-unit id="topNavigationLoadCarrierPickupReceiptBtn" datatype="html">
+        <source>Ausgabe-Quittung</source>
+        <target>Ausgabe-Quittung</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+          Ausgabe-Quittung</note>
+      </trans-unit>
+      <trans-unit id="topNavigationLoadCarrierExchangeReceiptBtn" datatype="html">
+        <source>Tausch-Quittung</source>
+        <target>Tausch-Quittung</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+          Tausch-Quittung</note>
+      </trans-unit>
+      <trans-unit id="topNavigationTransferBtn" datatype="html">
+        <source>Umbuchung</source>
+        <target>Umbuchung</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche Umbuchung</note>
+      </trans-unit>
+      <trans-unit id="topNavigationVoucherRegisterBtn" datatype="html">
+        <source>Digitale Pooling Gutschriften</source>
+        <target>Digitale Pooling Gutschriften</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche Digitale
+          Pooling Gutschriften</note>
+        <note priority="1" from="meaning">topNavigationVoucherRegisterBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationAvailabilitiesListBtn" datatype="html">
+        <source> Verfügbarkeiten</source>
+        <target> Verfügbarkeiten</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+          Verfügbarkeiten</note>
+        <note priority="1" from="meaning">topNavigationAvailabilitiesListBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationNeedsListBtn" datatype="html">
+        <source>Bedarfe</source>
+        <target>Bedarfe</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+          Bedarfe</note>
+        <note priority="1" from="meaning">topNavigationNeedsListBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationTransportsBtn" datatype="html">
+        <source> Transporte</source>
+        <target> Transporte</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+          Transporte</note>
+        <note priority="1" from="meaning">topNavigationTransportsBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationReceiptsBtn" datatype="html">
+        <source> Quittungen</source>
+        <target> Quittungen</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+          Quittungen</note>
+        <note priority="1" from="meaning">topNavigationReceiptsBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationLiveMenuBtn" datatype="html">
+        <source>Live Pooling</source>
+        <target>Live Pooling</target>
+        <note priority="1" from="description">Top Navigation Menü Live
+        Pooling</note>
+        <note priority="1" from="meaning">topNavigationLiveMenuBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationLivePoolingOrdersBtn" datatype="html">
+        <source> Auftragsübersicht</source>
+        <target> Auftragsübersicht</target>
+        <note priority="1" from="description">Top Navigation Schaltfläche
+          Auftragsübersicht LivePooling</note>
+        <note priority="1" from="meaning">topNavigationAvailabilitiesListBtn</note>
+      </trans-unit>
+      <trans-unit id="topNavigationReportingMenuBtn" datatype="html">
+        <source>Reporting</source>
+        <target>Reporting</target>
+        <note priority="1" from="description">Top Navigation Menü
+        Reporting</note>
+        <note priority="1" from="meaning">topNavigationReportingMenuBtn</note>
+      </trans-unit>
+      <trans-unit id="ChooseAdress" datatype="html">
+        <source>Adresse auswählen</source>
+        <target>Adresse auswählen</target>
+        <note priority="1" from="description">Label Addresse auswählen</note>
+        <note priority="1" from="meaning">ChooseAdress</note>
+      </trans-unit>
+      <trans-unit id="searchResultSelectorDialogNoResults" datatype="html">
+        <source>Keine Ergebnisse, bitte versuchen Sie es erneut</source>
+        <target>Keine Ergebnisse, bitte versuchen Sie es erneut</target>
+        <note priority="1" from="description">search-result-selector-dialog
+          Nachricht Kein Ergebniss</note>
+        <note priority="1" from="meaning">searchResultSelectorDialogNoResults</note>
+      </trans-unit>
+      <trans-unit id="UnkownApiError" datatype="html">
+        <source>Unbekannter Fehler, bitte versuchen Sie es erneut.</source>
+        <target>Unbekannter Fehler, bitte versuchen Sie es erneut.</target>
+        <note priority="1" from="description">Text für unbekannten API Fehler</note>
+      </trans-unit>
+      <trans-unit id="Department" datatype="html">
+        <source>Abteilung</source>
+        <target>Abteilung</target>
+        <note priority="1" from="description">Label Abteilung</note>
+        <note priority="1" from="meaning">Department</note>
+      </trans-unit>
+      <trans-unit id="ChangeDivisionDialogTitle" datatype="html">
+        <source>Abteilung wechseln</source>
+        <target>Abteilung wechseln</target>
+        <note priority="1" from="description">Titel für Dialog Abteilung wechseln</note>
+      </trans-unit>
+      <trans-unit id="ChangeDivisionDialogDescription" datatype="html">
+        <source>Möchten Sie die Abteilung wechseln?</source>
+        <target>Möchten Sie die Abteilung wechseln?</target>
+        <note priority="1" from="description">Frage für Dialog Abteilungswechsel bestätigen</note>
+      </trans-unit>
+      <trans-unit id="DialogExecuteActionTitle" datatype="html">
+        <source>Aktion ausführen im Namen von </source>
+        <target>Aktion ausführen im Namen von </target>
+        <note priority="1" from="description">Title Dialog Aktion
+        ausführen</note>
+        <note priority="1" from="meaning">DialogExecuteActionTitle</note>
+      </trans-unit>
+      <trans-unit id="OnBehalfOfReason" datatype="html">
+        <source> Kommunikationsweg </source>
+        <target> Kommunikationsweg </target>
+        <note priority="1" from="description">Label Grund</note>
+        <note priority="1" from="meaning">OnBehalfOfReason</note>
+      </trans-unit>
+      <trans-unit id="OnBehalfOfDate" datatype="html">
+        <source>Zeitpunkt</source>
+        <target>Zeitpunkt</target>
+        <note priority="1" from="description">Label Datum</note>
+        <note priority="1" from="meaning">OnBehalfOfDate</note>
+      </trans-unit>
+      <trans-unit id="onBehalfOfDateToday" datatype="html">
+        <source> Heute </source>
+        <target> Heute </target>
+        <note priority="1" from="description">Label Button Heute</note>
+        <note priority="1" from="meaning">onBehalfOfDateToday</note>
+      </trans-unit>
+      <trans-unit id="OnBehalfOfContactPerson" datatype="html">
+        <source>Kontaktperson (Kommunikation)</source>
+        <target>Kontaktperson (Kommunikation)</target>
+        <note priority="1" from="description">Label Kontaktperson</note>
+        <note priority="1" from="meaning">OnBehalfOfContactPerson</note>
+      </trans-unit>
+      <trans-unit id="OnBehalfOfComment" datatype="html">
+        <source>Kommentar (für den Kunden sichtbar)</source>
+        <target>Kommentar (für den Kunden sichtbar)</target>
+        <note priority="1" from="description">OnBehalfOf Kommentar</note>
+        <note priority="1" from="meaning">OnBehalfOfComment</note>
+      </trans-unit>
+      <trans-unit id="Execute" datatype="html">
+        <source> Ausführen </source>
+        <target> Ausführen </target>
+        <note priority="1" from="description">Label Ausführen</note>
+        <note priority="1" from="meaning">Execute</note>
+      </trans-unit>
+      <trans-unit id="ConfirmationDialogPrintReceiptCheckkboxLabel" datatype="html">
+        <source>Beleg drucken</source>
+        <target>Beleg drucken</target>
+        <note priority="1" from="description">Checkbox label für
+            Belegdruck</note>
+      </trans-unit>
+      <trans-unit id="ConfirmationDialogRedirectToOverviewLabel" datatype="html">
+        <source>Zur Übersicht wechseln</source>
+        <target>Zur Übersicht wechseln</target>
+        <note priority="1" from="description">Checkbox label für redirect zur
+                Übersicht</note>
+      </trans-unit>
+      <trans-unit id="ConfirmationDialogCancelButtonLabel" datatype="html">
+        <source>Abbrechen</source>
+        <target>Abbrechen</target>
+        <note priority="1" from="description">Button label für
+                      Abbrechen</note>
+      </trans-unit>
+      <trans-unit id="ConfirmationDialogConfirmButtonLabel" datatype="html">
+        <source>Bestätigen</source>
+        <target>Bestätigen</target>
+        <note priority="1" from="description">Button label für
+                    Bestätigung</note>
+      </trans-unit>
+      <trans-unit id="Printouts" datatype="html">
+        <source>Belege</source>
+        <target>Belege</target>
+        <note priority="1" from="description">Label Ausdrucke</note>
+        <note priority="1" from="meaning">Printouts</note>
+      </trans-unit>
+      <trans-unit id="AGB" datatype="html">
+        <source>AGB</source>
+        <target>AGB</target>
+        <note priority="1" from="description">Label AGB</note>
+        <note priority="1" from="meaning">AGB</note>
+      </trans-unit>
+      <trans-unit id="Point1" datatype="html">
+        <source>Punkt 1</source>
+        <target>Punkt 1</target>
+        <note priority="1" from="description">Label Point 1</note>
+        <note priority="1" from="meaning">Point1</note>
+      </trans-unit>
+      <trans-unit id="Close" datatype="html">
+        <source> Schließen
+</source>
+        <target> Schließen
+</target>
+        <note priority="1" from="description">Label Schließen</note>
+        <note priority="1" from="meaning">Close</note>
+      </trans-unit>
+      <trans-unit id="PrintLanguage" datatype="html">
+        <source>Belegsprache</source>
+        <target>Belegsprache</target>
+        <note priority="1" from="description">Label Drucksprache</note>
+        <note priority="1" from="meaning">PrintLanguage</note>
+      </trans-unit>
+      <trans-unit id="PartnerDirectoryLookupHeaderLabel" datatype="html">
+        <source>Firmen Auswahl</source>
+        <target>Firmen Auswahl</target>
+        <note priority="1" from="description">Label für Verzeichnisbasierte
+      Firmenauswahl</note>
+      </trans-unit>
+      <trans-unit id="PartnerDirectoryLookupDirectoryListLabel" datatype="html">
+        <source>Verzeichnis</source>
+        <target>Verzeichnis</target>
+        <note priority="1" from="description">Label für Verzeichnis
+              liste</note>
+      </trans-unit>
+      <trans-unit id="PartnerDirectorySearchText" datatype="html">
+        <source>Verzeichnissuche</source>
+        <target>Verzeichnissuche</target>
+        <note priority="1" from="description">Label Partberverzeichnis suche</note>
+      </trans-unit>
+      <trans-unit id="PartnerDirectoryLookupCompanyListLabel" datatype="html">
+        <source>Firma</source>
+        <target>Firma</target>
+        <note priority="1" from="description">Label für Firmen liste</note>
+      </trans-unit>
+      <trans-unit id="PartnerSearchText" datatype="html">
+        <source>Firmensuche</source>
+        <target>Firmensuche</target>
+        <note priority="1" from="description">Label Partnersuche</note>
+      </trans-unit>
+      <trans-unit id="PartnerDirectoryLookupCancel" datatype="html">
+        <source> Abbrechen </source>
+        <target> Abbrechen </target>
+        <note priority="1" from="description">Buttom zum Abbrechen der Firmenauswahl</note>
+      </trans-unit>
+      <trans-unit id="PartnerDirectoryLookupConfirmSelection" datatype="html">
+        <source> Auswahl bestätigen </source>
+        <target> Auswahl bestätigen </target>
+        <note priority="1" from="description">Buttom zum Bestätigen der
+          Firmenauswahl</note>
+      </trans-unit>
+      <trans-unit id="All" datatype="html">
+        <source>Alle</source>
+        <target>Alle</target>
+        <note priority="1" from="description">Label Alle</note>
+        <note priority="1" from="meaning">All</note>
+      </trans-unit>
+      <trans-unit id="CreateNewPartner" datatype="html">
+        <source> Neuen Partner erzeugen </source>
+        <target> Neuen Partner erzeugen </target>
+        <note priority="1" from="description">Label Neuen Partner erzeugen</note>
+        <note priority="1" from="meaning">CreateNewPartner</note>
+      </trans-unit>
+      <trans-unit id="1665363787425525625" datatype="html">
+        <source>Bitte wählen Sie eine Wert aus der Liste oder legen Sie einen neuen Eintrag an</source>
+        <target>Bitte wählen Sie eine Wert aus der Liste oder legen Sie einen neuen Eintrag an</target>
+        <note priority="1" from="description">PartnerLookupNoneSelectValidationMessage</note>
+      </trans-unit>
+      <trans-unit id="Conditions" datatype="html">
+        <source>Konditionen</source>
+        <target>Konditionen</target>
+        <note priority="1" from="description">Label Konditionen</note>
+        <note priority="1" from="meaning">Conditions</note>
+      </trans-unit>
+      <trans-unit id="BookingDate" datatype="html">
+        <source>Buchungsdatum</source>
+        <target>Buchungsdatum</target>
+        <note priority="1" from="description">Label Buchungsdatum</note>
+        <note priority="1" from="meaning">BookingDate</note>
+      </trans-unit>
+      <trans-unit id="InQuantity" datatype="html">
+        <source>Eingang</source>
+        <target>Eingang</target>
+        <note priority="1" from="description">Label Eingang</note>
+        <note priority="1" from="meaning">InQuantity</note>
+      </trans-unit>
+      <trans-unit id="OutQuantity" datatype="html">
+        <source>Ausgang</source>
+        <target>Ausgang</target>
+        <note priority="1" from="description">Label Ausgang</note>
+        <note priority="1" from="meaning">OutQuantity</note>
+      </trans-unit>
+      <trans-unit id="ExtDescription" datatype="html">
+        <source>Beschreibung</source>
+        <target>Beschreibung</target>
+        <note priority="1" from="description">Label Externe Beschreibung</note>
+        <note priority="1" from="meaning">ExtDescription</note>
+      </trans-unit>
+      <trans-unit id="Quantity" datatype="html">
+        <source>Menge</source>
+        <target>Menge</target>
+        <note priority="1" from="description">Label Menge</note>
+        <note priority="1" from="meaning">Quantity</note>
+      </trans-unit>
+      <trans-unit id="FilterSupplyEarliestFulfillmentDateLabel" datatype="html">
+        <source>Früheste Abholung</source>
+        <target>Früheste Abholung</target>
+        <note priority="1" from="description">Filter Label für früheste Abholung</note>
+      </trans-unit>
+      <trans-unit id="FilterDemandLatestFulfillmentDateLabel" datatype="html">
+        <source>Späteste Lieferung</source>
+        <target>Späteste Lieferung</target>
+        <note priority="1" from="description">Filter Label für späteste Lieferung</note>
+      </trans-unit>
+      <trans-unit id="FilterSupplyPostalCode" datatype="html">
+        <source>Abholort PLZ</source>
+        <target>Abholort PLZ</target>
+        <note priority="1" from="description">Filter Label für Abholort PLZ</note>
+      </trans-unit>
+      <trans-unit id="FilterDemandPostalCode" datatype="html">
+        <source>Lieferort PLZ</source>
+        <target>Lieferort PLZ</target>
+        <note priority="1" from="description">Filter Label für Lieferort PLZ</note>
+      </trans-unit>
+      <trans-unit id="Receipt" datatype="html">
+        <source>Beleg</source>
+        <target>Beleg</target>
+        <note priority="1" from="description">Label Beleg</note>
+        <note priority="1" from="meaning">Receipt</note>
+      </trans-unit>
+      <trans-unit id="IssueDate" datatype="html">
+        <source>Ausstellungsdatum</source>
+        <target>Ausstellungsdatum</target>
+        <note priority="1" from="description">Label Ausstellungsdatum</note>
+        <note priority="1" from="meaning">IssueDate</note>
+      </trans-unit>
+      <trans-unit id="RecordType" datatype="html">
+        <source>Typ</source>
+        <target>Typ</target>
+        <note priority="1" from="description">Label Belegtyp</note>
+        <note priority="1" from="meaning">RecordType</note>
+      </trans-unit>
+      <trans-unit id="Default" datatype="html">
+        <source>Standard</source>
+        <target>Standard</target>
+        <note priority="1" from="description">Label Standard</note>
+        <note priority="1" from="meaning">Default</note>
+      </trans-unit>
+      <trans-unit id="IssuingDivision" datatype="html">
+        <source>Ausstelle Abteilung</source>
+        <target>Ausstelle Abteilung</target>
+        <note priority="1" from="description">Label Ausstellende Abteilung</note>
+        <note priority="1" from="meaning">IssuingCompany</note>
+      </trans-unit>
+      <trans-unit id="IssuingPerson" datatype="html">
+        <source>Ausstellende Person</source>
+        <target>Ausstellende Person</target>
+        <note priority="1" from="description">Label Ausstellende Person</note>
+        <note priority="1" from="meaning">IssuingPerson</note>
+      </trans-unit>
+      <trans-unit id="BalanceInfoSaldo" datatype="html">
+        <source>Saldo </source>
+        <target>Saldo </target>
+        <note priority="1" from="description">Label Balance Info Saldo</note>
+        <note priority="1" from="meaning">BalanceInfoSaldo</note>
+      </trans-unit>
+      <trans-unit id="BalanceInfoIntakt" datatype="html">
+        <source>intakt</source>
+        <target>intakt</target>
+        <note priority="1" from="description">Label Balance Info intakt</note>
+        <note priority="1" from="meaning">BalanceInfoIntakt</note>
+      </trans-unit>
+      <trans-unit id="ApiError" datatype="html">
+        <source>Server Api Fehler</source>
+        <target>Server Api Fehler</target>
+      </trans-unit>
+      <trans-unit id="BadRequest" datatype="html">
+        <source>Die Anfrage-Nachricht war fehlerhaft aufgebaut.</source>
+        <target>Die Anfrage-Nachricht war fehlerhaft aufgebaut.</target>
+        <note priority="1" from="description">BadRequest</note>
+        <note priority="1" from="meaning">BadRequest</note>
+      </trans-unit>
+      <trans-unit id="UnauthorizedError" datatype="html">
+        <source>Die Anfrage kann nicht ohne gültige Authentifizierung gestellt werden</source>
+        <target>Die Anfrage kann nicht ohne gültige Authentifizierung gestellt werden</target>
+      </trans-unit>
+      <trans-unit id="ForbiddenError" datatype="html">
+        <source>Die Anfrage wurde aufgrund fehlender Autorisierung durch den Kunden, z.B. weil der authentifizierte Benutzer nicht autorisiert ist oder eine als HTTPS konfigurierte URL nur mit HTTP aufgerufen wurde.</source>
+        <target>Die Anfrage wurde aufgrund fehlender Autorisierung durch den Kunden, z.B. weil der authentifizierte Benutzer nicht autorisiert ist oder eine als HTTPS konfigurierte URL nur mit HTTP aufgerufen wurde.</target>
+        <note priority="1" from="description">ForbiddenError</note>
+        <note priority="1" from="meaning">ForbiddenError</note>
+      </trans-unit>
+      <trans-unit id="NotFoundError" datatype="html">
+        <source>Die angeforderte Ressource wurde nicht gefunden.</source>
+        <target>Die angeforderte Ressource wurde nicht gefunden.</target>
+        <note priority="1" from="description">NotFoundError</note>
+        <note priority="1" from="meaning">NotFoundError</note>
+      </trans-unit>
+      <trans-unit id="MethodNotAllowedError" datatype="html">
+        <source>Die Anforderung kann nur mit anderen HTTP-Methoden erfolgen.</source>
+        <target>Die Anforderung kann nur mit anderen HTTP-Methoden erfolgen.</target>
+      </trans-unit>
+      <trans-unit id="2234519102984603698" datatype="html">
+        <source>@@RequestTimeoutError:Innerhalb der vom Server erlaubten Zeitspanne wurde keine vollständige Anfrage des Clients empfangen.</source>
+        <target>@@RequestTimeoutError:Innerhalb der vom Server erlaubten Zeitspanne wurde keine vollständige Anfrage des Clients empfangen.</target>
+      </trans-unit>
+      <trans-unit id="UnexpectedServerError " datatype="html">
+        <source>Ein unerwarteter Serverfehler ist aufgetreten.</source>
+        <target>Ein unerwarteter Serverfehler ist aufgetreten.</target>
+      </trans-unit>
+      <trans-unit id="UndefinedError" datatype="html">
+        <source>Undefinierter Fehler</source>
+        <target>Undefinierter Fehler</target>
+      </trans-unit>
+      <trans-unit id="ChatError" datatype="html">
+        <source>Chat Fehler</source>
+        <target>Chat Fehler</target>
+      </trans-unit>
+      <trans-unit id="ChatErrorMessage" datatype="html">
+        <source>Der Chat ist zurzeit nicht verfügbar.</source>
+        <target>Der Chat ist zurzeit nicht verfügbar.</target>
+      </trans-unit>
+      <trans-unit id="ChatUpdateErrorMessage" datatype="html">
+        <source>Der Chat hat ein Änderung nicht mit bekommen. Bitte laden sie die Seite mit leerem Cache erneut</source>
+        <target>Der Chat hat ein Änderung nicht mit bekommen. Bitte laden sie die Seite mit leerem Cache erneut</target>
+      </trans-unit>
+      <trans-unit id="ChatMeErrorMessage" datatype="html">
+        <source>Der Chat kann Sie nicht kennen lernen. Bitte überprüfen Sie Ihre Firewall- &amp; Browsereinstellungen</source>
+        <target>Der Chat kann Sie nicht kennen lernen. Bitte überprüfen Sie Ihre Firewall- &amp; Browsereinstellungen</target>
+      </trans-unit>
+      <trans-unit id="ChatNoKeyErrorMessage" datatype="html">
+        <source>Es wurde kein API-Key für den Chat gesetzt</source>
+        <target>Es wurde kein API-Key für den Chat gesetzt</target>
+      </trans-unit>
+      <trans-unit id="ChatWrongKeyErrorMessage" datatype="html">
+        <source>Der API-Key für den Chat wurde nicht gefunden</source>
+        <target>Der API-Key für den Chat wurde nicht gefunden</target>
+      </trans-unit>
+      <trans-unit id="MinLength" datatype="html">
+        <source>Die Eingabe ist zu kurz</source>
+        <target>Die Eingabe ist zu kurz</target>
+        <note priority="1" from="description">Die Eingabe ist zu kurz</note>
+        <note priority="1" from="meaning">MinLength</note>
+      </trans-unit>
+      <trans-unit id="Profile" datatype="html">
+        <source>Profil</source>
+        <target>Profil</target>
+        <note priority="1" from="description">Label Profile</note>
+        <note priority="1" from="meaning">Profile</note>
+      </trans-unit>
+      <trans-unit id="Settings" datatype="html">
+        <source>Einstellungen</source>
+        <target>Einstellungen</target>
+        <note priority="1" from="description">Label Einstellungen</note>
+        <note priority="1" from="meaning">Settings</note>
+      </trans-unit>
+      <trans-unit id="ContactSupport" datatype="html">
+        <source>Kontakt / Support</source>
+        <target>Kontakt / Support</target>
+        <note priority="1" from="description">Label Kontakt Support</note>
+        <note priority="1" from="meaning">ContactSupport</note>
+      </trans-unit>
+      <trans-unit id="Logout" datatype="html">
+        <source>Abmelden</source>
+        <target>Abmelden</target>
+        <note priority="1" from="description">Label Abmelden</note>
+        <note priority="1" from="meaning">Logout</note>
+      </trans-unit>
+      <trans-unit id="Login" datatype="html">
+        <source>Login</source>
+        <target>Login</target>
+        <note priority="1" from="description">Label Anmelden</note>
+        <note priority="1" from="meaning">Login</note>
+      </trans-unit>
+      <trans-unit id="Value" datatype="html">
+        <source>Wert</source>
+        <target>Wert</target>
+        <note priority="1" from="description">Label Wert</note>
+        <note priority="1" from="meaning">Value</note>
+      </trans-unit>
+      <trans-unit id="Accept" datatype="html">
+        <source> Übernehmen </source>
+        <target> Übernehmen </target>
+        <note priority="1" from="description">Label Übernehmen</note>
+        <note priority="1" from="meaning">Accept</note>
+      </trans-unit>
+      <trans-unit id="OpenChatTooltip" datatype="html">
+        <source>Chat öffnen</source>
+        <target>Chat öffnen</target>
+        <note priority="1" from="description">Title Chat öffnen</note>
+        <note priority="1" from="meaning">OpenChatTooltip</note>
+      </trans-unit>
+      <trans-unit id="Spedition" datatype="html">
+        <source> Spedition </source>
+        <target> Spedition </target>
+        <note priority="1" from="description">Label Spedition</note>
+        <note priority="1" from="meaning">Spedition</note>
+      </trans-unit>
+      <trans-unit id="RecordDate" datatype="html">
+        <source>Datum:</source>
+        <target>Datum:</target>
+        <note priority="1" from="description">Label Datum</note>
+        <note priority="1" from="meaning">RecordDate</note>
+      </trans-unit>
+      <trans-unit id="ReferenceNumber" datatype="html">
+        <source> Nummer: </source>
+        <target> Nummer: </target>
+        <note priority="1" from="description">Label Nummer</note>
+        <note priority="1" from="meaning">ReferenceNumber</note>
+      </trans-unit>
+      <trans-unit id="homeSubtitle" datatype="html">
+        <source>Willkommen bei DPL :live - dem DPL Online-Paletten-Management-System</source>
+        <target>Willkommen bei DPL :live - dem DPL Online-Paletten-Management-System</target>
+        <note priority="1" from="description">Home Subtitle</note>
+        <note priority="1" from="meaning">homeSubtitle</note>
+      </trans-unit>
+      <trans-unit id="Note" datatype="html">
+        <source>Notiz</source>
+        <target>Notiz</target>
+        <note priority="1" from="description">Notiz Label für Bestätigung von Aktionen</note>
+      </trans-unit>
+      <trans-unit id="Stornogrund" datatype="html">
+        <source>Stornogrund</source>
+        <target>Stornogrund</target>
+        <note priority="1" from="description">Notiz Label für Storno</note>
+      </trans-unit>
+      <trans-unit id="PalletAcceptanceServiceExpressCodeInvalidMessage" datatype="html">
+        <source>DPL-Digial-Code existiert nicht oder kann nicht mehr verwendet werden.</source>
+        <target>DPL-Digial-Code existiert nicht oder kann nicht mehr verwendet werden.</target>
+        <note priority="1" from="description">Fehlermeldung wenn eingegebener ExpressCode nicht existiert oder nicht mehr gültig ist.</note>
+      </trans-unit>
+      <trans-unit id="PalletAcceptanceServiceExpressCodeAppliedMessage" datatype="html">
+        <source>DPL-Digial-Code wurde erfogreich angewendet.</source>
+        <target>DPL-Digial-Code wurde erfogreich angewendet.</target>
+        <note priority="1" from="description">Meldung wenn eingegebener ExpressCode erfolgreich angewandt wurde.</note>
+      </trans-unit>
+      <trans-unit id="PartnerCreateDialogTitle" datatype="html">
+        <source>Neuen Partner erstellen.</source>
+        <target>Neuen Partner erstellen.</target>
+        <note priority="1" from="description">Neuen Partner erstellen</note>
+        <note priority="1" from="meaning">PartnerCreateDialogTitle</note>
+      </trans-unit>
+      <trans-unit id="PartnerCreateDialogCreateAction" datatype="html">
+        <source> Partner erstellen </source>
+        <target> Partner erstellen </target>
+        <note priority="1" from="description">Partner
+      erstellen</note>
+        <note priority="1" from="meaning">PartnerCreateDialogCreateAction</note>
+      </trans-unit>
+      <trans-unit id="ChooseAccount" datatype="html">
+        <source>Konto wählen</source>
+        <target>Konto wählen</target>
+        <note priority="1" from="description">Label Konto wählen</note>
+        <note priority="1" from="meaning">ChooseAccount</note>
+      </trans-unit>
+      <trans-unit id="SelectArticle" datatype="html">
+        <source>Artikel wählen</source>
+        <target>Artikel wählen</target>
+        <note priority="1" from="description">Label Artikel wählen</note>
+        <note priority="1" from="meaning">SelectArticle</note>
+      </trans-unit>
+      <trans-unit id="Intakt" datatype="html">
+        <source>Intakt</source>
+        <target>Intakt</target>
+        <note priority="1" from="description">Label Intakt</note>
+        <note priority="1" from="meaning">Intakt</note>
+      </trans-unit>
+      <trans-unit id="Defect" datatype="html">
+        <source>Defekt</source>
+        <target>Defekt</target>
+        <note priority="1" from="description">Label Defekte</note>
+        <note priority="1" from="meaning">Defect</note>
+      </trans-unit>
+      <trans-unit id="ChooseAccountingRecordStatus" datatype="html">
+        <source>Status wählen</source>
+        <target>Status wählen</target>
+        <note priority="1" from="description">Label Status wählen</note>
+        <note priority="1" from="meaning">ChooseAccountingRecordStatus</note>
+      </trans-unit>
+      <trans-unit id="ContactTitle" datatype="html">
+        <source> Kontakt &amp; Support </source>
+        <target> Kontakt &amp; Support </target>
+        <note priority="1" from="description">Kontakte &amp; Support</note>
+        <note priority="1" from="meaning">ContactTitle</note>
+      </trans-unit>
+      <trans-unit id="ContactSubtitle" datatype="html">
+        <source> Impressum </source>
+        <target> Impressum </target>
+        <note priority="1" from="description">Impressum</note>
+        <note priority="1" from="meaning">ContactSubtitle</note>
+      </trans-unit>
+      <trans-unit id="NameOfTheDriver" datatype="html">
+        <source>Name des Fahrers</source>
+        <target>Name des Fahrers</target>
+        <note priority="1" from="description">Label Name des Fahrers</note>
+        <note priority="1" from="meaning">NameOfTheDriver</note>
+      </trans-unit>
+      <trans-unit id="RequiredHint" datatype="html">
+        <source>mit * gekennzeichnete Felder sind Pflichtfelder</source>
+        <target>mit * gekennzeichnete Felder sind Pflichtfelder</target>
+        <note priority="1" from="description">mit * gekennzeichnete Felder sind Pflichtfelder</note>
+        <note priority="1" from="meaning">RequiredHint</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,219 @@
+html {
+  height: 100%;
+}
+
+body.testapp {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.button .MuiBadge-anchorOriginTopRightRectangle {
+  top: -15px;
+  right: -10px;
+  background-color: #b53f51;
+}
+
+div.dpl-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+div.str-chat__channel-list-team__main {
+  display: flex;
+  flex-direction: column;
+}
+
+div.str-chat__channel-list-team {
+  overflow-y: unset;
+}
+
+#style-list {
+  overflow: auto;
+}
+
+
+#style-unread-messages {
+  color: white;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#style-unread-message-button {
+  color: white;
+  background-color: #b53f51;
+  border-radius: 12px;
+  height: 18px;
+  display: flex;
+  padding: 0 6px;
+  position: relative;
+  transform: scale(1) translate(-110%);
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-size: x-small;
+}
+
+#style-channel-search {
+  width: 100%;
+}
+
+#style-channel-search-input {
+  width: 96%;
+}
+
+#style-channel-search-icon {
+  margin-top: 15px;
+  overflow: visible;
+  padding-right: 4px;
+}
+
+#style-lastResult-button-right:focus {
+  outline: none !important;
+  outline-color: none !important;
+  outline-style: auto;
+  outline-width: 0px;
+  color: white;
+}
+
+#style-lastResult-button-left:focus {
+  outline: none !important;
+  outline-color: none !important;
+  outline-style: auto;
+  outline-width: 0px;
+  color: white;
+}
+
+#style-lastResult-button-left:disabled {
+  background-color: #ebebeb;
+  opacity: 0.3;
+}
+
+#style-lastResult-button-right:disabled {
+  background-color: #ebebeb;
+  opacity: 0.3;
+}
+
+#style-lastResult-button-right {
+  display: flex;
+  align-content: flex-end;
+  right: 2%;
+  border: 0px !important;
+  background-color: white;
+}
+
+#style-lastResult-button-left {
+  border: 0px !important;
+  margin-left: 20px;
+  background-color: white;
+}
+
+#style-channel-search-arrows {
+  /* margin-top: 0px !important; */
+  align-self: center !important;
+}
+
+#search {
+  width: 100%;
+  display: flex;
+}
+
+#searchInput {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+#searchbar {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+#style-search-bar {
+  width: 100%;
+}
+
+.str-chat__channel-search {
+  margin-bottom: 10px !important;
+}
+
+div.str-chat__channel-list-team__main {
+  min-width: 280px;
+}
+
+#style-channel-search-selection {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+#style-div-members-filter {
+  display: flex;
+  flex-direction: column;
+}
+
+#style-div-extratype-filter {
+  display: flex;
+  flex-direction: column;
+}
+
+#searchInput {
+  width: 100%;
+}
+
+.search-result > .str-chat__message-text-inner.str-chat__message-simple-text-inner {
+  background-color: rgba(63, 81, 181, 1);
+  color: white;
+  font-weight: bold;
+}
+
+.str-chat__message-notification {
+  background: rgba(63, 81, 181, 1) !important;
+}
+
+.channel-header-link {
+  text-decoration: underline;
+  cursor: pointer;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* max-width: 75ch; */
+} 
+
+#channel_header_responsive_member {
+  font-size: 8px;
+  padding: 0px;
+}
+
+#channel_header_left_panel {
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-arrow-left{
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+.search-arrow-right{
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+
+.str-chat__input-emojiselect{
+  margin-bottom: 3px;
+}
+.rfu-file-upload-button{
+  margin-top: 2px;
+}

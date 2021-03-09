@@ -1,0 +1,274 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Zusammenfassung</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table
+      class="app-table order-processes-list-table"
+      mat-table
+      [dataSource]="dataSource"
+      multiTemplateDataRows
+    >
+      <ng-container [matColumnDef]="column.Summary">
+        <th mat-header-cell *matHeaderCellDef>
+          <span [style.paddingLeft.px]="15">Zusammenfassung</span>
+        </th>
+        <td mat-cell *matCellDef="let detail" class="summary">
+          <button
+            mat-icon-button
+            [style.visibility]="detail.children.length === 0 ? 'hidden' : ''"
+            [style.marginLeft.px]="getIndent(detail, true)"
+            (click)="treeControl.toggle(detail)"
+          >
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{
+                treeControl.isExpanded(detail) ? 'expand_more' : 'chevron_right'
+              }}
+            </mat-icon>
+          </button>
+          <ng-container [ngSwitch]="detail.type">
+            <ng-container *ngSwitchCase="'orderGroup'">Auftrag</ng-container>
+            <ng-container *ngSwitchCase="'order'">
+              <ng-container
+                *ngIf="detail.data.type === 'Supply'; else demandOrder"
+                >Verfügbarkeit</ng-container
+              >
+              <ng-template #demandOrder>Bedarf</ng-template>
+            </ng-container>
+            <ng-container *ngSwitchCase="'orderLoad'"
+              >Ladung: {{ detail.data.loadCarrierQuantity }} x
+              {{ detail.data.loadCarrierId | loadCarrier: 'both' }}, Geplant:
+              {{
+                detail.data.plannedFulfillmentDateTime | date: 'shortDate'
+              }}</ng-container
+            >
+            <ng-container *ngSwitchCase="'loadCarrierReceipt'">
+              <ng-container [ngSwitch]="detail.data.type">
+                <ng-container *ngSwitchCase="receiptType.Pickup"
+                  >Ausgangs-Quittung</ng-container
+                >
+                <ng-container *ngSwitchCase="receiptType.Delivery"
+                  >Eingangs-Quittung</ng-container
+                >
+                <ng-container *ngSwitchCase="receiptType.Exchange"
+                  >Tausch-Quittung</ng-container
+                >
+              </ng-container></ng-container
+            >
+            <ng-container *ngSwitchCase="'accountingRecord'">
+              <ng-container
+                *ngIf="detail.data.quantity >= 0; else negativeSaldo"
+                >Konto Eingang (Saldo + )</ng-container
+              >
+              <ng-template #negativeSaldo>Konto Ausgang (Saldo - )</ng-template>
+            </ng-container>
+            <ng-container *ngSwitchDefault>{{ detail.type }}</ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container [matColumnDef]="column.Type">
+        <th mat-header-cell *matHeaderCellDef>
+          <span [style.paddingLeft.px]="40">Typ</span>
+        </th>
+        <td mat-cell *matCellDef="let detail">
+          <button
+            mat-icon-button
+            [style.visibility]="detail.children.length === 0 ? 'hidden' : ''"
+            [style.marginLeft.px]="getIndent(detail, true)"
+            (click)="treeControl.toggle(detail)"
+          >
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{
+                treeControl.isExpanded(detail) ? 'expand_more' : 'chevron_right'
+              }}
+            </mat-icon>
+          </button>
+          <ng-container [ngSwitch]="detail.type">
+            <ng-container *ngSwitchCase="'orderGroup'">Auftrag</ng-container>
+            <ng-container *ngSwitchCase="'order'">
+              <ng-container
+                *ngIf="detail.data.type === 'Supply'; else demandOrder"
+                >Verfügbarkeit</ng-container
+              >
+              <ng-template #demandOrder>Bedarf</ng-template>
+            </ng-container>
+            <ng-container *ngSwitchCase="'orderLoad'">Ladung</ng-container>
+            <ng-container *ngSwitchCase="'loadCarrierReceipt'">
+              <ng-container [ngSwitch]="detail.data.type">
+                <ng-container *ngSwitchCase="receiptType.Pickup"
+                  >Ausgangs-Quittung</ng-container
+                >
+                <ng-container *ngSwitchCase="receiptType.Delivery"
+                  >Eingangs-Quittung</ng-container
+                >
+                <ng-container *ngSwitchCase="receiptType.Exchange"
+                  >Tausch-Quittung</ng-container
+                >
+              </ng-container></ng-container
+            >
+            <ng-container *ngSwitchCase="'accountingRecord'">
+              <ng-container
+                *ngIf="detail.data.quantity >= 0; else negativeSaldo"
+                >Konto Eingang (Saldo + )</ng-container
+              >
+              <ng-template #negativeSaldo>Konto Ausgang (Saldo - )</ng-template>
+            </ng-container>
+            <ng-container *ngSwitchDefault>{{ detail.type }}</ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container [matColumnDef]="column.Date">
+        <th mat-header-cell *matHeaderCellDef>Datum</th>
+        <td mat-cell *matCellDef="let detail">
+          {{ detail.date | dateEx }}
+        </td>
+      </ng-container>
+
+      <ng-container [matColumnDef]="column.ReferenceNumber">
+        <th mat-header-cell *matHeaderCellDef>Referenz Nummer</th>
+        <td mat-cell *matCellDef="let detail">
+          {{ detail.referenceNumber }}
+        </td>
+      </ng-container>
+
+      <ng-container [matColumnDef]="column.Description">
+        <th mat-header-cell *matHeaderCellDef>Details</th>
+        <td mat-cell *matCellDef="let detail">
+          {{ detail.description }}
+        </td>
+      </ng-container>
+
+      <ng-container [matColumnDef]="column.LoadCarrier">
+        <th mat-header-cell *matHeaderCellDef>Ladungsträger</th>
+        <td mat-cell *matCellDef="let detail">
+          <ng-container *ngIf="detail.data.loadCarrierId">
+            {{ detail.data.loadCarrierQuantity || 1 }} x
+            {{ detail.data.loadCarrierId | loadCarrier }}
+            <ng-container *ngIf="detail.data.baseLoadCarrierId">
+              , {{ detail.data.baseLoadCarrierQuantity }} x
+              {{ detail.data.baseLoadCarrierId | loadCarrier }}
+            </ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container [matColumnDef]="column.Status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let detail">
+          <ng-container [ngSwitch]="detail.type">
+            <ng-container *ngSwitchCase="'order'">
+              {{ detail.data.status | orderStatus }}
+            </ng-container>
+            <ng-container *ngSwitchCase="'orderLoad'">
+              {{ detail.data.status | orderLoadStatus }}
+            </ng-container>
+            <ng-container *ngSwitchCase="'loadCarrierReceipt'">
+              Erstellt
+            </ng-container>
+            <ng-container *ngSwitchCase="'accountingRecord'">
+              {{ detail.data.status | accountingRecordStatus }}
+            </ng-container>
+            <ng-container *ngSwitchDefault></ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container [matColumnDef]="column.Actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let detail">
+          <div
+            fxLayout="row"
+            fxLayoutGap="5px"
+            fxLayoutAlign="end"
+            style="padding-right: 10px;"
+          >
+            <button
+              *ngIf="detail.type === 'orderLoad'"
+              mat-icon-button
+              (click)="openDocument(detail)"
+            >
+              <mat-icon>receipt</mat-icon>
+            </button>
+            <dpl-chat-button
+              *ngIf="detail.type === 'order' || detail.type === 'orderLoad'"
+              [type]="detail.type"
+              [data]="detail.data"
+            ></dpl-chat-button>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container [matColumnDef]="column.Detail">
+        <td
+          mat-cell
+          *matCellDef="let detail"
+          [attr.colspan]="displayedColumns.length"
+        >
+          <div
+            class="extended-detail"
+            [style.marginLeft.px]="getIndent(detail)"
+          >
+            <!-- switch on detail type -->
+            <ng-container [ngSwitch]="detail.type">
+              <dpl-detail-order
+                *ngSwitchCase="'order'"
+                [order]="detail.data"
+              ></dpl-detail-order>
+
+              <dpl-detail-order-load
+                *ngSwitchCase="'orderLoad'"
+                [load]="detail.data"
+              ></dpl-detail-order-load>
+
+              <dpl-detail-load-carrier-receipt
+                *ngSwitchCase="'loadCarrierReceipt'"
+                [receipt]="detail.data"
+              ></dpl-detail-load-carrier-receipt>
+
+              <dpl-detail-booking
+                *ngSwitchCase="'accountingRecord'"
+                [booking]="detail.data"
+              ></dpl-detail-booking>
+            </ng-container>
+          </div></td
+      ></ng-container>
+
+      <ng-container matColumnDef="noData">
+        <td
+          *matFooterCellDef
+          mat-footer-cell
+          [attr.colspan]="displayedColumns.length"
+          style="text-align: center;"
+        >
+          Noch keine Ladungen geplant
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns"
+        [hidden]="!showAsTable"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let detail; columns: displayedColumns"
+        [dplRouteHighlight]="detail.data.id"
+        [dplRouteHighlightParamName]="getHighlightParameterName(detail)"
+        [class.with-detail]="showDetailRow(0, detail)"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let detail; columns: [column.Detail]; when: showDetailRow"
+        [dplRouteHighlight]="detail.data.id"
+        [dplRouteHighlightParamName]="getHighlightParameterName(detail)"
+      ></tr>
+      <tr
+        mat-footer-row
+        *matFooterRowDef="['noData']"
+        [hidden]="orderProcesses.length !== 0"
+      ></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

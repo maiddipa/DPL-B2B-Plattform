@@ -1,0 +1,165 @@
+<mat-card>
+  <mat-card-header class="sticky-header">
+    <dpl-sorting-header
+      [receipt]="sortInput.loadCarrierReceipt"
+    ></dpl-sorting-header>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="form" class="app-form-padding">
+      <div fxLayout="column" fxLayoutGap="50px">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          style="font-weight: bold; font-size: 16px; top: 70px;"
+          class="sticky-header"
+        >
+          <div fxFlex="5">Pos.</div>
+          <div fxFlex="30">Annahme-Qualität</div>
+          <div fxFlex="65">Sortier-Qualität</div>
+        </div>
+        <ng-container formArrayName="positions">
+          <div
+            *ngFor="let position of positions.controls; index as i"
+            fxLayout="row"
+            fxLayoutAlign="space-between start"
+            [ngClass]="{ seperator: i !== positions.controls.length - 1 }"
+            style="font-weight: bold;"
+          >
+            <div fxFlex="5" style="font-weight: bold;">{{ i + 1 }}</div>
+            <ng-container [formGroup]="position">
+              <div
+                fxFlex="30"
+                fxLayout="row"
+                fxLayoutGap="40px"
+                fxLayoutAlign="start center"
+              >
+                <mat-label
+                  >{{
+                    sortInput.sortingPositions[i].loadCarrierId
+                      | loadCarrier: 'both'
+                  }}:</mat-label
+                >
+
+                <span>{{ sortInput.sortingPositions[i].quantity }}</span>
+              </div>
+
+              <div fxLayout="column" fxFlex="65" style="margin-top: -34px;">
+                <div fxLayout="row" fxLayoutAlign="end" style="width: 300px;">
+                  <span>Sortiert</span>:
+                  <span
+                    [ngStyle]="{
+                      color:
+                        getOutput(i).getError('quantityLow') ||
+                        getOutput(i).getError('quantityHigh')
+                          ? 'red'
+                          : 'green'
+                    }"
+                    >{{
+                      getPositionQuantity(
+                        sortInput.sortingPositions[i].loadCarrierId
+                      ).sortQuantity
+                    }}</span
+                  >
+                  /
+                  <span>{{ sortInput.sortingPositions[i].quantity }}</span>
+                </div>
+                <ng-container formArrayName="outputs">
+                  <div
+                    *ngFor="let output of getOutput(i).controls; index as g"
+                    fxLayoutAlign="space-between center"
+                    fxLayout="row"
+                    fxLayoutGap="20px"
+                    style="width: 300px;"
+                  >
+                    <ng-container [formGroup]="output">
+                      <mat-label
+                        >{{
+                          sortInput.sortingPositions[i]
+                            .possibleSortingQualities[g].id
+                            | loadCarrier: 'quality'
+                        }}:</mat-label
+                      >
+                      <mat-form-field style="width: 120px; top: 3px;">
+                        <input
+                          matInput
+                          formControlName="quantity"
+                          type="number"
+                          digit-only
+                          min="0"
+                        />
+                        <!-- <button
+                          mat-button
+                          matSuffix
+                          mat-icon-button
+                          aria-label="All"
+                          (click)="
+                            takeAll(
+                              sortInput.sortingPositions[i].loadCarrierId,
+                              i,
+                              g
+                            )
+                          "
+                          [disabled]="
+                            positionsQuantity[
+                              sortInput.sortingPositions[i].loadCarrierId
+                            ].sortQuantity > 0
+                          "
+                        >
+                          <mat-icon>lense</mat-icon>
+                        </button> -->
+                        <button
+                          mat-button
+                          matSuffix
+                          mat-icon-button
+                          aria-label="Remaining"
+                          title="Restmenge übernehmen"
+                          (click)="
+                            takeRemaining(
+                              sortInput.sortingPositions[i].loadCarrierId,
+                              i,
+                              g
+                            )
+                          "
+                          *ngIf="
+                            positionsQuantity[
+                              sortInput.sortingPositions[i].loadCarrierId
+                            ].sortQuantity
+                          "
+                          [disabled]="
+                            positionsQuantity[
+                              sortInput.sortingPositions[i].loadCarrierId
+                            ].sortQuantity ===
+                            positionsQuantity[
+                              sortInput.sortingPositions[i].loadCarrierId
+                            ].sourceQuantity
+                          "
+                        >
+                          <mat-icon>timelapse</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </ng-container>
+                  </div>
+                </ng-container>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions *ngIf="!openedInDialog">
+    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+      <button mat-raised-button (click)="resetSort()">
+        Zurücksetzen
+      </button>
+      <button
+        mat-raised-button
+        (click)="submitSort()"
+        [disabled]="form.invalid"
+      >
+        Abschließen
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

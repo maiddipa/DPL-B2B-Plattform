@@ -1,0 +1,296 @@
+@import '~@angular/material/theming';
+@import './theme';
+
+// regular style toast
+@import '~ngx-toastr/toastr';
+
+@import './app/transports/components/transport-bids.component-theme.scss';
+
+@mixin custom-components-theme($theme) {
+  @include dpl-transport-bid-theme($theme);
+}
+
+@include angular-material-theme($theme);
+@include custom-components-theme($theme);
+
+/* You can add global styles to this file, and also import other style files */
+@import './variables';
+
+// @import 'node_modules/@angular/material/prebuilt-themes/indigo-pink';
+
+@import '~devextreme/dist/css/dx.common';
+@import '~devextreme/dist/css/dx.material.blue.light';
+@import './assets/devextreme/css/dx.material.dpl-scheme';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+#dpl-chat-plugin {
+  z-index: 1500;
+  position: absolute;
+  height: auto;
+
+  .wrapper {
+    padding: 0px;
+    top: auto;
+    bottom: 20px;
+  }
+}
+
+.has-message {
+  color: blue; // $base-color; was not different enough
+}
+
+.app-selected {
+  background-color: LightBlue !important;
+}
+
+.app-page-sub-header {
+  font-size: 14px;
+  color: gray;
+}
+
+.app-form-padding {
+  padding: 16px 16px 20px;
+}
+
+.app-highlight-form {
+  background: $base-light;
+}
+
+.app-badge-card {
+  top: -15px;
+  right: -5px;
+}
+
+.app-form-field-auto {
+  .mat-form-field-infix {
+    width: auto !important;
+  }
+}
+
+.app-page-content {
+  margin: 20px;
+}
+
+.app-table-container {
+  min-height: 200px;
+}
+
+.app-table {
+  width: 100%;
+  max-height: 600px;
+  overflow: auto;
+
+  // remove padding for last cell in row
+  td.mat-cell:last-of-type,
+  td.mat-footer-cell:last-of-type,
+  th.mat-header-cell:last-of-type {
+    padding-right: 0px !important;
+  }
+
+  th.mat-header-cell:last-of-type {
+    text-align: center;
+  }
+
+  tbody {
+    tr {
+      &.highlight {
+        background-color: lightyellow !important;
+      }
+    }
+  }
+}
+
+.highlight mat-card {
+  background-color: lightyellow !important;
+}
+
+// removes min size of tab labels
+.app-tab-group {
+  .mat-tab-label {
+    flex: 1;
+    min-width: auto !important;
+  }
+}
+
+// move placeholder in availabilities / fix Date component
+.amountCarrier {
+  .mat-form-field-infix {
+    margin-left: 5px !important;
+  }
+}
+
+.outofBusinessHours,
+.off.outofBusinessHours.available {
+  background: lightgrey;
+}
+
+.md-drppicker td.in-range {
+  background-color: #3f51b5 !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
+
+.md-drppicker th,
+.md-drppicker .week-days,
+.md-drppicker .months {
+  color: black !important;
+}
+
+.app-form-radio-group-title {
+  font-size: 14px;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+}
+
+// --- start - form field highlight
+
+@mixin form-control-highlight-change {
+  animation-name: form-control-highlight-change-animation !important;
+  animation-duration: 6s !important;
+}
+
+@keyframes form-control-highlight-change-animation {
+  0% {
+    background-color: inherit;
+  }
+
+  15% {
+    background-color: #ffff00; //mat-color($accent, lighter);
+  }
+
+  100% {
+    background-color: inherit;
+  }
+}
+
+.form-control-highlight-change:not(mat-radio-group):not(mat-select) {
+  @include form-control-highlight-change;
+}
+
+mat-radio-group.form-control-highlight-change {
+  .mat-radio-checked .mat-radio-label-content:not(span) {
+    @include form-control-highlight-change;
+  }
+}
+
+mat-select.form-control-highlight-change {
+  .mat-select-value-text {
+    @include form-control-highlight-change;
+  }
+}
+
+// --- end - form field highlight
+
+// --- start - mat-form-field emulation / overrides
+
+.app-textarea-form-field {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  min-height: 90px;
+}
+
+// --- start - mat-form-field emulation / overrides
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+tr.highlight-row {
+  background-color: lightyellow;
+}
+
+dpl-sorting-form > mat-card > mat-card-header > .mat-card-header-text {
+  margin: 0px;
+}
+
+.mat-button-toggle-checked {
+  background-color: mat-color($primary);
+  color: white !important;
+  font-weight: 500;
+}
+
+// custom dev extreme styles
+dpl-customer-administration-content-users-grid {
+  a.dx-link-edit.dx-icon-edit.dx-link-icon {
+    vertical-align: unset !important;
+    font-size: 24px !important;
+  }
+}
+
+// custom dev extreme styles for Businesshour Grid
+dpl-customer-administration-loading-location-business-hours {
+  a.dx-link-edit.dx-icon-edit.dx-link-icon {
+    vertical-align: unset !important;
+    font-size: 24px !important;
+  }
+
+  a.dx-link-delete.dx-icon-trash.dx-link-icon {
+    vertical-align: unset !important;
+    font-size: 24px !important;
+  }
+}
+
+div.dx-selectbox-container {
+  padding-left: 15px;
+}
+
+.dx-form {
+  //! min width for dx-forms
+  min-width: 300px;
+}
+.app-mat-hint-warning {
+  color: red !important;
+}
+.dpl-grid-text-tooltip-p {
+  display: flex;
+  flex-direction: row;
+}
+
+.grid-text-tooltip-div {
+  display: flex;
+  flex-direction: row;
+  // justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.dx-invalid-message > .dx-overlay-content {
+  padding: 9px 17px;
+  background-color: #f44336;
+  color: #fff;
+}
+
+.customer-administration-form-delete-button {
+  position: absolute;
+  left: 210px;
+  top: 6px;
+}
+
+// .customer-administration-form-delete-button {
+//   position: absolute;
+//   left: 210px;
+//   top: 6px;
+// }
+
+// .customer-administration-general {
+//   display: flex;
+//   flex-direction: row;
+//   min-width: 300px;
+//   // row-gap: 20px;
+//   // column-gap: 20px;
+// }
+
+//.customer-administration-loading-location-form-parent-div {}

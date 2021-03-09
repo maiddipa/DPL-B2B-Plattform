@@ -1,0 +1,16 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <mat-toolbar fxLayoutAlign="end center">
+    <span>
+      Kundenverwaltung
+    </span>
+  </mat-toolbar>
+  <div fxLayout="row" fxFill>
+    <div fxLayout="column" fxLayoutGap="15px" style="margin-top: -60px;">
+      <dpl-customer-administration-header></dpl-customer-administration-header>
+      <dpl-customer-administration-navigation></dpl-customer-administration-navigation>
+    </div>
+    <div fxFlex>
+      <dpl-customer-administration-content></dpl-customer-administration-content>
+    </div>
+  </div>
+</ng-container>

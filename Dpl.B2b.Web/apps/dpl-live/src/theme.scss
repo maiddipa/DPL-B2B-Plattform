@@ -1,0 +1,44 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// taken from https://github.com/angular/components/blob/master/src/material/core/theming/prebuilt/indigo-pink.scss
+$primary: mat-palette($mat-indigo);
+//$accent: mat-palette($mat-pink, A200, A100, A400);
+
+$dpl-green: (
+  50: #e3fbf2,
+  100: #b9f4df,
+  200: #8aedca,
+  300: #5be6b5,
+  400: #38e0a5,
+  500: #15db95,
+  600: #12d78d,
+  700: #0fd282,
+  800: #0ccd78,
+  900: #06c467,
+  A100: #edfff5,
+  A200: #baffda,
+  A400: #87ffbe,
+  A700: #6effb0,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$accent: mat-palette($dpl-green, 500, 300, 900);
+
+$theme: mat-light-theme($primary, $accent);

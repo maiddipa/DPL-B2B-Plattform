@@ -1,0 +1,375 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="data.dataSource"
+    [showBorders]="true"
+    [remoteOperations]="true"
+    (onEditorPreparing)="onEditorPreparing($event)"
+    (onToolbarPreparing)="onToolbarPreparing($event, data)"
+  >
+    <dxo-filter-row [visible]="true"> </dxo-filter-row>
+    <!-- <dxo-search-panel
+    [visible]="true"
+    [highlightCaseSensitive]="true"
+  ></dxo-search-panel> -->
+    <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+
+    <dxo-editing
+      mode="form"
+      [allowUpdating]="true"
+      [allowAdding]="data.unit.scope === 'CustomerUsers'"
+    >
+      <dxo-texts
+        i18n-addRow="
+          Icon Mouseover Text: Hinzufügen einer Reihe
+          @@CustomerAdministrationContentUserGridEditingAddRowHint"
+        addRow="Hinzufügen einer Reihe"
+      ></dxo-texts>
+    </dxo-editing>
+
+    <dxi-column
+      i18n-caption="
+        Spaltenname für ID@@CustomerAdministrationContentUserGridIDColumnTitel"
+      caption="ID"
+      dataField="id"
+      dataType="number"
+      [width]="80"
+      [allowEditing]="false"
+      [formItem]="{ visible: false }"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für UPN@@CustomerAdministrationContentUserGridUPNColumnTitel"
+      dataField="upn"
+      dataType="string"
+      caption="UPN"
+    >
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Erstellt@@CustomerAdministrationContentUserGridCreatedAtColumnTitel"
+      caption="Erstellt"
+      dataField="createdAt"
+      dataType="date"
+      [allowEditing]="false"
+      [visible]="false"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Geändert@@CustomerAdministrationContentUserGridChangeAtColumnTitel"
+      caption="Geändert"
+      dataField="changeAt"
+      dataType="date"
+      [allowEditing]="false"
+      [visible]="false"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Gesperrt@@CustomerAdministrationContentUserGridLockedColumnTitel"
+      caption="Gesperrt"
+      dataField="locked"
+      dataType="bool"
+      [visible]="false"
+      [allowEditing]="false"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für Erstes
+        Login@@CustomerAdministrationContentUserGridFirstLoginDateColumnTitel"
+      caption="Erstes Login"
+      dataField="firstLoginDate"
+      dataType="date"
+      [allowEditing]="false"
+      [visible]="false"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für Letztes
+        Login@@CustomerAdministrationContentUserGridLastLoginDateColumnTitel"
+      caption="Letztes Login"
+      dataField="lastLoginDate"
+      dataType="date"
+      [allowEditing]="false"
+      [visible]="false"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Rolle@@CustomerAdministrationContentUserGridRoleColumnTitel"
+      dataField="role"
+      dataType="string"
+      caption="Rolle"
+      [allowSorting]="true"
+      [allowFiltering]="true"
+      calculateSortValue="role"
+      
+    >
+      <dxo-lookup
+        [dataSource]="data.dropdownRole"
+        [displayExpr]="lookUpDisplayExpression"
+        [valueExpr]="lookUpValueExpression"
+      ></dxo-lookup>
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Geschlecht@@CustomerAdministrationContentUserGridGenderColumnTitel"
+      dataType="string"
+      dataField="gender"
+      [visible]="false"
+      caption="Geschlecht"
+    >
+      <dxo-lookup
+        [dataSource]="data.dropdownGender"
+        [displayExpr]="lookUpDisplayExpression"
+        [valueExpr]="lookUpValueExpression"
+      ></dxo-lookup>
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Anrede@@CustomerAdministrationContentUserGridSalutationColumnTitel"
+      dataField="salutation"
+      dataType="string"
+      [visible]="false"
+      caption="Anrede"
+    >
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Vorname@@CustomerAdministrationContentUserGridFirstNameColumnTitel"
+      dataField="firstName"
+      dataType="string"
+      caption="Vorname"
+    >
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Nachname@@CustomerAdministrationContentUserGridLastNameColumnTitel"
+      dataField="lastName"
+      dataType="string"
+      caption="Nachname"
+    >
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        E-Mail@@CustomerAdministrationContentUserGridEMailColumnTitel"
+      dataField="email"
+      dataType="string"
+      caption="E-Mail"
+    >
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+      <dxi-validation-rule type="email"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Telefonnummer@@CustomerAdministrationContentUserGridPhoneNumberColumnTitel"
+      dataField="phoneNumber"
+      dataType="string"
+      [visible]="false"
+      caption="Telefonnummer"
+    >
+      <!-- <dxi-validation-rule
+      type="pattern"
+      [pattern]="pattern"
+      message="No valid Phonenumber +49 6331 95008 "
+    ></dxi-validation-rule> -->
+    </dxi-column>
+    <dxi-column
+      i18n-caption="
+        Spaltenname für
+        Mobilnummer@@CustomerAdministrationContentUserGridMobileNumberColumnTitel"
+      dataField="mobileNumber"
+      dataType="string"
+      [visible]="false"
+      caption="Mobilnummer"
+    >
+    </dxi-column>
+    <!-- Buttons for Grid -->
+    <dxi-column type="buttons" class="grid-button-icons">
+      <dxi-button name="edit"></dxi-button>
+      <!-- shown Button for locking with mat icon -->
+      <dxi-button template="myLockButton">
+        <a *dxTemplate="let lockdata of 'myLockButton'">
+          <mat-icon
+            i18n-title="
+              Icon Mouseover:Speeren oder Entspeeren des
+              Users@@CustomerAdministrationContentUserGridLockIconTitel"
+            (click)="onClickLock(lockdata)"
+            title="Lock"
+            class="mat-lock-icon"
+          >
+            {{ getUnlockedValue(lockdata) ? 'lock_open' : 'lock' }}
+          </mat-icon>
+        </a>
+      </dxi-button>
+      <!-- shown Button for Private Chats for further use -->
+      <!-- <dxi-button template="myChatButton">
+      <div *dxTemplate="let data of 'myChatButton'"> -->
+      <!-- Declare custom markup here -->
+      <!-- <dpl-chat-button type="general" [data]="{}"></dpl-chat-button>
+      </div>
+    </dxi-button> -->
+      <!-- Button to remove a User from customer need a onclick and an api endpoint-->
+      <dxi-button
+        template="removeRowIcons"
+        [visible]="data.unit.scope === 'CustomerUsers'"
+      >
+        <a *dxTemplate="let removeRowData of 'removeRowIcons'">
+          <mat-icon
+            i18n-title="
+              Icon Mouseover:Entfernen vom
+              Kunden@@CustomerAdministrationContentUserGridRemoveFromCustomerIconTitel"
+            (click)="removeFromCustomer(removeRowData, data.unit)"
+            title="Entfernen vom Kunden"
+            class="mat-lock-icon"
+          >
+            remove_circle_outline
+          </mat-icon>
+        </a>
+      </dxi-button>
+      <dxi-button
+        template="resetPassword"
+        [visible]="data.unit.scope === 'CustomerUsers'"
+      >
+        <a *dxTemplate="let resetPasswordRowData of 'resetPassword'">
+          <mat-icon
+            i18n-title="
+              Icon Mouseover:Zurücksetzen des
+              Passwort@@CustomerAdministrationContentUserGridResetPasswordIconTitel"
+            (click)="clickResetPassword(resetPasswordRowData)"
+            title="Zurücksetzen des Passwords"
+            class="mat-lock-icon"
+          >
+            vpn_key
+          </mat-icon>
+        </a>
+      </dxi-button>
+    </dxi-column>
+
+    <dxo-paging [pageSize]="12"></dxo-paging>
+    <dxo-pager
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[5, 12, 20]"
+    ></dxo-pager>
+  </dx-data-grid>
+  <!--Add User to Customer PopUp-->
+  <dx-popup
+    i18n-title="
+      Popup Titel:Nutzer zum Kunden
+      hinzufügen@@CustomerAdministrationContentUserGridAddUserToCustomerPopUpTitel"
+    id="popupContainer"
+    [width]="450"
+    [height]="200"
+    [showTitle]="true"
+    title="Nutzer zum Kunden hinzufügen"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="popupVisible"
+  >
+    <div *dxTemplate="let popupdata of 'content'">
+      <!--later use for user dropdown -->
+      <dx-select-box
+        id="addUserSelectBox"
+        [dataSource]="data.allUsersExceptActiveCustomer"
+        [displayExpr]="popUserDisplayExpr"
+        valueExpr="id"
+        [(value)]="popupSelectUser"
+        searchMode="startswith"
+        searchPlaceholder="Tippe den Nutzernamen"
+        searchExpr="['id,''lastName','firstName']"
+        [searchEnabled]="true"
+      >
+      </dx-select-box>
+      <!--Close & Save Button-->
+      <div>
+        <dx-toolbar>
+          <dxi-item location="before"
+            ><dx-button
+              i18n-hint="
+                Popup Speicher Button Mouseover:User hinzufügen zum
+                Kunden@@CustomerAdministrationContentUserGridAddUserToCustomerPopUpSaveButtonHint"
+              i18n-text="
+                Popup Speicher Button
+                Mouseover:Speichern@@CustomerAdministrationContentUserGridAddUserToCustomerPopUpSaveButtonText"
+              hint="User hinzufügen zum Kunden"
+              icon="save"
+              text="Speichern"
+              (onClick)="addToCustomer(data.unit)"
+              [disabled]="popupSelectUser === undefined"
+            ></dx-button
+          ></dxi-item>
+          <dxi-item location="after">
+            <dx-button
+              i18n-hint="
+                Popup Abbrechen Button Mouseover:Schließe das
+                Fenster@@CustomerAdministrationContentUserGridAddUserToCustomerPopUpCloseButtonHint"
+              i18n-text="
+                Popup Abbrechen Button
+                Mouseover:Abbrechen@@CustomerAdministrationContentUserGridAddUserToCustomerPopUpCloseButtonText"
+              hint="Schließe das Fenster"
+              icon="close"
+              text="Abbrechen"
+              (onClick)="showPopup()"
+            ></dx-button
+          ></dxi-item>
+        </dx-toolbar>
+      </div>
+    </div>
+  </dx-popup>
+  <!--Initial Password PopUp-->
+  <dx-popup
+    i18n-title="
+      Popup
+      Titel:Passwort@@CustomerAdministrationContentUserGridInitialPasswordPopUpTitel"
+    [width]="450"
+    [height]="200"
+    [showTitle]="true"
+    title="Passwort"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="false"
+    [(visible)]="popupInitialPasswordVisible"
+  >
+    <div *dxTemplate="let popupdata of 'content'">
+      <dx-text-box
+        [readOnly]="true"
+        [value]="popupInitialPassword"
+      ></dx-text-box>
+      <div>
+        <dx-toolbar>
+          <dxi-item location="before">
+            <dx-button
+              i18n-hint="
+                Popup Schließen Button Mouseover:Schließe das
+                Fenster@@CustomerAdministrationContentUserGridInitialPasswordPopUpCloseButtonHint"
+              i18n-text="
+                Popup Abbrechen Button
+                Mouseover:Schließen@@CustomerAdministrationContentUserGridInitialPasswordPopUpCloseButtonText"
+              hint="Schließe das Fenster"
+              icon="close"
+              text="Schließen"
+              (onClick)="popupInitialPasswordVisible = false"
+            ></dx-button
+          ></dxi-item>
+        </dx-toolbar>
+      </div>
+    </div>
+  </dx-popup>
+</ng-container>

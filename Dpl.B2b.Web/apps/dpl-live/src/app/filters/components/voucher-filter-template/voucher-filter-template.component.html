@@ -1,0 +1,68 @@
+<div
+  fxLayout="row"
+  fxLayoutGap="5px"
+  fxLayoutAlign="end"
+  *ngIf="viewData$ | async as data"
+>
+  <mat-form-field>
+    <mat-label i18n="LoadFilter|Label Filter laden@@LoadFilter"
+      >Filter laden</mat-label
+    >
+    <mat-select
+      (selectionChange)="selectFilterTemplate($event)"
+      [value]="data.selectedTemplateId"
+    >
+      <mat-option
+        *ngFor="let filter of allTemplateFilters$ | async"
+        [value]="filter.id"
+      >
+        {{ filter.title }}
+      </mat-option>
+    </mat-select>
+    <mat-hint
+      *ngIf="hasTemplateChanges$ | async"
+      i18n="SearchUnsavedChanges|Hint Unsaved Changes@@SearchUnsavedChanges"
+      >Änderungen vorhanden!</mat-hint
+    >
+  </mat-form-field>
+  <div
+    class="savedFilterControls"
+    fxLayout="row"
+    fxLayoutGap="10px"
+    fxLayoutAlign="end center"
+  >
+    <button
+      mat-icon-button
+      (click)="saveTemplate()"
+      [disabled]="!(hasTemplateChanges$ | async)"
+    >
+      <mat-icon
+        title="Filter speichern"
+        i18n-title="SaveFilter|Label Filter speichern@@SaveFilter"
+        >save</mat-icon
+      >
+    </button>
+    <button
+      mat-icon-button
+      [disabled]="!(hasTemplateChanges$ | async)"
+      (click)="resetFilterChanges()"
+    >
+      <mat-icon
+        title="Änderungen verwerfen"
+        i18n-title="DiscardChanges|Label Änderungen verwerfen@@DiscardChanges"
+        >undo</mat-icon
+      >
+    </button>
+    <button
+      mat-icon-button
+      (click)="removeTemplate($event)"
+      [disabled]="!data.selectedTemplateId"
+    >
+      <mat-icon
+        title="Filter löschen"
+        i18n-title="DeleteFilter|Label Filter löschen@@DeleteFilter"
+        >clear</mat-icon
+      >
+    </button>
+  </div>
+</div>

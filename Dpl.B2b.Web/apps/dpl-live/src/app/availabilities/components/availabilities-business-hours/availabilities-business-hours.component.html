@@ -1,0 +1,13 @@
+<table>
+  <tr class="large" *ngFor="let day of bh">
+    <td>
+      <span>{{ day.day }}</span>
+    </td>
+    <td>
+      <span *ngFor="let slot of day.businessHours; let isLast = last"
+        >{{ slot.fromTime | date: 'HH:mm':'+0000' }} -
+        {{ slot.toTime | date: 'HH:mm':'+0000' }}{{ isLast ? '' : ', ' }}</span
+      >
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,177 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <mat-toolbar color="primary">
+    <span class="fill-remaining-space" i18n="Search|Label Suche@@Search"
+      >Suche</span
+    >
+  </mat-toolbar>
+  <form
+    class="search-input-form"
+    [formGroup]="formGroup"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-tab-group
+      class="app-tab-group"
+      (selectedIndexChange)="onSearchTypeChanged($event)"
+    >
+      <mat-tab label="Standard">
+        <dpl-google-maps-places-lookup
+          fxLayout="column"
+          [subForm]="formGroup.controls.location"
+          [required]="data.searchMode === 'geoPoint'"
+          placeholder="Suchtext"
+          i18n-placeholder="Label Suchtext@@SearchText"
+          [initalSearchText]="initialSearchText"
+        ></dpl-google-maps-places-lookup>
+      </mat-tab>
+      <mat-tab label="PLZ">
+        <mat-form-field fxLayout="column">
+          <input
+            matInput
+            formControlName="zip"
+            placeholder="PLZ"
+            i18n-placeholder="PostalCode|Label PLZ@@PostalCode"
+          />
+          <mat-error></mat-error>
+        </mat-form-field>
+      </mat-tab>
+    </mat-tab-group>
+    <h3 i18n="SearchCriteria|Label Suchkriterien@@SearchCriteria">
+      Suchkriterien
+    </h3>
+    <div class="mat-form-field-wrapper">
+      <mat-button-toggle-group formControlName="orderType">
+        <mat-button-toggle
+          fxFlex="1 1 50%"
+          *ngFor="let option of data.orderTypeOptions"
+          [value]="option.value"
+          [disabled]="option.disabled"
+          ><mat-icon>{{ option.icon }}</mat-icon
+          >{{ option.label }}</mat-button-toggle
+        >
+      </mat-button-toggle-group>
+    </div>
+    <div fxLayout="row" fxLayoutGap="5px">
+      <mat-form-field fxFlex="50%">
+        <mat-select
+          formControlName="loadCarrierOption"
+          placeholder="Ladungsträger"
+          i18n-placeholder="LoadCarrier|Label Ladungsträger@@LoadCarrier"
+          [compareWith]="compareLoadCarriers"
+        >
+          <mat-option
+            *ngFor="let item of data.loadCarrierOptions"
+            [value]="item"
+          >
+            {{ item.loadCarrier.id | loadCarrier }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field fxFlex="50%">
+        <mat-select
+          formControlName="accountOption"
+          placeholder="Konto"
+          i18n-placeholder="Account|Label Konto@@Account"
+          [compareWith]="compareAccounts"
+        >
+          <mat-option *ngFor="let item of data.accountOptions" [value]="item">
+            {{ item.account.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="mat-form-field-wrapper">
+      <mat-button-toggle-group formControlName="quantityType">
+        <mat-button-toggle
+          fxFlex="1 1 50%"
+          *ngFor="let option of data.quantityTypeOptions"
+          [value]="option.value"
+          [disabled]="option.disabled"
+          ><mat-icon>{{ option.icon }}</mat-icon
+          >{{ option.label }}</mat-button-toggle
+        >
+      </mat-button-toggle-group>
+    </div>
+    <div fxLayout="row" fxLayoutGap="5px">
+      <mat-form-field fxFlex="50%">
+        <input
+          type="number"
+          digit-only
+          matInput
+          formControlName="quantity"
+          placeholder="Menge"
+          i18n-placeholder="Amount|Label Menge@@Amount"
+        />
+      </mat-form-field>
+      <mat-form-field fxFlex="50%">
+        <mat-select
+          formControlName="radius"
+          placeholder="Umkreis"
+          i18n-placeholder="Radius|Label Umkreis@@Radius"
+        >
+          <mat-option *ngFor="let item of radiusOptions" [value]="item * 1000">
+            {{ item }} KM
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutGap="5px">
+      <mat-form-field fxFlex="50%">
+        <mat-label
+          i18n="Label für die Auwahl der Stapelhöhe@@StackHeightInputLabel"
+          >Stapelhöhe</mat-label
+        >
+        <mat-select formControlName="stackHeight">
+          <mat-option
+            *ngFor="let option of data.stackHeightOptions"
+            [value]="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field fxFlex="50%">
+        <mat-label
+          i18n="
+            Label für die Auwahl der Träger-Palette@@BaseLoadCarrierInputLabel"
+          >Träger-Palette</mat-label
+        >
+
+        <mat-select formControlName="baseLoadCarrierIds" multiple>
+          <mat-option
+            *ngFor="let option of data.baseLoadCarriersOptions"
+            [value]="option.value"
+            >{{ option.label }}
+          </mat-option>
+        </mat-select>
+        <mat-error></mat-error>
+      </mat-form-field>
+    </div>
+    <mat-radio-group formControlName="routing">
+      <mat-radio-button [value]="false" color="primary">
+        <span i18n="BeeLine|Label Luftlinie@@BeeLine">Luftlinie</span>
+      </mat-radio-button>
+      <mat-radio-button
+        style="margin-left: 10px;"
+        [value]="true"
+        color="primary"
+      >
+        <span i18n="Routing|Label Routing@@Routing">Routing</span>
+      </mat-radio-button>
+    </mat-radio-group>
+    <app-calendar-week-picker [form]="calendarWeek"></app-calendar-week-picker>
+    <app-day-of-week-picker
+      [form]="formGroup"
+      [calendarWeek]="calendarWeek.value"
+      arrayName="daysOfWeek"
+    ></app-day-of-week-picker>
+    <button
+      mat-raised-button
+      type="submit"
+      [disabled]="formGroup.invalid"
+      class="searchBtn"
+      i18n="Search|Label Suchen@@Search"
+    >
+      Suchen
+    </button>
+  </form>
+</ng-container>

@@ -1,0 +1,23 @@
+<h1 mat-dialog-title i18n="SaveFilter|Label Filter speichern@@SaveFilter">
+  Filter speichern
+</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input matInput formControlName="templateTitle" />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()" i18n="Abort|Label Abbrechen@@Abort">
+    Abbrechen
+  </button>
+  <button
+    mat-button
+    (click)="save()"
+    i18n="Save|Label Speichern@@Save"
+    cdkFocusInitial
+  >
+    Speichern
+  </button>
+</div>

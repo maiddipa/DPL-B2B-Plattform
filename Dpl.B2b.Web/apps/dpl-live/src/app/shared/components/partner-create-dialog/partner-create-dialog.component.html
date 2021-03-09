@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <span
+    i18n="
+      PartnerCreateDialogTitle|Neuen Partner erstellen@@PartnerCreateDialogTitle"
+    >Neuen Partner erstellen.</span
+  >
+</mat-toolbar>
+<dpl-partner-create-form #form (onChange)="onChange($event)">
+</dpl-partner-create-form>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()" i18n="Cancel|Label Abbrechen@@Cancel">
+    Abbrechen
+  </button>
+  <button
+    mat-button
+    (click)="onCreatePartner($event)"
+    [disabled]="submitDisabled()"
+    cdkFocusInitial
+    i18n="
+      PartnerCreateDialogCreateAction|Partner
+      erstellen@@PartnerCreateDialogCreateAction"
+  >
+    Partner erstellen
+  </button>
+</mat-dialog-actions>

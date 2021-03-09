@@ -1,0 +1,18 @@
+<div class="container">
+  <div
+    fxFlex
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px"
+  >
+    <mat-spinner color="primary"></mat-spinner>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="showCancel$ | async"
+      (click)="hideSpinner()"
+    >
+      Zurück zur Seite
+    </button>
+  </div>
+</div>

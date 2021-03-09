@@ -1,0 +1,43 @@
+<form (submit)="onFormSubmit($event)">
+  <dx-form id="form" [colCount]="1" [(formData)]="formData">
+    <dxi-item itemType="group">
+      <dxi-item
+        i18n-caption="
+          Item Gruppen Überschrift: Organisation:
+          @@CustomerAdministrationOrganizationFormGroupItemCaption"
+        itemType="group"
+        caption="Organisation:"
+      >
+        <dxi-item dataField="name">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item
+          dataField="addressId"
+          editorType="dxLookup"
+          [editorOptions]="{
+            dataSource: addressesDataSource,
+            displayExpr: addressDisplayExpr,
+            valueExpr: 'id',
+            searchExpr: ['city', 'street1'],
+            searchEnabled: true,
+            searchMode: 'startswith'
+          }"
+        >
+          <dxo-label
+            i18n-text="
+              Item Label: Adresse
+              @@CustomerAdministrationOrganizationFormAdressItemLabel"
+            text="Adresse"
+          ></dxo-label>
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-item>
+      </dxi-item>
+    </dxi-item>
+    <dxi-item
+      itemType="button"
+      horizontalAlignment="left"
+      [buttonOptions]="buttonOptions"
+    >
+    </dxi-item>
+  </dx-form>
+</form>

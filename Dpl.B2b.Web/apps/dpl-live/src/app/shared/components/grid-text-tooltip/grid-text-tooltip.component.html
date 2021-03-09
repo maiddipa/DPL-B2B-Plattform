@@ -1,0 +1,42 @@
+<p class="dpl-grid-text-tooltip-p">
+  <ng-container *ngIf="values?.length > displayCount">
+    <div
+      (mouseenter)="popOverVisible = true"
+      (mouseleave)="popOverVisible = false"
+      class="grid-text-tooltip-div"
+      
+    >
+      {{ displayValue }}
+      <a
+        id="{{ 'threeDot' + randomId }}"
+        (mouseenter)="popOverVisible = true"
+        (mouseleave)="popOverVisible = false"
+        >...</a
+      >
+    </div>
+  </ng-container>
+  <ng-container *ngIf="values?.length <= displayCount">
+    <div
+      (mouseenter)="popOverVisible = true"
+      (mouseleave)="popOverVisible = false"
+      class="grid-text-tooltip-div"
+    >
+      {{ displayValue }}
+      <a
+      id="{{ 'threeDot' + randomId }}"
+      > </a>
+    </div>
+  </ng-container>
+  <dx-popover
+    target="{{ '#threeDot' + randomId }}"
+    position="bottom"
+    [width]="300"
+    [(visible)]="popOverVisible"
+  >
+    <div *dxTemplate="let data = model; of: 'content'">
+      <ul>
+        <li *ngFor="let value of values">{{ value }}</li>
+      </ul>
+    </div>
+  </dx-popover>
+</p>

@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "dpl-chat-plugin"
+		},
+		{
+			"path": "server"
+		},
+		{
+			"path": "stream-chat-react"
+		}
+	],
+	"settings": {
+		"powershell.codeFormatting.addWhitespaceAroundPipe": true
+	}
+}

@@ -1,0 +1,302 @@
+<ng-container *ngIf="viewData$ | async as data">
+  <a mat-button class="siteLogo" [routerLink]="['']"
+    ><img src="assets/dpl-pooling-logo-trans.png" /><span
+      i18n="homePagetitle|Home Seitentitel@@homePagetitle"
+      >DPL :live</span
+    ></a
+  >
+  <ng-container
+    *ngIf="
+      data.userRole === userRole.DplEmployee ||
+      data.user?.permissions?.length > 0
+    "
+  >
+    <a
+      mat-button
+      [matMenuTriggerFor]="createMenu"
+      i18n="
+        topNavigationCreateMenuBtn|Top Navigation Menü
+        Erstellen@@topNavigationCreateMenuBtn"
+      >Erstellen</a
+    >
+    <mat-menu #createMenu="matMenu">
+      <a
+        mat-menu-item
+        [routerLink]="['voucher']"
+        *hasPermission="
+          resourceAction.CreateVoucher;
+          feature: 'create-voucher-form'
+        "
+        i18n="
+          topNavigationPalletAcceptanceBtn|Top Navigation Schaltfläche
+          Palettenannahme@@topNavigationPalletAcceptanceBtn"
+        >Digitale Pooling Gutschriften</a
+      >
+
+      <a
+        mat-menu-item
+        [routerLink]="['availabilities/start']"
+        i18n="
+          topNavigationAvailabilitiesStartBtn|Top Navigation Schaltfläche
+          Verfügbarkeit@@topNavigationAvailabilitiesStartBtn"
+        *hasPermission="
+          resourceAction.CreateOrder;
+          feature: 'create-availability-form'
+        "
+      >
+        Verfügbarkeit</a
+      >
+      <a
+        mat-menu-item
+        [routerLink]="['needs/start']"
+        i18n="
+          topNavigationNeedsStartBtn|Top Navigation Schaltfläche
+          Bedarf@@topNavigationNeedsStartBtn"
+        *hasPermission="
+          resourceAction.CreateOrder;
+          feature: 'create-delivery-form'
+        "
+      >
+        Bedarf</a
+      >
+      <a
+        mat-menu-item
+        [routerLink]="['receipt/create']"
+        [queryParams]="{ action: loadCarrierReceiptType.Delivery }"
+        i18n="
+          Top Navigation Schaltfläche
+          Annahme-Quittung@@topNavigationLoadCarrierDeliveryReceiptBtn"
+        *hasPermission="
+          resourceAction.CreateLoadCarrierReceipt;
+          feature: 'create-load-carrier-receipt-delivery-form'
+        "
+        >Annahme-Quittung</a
+      >
+      <a
+        mat-menu-item
+        [routerLink]="['receipt/create']"
+        [queryParams]="{
+          action: loadCarrierReceiptType.Delivery,
+          context: 'depot'
+        }"
+        i18n="
+          Top Navigation Schaltfläche
+          Annahme-Quittung@@topNavigationLoadCarrierDeliveryReceiptBtn"
+        *hasPermission="
+          resourceAction.CreateLoadCarrierReceipt;
+          feature: 'create-load-carrier-receipt-delivery-sorting-form'
+        "
+        >Depot-Annahme-Quittung</a
+      >
+      <a
+        mat-menu-item
+        [routerLink]="['receipt/create']"
+        [queryParams]="{ action: loadCarrierReceiptType.Pickup }"
+        i18n="
+          Top Navigation Schaltfläche
+          Ausgabe-Quittung@@topNavigationLoadCarrierPickupReceiptBtn"
+        *hasPermission="
+          resourceAction.CreateLoadCarrierReceipt;
+          feature: 'create-load-carrier-receipt-pickup-form'
+        "
+        >Ausgabe-Quittung</a
+      >
+      <a
+        mat-menu-item
+        [routerLink]="['receipt/create']"
+        [queryParams]="{ action: loadCarrierReceiptType.Exchange }"
+        i18n="
+          Top Navigation Schaltfläche
+          Tausch-Quittung@@topNavigationLoadCarrierExchangeReceiptBtn"
+        *hasPermission="
+          resourceAction.CreateBalanceTransfer;
+          feature: 'create-load-carrier-receipt-exchange-form'
+        "
+        >Tausch-Quittung</a
+      >
+      <a
+        mat-menu-item
+        [routerLink]="['transfer/create']"
+        i18n="Top Navigation Schaltfläche Umbuchung@@topNavigationTransferBtn"
+        *hasPermission="
+          resourceAction.CreateBalanceTransfer;
+          feature: 'create-transfer-form'
+        "
+        >Umbuchung</a
+      >
+    </mat-menu>
+
+    <a
+      mat-button
+      [matMenuTriggerFor]="overviewMenu"
+      i18n="
+        topNavigationOverviewMenuBtn|Top Navigation Menü
+        Übersicht@@topNavigationOverviewMenuBtn"
+      >Übersicht</a
+    >
+    <mat-menu #overviewMenu="matMenu">
+      <a
+        mat-menu-item
+        [routerLink]="['voucher-register/start']"
+        i18n="
+          topNavigationVoucherRegisterBtn|Top Navigation Schaltfläche Digitale
+          Pooling Gutschriften@@topNavigationVoucherRegisterBtn"
+        *hasPermission="resourceAction.ReadVoucher; feature: 'voucher-list'"
+        >Digitale Pooling Gutschriften</a
+      >
+
+      <!-- TODO: Add permission for reading accounting records -->
+      <a
+        mat-menu-item
+        [routerLink]="['accounts/start']"
+        i18n="
+          topNavigationAccountsStartBtn|Top Navigation Schaltfläche Pooling
+          Konto@@topNavigationAccountsStartBtn"
+        >Pooling Konto</a
+      >
+
+      <a
+        mat-menu-item
+        [routerLink]="['orders']"
+        [queryParams]="{ type: ordersViewType.Supply }"
+        i18n="
+          topNavigationAvailabilitiesListBtn|Top Navigation Schaltfläche
+          Verfügbarkeiten@@topNavigationAvailabilitiesListBtn"
+        *hasPermission="resourceAction.ReadOrder; feature: 'availability-list'"
+      >
+        Verfügbarkeiten</a
+      >
+
+      <a
+        mat-menu-item
+        [routerLink]="['orders']"
+        [queryParams]="{ type: ordersViewType.Demand }"
+        i18n="
+          topNavigationNeedsListBtn|Top Navigation Schaltfläche
+          Bedarfe@@topNavigationNeedsListBtn"
+        *hasPermission="resourceAction.ReadOrder; feature: 'delivery-list'"
+        >Bedarfe</a
+      >
+      <a
+        mat-menu-item
+        [routerLink]="['order-loads']"
+        [queryParams]="{ type: orderLoadsViewType.Journal }"
+        *hasPermission="resourceAction.ReadOrder; feature: 'journal'"
+      >
+        <div
+          *ngIf="
+            data.userRole === userRole.Shipper ||
+            data.userRole === userRole.Warehouse ||
+            data.userRole === userRole.DplEmployee
+          "
+          i18n="
+            topNavigationJournalBtn|Top Navigation Schaltfläche
+            Journal@@topNavigationJournalBtn"
+        >
+          Annahmen / Ausgaben
+        </div>
+        <div
+          *ngIf="data.userRole === userRole.Retailer"
+          i18n="
+            topNavigationJournalBtnRetailer|Top Navigation Schaltfläche
+            Journal@@topNavigationJournalBtnRetailer"
+        >
+          Ausgaben
+        </div>
+      </a>
+
+      <!-- TODO: add permission for transports -->
+      <a
+        mat-menu-item
+        [routerLink]="['transports']"
+        i18n="
+          topNavigationTransportsBtn|Top Navigation Schaltfläche
+          Transporte@@topNavigationTransportsBtn"
+        *ngIf="data.showAll"
+      >
+        Transporte</a
+      >
+      <a
+        mat-menu-item
+        [routerLink]="['load-carrier-receipts']"
+        i18n="
+          topNavigationReceiptsBtn|Top Navigation Schaltfläche
+          Quittungen@@topNavigationReceiptsBtn"
+        *hasPermission="
+          resourceAction.ReadLoadCarrierReceipt;
+          feature: 'load-carrier-receipt-list'
+        "
+      >
+        Quittungen</a
+      >
+    </mat-menu>
+
+    <!-- TODO: Switch live pooling to use permissions -->
+    <a
+      mat-button
+      [matMenuTriggerFor]="liveMenu"
+      i18n="
+        topNavigationLiveMenuBtn|Top Navigation Menü Live
+        Pooling@@topNavigationLiveMenuBtn"
+      *hasPermission="
+        {
+          actions: [
+            resourceAction.CreateLivePoolingSearch,
+            resourceAction.ReadLivePoolingOrders
+          ]
+        };
+        feature: 'live-pooling'
+      "
+      >Live Pooling</a
+    >
+    <mat-menu #liveMenu="matMenu">
+      <a
+        mat-menu-item
+        [routerLink]="['search/start']"
+        i18n="
+          topNavigationSearchStartBtn|Top Navigation Schaltfläche
+          Abholung@@topNavigationSearchStartBtn"
+        *hasPermission="resourceAction.CreateLivePoolingSearch"
+        >Abholung / Abgabe planen</a
+      >
+      <a
+        mat-menu-item
+        [routerLink]="['order-loads']"
+        [queryParams]="{ type: orderLoadsViewType.LivePooling }"
+        i18n="
+          topNavigationAvailabilitiesListBtn|Top Navigation Schaltfläche
+          Auftragsübersicht LivePooling@@topNavigationLivePoolingOrdersBtn"
+        *hasPermission="resourceAction.ReadLivePoolingOrders"
+      >
+        Auftragsübersicht</a
+      >
+    </mat-menu>
+    <a
+      mat-button
+      [matMenuTriggerFor]="reportingMenu"
+      i18n="
+        topNavigationReportingMenuBtn|Top Navigation Menü
+        Reporting@@topNavigationReportingMenuBtn"
+      *ngIf="data.showAll"
+      >Reporting</a
+    >
+    <mat-menu #reportingMenu="matMenu">
+      <a
+        mat-menu-item
+        [routerLink]="['reporting/designer']"
+        i18n="
+          topNavigationReportingDesignerBtn|Top Navigation Schaltfläche
+          Designer@@topNavigationReportingDesignerBtn"
+        >Designer</a
+      >
+      <a
+        mat-menu-item
+        [routerLink]="['reporting/viewer']"
+        i18n="
+          topNavigationReportingViewerBtn|Top Navigation Schaltfläche
+          Viewer@@topNavigationReportingViewerBtn"
+        >Viewer</a
+      >
+    </mat-menu>
+  </ng-container>
+</ng-container>

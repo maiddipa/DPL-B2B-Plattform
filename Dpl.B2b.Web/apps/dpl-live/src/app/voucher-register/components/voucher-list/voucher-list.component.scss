@@ -1,0 +1,185 @@
+.example-container {
+  position: relative;
+  min-height: 200px;
+}
+
+.example-table-container {
+  position: relative;
+  max-height: 600px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-rate-limit-reached {
+  color: #980000;
+  max-width: 360px;
+  text-align: center;
+}
+
+/* Column Widths */
+/*.mat-column-number,
+  .mat-column-state {
+    max-width: 64px;
+  }*/
+
+/*.mat-column-created {
+    max-width: 124px;
+  }*/
+td.alignRight {
+  text-align: end;
+  padding-right: 10px;
+}
+th.alignRight {
+  text-align: end;
+  padding-right: 10px;
+}
+
+th.alignRight.sort {
+  padding-right: 0px;
+  ::ng-deep .mat-sort-header-container {
+    justify-content: flex-end !important;
+  }
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+.example-chip-list {
+  width: 100%;
+}
+
+/* expand styles */
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+tr.example-element-row.example-expanded-row {
+  background: rgba(0, 0, 0, 0.04);
+}
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.element-icon img {
+  width: 64px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+.mat-header-cell {
+  /* color:rgba(0, 0, 0, 0.87); */
+
+  color: black; /* for demo */
+  font-size: 14px;
+}
+
+//table styling
+
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type,
+th.mat-header-cell:last-of-type {
+  padding-right: 0px;
+}
+
+.documentNumber {
+  width: 10%;
+}
+.issuer {
+  width: 10%;
+}
+.issuedDate {
+  width: 9%;
+  padding-right: 15px !important;
+}
+.validUntil {
+  width: 5%;
+}
+
+.recipientType {
+  width: 50px;
+}
+.type {
+  width: 50px;
+}
+.recipient {
+  width: 15%;
+}
+.reasonType {
+  width: 50px;
+}
+.loadCarrierQuantity {
+  width: 50px;
+}
+.status {
+  width: 4%;
+}
+.quality {
+  width: 6%;
+}
+.chat {
+  width: 1%;
+}
+.cancel {
+  width: 1%;
+}
+
+.customerReference {
+  width: 4%;
+}
+
+.mat-column-hasDplNote {
+  width: 1%;
+}

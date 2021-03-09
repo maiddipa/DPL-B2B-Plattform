@@ -1,0 +1,9 @@
+<voucher-filter
+  [context]="filterContext"
+  *ngIf="showFilterArea"
+></voucher-filter>
+<div class="app-table-container mat-elevation-z1">
+  <ng-content></ng-content>
+  <mat-paginator (page)="onPage($event)"></mat-paginator>
+</div>
+<ng-container *dplLoading="query"></ng-container>

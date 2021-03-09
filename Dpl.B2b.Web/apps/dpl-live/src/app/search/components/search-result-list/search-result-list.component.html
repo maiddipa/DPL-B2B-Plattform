@@ -1,0 +1,59 @@
+<ng-container *ngIf="response">
+  <mat-toolbar color="primary">
+    <span
+      class="fill-remaining-space"
+      i18n="
+        searchResultListToolbarLabel|Search Result List Symbolleiste
+        Beschriftung@@searchResultListToolbarLabel"
+      >Suchergebnisse ({{
+        response.input.routing ? 'Routing' : 'Luftlinie'
+      }})</span
+    >
+  </mat-toolbar>
+  <mat-list>
+    <ng-container *ngIf="response.destinations.length > 0; else noResults">
+      <mat-list-item
+        *ngFor="let destination of response.destinations"
+        [ngClass]="selected === destination.id ? 'selected' : ''"
+        (click)="onSelectionChanged(destination.id)"
+      >
+        <h3 matLine>
+          {{ destination.info.address.country | country: 'iso2' }}-{{
+            destination.info.address.details
+          }}
+        </h3>
+        <p matLine *ngIf="destination.routing.duration">
+          {{ destination.routing.distance.text }} /
+          {{ destination.routing.duration.text }}
+        </p>
+        <p matLine *ngIf="!destination.routing.duration">
+          {{ destination.routing.distance.text }}
+        </p>
+        <button
+          *ngIf="!basketDict[destination.id]"
+          mat-icon-button
+          (click)="onAddToBasket(destination); $event.stopPropagation()"
+        >
+          <mat-icon matListIcon class="icon">shopping_basket</mat-icon>
+        </button>
+        <button
+          *ngIf="basketDict[destination.id]"
+          mat-icon-button
+          (click)="onRemoveFromBasket(destination); $event.stopPropagation()"
+        >
+          <mat-icon matListIcon class="icon">clear</mat-icon>
+        </button>
+      </mat-list-item>
+    </ng-container>
+    <ng-template #noResults>
+      <mat-list-item>
+        <h3
+          matLine
+          i18n="NoOffersFound|Label Keine Angebote gefunden@@NoOffersFound"
+        >
+          Keine Angebote gefunden
+        </h3>
+      </mat-list-item>
+    </ng-template>
+  </mat-list>
+</ng-container>

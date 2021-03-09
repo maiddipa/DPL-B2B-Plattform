@@ -1,0 +1,1 @@
+.\LtmsSyncService\Lama2OlmaSync.exe run

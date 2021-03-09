@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Dpl.B2b.Cli": {
+      "commandName": "Project",
+      "commandLineArgs": "import partners 7 \"..\\..\\..\\..\\Dpl.B2b.Dal\\Seed\\import\\partners-kaufland.csv\"",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "CustomDev"
+      }
+    }
+  }
+}

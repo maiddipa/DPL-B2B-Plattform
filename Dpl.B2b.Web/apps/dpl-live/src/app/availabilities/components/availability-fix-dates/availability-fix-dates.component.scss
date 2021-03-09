@@ -1,0 +1,36 @@
+.navigator {
+  margin-bottom: 8p;
+}
+
+.weekdayCard {
+  min-width: 90px;
+}
+.weekdayCardDisabled {
+  background-color: rgba(0, 0, 0, 0.12);
+  cursor: not-allowed !important;
+  input {
+    cursor: not-allowed !important;
+  }
+}
+.calendarWeek {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.weekday {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.weekdayDate {
+}
+
+.amountCarrier {
+  margin-top: 16px;
+  mat-form-field {
+    width: 70px;
+    input {
+      text-align: center;
+      padding-left: 8px;
+    }
+  }
+}

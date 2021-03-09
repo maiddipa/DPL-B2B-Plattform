@@ -1,0 +1,252 @@
+.str-chat {
+  height: auto;
+  max-height: 100%;
+}
+
+.str-chat-channel .str-chat__container {
+  height: auto;
+  max-height: 100%;
+  border-radius: 10px;
+}
+
+.str-chat-channel.messaging .str-chat__main-panel {
+  padding: 0px;
+}
+
+.str-chat-channel-list {
+  padding: 10px;
+}
+
+.messaging.str-chat .str-chat__header-livestream {
+  border-radius: 0;
+}
+
+.str-chat__channel-preview-messenger--active {
+  /* background: radial-gradient(#3f51b5, transparent); */
+  background-color: #3f51b5;
+  color: white;
+  border-radius: 0px !important;
+  border: 2px solid black;
+}
+
+.str-chat__channel-preview-messenger {
+  padding: 10px 0px 10px 10px;
+  margin: 0;
+  min-width: 258px;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.07);
+}
+
+/* #style-select-channel-list {
+  border: 1px solid grey;
+} */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 20px;
+  top: 60px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 30px 0;
+}
+
+.wrapper--open {
+  height: calc(100% - 40px);
+}
+
+.wrapper--open .str-chat__container {
+  height: 100%;
+}
+
+.wrapper-chat {
+  display: flex;
+  min-height: 90%;
+  max-height: 90%;
+
+  flex-direction: row;
+}
+
+.str-chat-channel {
+  /* Simple grey border around messaging only windows as its white and it clashes with main site */
+  width: 600px;
+  /* sets default with for message window */
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  background-color: rgb(241, 241, 243);
+}
+
+.button {
+  height: 60px;
+  width: 60px;
+  margin-top: 16px;
+  border-radius: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 60px;
+
+  background: #ffffff;
+  background-image: linear-gradient(-180deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(0, 0, 0, 0.1) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.24);
+  cursor: pointer;
+}
+
+.button svg {
+  fill: #000;
+  opacity: 0.8;
+}
+
+.button--closed svg {
+  position: relative;
+  /* left: 3px; */
+  fill: #0043f7;
+}
+
+.button:hover svg {
+  opacity: 1;
+}
+
+.str-chat__input--textarea-wrapper {
+  align-items: center !important;
+}
+
+.str-chat__input-fileupload {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+.channel-delete-tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltiptext {
+  font-size: 10px;
+  visibility: hidden;
+  width: 120px;
+  height: 25px;
+  background-color: #3f51b5;
+  color: #fff;
+  text-align: center;
+  padding: 0px 10px;
+  border-radius: 6px;
+  /* right:  40px; */
+  left: -52px;
+  bottom: 32px;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 2;
+  /* opacity: 0;
+  transition: opacity 1s; */
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  /* opacity: 1; */
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #3f51b5 transparent transparent transparent;
+}
+
+
+.channel-delete-tooltiptext {
+  font-size: 10px;
+  visibility: hidden;
+  height: 25px;
+  background-color: #3f51b5;
+  color: #fff;
+  text-align: center;
+  padding: 0px 10px;
+  border-radius: 6px;
+  /* right:  40px; */
+  left: -70px;
+  bottom: 32px;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 2;
+  /* opacity: 0;
+  transition: opacity 1s; */
+}
+
+.channel-delete-tooltip:hover .channel-delete-tooltiptext {
+  visibility: visible;
+  overflow: visible;
+  /* opacity: 1; */
+}
+
+
+
+
+.channel-delete-tooltip .channel-delete-tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  /* At the bottom of the tooltip */
+  left: 67%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #3f51b5 transparent transparent transparent;
+}
+
+
+
+.str-chat__input-fileupload {
+  /* padding-top: 3px; */
+  padding-bottom: 0px !important;
+}
+
+.rfu-file-upload-button {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+div.str-chat__channel-list-team__main {
+  max-width: 280px;
+}
+
+.channel-list-show-responsive-member {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.style-unread-icon-section {
+  display: flex;
+  flex-direction: column-reverse;
+  /* transform: scale(1) translate(-50%);
+  position: relative; */
+  height: 65px;
+  min-width: 17px;
+}
+
+.str-chat__channel-preview-delete-channel-icon {
+  transform: scale(1) translate(-110%);
+  position: relative;
+  cursor: pointer;
+  padding: 3px;
+  /* top: -20px; */
+}
