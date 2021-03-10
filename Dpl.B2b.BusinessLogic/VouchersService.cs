@@ -55,7 +55,7 @@ namespace Dpl.B2b.BusinessLogic
             IDocumentTypesService documentTypesService,
             IDocumentsService documentsService,
             IPostingRequestsService postingRequestsService,
-            Reporting.IReportGeneratorService reportGeneratorService, 
+            Reporting.IReportGeneratorService reportGeneratorService,
             ISynchronizationsService synchronizationsService) : base(authData, authService, mapper)
         {
             _olmaDbContext = olmaDbContext;
@@ -81,7 +81,7 @@ namespace Dpl.B2b.BusinessLogic
 
             return await cmd.Execute();
         }
-        
+
         private async Task<IWrappedResponse> SummaryAction(Rules.Vouchers.Summary.MainRule rule)
         {
             return Ok(rule.Context.Rules.VouchersSummaryValidRule.Context.Result);
@@ -101,7 +101,7 @@ namespace Dpl.B2b.BusinessLogic
         {
             var voucher = rule.Context.Voucher;
             var voucherDto = Mapper.Map<Voucher>(voucher);
-            
+
             return Ok(voucherDto);
         }
 
@@ -114,12 +114,12 @@ namespace Dpl.B2b.BusinessLogic
 
             return await cmd.Execute();
         }
-        
+
         public async Task<IWrappedResponse> GetByNumberAction(Rules.Vouchers.GetByNumber.MainRule rule)
         {
             var voucher = rule.Context.Voucher;
             var voucherDto = Mapper.Map<Voucher>(voucher);
-            
+
             return Ok(voucherDto);
         }
 
@@ -132,20 +132,20 @@ namespace Dpl.B2b.BusinessLogic
 
             return await cmd.Execute();
         }
-        
+
         private async Task<IWrappedResponse> CancelAction(Rules.Vouchers.Cancel.MainRule rule)
         {
             var id = rule.Context.Parent.Id;
             var request = rule.Context.Parent.Request;
             var voucher = rule.Context.Voucher;
-            
+
             voucher.Status = VoucherStatus.Canceled;
             if (voucher.Document != null)
             {
                 voucher.Document.CancellationReason = request.Reason;
                 voucher.Document.StateId = 255;
             }
-            
+
             var response = _olmaVoucherRepo.Update<Olma.Voucher, Olma.Voucher, Voucher>(id, voucher);
 
             var sendVoucherRequestResult = _synchronizationsService.SendVoucherRequestsAsync(new VoucherSyncRequest
@@ -157,7 +157,7 @@ namespace Dpl.B2b.BusinessLogic
                     Number = voucher.Document?.Number
                 }
             });
-            
+
             return response;
         }
 
@@ -176,7 +176,7 @@ namespace Dpl.B2b.BusinessLogic
         {
             var voucher = rule.Context.Rules.Voucher.Context.Voucher;
             var digitalCode = rule.Context.ExpressCode;
-            
+
             #region map partner to CustomerPartner
 
             // if not exists: CustomerPartner has to copied from global Partner and stored in special 'ExpressCode' PartnerDirectory
@@ -233,7 +233,7 @@ namespace Dpl.B2b.BusinessLogic
             var result = await strategy.ExecuteAsync(operation: async () =>
             {
                 await using var ctxTransaction = await _olmaDbContext.Database.BeginTransactionAsync();
-               
+
                 var documentNumber =
                     _numberSequencesService.GetDocumentNumber(documentType, rule.Context.CustomerDivisionId);
                 var typeId = _documentTypesService.GetIdByDocumentType(documentType);
@@ -266,7 +266,7 @@ namespace Dpl.B2b.BusinessLogic
                 }
 
                 var downloadLink =
-                    (WrappedResponse<string>) await _documentsService.GetDocumentDownload(
+                    (WrappedResponse<string>)await _documentsService.GetDocumentDownload(
                         wrappedResponse.Data.DocumentId, DocumentFileType.Composite);
                 if (downloadLink.ResultType != ResultType.Ok)
                 {
@@ -292,7 +292,7 @@ namespace Dpl.B2b.BusinessLogic
                 //Make sure voucher.ReasonType is loaded, because RefLtmsReasonTypeId is needed when mapping to VoucherCreateSyncRequest
                 _olmaDbContext.Entry(voucher).Reference(r => r.ReasonType).Load();
                 var voucherCreateRequest = Mapper.Map<VoucherCreateSyncRequest>(voucher);
-                var voucherSyncRequest = new VoucherSyncRequest {VoucherCreateSyncRequest = voucherCreateRequest};
+                var voucherSyncRequest = new VoucherSyncRequest { VoucherCreateSyncRequest = voucherCreateRequest };
                 voucherSyncRequest.VoucherCreateSyncRequest.RefLtmsTransactionRowGuid = refLtmsTransactionId;
                 var synchronizationsServiceResponse =
                     await _synchronizationsService.SendVoucherRequestsAsync(voucherSyncRequest);
@@ -305,7 +305,7 @@ namespace Dpl.B2b.BusinessLogic
                         State = ErrorHandler.Create().AddMessage(new TechnicalError()).GetServiceState()
                     };
                 }
-                    
+
                 #endregion
 
                 if (rule.Context.Type == VoucherType.Direct && rule.Context.CustomerDivision != null)
@@ -317,13 +317,13 @@ namespace Dpl.B2b.BusinessLogic
                         Reason = PostingRequestReason.Voucher,
                         VoucherId = wrappedResponse.Data.Id,
                         RefLtmsProcessId = Guid.NewGuid(),
-                        RefLtmsProcessTypeId = (int) RefLtmsProcessType.DirectBooking,
+                        RefLtmsProcessTypeId = (int)RefLtmsProcessType.DirectBooking,
                         RefLtmsTransactionId = refLtmsTransactionId,
                         // ReSharper disable once PossibleInvalidOperationException -> secured by rule
                         PostingAccountId = rule.Context.CustomerDivision.PostingAccountId.Value,
                         // ReSharper disable once PossibleInvalidOperationException -> secured by rule
                         SourceRefLtmsAccountId =
-                            (int) voucher.Recipient.Partner?.DefaultPostingAccount.RefLtmsAccountId,
+                            (int)voucher.Recipient.Partner?.DefaultPostingAccount.RefLtmsAccountId,
                         DestinationRefLtmsAccountId =
                             rule.Context.CustomerDivision.PostingAccount.RefLtmsAccountId,
                         Positions = voucher.Positions.Select(v => new PostingRequestPosition()
@@ -336,7 +336,7 @@ namespace Dpl.B2b.BusinessLogic
                     };
 
                     var postingRequestsServiceResponse =
-                        (IWrappedResponse<IEnumerable<PostingRequest>>) await _postingRequestsService.Create(
+                        (IWrappedResponse<IEnumerable<PostingRequest>>)await _postingRequestsService.Create(
                             postingRequestsCreateRequest);
 
                     if (postingRequestsServiceResponse.ResultType != ResultType.Created)
@@ -350,7 +350,7 @@ namespace Dpl.B2b.BusinessLogic
                     }
                 }
                 await ctxTransaction.CommitAsync();
-                    
+
                 return wrappedResponse;
             });
             return result;
@@ -360,15 +360,15 @@ namespace Dpl.B2b.BusinessLogic
         {
             var cmd = ServiceCommand<IWrappedResponse<Contracts.Models.Voucher>, Rules.Vouchers.Update.MainRule>
                 .Create(_serviceProvider)
-                .When(new Rules.Vouchers.Update.MainRule((id,request)))
+                .When(new Rules.Vouchers.Update.MainRule((id, request)))
                 .Then(UpdateAction);
 
             return await cmd.Execute();
         }
-        
+
         private Task<IWrappedResponse> UpdateAction(Rules.Vouchers.Update.MainRule rule)
         {
-            var result = _olmaVoucherRepo.Update<Olma.Voucher, VouchersUpdateRequest, Contracts.Models.Voucher>(rule.Context.Parent.id, rule.Context.Parent.request) ;
+            var result = _olmaVoucherRepo.Update<Olma.Voucher, VouchersUpdateRequest, Contracts.Models.Voucher>(rule.Context.Parent.id, rule.Context.Parent.request);
             var task = Task.Factory.StartNew<IWrappedResponse>(() => result);
             return task;
         }
@@ -397,7 +397,31 @@ namespace Dpl.B2b.BusinessLogic
 
             return await cmd.Execute();
         }
-        
+        /// <summary>
+        /// Returns filtered results
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public List<Olma.Voucher> Filter(VouchersSearchRequest request)
+        {
+            var results = _olmaDbContext.Vouchers.Where(v =>
+                v.CreatedById.Value == request.CustomerId.FirstOrDefault()
+                && (request.ToIssueDate.HasValue && v.CreatedAt <= request.ToIssueDate)
+                && (request.FromIssueDate.HasValue && v.CreatedAt >= request.FromIssueDate)
+                && (request.Shipper.Length != 0 && v.Shipper.CompanyName.ToLower().Contains(request.Shipper.ToLower()))
+                && (request.Shipper.Length != 0 && v.Recipient.CompanyName.ToLower().Contains(request.Recipient.ToLower()))
+                && (request.DocumentNumber.Length != 0 && v.Document.Number.ToLower().Contains(request.DocumentNumber.ToLower()))
+                && (request.Supplier.Length != 0 && v.Supplier.CompanyName.ToLower().Contains(request.Supplier.ToLower()))
+                && (request.Recipient.Length != 0 && v.Recipient.CompanyName.ToLower().Contains(request.Recipient.ToLower())
+                && (request.CustomerReference.Length != 0 && v.CustomerReference.ToLower().Contains(request.CustomerReference.ToLower()))
+                && (request.QuantityFrom != 0 && v.Positions.FirstOrDefault().LoadCarrierQuantity >= request.QuantityFrom)
+                && (request.QuantityTo != 0 && v.Positions.FirstOrDefault().LoadCarrierQuantity <= request.QuantityTo)
+                && (request.States.Length != 0 && request.States.Contains(v.Status))))
+                .ToList();
+
+            return results;
+        }
+
         private async Task<IWrappedResponse> SearchAction(Rules.Vouchers.Search.MainRule rule)
         {
             return Ok(rule.Context.PaginationResult);
