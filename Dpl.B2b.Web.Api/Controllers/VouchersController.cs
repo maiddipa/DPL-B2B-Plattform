@@ -35,6 +35,13 @@ namespace Dpl.B2b.Web.Api.Controllers
             return this._vouchersService.Search(request).Convert<IPaginationResult<Voucher>>(this);
         }
 
+        [HttpGet]
+        [HasPermission(typeof(AttributeRequirement<CanReadVoucherRequirement>))]
+        public Task<ActionResult<IPaginationResult<Voucher>>> GetExport([FromQuery] VouchersSearchRequest request)
+        {
+            return this._vouchersService.Filter(request).Convert<IPaginationResult<Voucher>>(this);
+        }
+
         [HttpGet("{id}")]
         [HasPermission(typeof(AttributeRequirement<CanReadVoucherRequirement>))]
         [System.Obsolete]
